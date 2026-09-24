@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- Socket-activated tunnel to ComfyUI on the halo box. launchd owns 127.0.0.1:8188 and
+       spawns one "ssh -W" per incoming TCP connection, so there is no long-lived
+       process to die when the Mac sleeps or the network changes.
+       Replace __USER__ with your macOS short name; "halo-tunnel" is the ssh Host alias
+       from ssh_config.example. -->
+  <key>Label</key><string>com.halo.comfy-tunnel</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/ssh</string>
+    <string>-o</string><string>BatchMode=yes</string>
+    <string>-o</string><string>ConnectTimeout=10</string>
+    <string>-o</string><string>ServerAliveInterval=30</string>
+    <string>-W</string><string>127.0.0.1:8188</string>
+    <string>halo-tunnel</string>
+  </array>
+  <key>inetdCompatibility</key>
+  <dict><key>Wait</key><false/></dict>
+  <key>Sockets</key>
+  <dict>
+    <key>Listener</key>
+    <dict>
+      <key>SockNodeName</key><string>127.0.0.1</string>
+      <key>SockServiceName</key><string>8188</string>
+      <key>SockType</key><string>stream</string>
+      <key>SockFamily</key><string>IPv4</string>
+    </dict>
+  </dict>
+  <key>ProcessType</key><string>Interactive</string>
+  <key>StandardErrorPath</key><string>/Users/__USER__/Library/Logs/halo-comfy-tunnel.log</string>
+</dict>
+</plist>

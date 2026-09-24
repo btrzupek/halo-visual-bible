@@ -1,0 +1,24 @@
+# Append to ~/.ssh/config on the Mac. Replace the <placeholders>.
+
+# Your normal interactive host entry (optional). Don't add a LocalForward for 8188 here:
+# the launchd agent owns 127.0.0.1:8188.
+Host <halo-host>
+  HostName <halo-ip-or-dns>
+  User <user>
+  IdentityFile ~/.ssh/<key-file>
+  UseKeychain yes
+  AddKeysToAgent yes
+
+# Used only by the launchd tunnel (com.halo.comfy-tunnel.plist).
+Host halo-tunnel
+  HostName <halo-ip-or-dns>
+  User <user>
+  IdentityFile ~/.ssh/<key-file>
+  IdentitiesOnly yes
+  UseKeychain yes
+  ServerAliveInterval 30
+  ServerAliveCountMax 3
+  # Reuse one authenticated connection for the per-request "ssh -W" processes (~300 ms -> ~50 ms)
+  ControlMaster auto
+  ControlPath ~/.ssh/cm-halo-tunnel-%C
+  ControlPersist 10m

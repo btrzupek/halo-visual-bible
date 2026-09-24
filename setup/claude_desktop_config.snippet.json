@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "halo-imagegen": {
+      "command": "/Users/<user>/halo-visual-bible/mcp-server/.venv/bin/python",
+      "args": ["/Users/<user>/halo-visual-bible/mcp-server/halo_imagegen.py"],
+      "env": {
+        "COMFY_URL": "http://127.0.0.1:8188",
+        "HALO_MODELS": "/Users/<user>/halo-visual-bible/mcp-server/models.json",
+        "HALO_OUT_DIR": "/Users/<user>/halo-images"
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+# generated images and results (the site's own images under site/ ARE committed)
+/*.png
+viewer/images/*
+!viewer/images/.gitkeep
+benchmark/
+results/
+metrics/
+benchmark-images/
+
+# python
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# secrets and local config
+.env
+*.env
+*.pem
+*.key
+anthropic.env
+claude_desktop_config.json
+loras.json
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
