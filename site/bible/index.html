@@ -57,6 +57,19 @@ a{color:var(--gilt)}
 .toc li a{display:block;color:var(--ink);text-decoration:none;font-size:.98rem;line-height:1.35;padding:.38rem 0}
 .toc li a span{display:block;font-family:var(--display);color:var(--muted);font-size:.8rem;letter-spacing:.03em}
 .toc li a:hover{color:var(--gilt)}
+/* collapsible Contents: closed by default, opened by any #contents link */
+.contents details{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.contents summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;flex-wrap:wrap;gap:.3rem 1rem;padding:1.1rem 0}
+.contents summary::-webkit-details-marker{display:none}
+.contents summary h2{font-family:var(--display);font-weight:400;font-size:clamp(1.5rem,2.6vw,2rem);line-height:1.1;margin:0}
+.contents summary .count{color:var(--muted);font-size:1rem}
+.contents summary .hint{margin-left:auto;font-family:var(--display);color:var(--gilt);font-size:.95rem;display:flex;align-items:center;gap:.55rem}
+.contents summary .hint::before{content:"Show all"}
+.contents details[open] summary .hint::before{content:"Hide"}
+.contents summary .hint::after{content:"";width:.5rem;height:.5rem;border-right:2px solid var(--gilt);border-bottom:2px solid var(--gilt);transform:translateY(-.15rem) rotate(45deg);transition:transform .2s}
+.contents details[open] summary .hint::after{transform:translateY(.1rem) rotate(-135deg)}
+.contents summary:hover h2{color:var(--gilt)}
+.contents details[open] .toc{padding:.4rem 0 2rem}
 
 .cast{width:min(1180px,100%);margin:0 auto;padding:clamp(3.5rem,8vw,6rem) clamp(1.25rem,5vw,3rem) 1rem;display:grid;grid-template-columns:minmax(0,1.1fr) repeat(2,minmax(0,.7fr));gap:clamp(1.25rem,3vw,2.5rem);align-items:end}
 .cast h2{margin-bottom:.6rem}
@@ -134,8 +147,10 @@ footer p{margin:0 0 .6rem}
 <nav class="chapnav" id="chapnav" aria-label="Chapters"></nav>
 
 <section class="contents" id="contents" aria-label="Contents">
-  <h2>Contents</h2>
-  <div class="toc" id="toc"></div>
+  <details id="toc-details">
+    <summary><h2>Contents</h2><span class="count" id="toc-count"></span><span class="hint" aria-hidden="true"></span></summary>
+    <div class="toc" id="toc"></div>
+  </details>
 </section>
 
 <section class="cast" aria-label="Recurring characters">
@@ -194,6 +209,12 @@ footer p{margin:0 0 .6rem}
   });
   document.getElementById('toc').innerHTML=toc;
   document.getElementById('main').innerHTML=main;
+  var tocd=document.getElementById('toc-details');
+  document.getElementById('toc-count').textContent=chs.length+' chapters · '+document.querySelectorAll('#toc li').length+' scenes';
+  function openToc(){if(location.hash==='#contents')tocd.open=true;}
+  window.addEventListener('hashchange',openToc);
+  document.addEventListener('click',function(e){if(e.target.closest('a[href="#contents"]'))tocd.open=true;});
+  openToc();
   if(location.hash){var t=document.getElementById(location.hash.slice(1));if(t)t.scrollIntoView();}
 
   var lb=document.getElementById('lightbox'),lbi=lb.querySelector('img');
