@@ -43,6 +43,19 @@
   <p class="lede">How a chat with Claude on a Mac turned into 88 illustrated scenes rendered on a box on my desk.
     Everything here is in the <a href="https://github.com/btrzupek/halo-visual-bible">GitHub repo</a>, including the raw numbers.</p>
 
+  <h2>The run, by the numbers</h2>
+  <div class="cards">
+    <div class="card"><div class="stat">168</div><p>generations and edits for 90 published images (1.87 each)</p></div>
+    <div class="card"><div class="stat">68 min</div><p>of GPU time for the whole book, about 45 s per published image</p></div>
+    <div class="card"><div class="stat">27 ×</div><p>each model was reloaded, from switching between generating and editing</p></div>
+    <div class="card"><div class="stat">44%</div><p>of the active session the GPU was busy. The rest was prompting and review.</p></div>
+    <div class="card"><div class="stat">0.18 kWh</div><p>for the book, about 3 cents of electricity at $0.15/kWh</p></div>
+    <div class="card"><div class="stat">$7 to $32</div><p>for the same 240 calls on cloud image APIs (estimate)</p></div>
+  </div>
+  <p class="prose" style="margin-top:1rem">Every job came from ComfyUI's own history:
+    <a href="/data/comfy_history.csv">comfy_history.csv</a>. The scripts that produced these numbers are in
+    <a href="https://github.com/btrzupek/halo-visual-bible/tree/main/scripts">scripts/</a>, and every image with its prompt is on the <a href="/making-of">Making of</a> page.</p>
+
   <h2>The pieces</h2>
   <div class="diagram" role="img" aria-label="Claude on the Mac calls the halo-imagegen MCP server, which talks HTTP to localhost port 8188. launchd forwards that over SSH to ComfyUI on the Halo box, which runs on the Radeon 8060S using shared system memory.">
     <svg viewBox="0 0 1100 330" xmlns="http://www.w3.org/2000/svg">
@@ -123,18 +136,6 @@
   <p class="prose">Under load the package holds a ceiling of about 156 W. The GPU edge sensor hit 100 °C on back-to-back Qwen runs,
     but the shader clock only dropped 0.8%, so it's power-limited rather than throttling.</p>
 
-  <h2>The run, by the numbers</h2>
-  <div class="cards">
-    <div class="card"><div class="stat">168</div><p>generations and edits for 90 published images (1.87 each)</p></div>
-    <div class="card"><div class="stat">68 min</div><p>of GPU time for the whole book, about 45 s per published image</p></div>
-    <div class="card"><div class="stat">27 ×</div><p>each model was reloaded, from switching between generating and editing</p></div>
-    <div class="card"><div class="stat">44%</div><p>of the active session the GPU was busy. The rest was prompting and review.</p></div>
-    <div class="card"><div class="stat">0.18 kWh</div><p>for the book, about 3 cents of electricity at $0.15/kWh</p></div>
-    <div class="card"><div class="stat">$7 to $32</div><p>for the same 240 calls on cloud image APIs (estimate)</p></div>
-  </div>
-  <p class="prose" style="margin-top:1rem">Every job came from ComfyUI's own history:
-    <a href="/data/comfy_history.csv">comfy_history.csv</a>. The scripts that produced these numbers are in
-    <a href="https://github.com/btrzupek/halo-visual-bible/tree/main/scripts">scripts/</a>, and every image with its prompt is on the <a href="/making-of">Making of</a> page.</p>
 </main>
 
 <footer class="site"><div>
