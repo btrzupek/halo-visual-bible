@@ -16,7 +16,7 @@
 @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
   --bg:#12162a; --panel:#1a1f36; --ink:#e7dfcc; --muted:#a3a3b4; --gilt:#cfa959; --rule:#2e3452; } }
 :root[data-theme="dark"]{ --bg:#12162a; --panel:#1a1f36; --ink:#e7dfcc; --muted:#a3a3b4; --gilt:#cfa959; --rule:#2e3452; }
-html{scroll-padding-top:4rem}
+html{scroll-padding-top:6.5rem}
 *,*::before,*::after{box-sizing:inherit}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:1.125rem;line-height:1.7;-webkit-font-smoothing:antialiased}
 img{max-width:100%;height:auto;display:block}
@@ -87,8 +87,13 @@ main{width:min(1280px,100%);margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem) 4rem
 .scene .sub{color:var(--muted);font-style:italic;margin:0 0 1.2rem;font-size:1.02rem}
 .scene .kjv{font-size:1.04rem;line-height:1.78}
 
-/* ---- view toggle: "With scripture" (default) or "Images only" */
-.viewtoggle{position:sticky;right:0;flex:none;display:flex;gap:2px;margin-left:.8rem;padding:2px;border:1px solid var(--rule);border-radius:999px;background:var(--bg);box-shadow:-12px 0 12px -6px var(--bg)}
+/* ---- view toggle: "Text + images" (default) or "Images only" */
+/* chapter bar = two rows: chapter links (scrolls sideways on phones), then the view toggle */
+.chapnav{flex-direction:column;align-items:stretch;gap:.35rem;overflow:visible}
+.chapnav .chaps{display:flex;align-items:center;gap:.15rem;overflow-x:auto;scrollbar-width:none}
+.chapnav .chaps::-webkit-scrollbar{display:none}
+.chapnav .viewbar{display:flex;justify-content:flex-end}
+.viewtoggle{flex:none;display:flex;gap:2px;padding:2px;border:1px solid var(--rule);border-radius:999px;background:var(--bg)}
 .viewtoggle button{font:inherit;font-size:.9rem;border:0;background:none;color:var(--muted);padding:.25rem .75rem;border-radius:999px;cursor:pointer;white-space:nowrap}
 .viewtoggle button:hover{color:var(--ink)}
 .viewtoggle button[aria-pressed="true"]{background:var(--gilt);color:var(--bg)}
@@ -99,7 +104,7 @@ body.gallery .scene.flip figure{order:0}
 body.gallery .scene .kjv,body.gallery .hero .kjv,body.gallery .hero .ref{display:none}
 body.gallery .scene h2{font-size:clamp(1.3rem,2vw,1.6rem)}
 body.gallery .scene .sub{margin:0}
-@media (max-width:820px){ body.gallery main{grid-template-columns:1fr} .viewtoggle button{padding:.25rem .6rem;font-size:.85rem} }
+@media (max-width:820px){ body.gallery main{grid-template-columns:1fr} .viewtoggle button{padding:.25rem .6rem;font-size:.85rem} .chapnav .viewbar{justify-content:center} }
 .lightbox{position:fixed;inset:0;z-index:50;background:rgba(3,4,8,.94);display:none;align-items:center;justify-content:center;padding:env(safe-area-inset-top,0px) 2vw env(safe-area-inset-bottom,0px);cursor:zoom-out}
 .lightbox.open{display:flex}
 .lightbox img{max-width:100%;max-height:96vh;object-fit:contain}
@@ -188,8 +193,9 @@ footer p{margin:0 0 .6rem}
   var nav='<a class="home" href="#top">John</a>';
   chs.forEach(function(c){nav+='<a href="#ch'+c+'">'+c+'</a>';});
   nav+='<a class="toc-link" href="#contents">Contents</a>';
-  nav+='<div class="viewtoggle" role="group" aria-label="View"><button type="button" data-view="scripture">With scripture</button><button type="button" data-view="images">Images only</button></div>';
-  document.getElementById('chapnav').innerHTML=nav;
+  document.getElementById('chapnav').innerHTML='<div class="chaps">'+nav+'</div>'+
+    '<div class="viewbar"><div class="viewtoggle" role="group" aria-label="View">'+
+    '<button type="button" data-view="scripture">Text + images</button><button type="button" data-view="images">Images only</button></div></div>';
   // view toggle: remembered per reader, and ?view=images makes a shareable gallery link
   function setView(v,save){
     document.body.classList.toggle('gallery',v==='images');
