@@ -158,6 +158,10 @@ John and it moves fast, so the scenes do too. You can [read it here](/mark).
 
 A few things were different this time.
 
+**The box had other work to do.** Mark ran under a harder test than John. The whole time it was running, I had a
+separate workflow going on the same box with three AI coding agents working at once. So the image models were
+sharing the machine with them from the first picture to the last.
+
 **Same Jesus, two new faces.** I reused the Jesus and John the Baptist portraits from John, so it's the same Jesus
 in both books. Mark leans hard on Peter, and it ends with Mary Magdalene at the cross, at the tomb and in the
 garden. So I had Claude make one portrait of each and use them as the reference in the scenes where they're the
@@ -211,9 +215,21 @@ The edit model is still very literal. Asked to swap a fedora for a head cloth on
 put the head cloth on a Pharisee in the front and made the fedora sharper. Six of the 28 edits on Mark made things
 worse and got thrown out.
 
+And one got past everybody until I looked at the live site myself. In Mark 3 the man whose withered hand has just
+been healed is holding it up for everyone to see, and it only had four fingers. Of all the hands to get wrong. One
+edit fixed it.
+
+<figure class="pair">
+<img src="/images/full/halo_klein_ref_00139_.webp" alt="Before: the healed hand has a thumb and only three fingers">
+<img src="/images/full/halo_edit_00079_.webp" alt="After: the healed hand has a thumb and four fingers">
+<figcaption>Mark 3:1-6, "stretch forth thine hand." Left: four fingers, counting the thumb. Right: five.</figcaption>
+</figure>
+
 One new annoyance on the plumbing side: every single edit timed out on the Mac end, even though it finished fine
-on the box. Claude worked around it by pulling the finished image straight from ComfyUI. That's the next thing to
-fix in the MCP server.
+on the box. Claude worked around it by pulling the finished image straight from ComfyUI. The cause was on the MCP
+side: the client gives up on a request after about a minute, and when it gave up, the server stopped watching the
+job, so the picture never made it back to my Mac. That's fixed now. Every job gets watched in the background until
+its image is saved, and a call that runs long comes back with a job id that Claude picks up a moment later.
 
 ### Mark by the numbers
 
@@ -221,14 +237,15 @@ fix in the MCP server.
 |---|---|---|
 | Scenes | 88 | 75 |
 | New portraits | 2 | 2 |
-| Total attempts | 168 | 188 (160 generations, 28 edits) |
-| Attempts per published image | 1.87 | 2.44 |
+| Total attempts | 168 | 189 (160 generations, 29 edits) |
+| Attempts per published image | 1.87 | 2.45 |
 | GPU time | 68 minutes | 98 minutes |
 | Session length | about 2.5 hours | about 2.9 hours |
 
 Mark took more attempts per picture than John even though it's the shorter book. Most of that is the stricter
-checking. The box was also slower across the board this time. A typical scene took 22 seconds instead of 16, and
-a typical edit took 92 seconds instead of 53. I don't know why yet. That's on the list too.
+checking. Each picture was also slower. A typical scene took 22 seconds instead of 16, and a typical edit took 92
+seconds instead of 53. Most likely that's the three coding agents sharing the box. Given that, I think Mark went
+really well.
 
 ## Try it
 

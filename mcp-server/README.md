@@ -12,6 +12,7 @@ locally.
 | `halo_list_models()` | Lists the model registry: each model's kind, defaults, whether its files are installed in ComfyUI, and whether it supports reference images or LoRA training; plus any trained LoRAs |
 | `halo_generate_image(prompt, model="", width=0, height=0, steps=0, cfg=0, seed=-1, reference_image="", lora="", lora_strength=1.0)` | Text-to-image. `0` means "use the model's tuned default". `reference_image` switches to the model's reference workflow (FLUX.2 klein by default) to put the same person/object in a new scene. `lora` applies a trained LoRA and prepends its trigger word |
 | `halo_edit_image(instruction, image="", reference_image="", ...)` | Instruction edit with Qwen-Image-Edit 2511. `image` is a local path or a filename in `HALO_OUT_DIR`; blank = the most recent image, so edits chain |
+| `halo_wait_for_job(prompt_id, max_wait_s=0)` | Collects the image from a generate/edit call that returned `STILL RUNNING`, waiting up to ~50 s per call. Also works for any finished ComfyUI `prompt_id`, e.g. after the server restarted |
 | `halo_train_lora(name, images_folder, trigger="", base_model="z-image-turbo", ...)` | Uploads a folder of photos and queues ComfyUI's built-in `TrainLoraNode`; returns immediately |
 | `halo_training_status(name="")` | Step progress (peeks ComfyUI's websocket), ETA, and the loss graph when done |
 | `halo_cancel_training(name)` | Interrupts or dequeues a training job |
@@ -23,10 +24,17 @@ locally.
    `LoadImage` node if there's no second image.
 2. **Upload** (reference/edit): `POST /upload/image` puts the local file into ComfyUI's input folder.
 3. **Queue**: `POST /prompt` with the graph → `prompt_id`.
-4. **Poll**: `GET /history/{prompt_id}` every 1.5 s until outputs appear (with MCP progress
-   notifications so clients don't time out during slow model loads).
-5. **Fetch**: `GET /view?filename=…` for the PNG, save it to `HALO_OUT_DIR`, return a JPEG
-   copy to Claude plus a line with model, seed, size, steps, and timing.
+4. **Watch**: a background task polls `GET /history/{prompt_id}` every second until outputs
+   appear, then fetches the PNG (`GET /view?filename=…`) and saves it to `HALO_OUT_DIR`.
+   It is independent of the tool call, so the image is saved even if the client gives up.
+5. **Return**: the tool call waits up to `HALO_TOOL_WAIT_S` (50 s) for the watcher and returns a
+   JPEG copy plus a line with model, seed, size, steps, timing, and `prompt_id`. If the job needs
+   longer (edits after a model swap, a busy queue), it returns `STILL RUNNING … prompt_id=…`
+   instead, and `halo_wait_for_job(prompt_id)` picks up the result.
+
+Why: MCP clients commonly abandon a request after 60 s and don't all honour progress
+notifications. Before this change, every edit over a minute failed with "Request timed out",
+the client's cancel stopped the polling, and the finished image never reached the Mac.
 
 `models.json` is re-read on every call, so you can change defaults or add a model without
 restarting Claude.
@@ -38,6 +46,7 @@ restarting Claude.
 | `COMFY_URL` | `http://127.0.0.1:8188` | ComfyUI base URL (the local end of the SSH tunnel) |
 | `HALO_MODELS` | `models.json` beside the script | Model registry |
 | `HALO_OUT_DIR` | `~/halo-images` | Where PNGs are saved |
+| `HALO_TOOL_WAIT_S` | `50` | How long one tool call waits before returning `STILL RUNNING` (keep it under the client's request timeout) |
 
 ## Files
 

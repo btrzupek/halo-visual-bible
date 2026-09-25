@@ -30,6 +30,12 @@ Env vars:
   COMFY_URL     ComfyUI base URL (default http://127.0.0.1:8188)
   HALO_MODELS   model registry path (default models.json beside this file)
   HALO_OUT_DIR  where copies of images are saved (default ~/halo-images)
+  HALO_TOOL_WAIT_S  how long one tool call waits for a job before returning "still running"
+                (default 50; MCP clients commonly abandon a request after 60 s)
+
+Long jobs: every job is watched by a background task that saves the finished image to
+HALO_OUT_DIR even if the caller gives up or cancels. A call that outlives HALO_TOOL_WAIT_S
+returns the prompt_id instead of an image; collect it with halo_wait_for_job(prompt_id).
 
 Requires: pip install "mcp[cli]<2"   (FastMCP API is v1-only; Pillow optional — shrinks images to JPEG)
 """
@@ -46,6 +52,8 @@ IMAGE_EXTS = (".png", ".jpg", ".jpeg", ".webp")
 PHOTO_EXTS = IMAGE_EXTS + (".heic", ".heif", ".tif", ".tiff")
 # trained LoRAs are saved to ComfyUI's output/loras; on halo, models/loras/trained is a symlink to it
 TRAINED_LORA_DIR = "trained"
+TOOL_WAIT_S = float(os.environ.get("HALO_TOOL_WAIT_S", "50"))
+_JOBS: dict[str, dict] = {}  # prompt_id -> {"task", "start", "kind", "summary"} for jobs this process started
 
 mcp = FastMCP("halo-imagegen")
 
@@ -248,21 +256,8 @@ def _shrink(png: bytes) -> tuple[bytes, str]:
         return png, "png"
 
 
-async def _run(wf: dict, timeout_s: int, ctx: Context | None) -> tuple[bytes, str]:
-    pid = _post("/prompt", {"prompt": wf, "client_id": str(uuid.uuid4())})["prompt_id"]
-    start = time.time()
-    while time.time() - start < timeout_s:
-        hist = json.loads(_get(f"/history/{pid}")).get(pid)
-        if hist and hist.get("outputs"):
-            break
-        if hist and hist.get("status", {}).get("status_str") == "error":
-            raise RuntimeError(f"ComfyUI error: {json.dumps(hist['status'])[:1500]}")
-        if ctx:  # keeps clients from timing out during slow first model loads
-            await ctx.report_progress(time.time() - start, message="generating on halo")
-        await asyncio.sleep(1.5)
-    else:
-        raise TimeoutError(f"No image after {timeout_s}s (prompt_id {pid}); check the ComfyUI queue.")
-
+def _fetch_output(pid: str, hist: dict) -> tuple[bytes, str]:
+    """Download a finished job's first image and save a copy in OUT_DIR."""
     imgs = [i for node in hist["outputs"].values() for i in node.get("images", [])]
     if not imgs:
         raise RuntimeError("Workflow finished but produced no images (is there a SaveImage node?).")
@@ -275,6 +270,66 @@ async def _run(wf: dict, timeout_s: int, ctx: Context | None) -> tuple[bytes, st
     with open(saved, "wb") as f:
         f.write(png)
     return png, saved
+
+
+async def _watch(pid: str, timeout_s: int) -> tuple[bytes, str]:
+    """Poll ComfyUI until the job finishes, then save its image. Runs as its own task, so a
+    caller that times out or cancels never stops the image from being saved."""
+    start = time.time()
+    while time.time() - start < timeout_s:
+        try:
+            hist = json.loads(await asyncio.to_thread(_get, f"/history/{pid}")).get(pid)
+        except OSError:  # tunnel hiccup: keep trying until the hard timeout
+            hist = None
+        if hist and hist.get("outputs"):
+            return await asyncio.to_thread(_fetch_output, pid, hist)
+        if hist and hist.get("status", {}).get("status_str") == "error":
+            raise RuntimeError(f"ComfyUI error: {json.dumps(hist['status'])[:1500]}")
+        await asyncio.sleep(1.0)
+    raise TimeoutError(f"No image after {timeout_s}s (prompt_id {pid}); check the ComfyUI queue.")
+
+
+def _queue_position(pid: str) -> str:
+    try:
+        q = json.loads(_get("/queue"))
+    except OSError:
+        return ""
+    if any(item[1] == pid for item in q.get("queue_running", [])):
+        return "running now"
+    pending = [item[1] for item in sorted(q.get("queue_pending", []), key=lambda i: i[0])]
+    return f"queued, {pending.index(pid) + 1} of {len(pending)} waiting" if pid in pending else ""
+
+
+async def _await_job(pid: str, ctx: Context | None, wait_s: float) -> tuple[bytes, str] | None:
+    """Wait up to wait_s for a job this process is watching; None if it's still running."""
+    job = _JOBS[pid]
+    end = time.time() + wait_s
+    while not job["task"].done() and time.time() < end:
+        if ctx:  # lets clients that honour progress keep the request alive
+            await ctx.report_progress(time.time() - job["start"], message="generating on halo")
+        await asyncio.wait({job["task"]}, timeout=min(2.0, max(0.05, end - time.time())))
+    if not job["task"].done():
+        return None
+    return job["task"].result()  # re-raises a ComfyUI error or the hard timeout
+
+
+async def _run(wf: dict, timeout_s: int, ctx: Context | None, kind: str, summary: str):
+    """Submit a workflow and wait for it; returns (png, saved) or a "still running" message."""
+    pid = _post("/prompt", {"prompt": wf, "client_id": str(uuid.uuid4())})["prompt_id"]
+    task = asyncio.get_running_loop().create_task(_watch(pid, timeout_s))
+    task.add_done_callback(lambda t: t.cancelled() or t.exception())  # never "exception was never retrieved"
+    _JOBS[pid] = {"task": task, "start": time.time(), "kind": kind, "summary": summary}
+    done = await _await_job(pid, ctx, TOOL_WAIT_S)
+    return (pid, done)
+
+
+def _pending_message(pid: str) -> str:
+    job = _JOBS[pid]
+    where = _queue_position(pid)
+    return (f"STILL RUNNING on halo after {time.time() - job['start']:.0f}s ({job['kind']}"
+            f"{', ' + where if where else ''}). prompt_id={pid}\n"
+            f"The image is saved to {OUT_DIR} automatically when it finishes. "
+            f'Call halo_wait_for_job(prompt_id="{pid}") to get it. {job["summary"]}')
 
 
 @mcp.tool()
@@ -347,13 +402,11 @@ async def halo_generate_image(prompt: str, model: str = "", negative_prompt: str
     wf = _build_workflow(workflow, p)
     if lora_job:
         wf = _inject_lora(wf, lora_job["file"], lora_strength)
-    t0 = time.time()
-    png, saved = await _run(wf, timeout_s, ctx)
-    data, fmt = _shrink(png)
-    return [Image(data=data, format=fmt),
-            f"model={name} seed={p['seed']} {p['width']}x{p['height']} steps={p['steps']} cfg={p['cfg']}"
-            f"{' reference=' + reference_image if reference_image else ''}"
-            f"{f' lora={lora}@{lora_strength}' if lora else ''} time={time.time() - t0:.1f}s saved={saved}"]
+    summary = (f"model={name} seed={p['seed']} {p['width']}x{p['height']} steps={p['steps']} cfg={p['cfg']}"
+               f"{' reference=' + reference_image if reference_image else ''}"
+               f"{f' lora={lora}@{lora_strength}' if lora else ''}")
+    pid, done = await _run(wf, timeout_s, ctx, "generate", summary)
+    return _result(pid, done)
 
 
 @mcp.tool()
@@ -375,12 +428,47 @@ async def halo_edit_image(instruction: str, image: str = "", reference_image: st
     p = {"prompt": instruction, "negative": "", "image": _upload(src), "image2": _upload(ref) if ref else "",
          "steps": steps or m.get("steps", 4), "cfg": cfg or m.get("cfg", 1.0),
          "seed": random.randint(0, 2**32 - 1) if seed < 0 else seed}
-    t0 = time.time()
-    png, saved = await _run(_build_workflow(m["workflow"], p), timeout_s, ctx)
+    summary = (f"model={name} source={src}{' reference=' + ref if ref else ''} seed={p['seed']} "
+               f"steps={p['steps']} cfg={p['cfg']}")
+    pid, done = await _run(_build_workflow(m["workflow"], p), timeout_s, ctx, "edit", summary)
+    return _result(pid, done)
+
+
+def _result(pid: str, done):
+    if done is None:
+        return _pending_message(pid)
+    png, saved = done
+    job = _JOBS[pid]
     data, fmt = _shrink(png)
     return [Image(data=data, format=fmt),
-            f"model={name} source={src}{' reference=' + ref if ref else ''} seed={p['seed']} "
-            f"steps={p['steps']} cfg={p['cfg']} time={time.time() - t0:.1f}s saved={saved}"]
+            f"{job['summary']} time={time.time() - job['start']:.1f}s saved={saved} prompt_id={pid}"]
+
+
+@mcp.tool()
+async def halo_wait_for_job(prompt_id: str, max_wait_s: int = 0, ctx: Context = None):
+    """Collect the image from a halo_generate_image / halo_edit_image call that returned
+    "STILL RUNNING" (long jobs such as edits, first model loads, or a busy queue). Waits up to
+    max_wait_s (0 = the default, about 50 s) and returns the image, or "STILL RUNNING" again
+    if it needs longer: just call it again. Also works for any ComfyUI prompt_id that has
+    already finished, e.g. after the MCP server was restarted."""
+    wait = min(max_wait_s or TOOL_WAIT_S, TOOL_WAIT_S)
+    if prompt_id not in _JOBS:  # not ours (or server restarted): look it up in ComfyUI's history
+        end = time.time() + wait
+        while True:
+            hist = json.loads(_get(f"/history/{prompt_id}")).get(prompt_id)
+            if hist and hist.get("outputs"):
+                png, saved = _fetch_output(prompt_id, hist)
+                data, fmt = _shrink(png)
+                return [Image(data=data, format=fmt), f"saved={saved} prompt_id={prompt_id}"]
+            if hist and hist.get("status", {}).get("status_str") == "error":
+                raise RuntimeError(f"ComfyUI error: {json.dumps(hist['status'])[:1500]}")
+            if time.time() >= end:
+                where = _queue_position(prompt_id)
+                if not where and not hist:
+                    raise ValueError(f"prompt_id {prompt_id} isn't queued, running or in ComfyUI's history.")
+                return f"STILL RUNNING ({where or 'running'}). prompt_id={prompt_id}. Call halo_wait_for_job again."
+            await asyncio.sleep(1.0)
+    return _result(prompt_id, await _await_job(prompt_id, ctx, wait))
 
 
 @mcp.tool()

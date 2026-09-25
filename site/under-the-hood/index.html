@@ -47,11 +47,12 @@
   <h2>The run, by the numbers</h2>
   <table>
     <tr><th></th><th>John</th><th>Mark</th></tr>
+    <tr><td>Test conditions</td><td>Box doing nothing else</td><td>Three AI coding agents running on the box at the same time</td></tr>
     <tr><td>Chapters</td><td>21</td><td>16</td></tr>
     <tr><td>Scenes</td><td>88</td><td>75</td></tr>
     <tr><td>New cast portraits</td><td>2 (Jesus, John the Baptist)</td><td>2 (Peter, Mary Magdalene)</td></tr>
-    <tr><td>Attempts (generations + edits)</td><td>168 (121 + 47)</td><td>188 (160 + 28)</td></tr>
-    <tr><td>Attempts per published image</td><td>1.87</td><td>2.44</td></tr>
+    <tr><td>Attempts (generations + edits)</td><td>168 (121 + 47)</td><td>189 (160 + 29)</td></tr>
+    <tr><td>Attempts per published image</td><td>1.87</td><td>2.45</td></tr>
     <tr><td>Kept on the first try</td><td>about half</td><td>10 of 75</td></tr>
     <tr><td>GPU time</td><td>68 min</td><td>98 min</td></tr>
     <tr><td>GPU busy during the session</td><td>44%</td><td>57%</td></tr>
@@ -60,8 +61,8 @@
   </table>
   <p class="prose">Mark reused John's Jesus and John the Baptist portraits, so both books share one cast. It took more attempts
     per image mainly because every image was checked zoomed in, region by region, which caught small things a full-frame
-    look misses. Every job type also ran slower on Mark (medians from each book's own job history), and the cause
-    isn't known yet. Per-job data: <a href="/data/mark/comfy_history.csv">Mark's comfy_history.csv</a> and
+    look misses. Every job type also ran slower on Mark (medians from each book's own job history): Mark was a harder
+    test, run while a separate workflow had three AI coding agents working on the same box at the same time. Per-job data: <a href="/data/mark/comfy_history.csv">Mark's comfy_history.csv</a> and
     <a href="/data/mark/history_summary.md">summary</a>.</p>
   <h3 style="font-family:var(--display);font-weight:400;margin:2rem 0 .4rem">John in detail</h3>
   <div class="cards">
