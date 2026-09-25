@@ -118,6 +118,7 @@ def main():
     ap.add_argument("--book", default="", help="optional: viewer data/ folder, to flag images used in the book")
     ap.add_argument("--out", default=".", help="output folder")
     ap.add_argument("--history", action="append", default=[], help="saved /history snapshot file(s) or glob (repeatable)")
+    ap.add_argument("--exclude", default="", help="comma-separated output filenames to leave out (jobs that belong to another book)")
     ap.add_argument("--max-items", type=int, default=2000)
     ap.add_argument("--session-gap-min", type=float, default=30, help="idle gap that splits sessions")
     a = ap.parse_args()
@@ -131,7 +132,8 @@ def main():
             hist.update(json.load(open(f)))
     if a.url:
         hist.update(fetch_history(a.url, a.max_items))
-    rows = [r for pid, h in hist.items() if (r := job_row(pid, h, images))]
+    skip = {x for x in a.exclude.split(",") if x}
+    rows = [r for pid, h in hist.items() if (r := job_row(pid, h, images)) and r["output_file"] not in skip]
     rows.sort(key=lambda r: r["_start"])
     prev_model = None
     for r in rows:  # model_swap: this job's diffusion model differs from the previous real job's

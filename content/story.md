@@ -239,13 +239,76 @@ its image is saved, and a call that runs long comes back with a job id that Clau
 | New portraits | 2 | 2 |
 | Total attempts | 168 | 189 (160 generations, 29 edits) |
 | Attempts per published image | 1.87 | 2.45 |
-| GPU time | 68 minutes | 98 minutes |
+| GPU time | 68 minutes | 99 minutes |
 | Session length | about 2.5 hours | about 2.9 hours |
 
 Mark took more attempts per picture than John even though it's the shorter book. Most of that is the stricter
 checking. Each picture was also slower. A typical scene took 22 seconds instead of 16, and a typical edit took 92
 seconds instead of 53. Most likely that's the three coding agents sharing the box. Given that, I think Mark went
 really well.
+
+## Part three: the Gospel of Luke
+
+Then Luke. 24 chapters, 1,151 verses, 103 scenes. It's the longest one yet, and at this point I want to do all four
+Gospels. You can [read it here](/luke).
+
+<p class="cta"><a class="primary" href="/luke">Open Luke</a><a href="/making-of?book=Luke">See every attempt</a></p>
+
+This time the box had nothing else to do. I had just rebooted it to clear out dozens of orphaned Chromium sessions
+that were eating memory, and no coding agents were running. That made Luke a good control for Mark. A typical scene
+took 17 seconds, right back near John's 16, and a typical edit took 57 seconds instead of Mark's 92. So the slowdown
+on Mark really was the three agents sharing the box.
+
+**The timeout is fixed.** On Mark every single edit "timed out" on my Mac even though it finished on the box. Before
+starting Luke, Claude rewrote that part of the MCP server so each job is watched in the background until its image
+is saved, and a call that runs long comes back with a job id instead of an error. Luke had 60 edits. Not one of them
+timed out.
+
+**One new face.** Luke opens with two chapters of birth stories, so Mary, the mother of Jesus, got her own portrait.
+Jesus, John the Baptist, Peter and Mary Magdalene carried over from John and Mark.
+
+<div class="pair">
+<img src="/images/full/halo_klein_00039_.webp" alt="Portrait of Mary, the mother of Jesus, used as a reference image">
+<img src="/images/full/halo_edit_00080_.webp" alt="Luke writing on a scroll by the light of a small clay oil lamp">
+<figcaption>Left: the new reference portrait of Mary. Right: the opening of Luke. The first try gave him a yellow pencil.</figcaption>
+</div>
+
+**Parables look different now.** Luke is full of parables: the Good Samaritan, the prodigal son, the lost sheep,
+Lazarus at the rich man's gate. Those are stories Jesus tells, not things that happened in front of the disciples,
+and I wanted the pictures to say so. So parable scenes get a soft, blurry edge, the way a movie shows a dream or a
+flashback, plus a small "A parable" label. It's done in the page itself, not baked into the images, so it can be
+tuned later. Mark's two parable scenes got it too.
+
+<figure>
+<img src="/images/full/halo_klein_00077_.webp" alt="The prodigal son's father embracing his returning son">
+<figcaption>Luke 15:11-24, the prodigal son. On the book page this one has the soft parable edge.</figcaption>
+</figure>
+
+### What went wrong this time
+
+Same story as Mark: 20 of 103 scenes were keepers on the first try. The new ones:
+
+- Luke's reed pen came back as a **yellow pencil**.
+- "A well-dressed publican" got a **modern overcoat and a necktie**. Describe the actual clothes, never "well-dressed".
+- Jesus at Emmaus had a **wedding ring**, and in another scene a **wristwatch**. Again.
+- Babies are trouble. Every time someone held a baby, somebody grew a third hand.
+- Every scene with Jerusalem in the distance came back with modern apartment blocks. The fix is still the same: keep the city out of the shot.
+- The crucifixion was the hardest. With the Jesus portrait as the reference, the model kept standing him in front of
+  the cross, fully dressed, chatting with the thief. It only worked with no reference at all and the three crosses in
+  silhouette.
+- My favorite edit fail: asked to swap an old man's flat cap for a prayer shawl, it gave him a **blue baseball cap** instead.
+
+### Luke by the numbers
+
+| | Mark | Luke | John |
+|---|---|---|---|
+| Scenes | 75 | 103 | 88 |
+| Total attempts | 189 | 254 (194 generations, 60 edits) | 168 |
+| Attempts per published image | 2.45 | 2.44 | 1.87 |
+| Typical scene | 22 s | 17 s | 16 s |
+| Typical edit | 92 s | 57 s | 53 s |
+| GPU time | 99 minutes | 108 minutes | 68 minutes |
+| Other work on the box | three coding agents | none | none |
 
 ## Try it
 

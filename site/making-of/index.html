@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Making of: every attempt</title>
-<meta name="description" content="Every generation and edit behind the Visual Bible of John and Mark, in order, with the prompts and timings.">
+<meta name="description" content="Every generation and edit behind the Visual Bible of Mark, Luke and John, in order, with the prompts and timings.">
 <meta property="og:image" content="/infographic/og.png">
 <link rel="icon" href="/assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,8 +52,9 @@
 <nav class="sitenav" aria-label="Site">
   <a class="brand" href="/">halo <b>·</b> Visual Bible</a>
   <a class="link" href="/">The story</a>
-  <a class="link" href="/bible">John</a>
   <a class="link" href="/mark">Mark</a>
+  <a class="link" href="/luke">Luke</a>
+  <a class="link" href="/bible">John</a>
   <a class="link" href="/making-of" aria-current="page">Making of</a>
   <a class="link" href="/under-the-hood">Under the hood</a>
   <a class="link" href="https://github.com/btrzupek/halo-visual-bible">GitHub</a>
@@ -61,14 +62,15 @@
 
 <main class="page">
   <h1>Every attempt, in order</h1>
-  <p class="lede">This is the whole run behind both books: every generation and every edit, in the order they
+  <p class="lede">This is the whole run behind every book: every generation and every edit, in the order they
     came off the box, with the exact prompt and how long it took. The gold tags are the ones that made it
     into a book. Everything else is a reroll, a fix, or a dead end.</p>
   <div class="summary" id="summary"></div>
   <div class="filters" id="books" role="group" aria-label="Book">
-    <button data-b="all" aria-pressed="true">Both books</button>
-    <button data-b="John" aria-pressed="false">John</button>
+    <button data-b="all" aria-pressed="true">All books</button>
     <button data-b="Mark" aria-pressed="false">Mark</button>
+    <button data-b="Luke" aria-pressed="false">Luke</button>
+    <button data-b="John" aria-pressed="false">John</button>
   </div>
   <div class="filters" id="kinds" role="group" aria-label="Filter">
     <button data-f="all" aria-pressed="true">All</button>
@@ -154,7 +156,7 @@
     var b = e.target.closest('button'); if (!b) return;
     state.f = b.dataset.f; apply();
   });
-  try { var qb = new URLSearchParams(location.search).get('book'); if (qb === 'John' || qb === 'Mark') state.b = qb; } catch (err) {}
+  try { var qb = new URLSearchParams(location.search).get('book'); if (['Mark', 'Luke', 'John'].indexOf(qb) >= 0) state.b = qb; } catch (err) {}
   apply();
 
   var lb = document.getElementById('lb'), lbimg = lb.querySelector('img'), side = lb.querySelector('aside');

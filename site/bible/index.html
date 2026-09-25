@@ -91,6 +91,15 @@ main{width:min(1280px,100%);margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem) 4rem
 .scene .sub{color:var(--muted);font-style:italic;margin:0 0 1.2rem;font-size:1.02rem}
 .scene .kjv{font-size:1.04rem;line-height:1.78}
 
+/* parables: a soft, dreamlike edge (like a film's flashback or dream sequence) marks a story Jesus tells, not an event */
+.scene figure.parable{position:relative}
+.scene figure.parable::after{content:"";position:absolute;inset:0;pointer-events:none;
+  -webkit-backdrop-filter:blur(12px) saturate(.8) brightness(1.06);backdrop-filter:blur(12px) saturate(.8) brightness(1.06);
+  -webkit-mask-image:radial-gradient(ellipse 68% 64% at 50% 50%,transparent 46%,#000 100%);
+  mask-image:radial-gradient(ellipse 68% 64% at 50% 50%,transparent 46%,#000 100%);
+  background:radial-gradient(ellipse 68% 64% at 50% 50%,transparent 50%,rgba(250,238,210,.22) 100%)}
+.ref .ptag{font-style:italic;color:var(--muted);letter-spacing:.02em}
+
 /* ---- view toggle: "Text + images" (default) or "Images only" */
 /* chapter bar = two rows: chapter links (scrolls sideways on phones), then the view toggle */
 .chapnav{flex-direction:column;align-items:stretch;gap:.35rem;overflow:visible}
@@ -143,8 +152,9 @@ footer p{margin:0 0 .6rem}
 <nav class="sitenav over" aria-label="Site">
   <a class="brand" href="/">halo <b>·</b> Visual Bible</a>
   <a class="link" href="/">The story</a>
-  <a class="link" href="/bible" aria-current="page">John</a>
   <a class="link" href="/mark">Mark</a>
+  <a class="link" href="/luke">Luke</a>
+  <a class="link" href="/bible" aria-current="page">John</a>
   <a class="link" href="/making-of">Making of</a>
   <a class="link" href="/under-the-hood">Under the hood</a>
   <a class="link" href="https://github.com/btrzupek/halo-visual-bible">GitHub</a>
@@ -195,7 +205,7 @@ footer p{margin:0 0 .6rem}
 (function(){
   var IMG='/images/full/';
   function webp(f){return f.replace(/\.png$/,'.webp');}
-  var words=['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen','twenty','twenty-one'];
+  var words=['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen','twenty','twenty-one','twenty-two','twenty-three','twenty-four'];
   function esc(s){return String(s).replace(/[&<>"]/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m];});}
   var chs=Object.keys(VB.ch).map(Number).sort(function(a,b){return a-b;});
   function verses(c,a,b){var h='',v=VB.ch[c].v;for(var n=a;n<=b;n++)h+='<p><sup>'+n+'</sup>'+esc(v[n-1])+'</p>';return h;}
@@ -242,8 +252,8 @@ footer p{margin:0 0 .6rem}
       if(c===1&&i===0)return;
       k++;
       main+='<article class="scene'+(k%2===0?' flip':'')+'" id="'+id+'">'+
-        '<figure'+(s[5]?' class="trim"':'')+'><img src="'+IMG+webp(s[2])+'" loading="lazy" alt="'+esc(s[3]+': '+s[4])+'"></figure>'+
-        '<div class="text"><p class="ref">John '+c+':'+a+'–'+b+'</p><h2>'+esc(s[3])+'</h2><p class="sub">'+esc(s[4])+'</p><div class="kjv">'+verses(c,a,b)+'</div></div></article>';
+        '<figure'+((s[5]||s[6])?' class="'+[s[5]?'trim':'',s[6]?'parable':''].join(' ').trim()+'"':'')+'><img src="'+IMG+webp(s[2])+'" loading="lazy" alt="'+esc(s[3]+': '+s[4])+'"></figure>'+
+        '<div class="text"><p class="ref">John '+c+':'+a+'–'+b+(s[6]?' <span class="ptag">· A parable</span>':'')+'</p><h2>'+esc(s[3])+'</h2><p class="sub">'+esc(s[4])+'</p><div class="kjv">'+verses(c,a,b)+'</div></div></article>';
     });
     toc+='</ol></div>';
   });

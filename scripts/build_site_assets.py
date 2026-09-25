@@ -89,7 +89,8 @@ def main():
                     help="saved /history snapshot file(s) or glob (repeatable); pass --url '' to skip the live one")
     ap.add_argument("--cast", action="append",
                     default=["John=halo_klein_00006_.png,halo_klein_00007_.png",
-                             "Mark=halo_klein_00026_.png,halo_edit_00051_.png"],
+                             "Mark=halo_klein_00026_.png,halo_edit_00051_.png",
+                             "Luke=halo_klein_00039_.png"],
                     help="Book=images used by that book's page itself (cast portraits)")
     ap.add_argument("--site", required=True)
     ap.add_argument("--quality", type=int, default=82)

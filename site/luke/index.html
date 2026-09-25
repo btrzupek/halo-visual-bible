@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Gospel of Luke: a visual Bible</title>
+<meta name="description" content="The Gospel of Luke, all 24 chapters, illustrated with 103 scenes generated locally on an AMD Ryzen AI Halo box.">
+<meta property="og:image" content="/infographic/og.png">
+<link rel="icon" href="/assets/favicon.svg">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#efe9dc; --panel:#e6ddcb; --ink:#1e2233; --muted:#5d6072; --gilt:#8a6a2c; --rule:#cfc3a9;
+  --serif:'Spectral',Georgia,'Times New Roman',serif; --display:'Marcellus','Trajan Pro',Georgia,serif;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --bg:#12162a; --panel:#1a1f36; --ink:#e7dfcc; --muted:#a3a3b4; --gilt:#cfa959; --rule:#2e3452; } }
+:root[data-theme="dark"]{ --bg:#12162a; --panel:#1a1f36; --ink:#e7dfcc; --muted:#a3a3b4; --gilt:#cfa959; --rule:#2e3452; }
+html{scroll-padding-top:6.5rem}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:1.125rem;line-height:1.7;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--gilt)}
+:focus-visible{outline:2px solid var(--gilt);outline-offset:3px}
+
+.hero{position:relative;min-height:100svh;display:grid;align-items:end;background:#05060a;color:#efe6d0;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;opacity:0;transform:scale(1.06);animation:dawn 3.2s ease-out .2s forwards}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,6,10,.15) 0%,rgba(5,6,10,.35) 45%,rgba(5,6,10,.92) 100%)}
+@keyframes dawn{to{opacity:1;transform:scale(1)}}
+.hero-inner{position:relative;z-index:1;width:min(1180px,100%);margin:0 auto;padding:6rem clamp(1.25rem,5vw,3rem) clamp(2.5rem,7vh,5rem);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(1.5rem,5vw,5rem);align-items:end}
+.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(2.8rem,7.5vw,6.2rem);line-height:.98;letter-spacing:.01em;margin:0}
+.hero .lede{margin:1.25rem 0 0;font-size:1.05rem;color:#cbbf9f;max-width:34ch;font-style:italic}
+.hero .kjv{font-size:1.14rem;line-height:1.85;max-width:44ch;opacity:0;animation:rise 1.6s ease-out 1.8s forwards}
+.hero .ref{color:#d4b066}
+@keyframes rise{to{opacity:1}}
+
+.chapnav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;display:flex;align-items:center;gap:.15rem;padding:.55rem clamp(1.25rem,5vw,3rem);background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule);font-family:var(--display);overflow-x:auto;scrollbar-width:none}
+.chapnav a{color:var(--ink);text-decoration:none;min-width:2.2rem;text-align:center;padding:.3rem .45rem;border-radius:999px;font-size:1.02rem;flex:none}
+.chapnav a:hover{background:var(--panel);color:var(--gilt)}
+.chapnav .home{color:var(--gilt);margin-right:auto;text-align:left;padding-left:0;font-size:1.15rem;padding-right:1rem}
+.chapnav .toc-link{margin-left:.6rem;color:var(--muted);font-size:.95rem}
+
+.ref{font-family:var(--display);color:var(--gilt);font-size:1rem;letter-spacing:.04em;margin:0 0 .35rem}
+.kjv p{margin:0 0 .55em}
+.kjv sup{font-family:var(--display);color:var(--gilt);font-size:.62em;margin-right:.3em;vertical-align:.55em}
+
+.contents{width:min(1180px,100%);margin:0 auto;padding:clamp(3rem,7vw,5rem) clamp(1.25rem,5vw,3rem) 0}
+.contents>h2,.cast h2{font-family:var(--display);font-weight:400;font-size:clamp(1.7rem,3vw,2.3rem);margin:0 0 1.5rem;line-height:1.1}
+.toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:clamp(1.25rem,3vw,2.5rem)}
+.toc h3{font-family:var(--display);font-weight:400;font-size:1.25rem;margin:0 0 .6rem;padding-bottom:.45rem;border-bottom:1px solid var(--rule)}
+.toc h3 a{color:var(--gilt);text-decoration:none}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc li a{display:block;color:var(--ink);text-decoration:none;font-size:.98rem;line-height:1.35;padding:.38rem 0}
+.toc li a span{display:block;font-family:var(--display);color:var(--muted);font-size:.8rem;letter-spacing:.03em}
+.toc li a:hover{color:var(--gilt)}
+/* collapsible Contents: closed by default, opened by any #contents link */
+.contents details{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.contents summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;flex-wrap:wrap;gap:.3rem 1rem;padding:1.1rem 0}
+.contents summary::-webkit-details-marker{display:none}
+.contents summary h2{font-family:var(--display);font-weight:400;font-size:clamp(1.5rem,2.6vw,2rem);line-height:1.1;margin:0}
+.contents summary .count{color:var(--muted);font-size:1rem}
+.contents summary .hint{margin-left:auto;font-family:var(--display);color:var(--gilt);font-size:.95rem;display:flex;align-items:center;gap:.55rem}
+.contents summary .hint::before{content:"Show all"}
+.contents details[open] summary .hint::before{content:"Hide"}
+.contents summary .hint::after{content:"";width:.5rem;height:.5rem;border-right:2px solid var(--gilt);border-bottom:2px solid var(--gilt);transform:translateY(-.15rem) rotate(45deg);transition:transform .2s}
+.contents details[open] summary .hint::after{transform:translateY(.1rem) rotate(-135deg)}
+.contents summary:hover h2{color:var(--gilt)}
+.contents details[open] .toc{padding:.4rem 0 2rem}
+
+.cast{width:min(1180px,100%);margin:0 auto;padding:clamp(3.5rem,8vw,6rem) clamp(1.25rem,5vw,3rem) 1rem;display:grid;grid-template-columns:minmax(0,1.1fr) repeat(5,minmax(0,.5fr));gap:clamp(1.25rem,3vw,2.5rem);align-items:end}
+.cast h2{margin-bottom:.6rem}
+.cast .note{color:var(--muted);margin:0;max-width:40ch;font-size:1rem}
+.cast figure{margin:0}
+.cast img{border-radius:2px;aspect-ratio:7/9;object-fit:cover;width:100%}
+.cast figcaption{font-family:var(--display);font-size:1rem;margin-top:.6rem}
+
+main{width:min(1280px,100%);margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem) 4rem}
+.chapter{display:flex;align-items:center;gap:1.5rem;margin:clamp(4rem,9vw,7rem) 0 1rem;color:var(--gilt);font-family:var(--display);font-size:clamp(1.5rem,3vw,2.1rem)}
+.chapter::before,.chapter::after{content:"";flex:1;height:1px;background:var(--rule)}
+.scene{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:center;padding:clamp(2.5rem,6vw,4.5rem) 0;border-bottom:1px solid var(--rule)}
+.scene.flip{grid-template-columns:minmax(0,1fr) minmax(0,1.55fr)}
+.scene.flip figure{order:2}
+.scene figure{margin:0;background:#05060a;border-radius:3px;overflow:hidden;box-shadow:0 22px 50px -28px rgba(0,0,0,.55);cursor:zoom-in}
+.scene figure.trim img{transform:scale(1.03)}
+.scene .text{max-width:40rem}
+.scene h2{font-family:var(--display);font-weight:400;font-size:clamp(1.6rem,2.6vw,2.2rem);line-height:1.12;margin:0 0 .45rem}
+.scene .sub{color:var(--muted);font-style:italic;margin:0 0 1.2rem;font-size:1.02rem}
+.scene .kjv{font-size:1.04rem;line-height:1.78}
+
+/* parables: a soft, dreamlike edge (like a film's flashback or dream sequence) marks a story Jesus tells, not an event */
+.scene figure.parable{position:relative}
+.scene figure.parable::after{content:"";position:absolute;inset:0;pointer-events:none;
+  -webkit-backdrop-filter:blur(12px) saturate(.8) brightness(1.06);backdrop-filter:blur(12px) saturate(.8) brightness(1.06);
+  -webkit-mask-image:radial-gradient(ellipse 68% 64% at 50% 50%,transparent 46%,#000 100%);
+  mask-image:radial-gradient(ellipse 68% 64% at 50% 50%,transparent 46%,#000 100%);
+  background:radial-gradient(ellipse 68% 64% at 50% 50%,transparent 50%,rgba(250,238,210,.22) 100%)}
+.ref .ptag{font-style:italic;color:var(--muted);letter-spacing:.02em}
+
+/* ---- view toggle: "Text + images" (default) or "Images only" */
+/* chapter bar = two rows: chapter links (scrolls sideways on phones), then the view toggle */
+.chapnav{flex-direction:column;align-items:stretch;gap:.35rem;overflow:visible}
+.chapnav .chaps{display:flex;align-items:center;gap:.15rem;overflow-x:auto;scrollbar-width:none}
+.chapnav .chaps::-webkit-scrollbar{display:none}
+.chapnav .viewbar{display:flex;justify-content:flex-end}
+.viewtoggle{flex:none;display:flex;gap:2px;padding:2px;border:1px solid var(--rule);border-radius:999px;background:var(--bg)}
+.viewtoggle button{font:inherit;font-size:.9rem;border:0;background:none;color:var(--muted);padding:.25rem .75rem;border-radius:999px;cursor:pointer;white-space:nowrap}
+.viewtoggle button:hover{color:var(--ink)}
+.viewtoggle button[aria-pressed="true"]{background:var(--gilt);color:var(--bg)}
+body.gallery main{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(1.25rem,3vw,2.5rem)}
+body.gallery .chapter{grid-column:1/-1}
+body.gallery .scene,body.gallery .scene.flip{grid-template-columns:1fr;gap:1rem;align-items:start;padding:clamp(1.25rem,3vw,2rem) 0;border-bottom:0}
+body.gallery .scene.flip figure{order:0}
+body.gallery .scene .kjv,body.gallery .hero .kjv,body.gallery .hero .ref{display:none}
+body.gallery .scene h2{font-size:clamp(1.3rem,2vw,1.6rem)}
+body.gallery .scene .sub{margin:0}
+@media (max-width:820px){ body.gallery main{grid-template-columns:1fr} .viewtoggle button{padding:.25rem .6rem;font-size:.85rem} .chapnav .viewbar{justify-content:center} }
+.lightbox{position:fixed;inset:0;z-index:50;background:rgba(3,4,8,.94);display:none;align-items:center;justify-content:center;padding:env(safe-area-inset-top,0px) 2vw env(safe-area-inset-bottom,0px);cursor:zoom-out}
+.lightbox.open{display:flex}
+.lightbox img{max-width:100%;max-height:96vh;object-fit:contain}
+
+footer{border-top:1px solid var(--rule);background:var(--panel)}
+footer div{margin:0 auto;padding:2.5rem clamp(1.25rem,5vw,3rem);color:var(--muted);font-size:.95rem;max-width:72ch}
+footer p{margin:0 0 .6rem}
+
+@media (max-width:820px){
+  .hero-inner{grid-template-columns:1fr;padding-top:40svh}
+  .cast{grid-template-columns:1fr 1fr 1fr}
+  .cast>div:first-child{grid-column:1/-1}
+  .scene,.scene.flip{grid-template-columns:1fr}
+  .scene.flip figure{order:0}
+  .chapnav .toc-link{display:none}
+}
+@media (prefers-reduced-motion:reduce){ .hero img,.hero .kjv{animation:none;opacity:1;transform:none} }
+</style>
+<script>
+  window.VB={ch:{},add:function(c,d){this.ch[c]=d;}};
+</script>
+<!-- One data file per chapter. Missing files are simply skipped. -->
+<script src="/luke/data/luke-01.js"></script><script src="/luke/data/luke-02.js"></script><script src="/luke/data/luke-03.js"></script>
+<script src="/luke/data/luke-04.js"></script><script src="/luke/data/luke-05.js"></script><script src="/luke/data/luke-06.js"></script>
+<script src="/luke/data/luke-07.js"></script><script src="/luke/data/luke-08.js"></script><script src="/luke/data/luke-09.js"></script>
+<script src="/luke/data/luke-10.js"></script><script src="/luke/data/luke-11.js"></script><script src="/luke/data/luke-12.js"></script>
+<script src="/luke/data/luke-13.js"></script><script src="/luke/data/luke-14.js"></script><script src="/luke/data/luke-15.js"></script>
+<script src="/luke/data/luke-16.js"></script><script src="/luke/data/luke-17.js"></script><script src="/luke/data/luke-18.js"></script>
+<script src="/luke/data/luke-19.js"></script><script src="/luke/data/luke-20.js"></script><script src="/luke/data/luke-21.js"></script>
+<script src="/luke/data/luke-22.js"></script><script src="/luke/data/luke-23.js"></script><script src="/luke/data/luke-24.js"></script>
+</head>
+<body>
+<nav class="sitenav over" aria-label="Site">
+  <a class="brand" href="/">halo <b>·</b> Visual Bible</a>
+  <a class="link" href="/">The story</a>
+  <a class="link" href="/mark">Mark</a>
+  <a class="link" href="/luke" aria-current="page">Luke</a>
+  <a class="link" href="/bible">John</a>
+  <a class="link" href="/making-of">Making of</a>
+  <a class="link" href="/under-the-hood">Under the hood</a>
+  <a class="link" href="https://github.com/btrzupek/halo-visual-bible">GitHub</a>
+</nav>
+<header class="hero" id="top">
+  <img id="hero-img" alt="Luke writing on a scroll by the light of a small clay oil lamp">
+  <div class="hero-inner">
+    <div>
+      <h1>The Gospel<br>of Luke</h1>
+      <p class="lede" id="lede"></p>
+    </div>
+    <div>
+      <p class="ref" id="hero-ref">Luke 1:1–4</p>
+      <div class="kjv" id="prologue"></div>
+    </div>
+  </div>
+</header>
+
+<nav class="chapnav" id="chapnav" aria-label="Chapters"></nav>
+
+<section class="contents" id="contents" aria-label="Contents">
+  <details id="toc-details">
+    <summary><h2>Contents</h2><span class="count" id="toc-count"></span><span class="hint" aria-hidden="true"></span></summary>
+    <div class="toc" id="toc"></div>
+  </details>
+</section>
+
+<section class="cast" aria-label="Recurring characters">
+  <div>
+    <h2>The cast</h2>
+    <p class="note">The same faces as in <a href="/mark">Mark</a> and <a href="/bible">John</a>. Luke adds one: Mary, the mother of Jesus, who carries the first two chapters from Nazareth to Bethlehem to the temple.</p>
+  </div>
+  <figure><img src="/images/full/halo_klein_00006_.webp" alt="Portrait of Jesus" width="896" height="1152"><figcaption>Jesus of Nazareth</figcaption></figure>
+  <figure><img src="/images/full/halo_klein_00039_.webp" alt="Portrait of Mary, the mother of Jesus" width="896" height="1152"><figcaption>Mary, his mother</figcaption></figure>
+  <figure><img src="/images/full/halo_klein_00007_.webp" alt="Portrait of John the Baptist" width="896" height="1152"><figcaption>John the Baptist</figcaption></figure>
+  <figure><img src="/images/full/halo_klein_00026_.webp" alt="Portrait of Simon Peter" width="896" height="1152"><figcaption>Simon Peter</figcaption></figure>
+  <figure><img src="/images/full/halo_edit_00051_.webp" alt="Portrait of Mary Magdalene" width="880" height="1184"><figcaption>Mary Magdalene</figcaption></figure>
+</section>
+
+<main id="main"></main>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Full-size image"><img alt=""></div>
+
+<footer><div>
+  <p>Scripture from the King James Version, which is in the public domain.</p>
+  <p><a href="/">Read how this was made</a> · <a href="/making-of">see every attempt</a> · <a href="/under-the-hood">code and numbers</a></p>
+  <p>Every image was generated locally on a Ryzen AI Halo workstation with FLUX.2 [klein] and Qwen-Image-Edit, using reference portraits to keep the characters consistent from scene to scene. They are imaginative interpretations, not historical records.</p>
+</div></footer>
+
+<script>
+(function(){
+  var IMG='/images/full/';
+  function webp(f){return f.replace(/\.png$/,'.webp');}
+  var words=['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen','twenty','twenty-one','twenty-two','twenty-three','twenty-four'];
+  function esc(s){return String(s).replace(/[&<>"]/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m];});}
+  var chs=Object.keys(VB.ch).map(Number).sort(function(a,b){return a-b;});
+  function verses(c,a,b){var h='',v=VB.ch[c].v;for(var n=a;n<=b;n++)h+='<p><sup>'+n+'</sup>'+esc(v[n-1])+'</p>';return h;}
+  var last=chs[chs.length-1];
+  document.getElementById('lede').textContent='Chapters one through '+words[last]+', in light and image. King James Version.';
+  var first=VB.ch[1].scenes[0];
+  document.getElementById('hero-img').src=IMG+webp(first[2]);
+  document.getElementById('prologue').innerHTML=verses(1,first[0],first[1]);
+  document.getElementById('hero-ref').textContent='Luke 1:'+first[0]+'–'+first[1];
+
+  var nav='<a class="home" href="#top">Luke</a>';
+  chs.forEach(function(c){nav+='<a href="#ch'+c+'">'+c+'</a>';});
+  nav+='<a class="toc-link" href="#contents">Contents</a><a class="toc-link" href="/">The story</a><a class="toc-link" href="/making-of">Making of</a>';
+  document.getElementById('chapnav').innerHTML='<div class="chaps">'+nav+'</div>'+
+    '<div class="viewbar"><div class="viewtoggle" role="group" aria-label="View">'+
+    '<button type="button" data-view="scripture">Text + images</button><button type="button" data-view="images">Images only</button></div></div>';
+  // view toggle: remembered per reader, and ?view=images makes a shareable gallery link
+  function setView(v,save){
+    document.body.classList.toggle('gallery',v==='images');
+    [].forEach.call(document.querySelectorAll('.viewtoggle button'),function(b){b.setAttribute('aria-pressed',String(b.dataset.view===v));});
+    if(!save)return;
+    try{localStorage.setItem('vb-view',v);}catch(e){}
+    try{var u=new URL(location.href);if(v==='images')u.searchParams.set('view','images');else u.searchParams.delete('view');history.replaceState(null,'',u);}catch(e){}
+  }
+  var qv=null,saved=null;
+  try{qv=new URLSearchParams(location.search).get('view');}catch(e){}
+  try{saved=localStorage.getItem('vb-view');}catch(e){}
+  setView(qv==='images'||qv==='scripture'?qv:(saved==='images'?'images':'scripture'),false);
+  document.querySelector('.viewtoggle').addEventListener('click',function(e){
+    var b=e.target.closest('button');if(!b)return;
+    var keep=[].find.call(document.querySelectorAll('article.scene'),function(a){return a.getBoundingClientRect().bottom>90;});
+    var wasBelowTop=keep&&window.scrollY>document.getElementById('main').offsetTop;
+    setView(b.dataset.view,true);
+    if(wasBelowTop)keep.scrollIntoView();   // stay on the same scene after the layout changes
+  });
+
+  var toc='',main='',k=0;
+  chs.forEach(function(c){
+    var d=VB.ch[c];
+    toc+='<div><h3><a href="#ch'+c+'">Chapter '+c+'</a></h3><ol>';
+    main+='<div class="chapter" id="ch'+c+'"><span>Chapter '+c+'</span></div>';
+    d.scenes.forEach(function(s,i){
+      var a=s[0],b=s[1],id='s'+c+'-'+a;
+      toc+='<li><a href="#'+id+'"><span>'+c+':'+a+'–'+b+'</span>'+esc(s[3])+'</a></li>';
+      if(c===1&&i===0)return;
+      k++;
+      main+='<article class="scene'+(k%2===0?' flip':'')+'" id="'+id+'">'+
+        '<figure'+((s[5]||s[6])?' class="'+[s[5]?'trim':'',s[6]?'parable':''].join(' ').trim()+'"':'')+'><img src="'+IMG+webp(s[2])+'" loading="lazy" alt="'+esc(s[3]+': '+s[4])+'"></figure>'+
+        '<div class="text"><p class="ref">Luke '+c+':'+a+'–'+b+(s[6]?' <span class="ptag">· A parable</span>':'')+'</p><h2>'+esc(s[3])+'</h2><p class="sub">'+esc(s[4])+'</p><div class="kjv">'+verses(c,a,b)+'</div></div></article>';
+    });
+    toc+='</ol></div>';
+  });
+  document.getElementById('toc').innerHTML=toc;
+  document.getElementById('main').innerHTML=main;
+  var tocd=document.getElementById('toc-details');
+  document.getElementById('toc-count').textContent=chs.length+' chapters · '+document.querySelectorAll('#toc li').length+' scenes';
+  function openToc(){if(location.hash==='#contents')tocd.open=true;}
+  window.addEventListener('hashchange',openToc);
+  document.addEventListener('click',function(e){if(e.target.closest('a[href="#contents"]'))tocd.open=true;});
+  openToc();
+  if(location.hash){var t=document.getElementById(location.hash.slice(1));if(t)t.scrollIntoView();}
+
+  var lb=document.getElementById('lightbox'),lbi=lb.querySelector('img');
+  document.getElementById('main').addEventListener('click',function(e){
+    var im=e.target.closest('figure img');if(!im)return;
+    lbi.src=im.src;lbi.alt=im.alt;lb.classList.add('open');
+  });
+  lb.addEventListener('click',function(){lb.classList.remove('open');});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('open');});
+})();
+</script>
+</body>
+</html>

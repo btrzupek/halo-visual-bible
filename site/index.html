@@ -20,8 +20,9 @@
 <nav class="sitenav" aria-label="Site">
   <a class="brand" href="/">halo <b>·</b> Visual Bible</a>
   <a class="link" href="/" aria-current="page">The story</a>
-  <a class="link" href="/bible">John</a>
   <a class="link" href="/mark">Mark</a>
+  <a class="link" href="/luke">Luke</a>
+  <a class="link" href="/bible">John</a>
   <a class="link" href="/making-of">Making of</a>
   <a class="link" href="/under-the-hood">Under the hood</a>
   <a class="link" href="https://github.com/btrzupek/halo-visual-bible">GitHub</a>
@@ -286,7 +287,7 @@ its image is saved, and a call that runs long comes back with a job id that Clau
 <tr>
 <td>GPU time</td>
 <td>68 minutes</td>
-<td>98 minutes</td>
+<td>99 minutes</td>
 </tr>
 <tr>
 <td>Session length</td>
@@ -299,6 +300,105 @@ its image is saved, and a call that runs long comes back with a job id that Clau
 checking. Each picture was also slower. A typical scene took 22 seconds instead of 16, and a typical edit took 92
 seconds instead of 53. Most likely that's the three coding agents sharing the box. Given that, I think Mark went
 really well.</p>
+<h2>Part three: the Gospel of Luke</h2>
+<p>Then Luke. 24 chapters, 1,151 verses, 103 scenes. It's the longest one yet, and at this point I want to do all four
+Gospels. You can <a href="/luke">read it here</a>.</p>
+<p class="cta"><a class="primary" href="/luke">Open Luke</a><a href="/making-of?book=Luke">See every attempt</a></p>
+
+<p>This time the box had nothing else to do. I had just rebooted it to clear out dozens of orphaned Chromium sessions
+that were eating memory, and no coding agents were running. That made Luke a good control for Mark. A typical scene
+took 17 seconds, right back near John's 16, and a typical edit took 57 seconds instead of Mark's 92. So the slowdown
+on Mark really was the three agents sharing the box.</p>
+<p><strong>The timeout is fixed.</strong> On Mark every single edit "timed out" on my Mac even though it finished on the box. Before
+starting Luke, Claude rewrote that part of the MCP server so each job is watched in the background until its image
+is saved, and a call that runs long comes back with a job id instead of an error. Luke had 60 edits. Not one of them
+timed out.</p>
+<p><strong>One new face.</strong> Luke opens with two chapters of birth stories, so Mary, the mother of Jesus, got her own portrait.
+Jesus, John the Baptist, Peter and Mary Magdalene carried over from John and Mark.</p>
+<div class="pair">
+<img src="/images/full/halo_klein_00039_.webp" alt="Portrait of Mary, the mother of Jesus, used as a reference image">
+<img src="/images/full/halo_edit_00080_.webp" alt="Luke writing on a scroll by the light of a small clay oil lamp">
+<figcaption>Left: the new reference portrait of Mary. Right: the opening of Luke. The first try gave him a yellow pencil.</figcaption>
+</div>
+
+<p><strong>Parables look different now.</strong> Luke is full of parables: the Good Samaritan, the prodigal son, the lost sheep,
+Lazarus at the rich man's gate. Those are stories Jesus tells, not things that happened in front of the disciples,
+and I wanted the pictures to say so. So parable scenes get a soft, blurry edge, the way a movie shows a dream or a
+flashback, plus a small "A parable" label. It's done in the page itself, not baked into the images, so it can be
+tuned later. Mark's two parable scenes got it too.</p>
+<figure>
+<img src="/images/full/halo_klein_00077_.webp" alt="The prodigal son's father embracing his returning son">
+<figcaption>Luke 15:11-24, the prodigal son. On the book page this one has the soft parable edge.</figcaption>
+</figure>
+
+<h3>What went wrong this time</h3>
+<p>Same story as Mark: 20 of 103 scenes were keepers on the first try. The new ones:</p>
+<ul>
+<li>Luke's reed pen came back as a <strong>yellow pencil</strong>.</li>
+<li>"A well-dressed publican" got a <strong>modern overcoat and a necktie</strong>. Describe the actual clothes, never "well-dressed".</li>
+<li>Jesus at Emmaus had a <strong>wedding ring</strong>, and in another scene a <strong>wristwatch</strong>. Again.</li>
+<li>Babies are trouble. Every time someone held a baby, somebody grew a third hand.</li>
+<li>Every scene with Jerusalem in the distance came back with modern apartment blocks. The fix is still the same: keep the city out of the shot.</li>
+<li>The crucifixion was the hardest. With the Jesus portrait as the reference, the model kept standing him in front of
+  the cross, fully dressed, chatting with the thief. It only worked with no reference at all and the three crosses in
+  silhouette.</li>
+<li>My favorite edit fail: asked to swap an old man's flat cap for a prayer shawl, it gave him a <strong>blue baseball cap</strong> instead.</li>
+</ul>
+<h3>Luke by the numbers</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Mark</th>
+<th>Luke</th>
+<th>John</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scenes</td>
+<td>75</td>
+<td>103</td>
+<td>88</td>
+</tr>
+<tr>
+<td>Total attempts</td>
+<td>189</td>
+<td>254 (194 generations, 60 edits)</td>
+<td>168</td>
+</tr>
+<tr>
+<td>Attempts per published image</td>
+<td>2.45</td>
+<td>2.44</td>
+<td>1.87</td>
+</tr>
+<tr>
+<td>Typical scene</td>
+<td>22 s</td>
+<td>17 s</td>
+<td>16 s</td>
+</tr>
+<tr>
+<td>Typical edit</td>
+<td>92 s</td>
+<td>57 s</td>
+<td>53 s</td>
+</tr>
+<tr>
+<td>GPU time</td>
+<td>99 minutes</td>
+<td>108 minutes</td>
+<td>68 minutes</td>
+</tr>
+<tr>
+<td>Other work on the box</td>
+<td>three coding agents</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
 <h2>Try it</h2>
 <p>Everything is on <a href="https://github.com/btrzupek/halo-visual-bible">GitHub</a>: the MCP server, the ComfyUI workflows, the tunnel setup, the book viewer,
 and the scripts that pulled these numbers. The <a href="/under-the-hood">under the hood</a> page has the full hardware and
