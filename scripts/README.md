@@ -17,6 +17,14 @@ python3 comfy_history_metrics.py --url http://127.0.0.1:8188 \
 
 ComfyUI keeps history in memory: it only covers jobs since ComfyUI last started (up to
 `--max-items`). Fully cached replays (identical re-submissions) are excluded from timings.
+Save a snapshot after each working session so a restart doesn't lose it, and pass the
+snapshots back in with `--history` (`--url ''` uses the snapshots alone):
+
+```bash
+curl -s 'http://127.0.0.1:8188/history?max_items=5000' > history-$(date +%Y%m%d-%H%M%S).json
+python3 comfy_history_metrics.py --url '' --history 'history-*.json' \
+  --images ~/halo-images --book ../site/mark/data --out ../site/data/mark
+```
 
 ## `halo_benchmark.py`
 
@@ -40,3 +48,16 @@ Outputs: `benchmark.csv` (per run: wall and ComfyUI execution time, avg/peak soc
 energy in Wh total and above idle, peak GTT, peak temperatures, avg GPU busy),
 `benchmark_samples.csv` (raw samples) and `benchmark_summary.json` (per job type and phase).
 Energy is socket (APU package) energy, not wall-plug energy.
+
+## `build_site_assets.py`
+
+Converts every attempt to WebP (`site/images/full`, `site/images/thumb`) and writes
+`site/data/gallery.js` for the Making of page, tagging each image with its book. Pass one
+`--book Name=folder` per book, plus any history snapshots. Entries already in `gallery.js`
+whose jobs are no longer in ComfyUI's history are kept, so a restart never drops a book.
+
+```bash
+python3 build_site_assets.py --url http://127.0.0.1:8188 --images ~/halo-images \
+  --book John=../site/bible/data --book Mark=../site/mark/data \
+  --history '~/halo-images/visual-bible/mark/history-*.json' --site ../site
+```

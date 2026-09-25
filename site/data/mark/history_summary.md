@@ -1,0 +1,46 @@
+# ComfyUI job history summary
+
+Source: 1 snapshot pattern(s) (188 jobs; 0 excluded as errors or cache replays).
+
+Window: 2026-09-24 20:43 to 2026-09-24 23:34 (local time of the machine running this script).
+
+## Execution time per job type (seconds, ComfyUI execution_start to execution_success)
+
+| Job type | Count | Median | p90 | Min | Max | GPU-minutes | Median MP | Right after a model swap (median) |
+|---|---|---|---|---|---|---|---|---|
+| FLUX.2 [klein] 4B, text only | 15 | 11.9 | 23.2 | 8.0 | 24.9 | 3.5 | 1.03 | 23.2 (n=4) |
+| FLUX.2 [klein] 4B + reference image | 145 | 21.7 | 30.4 | 15.5 | 34.6 | 53.6 | 1.03 | 30.7 (n=24) |
+| Qwen-Image-Edit 2511 (edit) | 28 | 91.7 | 100.0 | 62.6 | 106.5 | 40.8 | 1.06 | 91.7 (n=28) |
+
+**Total GPU time: 98.0 minutes** across 188 jobs.
+
+## Gaps and sessions
+
+Longest gap between jobs: **0.18 h** (11 min), after `halo_klein_ref_00252_.png` and before `halo_klein_ref_00253_.png`.
+
+Sessions (split at idle gaps > 30 min):
+
+| # | Start | Wall clock (min) | Jobs | GPU busy (min) | GPU busy % |
+|---|---|---|---|---|---|
+| 1 | 09-24 20:43 | 171.4 | 188 | 98.0 | 57% |
+
+Total session wall clock: **171 min**; GPU busy **98 min** (57%).
+
+## Cross-check with the image folder
+
+378 PNGs on disk; 188 matched to a history entry; 190 not in history (claude_00002_.png, claude_00003_.png, claude_00004_.png, claude_00005_.png, claude_00006_.png, halo_edit_00001_.png, halo_edit_00002_.png, halo_edit_00003_.png, halo_edit_00004_.png, halo_edit_00005_.png, halo_edit_00006_.png, halo_edit_00007_.png …).
+
+| Job type (by filename) | Files on disk |
+|---|---|
+| FLUX.2 [klein] 4B + reference image | 253 |
+| Qwen-Image-Edit 2511 (edit) | 78 |
+| FLUX.2 [klein] 4B, text only | 37 |
+| Z-Image Turbo | 8 |
+| Qwen-Image 2512 | 1 |
+| Qwen-Image-Edit 2511 as reference generator | 1 |
+
+## Book window
+
+Images referenced by the viewer (scenes + cast portraits): 75; produced by jobs in history: 75.
+From the first job whose image made it into the book (09-24 20:47) onward: **182 generations/edits**, **94.9 GPU-minutes**, 167 min wall clock (167 min excluding overnight/idle gaps > 30 min).
+Generations per published image: **2.43**; by type: FLUX.2 [klein] 4B + reference image 143, Qwen-Image-Edit 2511 (edit) 27, FLUX.2 [klein] 4B, text only 12.

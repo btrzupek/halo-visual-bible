@@ -32,7 +32,8 @@
 <nav class="sitenav" aria-label="Site">
   <a class="brand" href="/">halo <b>·</b> Visual Bible</a>
   <a class="link" href="/">The story</a>
-  <a class="link" href="/bible">The book</a>
+  <a class="link" href="/bible">John</a>
+  <a class="link" href="/mark">Mark</a>
   <a class="link" href="/making-of">Making of</a>
   <a class="link" href="/under-the-hood" aria-current="page">Under the hood</a>
   <a class="link" href="https://github.com/btrzupek/halo-visual-bible">GitHub</a>
@@ -40,10 +41,29 @@
 
 <main class="page">
   <h1>Under the hood</h1>
-  <p class="lede">How a chat with Claude on a Mac turned into 88 illustrated scenes rendered on a box on my desk.
+  <p class="lede">How a chat with Claude on a Mac turned into 163 illustrated scenes, the Gospels of John and Mark, rendered on a box on my desk.
     Everything here is in the <a href="https://github.com/btrzupek/halo-visual-bible">GitHub repo</a>, including the raw numbers.</p>
 
   <h2>The run, by the numbers</h2>
+  <table>
+    <tr><th></th><th>John</th><th>Mark</th></tr>
+    <tr><td>Chapters</td><td>21</td><td>16</td></tr>
+    <tr><td>Scenes</td><td>88</td><td>75</td></tr>
+    <tr><td>New cast portraits</td><td>2 (Jesus, John the Baptist)</td><td>2 (Peter, Mary Magdalene)</td></tr>
+    <tr><td>Attempts (generations + edits)</td><td>168 (121 + 47)</td><td>188 (160 + 28)</td></tr>
+    <tr><td>Attempts per published image</td><td>1.87</td><td>2.44</td></tr>
+    <tr><td>Kept on the first try</td><td>about half</td><td>10 of 75</td></tr>
+    <tr><td>GPU time</td><td>68 min</td><td>98 min</td></tr>
+    <tr><td>GPU busy during the session</td><td>44%</td><td>57%</td></tr>
+    <tr><td>Median klein + reference job</td><td>15.7 s</td><td>21.7 s</td></tr>
+    <tr><td>Median edit</td><td>52.5 s</td><td>91.9 s</td></tr>
+  </table>
+  <p class="prose">Mark reused John's Jesus and John the Baptist portraits, so both books share one cast. It took more attempts
+    per image mainly because every image was checked zoomed in, region by region, which caught small things a full-frame
+    look misses. Every job type also ran slower on Mark (medians from each book's own job history), and the cause
+    isn't known yet. Per-job data: <a href="/data/mark/comfy_history.csv">Mark's comfy_history.csv</a> and
+    <a href="/data/mark/history_summary.md">summary</a>.</p>
+  <h3 style="font-family:var(--display);font-weight:400;margin:2rem 0 .4rem">John in detail</h3>
   <div class="cards">
     <div class="card"><div class="stat">168</div><p>generations and edits for 90 published images (1.87 each)</p></div>
     <div class="card"><div class="stat">68 min</div><p>of GPU time for the whole book, about 45 s per published image</p></div>

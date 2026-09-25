@@ -149,6 +149,87 @@ other model. Each one got loaded 27 times. A warm edit is 32 seconds. An edit ri
 and $32 depending on the model. So for me the win wasn't the money. I could reroll as much as I wanted
 without watching a meter, nothing left my house, and I kept every full resolution file.
 
+## Part two: the Gospel of Mark
+
+The next evening I did the Gospel of Mark the same way. 16 chapters, 678 verses, 75 scenes. Mark is shorter than
+John and it moves fast, so the scenes do too. You can [read it here](/mark).
+
+<p class="cta"><a class="primary" href="/mark">Open Mark</a><a href="/making-of">See every attempt</a></p>
+
+A few things were different this time.
+
+**Same Jesus, two new faces.** I reused the Jesus and John the Baptist portraits from John, so it's the same Jesus
+in both books. Mark leans hard on Peter, and it ends with Mary Magdalene at the cross, at the tomb and in the
+garden. So I had Claude make one portrait of each and use them as the reference in the scenes where they're the
+main figure.
+
+<div class="pair">
+<img src="/images/full/halo_klein_00026_.webp" alt="Portrait of Simon Peter used as a reference image">
+<img src="/images/full/halo_edit_00051_.webp" alt="Portrait of Mary Magdalene used as a reference image">
+<figcaption>The two new portraits for Mark: Peter and Mary Magdalene.</figcaption>
+</div>
+
+**The text got checked first.** Claude pulled the King James text from two separate public domain datasets and
+compared them verse by verse before anything got drawn. All 678 verses matched word for word.
+
+**I mostly let it run.** I approved the scene list up front, and then Claude generated, checked, fixed, and sent me
+a contact sheet every few chapters.
+
+### What went wrong this time
+
+The checking was a lot stricter on Mark. Instead of looking at the whole picture, Claude zoomed into every image a
+piece at a time. That caught a lot more. Only 10 of the 75 scenes were keepers on the very first try. On John it was
+closer to half.
+
+The new ones I hadn't seen before:
+
+- **A subtitle.** Claude put a line of dialogue in a prompt ("whose is this image?") and the model burned it into
+  the bottom of the picture like a movie caption. Misspelled. Lesson: never put spoken lines in a prompt.
+- **Modern cities in the distance.** Any prompt with a town in the background got a modern one. The triumphal
+  entry came back with today's Jerusalem skyline, gold Dome of the Rock and apartment blocks included. Gethsemane
+  got electric city lights across the valley. The fix every time was to frame the shot so there's no distance to
+  fill.
+- **Counting.** Ask for seven baskets, get four. Ask for three crosses, get two. For the baskets Claude just renamed
+  the scene instead of fighting it.
+- **Sunglasses.** One prompt asked for phylacteries on a Pharisee's forehead. The model gave him sunglasses.
+- And the usual suspects: lots of trousers, eyeglasses in a crowd, a briefcase, a light switch, an asphalt road with
+  a painted center line, and a man lying on a mat with a head at each end.
+
+<figure class="pair">
+<img src="/images/full/halo_klein_ref_00215_.webp" alt="Before: a garbled subtitle burned into the bottom of the image">
+<img src="/images/full/halo_edit_00070_.webp" alt="After: the subtitle removed">
+<figcaption>Mark 12:13-17. Left: the prompt had a line of dialogue in it, so the model added a subtitle. Right: one edit later.</figcaption>
+</figure>
+
+<figure class="pair">
+<img src="/images/full/halo_klein_ref_00205_.webp" alt="Before: the triumphal entry with the modern Jerusalem skyline behind">
+<img src="/images/full/halo_klein_ref_00206_.webp" alt="After: the same scene on a country road with no city in view">
+<figcaption>Mark 11:1-11. Left: the Dome of the Rock and apartment blocks. Right: take the city out of the shot.</figcaption>
+</figure>
+
+The edit model is still very literal. Asked to swap a fedora for a head cloth on one man far in the background, it
+put the head cloth on a Pharisee in the front and made the fedora sharper. Six of the 28 edits on Mark made things
+worse and got thrown out.
+
+One new annoyance on the plumbing side: every single edit timed out on the Mac end, even though it finished fine
+on the box. Claude worked around it by pulling the finished image straight from ComfyUI. That's the next thing to
+fix in the MCP server.
+
+### Mark by the numbers
+
+| | John | Mark |
+|---|---|---|
+| Scenes | 88 | 75 |
+| New portraits | 2 | 2 |
+| Total attempts | 168 | 188 (160 generations, 28 edits) |
+| Attempts per published image | 1.87 | 2.44 |
+| GPU time | 68 minutes | 98 minutes |
+| Session length | about 2.5 hours | about 2.9 hours |
+
+Mark took more attempts per picture than John even though it's the shorter book. Most of that is the stricter
+checking. The box was also slower across the board this time. A typical scene took 22 seconds instead of 16, and
+a typical edit took 92 seconds instead of 53. I don't know why yet. That's on the list too.
+
 ## Try it
 
 Everything is on [GitHub](https://github.com/btrzupek/halo-visual-bible): the MCP server, the ComfyUI workflows, the tunnel setup, the book viewer,

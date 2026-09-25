@@ -19,7 +19,9 @@ Usage:
       --images ~/halo-images --book ~/halo-images/visual-bible/data --out ./metrics
 
 Stdlib only. ComfyUI keeps history in memory, so it only covers jobs since ComfyUI last
-started; the image-folder cross-check shows what is missing.
+started; the image-folder cross-check shows what is missing. Pass --history with saved
+snapshots (curl .../history > history-<time>.json) to include jobs from before a restart,
+and --url '' to use the snapshots alone.
 """
 import argparse, csv, datetime as dt, glob, json, os, re, statistics, struct, urllib.request
 
@@ -115,6 +117,7 @@ def main():
     ap.add_argument("--images", default="~/halo-images", help="local folder with the generated PNGs")
     ap.add_argument("--book", default="", help="optional: viewer data/ folder, to flag images used in the book")
     ap.add_argument("--out", default=".", help="output folder")
+    ap.add_argument("--history", action="append", default=[], help="saved /history snapshot file(s) or glob (repeatable)")
     ap.add_argument("--max-items", type=int, default=2000)
     ap.add_argument("--session-gap-min", type=float, default=30, help="idle gap that splits sessions")
     a = ap.parse_args()
@@ -122,7 +125,13 @@ def main():
     os.makedirs(os.path.expanduser(a.out), exist_ok=True)
     out = os.path.expanduser(a.out)
 
-    rows = [r for pid, h in fetch_history(a.url, a.max_items).items() if (r := job_row(pid, h, images))]
+    hist = {}
+    for pat in a.history:
+        for f in sorted(glob.glob(os.path.expanduser(pat))):
+            hist.update(json.load(open(f)))
+    if a.url:
+        hist.update(fetch_history(a.url, a.max_items))
+    rows = [r for pid, h in hist.items() if (r := job_row(pid, h, images))]
     rows.sort(key=lambda r: r["_start"])
     prev_model = None
     for r in rows:  # model_swap: this job's diffusion model differs from the previous real job's
@@ -150,7 +159,8 @@ def main():
     # ---- summary
     ok = [r for r in rows if r["status"] == "success" and not r["cache_replay"]]
     lines = ["# ComfyUI job history summary", "",
-             f"Source: `{a.url}/history` ({len(rows)} jobs; {len(rows) - len(ok)} excluded as errors or cache replays).", ""]
+             f"Source: {f'`{a.url}/history`' if a.url else ''}{' + ' if a.url and a.history else ''}"
+             f"{f'{len(a.history)} snapshot pattern(s)' if a.history else ''} ({len(rows)} jobs; {len(rows) - len(ok)} excluded as errors or cache replays).", ""]
     if rows:
         t0 = dt.datetime.fromtimestamp(rows[0]["_start"] / 1000)
         t1 = dt.datetime.fromtimestamp(rows[-1]["_end"] / 1000)
