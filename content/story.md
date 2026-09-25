@@ -261,6 +261,11 @@ that were eating memory, and no coding agents were running. That made Luke a goo
 took 17 seconds, right back near John's 16, and a typical edit took 57 seconds instead of Mark's 92. So the slowdown
 on Mark really was the three agents sharing the box.
 
+One housekeeping note from the box itself. The orphaned Chromium processes didn't come back this run. But a python3
+process that belongs to ComfyUI hung around after I closed ComfyUI properly, still holding onto 2.4 GB of memory. The
+only way I've found to get the machine back to a clean state for the next run, whatever I'm doing next, is a full
+restart.
+
 **The timeout is fixed.** On Mark every single edit "timed out" on my Mac even though it finished on the box. Before
 starting Luke, Claude rewrote that part of the MCP server so each job is watched in the background until its image
 is saved, and a call that runs long comes back with a job id instead of an error. Luke had 60 edits. Not one of them

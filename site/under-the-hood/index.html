@@ -67,6 +67,10 @@
     John's, which is the clearest evidence that the agents are what slowed Mark down. Per-job data:
     Mark <a href="/data/mark/comfy_history.csv">CSV</a> / <a href="/data/mark/history_summary.md">summary</a>,
     Luke <a href="/data/luke/comfy_history.csv">CSV</a> / <a href="/data/luke/history_summary.md">summary</a>.</p>
+  <p class="prose">Housekeeping on the box: before Luke, the Halo was rebooted to clear dozens of orphaned Chromium
+    processes. Those didn't reappear during the Luke run, but a python3 process belonging to ComfyUI stayed resident
+    after ComfyUI was closed properly, holding about 2.4 GB of memory. A full restart is needed to get the machine back
+    to a clean state before the next run.</p>
   <h3 style="font-family:var(--display);font-weight:400;margin:2rem 0 .4rem">John in detail</h3>
   <div class="cards">
     <div class="card"><div class="stat">168</div><p>generations and edits for 90 published images (1.87 each)</p></div>
