@@ -34,12 +34,25 @@
 .when{color:var(--muted);font-size:.82rem;margin-left:auto}
 .used{font-family:var(--display);color:var(--ink)}
 .prompt{color:var(--muted);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.from{display:flex;gap:.45rem;align-items:center;color:var(--muted);font-size:.82rem}
+.from{display:flex;gap:.45rem;align-items:center;color:var(--muted);font-size:.82rem;text-decoration:none;align-self:flex-start;border-radius:3px}
+a.from:hover,a.from:focus-visible{color:var(--gilt)}
+a.from:hover img{outline:1px solid var(--gilt)}
 .from img{width:54px;height:34px;object-fit:cover;border-radius:2px}
+.lb aside a.src{color:#cfa959}
 .lb{position:fixed;inset:0;z-index:50;background:rgba(3,4,8,.95);display:none;grid-template-columns:minmax(0,1fr) min(420px,100%);color:#e7dfcc}
 .lb.open{display:grid}
 .lb .pic{display:flex;align-items:center;justify-content:center;padding:2vh 2vw;cursor:zoom-out}
-.lb .pic img{max-height:96vh;object-fit:contain}
+.lb .pic .cmp{position:relative;max-width:100%;line-height:0;cursor:zoom-out}
+.lb .pic .cmp img.after{display:block;max-width:100%;max-height:96vh;object-fit:contain}
+/* before/after: the source sits on top, clipped to the left of the bar */
+.lb .cmp img.before,.lb .cmp .bar,.lb .cmp .lab{display:none}
+.lb .cmp.on{cursor:ew-resize;touch-action:none;user-select:none;-webkit-user-select:none}
+.lb .cmp.on img.before{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:fill;clip-path:inset(0 calc(100% - var(--p,50%)) 0 0)}
+.lb .cmp.on .bar{display:block;position:absolute;top:0;bottom:0;left:var(--p,50%);width:2px;margin-left:-1px;background:#f3ead6;box-shadow:0 0 6px rgba(0,0,0,.6)}
+.lb .cmp .bar span{position:absolute;top:50%;left:50%;width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;background:#f3ead6;color:#14182a;display:flex;align-items:center;justify-content:center;font:600 15px/1 system-ui,sans-serif;box-shadow:0 1px 6px rgba(0,0,0,.5)}
+.lb .cmp .bar:focus-visible span{outline:2px solid #cfa959;outline-offset:2px}
+.lb .cmp.on .lab{display:block;position:absolute;top:.7rem;font:.8rem/1 var(--display);letter-spacing:.04em;background:rgba(3,4,8,.65);color:#e7dfcc;padding:.3rem .55rem;border-radius:999px;pointer-events:none}
+.lb .cmp .lab.l{left:.7rem}.lb .cmp .lab.r{right:.7rem}
 .lb aside{overflow:auto;padding:2rem 1.5rem;border-left:1px solid #2e3452;font-size:.98rem;line-height:1.6}
 .lb aside h3{font-family:var(--display);font-weight:400;color:#cfa959;margin:0 0 .6rem}
 .lb aside dl{display:grid;grid-template-columns:auto 1fr;gap:.25rem .9rem;margin:1rem 0 0;font-size:.9rem}
@@ -86,7 +99,7 @@
 
 <div class="lb" id="lb" role="dialog" aria-label="Image details">
   <button class="close" aria-label="Close">×</button>
-  <div class="pic"><img alt=""></div>
+  <div class="pic"><div class="cmp"><img class="after" alt=""><img class="before" alt=""><span class="lab l"></span><span class="lab r">After</span><div class="bar" role="slider" tabindex="0" aria-label="Before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><span aria-hidden="true">⇔</span></div></div></div>
   <aside></aside>
 </div>
 
@@ -124,7 +137,7 @@
     var tags = '<span class="tag' + (x.kind === 'edit' ? ' edit' : x.kind === 'klein_ref' ? ' ref' : '') + '">' + KIND[x.kind] + '</span>' +
       (x.used.length ? '<span class="tag book">in the book</span>' : '');
     var from = x.kind === 'edit' && x.source[0] && byFile[x.source[0]] ?
-      '<div class="from"><img src="/images/thumb/' + x.source[0] + '" alt="" loading="lazy">edited from #' + byFile[x.source[0]].n + '</div>' : '';
+      '<a class="from" href="#n' + byFile[x.source[0]].n + '" data-open="' + x.source[0] + '"><img src="/images/thumb/' + x.source[0] + '" alt="" loading="lazy">edited from #' + byFile[x.source[0]].n + '</a>' : '';
     html += '<article class="shot" data-kind="' + x.kind + '" data-in="' + (x.used.length ? 1 : 0) + '" data-book="' + esc(x.book || '') + '" id="n' + x.n + '">' +
       '<button class="img" data-f="' + x.f + '"><img src="/images/thumb/' + x.f + '" alt="' + esc(x.prompt.slice(0, 120)) + '" loading="lazy"></button>' +
       '<div class="meta"><div class="tags">' + tags + '<span class="when">#' + x.n + ' · ' + x.secs.toFixed(1) + ' s</span></div>' +
@@ -161,21 +174,58 @@
   try { var qb = new URLSearchParams(location.search).get('book'); if (['Matthew', 'Mark', 'Luke', 'John'].indexOf(qb) >= 0) state.b = qb; } catch (err) {}
   apply();
 
-  var lb = document.getElementById('lb'), lbimg = lb.querySelector('img'), side = lb.querySelector('aside');
+  var lb = document.getElementById('lb'), cmp = lb.querySelector('.cmp'), lbimg = cmp.querySelector('img.after'),
+    before = cmp.querySelector('img.before'), bar = cmp.querySelector('.bar'), side = lb.querySelector('aside');
+  function setP(p) { p = Math.max(0, Math.min(100, p)); cmp.style.setProperty('--p', p + '%'); bar.setAttribute('aria-valuenow', Math.round(p)); }
   function open(f) {
     var x = byFile[f]; lbimg.src = '/images/full/' + f; lbimg.alt = x.prompt.slice(0, 160);
+    // edits get a before/after slider: the source image on the left of the bar, the edit on the right
+    var src = x.kind === 'edit' && x.source[0] && byFile[x.source[0]];
+    cmp.classList.toggle('on', !!src);
+    if (src) { before.src = '/images/full/' + x.source[0]; before.alt = 'Before: #' + src.n; cmp.querySelector('.lab.l').textContent = 'Before · #' + src.n; setP(50); }
+    else before.removeAttribute('src');
     side.innerHTML = '<h3>#' + x.n + ' · ' + KIND[x.kind] + '</h3>' +
       (x.used.length ? '<p class="used" style="color:#cfa959">' + usedLabel(x) + '</p>' : '<p style="color:#a3a3b4">Outtake</p>') +
       '<p>' + esc(x.prompt) + '</p>' +
       '<dl><dt>Generated</dt><dd>' + when(x.t) + '</dd><dt>GPU time</dt><dd>' + x.secs.toFixed(1) + ' s</dd>' +
       '<dt>Size</dt><dd>' + x.w + '×' + x.h + '</dd><dt>Steps</dt><dd>' + (x.steps || '') + '</dd><dt>Seed</dt><dd>' + (x.seed == null ? '' : x.seed) + '</dd>' +
-      (x.source.length ? '<dt>' + (x.kind === 'edit' ? 'Edited from' : 'Reference') + '</dt><dd>' + x.source.map(function (s) { return byFile[s] ? '#' + byFile[s].n : esc(s); }).join(', ') + '</dd>' : '') +
+      (x.source.length ? '<dt>' + (x.kind === 'edit' ? 'Edited from' : 'Reference') + '</dt><dd>' + x.source.map(function (s) { return byFile[s] ? '<a class="src" href="#n' + byFile[s].n + '" data-open="' + s + '">#' + byFile[s].n + '</a>' : esc(s); }).join(', ') + '</dd>' : '') +
       '</dl>';
     lb.classList.add('open');
+    try { history.replaceState(null, '', '#n' + x.n); } catch (err) {}
   }
+  function close() { lb.classList.remove('open'); try { history.replaceState(null, '', location.pathname + location.search); } catch (err) {} }
+  // "edited from #N" (card and viewer) opens the source image
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[data-open]'); if (!a || !byFile[a.dataset.open]) return;
+    e.preventDefault(); open(a.dataset.open);
+  });
   grid.addEventListener('click', function (e) { var b = e.target.closest('button.img'); if (b) open(b.dataset.f); });
-  lb.addEventListener('click', function (e) { if (e.target.closest('.pic') || e.target.closest('.close')) lb.classList.remove('open'); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') lb.classList.remove('open'); });
+  // dragging the bar (or anywhere on the picture) moves it; a plain click outside the slider still closes
+  var drag = null;
+  function pos(e) { var r = cmp.getBoundingClientRect(); setP((e.clientX - r.left) / r.width * 100); }
+  cmp.addEventListener('pointerdown', function (e) {
+    if (!cmp.classList.contains('on')) return;
+    drag = true; cmp.setPointerCapture(e.pointerId); pos(e); e.preventDefault();
+  });
+  cmp.addEventListener('pointermove', function (e) { if (drag) pos(e); });
+  cmp.addEventListener('pointerup', function () { drag = null; });
+  cmp.addEventListener('pointercancel', function () { drag = null; });
+  bar.addEventListener('keydown', function (e) {
+    var p = parseFloat(bar.getAttribute('aria-valuenow'));
+    if (e.key === 'ArrowLeft') setP(p - 5); else if (e.key === 'ArrowRight') setP(p + 5);
+    else if (e.key === 'Home') setP(0); else if (e.key === 'End') setP(100); else return;
+    e.preventDefault();
+  });
+  lb.addEventListener('click', function (e) {
+    if (e.target.closest('.close')) return close();
+    if (e.target.closest('.cmp.on')) return;  // clicks on the slider move the bar instead of closing
+    if (e.target.closest('.pic')) close();
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  // #n123 in the URL opens that attempt directly, so a source link can be shared
+  var m = /^#n(\d+)$/.exec(location.hash);
+  if (m && G[+m[1] - 1]) open(G[+m[1] - 1].f);
 })();
 </script>
 </body>
