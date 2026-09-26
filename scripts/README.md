@@ -61,3 +61,17 @@ python3 build_site_assets.py --url http://127.0.0.1:8188 --images ~/halo-images 
   --book John=../site/bible/data --book Mark=../site/mark/data \
   --history '~/halo-images/visual-bible/mark/history-*.json' --site ../site
 ```
+
+## `build_verse_index.py`
+
+Writes the public verse → image index that other apps (e.g. Inscripture) read:
+`site/index/v1/books.json` lists the illustrated books and chapters, and
+`site/index/v1/<book>.json` maps each chapter to its scenes (verse range, title, subtitle,
+kind, full/thumb WebP URLs, size, and a deep link into the viewer). Scene ids are
+`<book>.<chapter>.<first verse>`, matching the viewer anchors (`/matthew#s5-13`), so they stay
+stable when an image is swapped. Verse numbers are KJV. Scenes whose WebP isn't in
+`site/images/full` yet are skipped. Run it after `build_site_assets.py`, then commit the output:
+
+```bash
+python3 build_verse_index.py
+```

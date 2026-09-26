@@ -61,7 +61,7 @@ Measured with the scripts in `scripts/`; see the blog post for details.
 | [`site/`](site/) | The public website (static, deployed on Vercel): the story, the full book, every attempt with its prompt, the numbers, and the infographic |
 | [`content/`](content/) | The blog post source (`story.md`), rendered into `site/index.html` by `scripts/build_story.py` |
 | [`viewer/`](viewer/) | The Visual Bible viewer as a reusable template, with one sample chapter |
-| [`scripts/`](scripts/) | `comfy_history_metrics.py` (job metrics from ComfyUI history), `halo_benchmark.py` (timed runs with power/thermal telemetry), `build_site_assets.py`, `build_story.py`, `render_infographic.sh` (site build helpers) |
+| [`scripts/`](scripts/) | `comfy_history_metrics.py` (job metrics from ComfyUI history), `halo_benchmark.py` (timed runs with power/thermal telemetry), `build_site_assets.py`, `build_verse_index.py`, `build_story.py`, `render_infographic.sh` (site build helpers) |
 
 ## Quickstart
 
@@ -90,6 +90,14 @@ Then ask Claude: *"What image models are on halo?"* Full walkthrough: [`setup/SE
 `site/` is plain static HTML with no build step; Vercel serves it as-is (`vercel.json` sets
 `outputDirectory: site` and clean URLs). To preview locally: `python3 -m http.server 8090 --directory site`.
 After editing `content/story.md`: `uv run --with markdown python3 scripts/build_story.py`.
+
+### Verse index (for other apps)
+
+`/index/v1/books.json` and `/index/v1/<book>.json` (e.g.
+[`/index/v1/matthew.json`](https://halo-visual-bible.vercel.app/index/v1/matthew.json)) map every
+verse range to its scene image. They're served with CORS enabled and a 5-minute cache, and images are
+immutable, so apps can hot-link them. Rebuild with `python3 scripts/build_verse_index.py` whenever
+chapters or picks change. The schema is versioned by path; breaking changes go to `/index/v2/`.
 
 ## License
 
