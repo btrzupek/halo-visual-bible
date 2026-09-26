@@ -20,6 +20,7 @@
 <nav class="sitenav" aria-label="Site">
   <a class="brand" href="/">halo <b>·</b> Visual Bible</a>
   <a class="link" href="/" aria-current="page">The story</a>
+  <a class="link" href="/matthew">Matthew</a>
   <a class="link" href="/mark">Mark</a>
   <a class="link" href="/luke">Luke</a>
   <a class="link" href="/bible">John</a>
@@ -399,6 +400,123 @@ tuned later. Mark's two parable scenes got it too.</p>
 </tr>
 <tr>
 <td>Other work on the box</td>
+<td>three coding agents</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<h2>Part four: the Gospel of Matthew</h2>
+<p>And now Matthew. 28 chapters, 1,071 verses, 111 scenes, which makes it the biggest book so far. With Matthew done,
+all four Gospels are up. You can <a href="/matthew">read it here</a>.</p>
+<p class="cta"><a class="primary" href="/matthew">Open Matthew</a><a href="/making-of?book=Matthew">See every attempt</a></p>
+
+<p>Before starting, the box was checked and came back clean: only ComfyUI running, no language model loaded, half a
+gigabyte of GPU memory in use, and no coding agents. So Matthew is a second quiet run to compare with Luke, and the
+numbers lined up almost exactly. A typical scene took 16.7 seconds (Luke 16.8) and a typical edit took 57.0 seconds
+(Luke 57.0). The whole book took 91 minutes of GPU time over about two and a half hours.</p>
+<p><strong>It got easier.</strong> 38 of the 111 scenes were keepers on the very first try, against 20 of 103 for Luke and 10 of 75
+for Mark. Matthew needed 1.94 attempts per published image, the best since John. Nothing about the box changed. The
+prompts did. By now there is a long list of things that don't work (no quoted speech, no distant cities, never
+"well-dressed", keep babies out of people's arms) and every prompt started from it.</p>
+<p><strong>One new face.</strong> Matthew's first two chapters follow Joseph, so he got his own portrait. It came out right on the
+first try, and he carries the dream, the flight into Egypt and the move to Nazareth.</p>
+<div class="pair">
+<img src="/images/full/halo_klein_00095_.webp" alt="Portrait of Joseph, used as a reference image">
+<img src="/images/full/halo_edit_00141_.webp" alt="Joseph asleep as the angel of the Lord speaks to him in a dream">
+<figcaption>Left: the new reference portrait of Joseph. Right: Matthew 1:18-25, the dream. The first try gave him a grey sock and a pillow that looked like a roll of paper towels.</figcaption>
+</div>
+
+<p><strong>More parables.</strong> Matthew has 14 parable scenes, and they all get the soft dream edge from Luke. I also marked the
+sheep and the goats in chapter 25 as a parable. It's more of a picture of the judgment than a story, but it's told
+the same way the others are, so it gets the same treatment.</p>
+<figure>
+<img src="/images/full/halo_klein_00144_.webp" alt="A shepherd standing between a flock of sheep and a herd of goats">
+<figcaption>Matthew 25:31-46, the sheep and the goats. Kept on the first try.</figcaption>
+</figure>
+
+<h3>What went wrong this time</h3>
+<ul>
+<li><strong>Eyeglasses.</strong> A scribe, a face in a crowd, the elder paying off the guards, and one of the disciples at the very
+  last scene. When I asked the edit model to take that last pair off, it took off the man's whole head. The second
+  try put glasses on a different man. Rerolling the same seed with "weathered bare faces" in the prompt finally fixed it.</li>
+<li>The wristwatches are back: on Jesus, on Matthew at the tax booth, on a wedding guest, and on Judas.</li>
+<li>The bridegroom in the parable of the ten virgins showed up in a <strong>black suit</strong>. And there were six virgins, not ten.</li>
+<li>The wedding feast "in the days of Noah" came with <strong>electric string lights</strong> over the tables.</li>
+<li>Golgotha means "the place of a skull", and the model drew a <strong>giant skull</strong> on the hill.</li>
+<li>I slipped and put a spoken line ("thou hast said") in a prompt, and it came back burned into the picture as a
+  subtitle again: "Thn Ihestsid".</li>
+</ul>
+<div class="pair">
+<img src="/images/full/halo_edit_00192_.webp" alt="A failed edit: the disciple whose glasses were to be removed has no head">
+<img src="/images/full/halo_klein_ref_00494_.webp" alt="The risen Jesus on a mountaintop at sunrise with his arms outstretched over his kneeling disciples">
+<figcaption>Matthew 28:16-20, the last scene of the book. Left: the edit that removed a pair of glasses by removing the head. Right: the reroll that made it in.</figcaption>
+</div>
+
+<h3>Matthew by the numbers</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Matthew</th>
+<th>Mark</th>
+<th>Luke</th>
+<th>John</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scenes</td>
+<td>111</td>
+<td>75</td>
+<td>103</td>
+<td>88</td>
+</tr>
+<tr>
+<td>Total attempts</td>
+<td>217 (163 generations, 54 edits)</td>
+<td>189</td>
+<td>254</td>
+<td>168</td>
+</tr>
+<tr>
+<td>Attempts per published image</td>
+<td>1.94</td>
+<td>2.45</td>
+<td>2.44</td>
+<td>1.87</td>
+</tr>
+<tr>
+<td>Kept on the first try</td>
+<td>38</td>
+<td>10</td>
+<td>20</td>
+<td>about half</td>
+</tr>
+<tr>
+<td>Typical scene</td>
+<td>17 s</td>
+<td>22 s</td>
+<td>17 s</td>
+<td>16 s</td>
+</tr>
+<tr>
+<td>Typical edit</td>
+<td>57 s</td>
+<td>92 s</td>
+<td>57 s</td>
+<td>53 s</td>
+</tr>
+<tr>
+<td>GPU time</td>
+<td>91 minutes</td>
+<td>99 minutes</td>
+<td>108 minutes</td>
+<td>68 minutes</td>
+</tr>
+<tr>
+<td>Other work on the box</td>
+<td>none</td>
 <td>three coding agents</td>
 <td>none</td>
 <td>none</td>

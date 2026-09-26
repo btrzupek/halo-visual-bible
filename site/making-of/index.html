@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Making of: every attempt</title>
-<meta name="description" content="Every generation and edit behind the Visual Bible of Mark, Luke and John, in order, with the prompts and timings.">
+<meta name="description" content="Every generation and edit behind the Visual Bible of Matthew, Mark, Luke and John, in order, with the prompts and timings.">
 <meta property="og:image" content="/infographic/og.png">
 <link rel="icon" href="/assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,6 +52,7 @@
 <nav class="sitenav" aria-label="Site">
   <a class="brand" href="/">halo <b>·</b> Visual Bible</a>
   <a class="link" href="/">The story</a>
+  <a class="link" href="/matthew">Matthew</a>
   <a class="link" href="/mark">Mark</a>
   <a class="link" href="/luke">Luke</a>
   <a class="link" href="/bible">John</a>
@@ -68,6 +69,7 @@
   <div class="summary" id="summary"></div>
   <div class="filters" id="books" role="group" aria-label="Book">
     <button data-b="all" aria-pressed="true">All books</button>
+    <button data-b="Matthew" aria-pressed="false">Matthew</button>
     <button data-b="Mark" aria-pressed="false">Mark</button>
     <button data-b="Luke" aria-pressed="false">Luke</button>
     <button data-b="John" aria-pressed="false">John</button>
@@ -156,7 +158,7 @@
     var b = e.target.closest('button'); if (!b) return;
     state.f = b.dataset.f; apply();
   });
-  try { var qb = new URLSearchParams(location.search).get('book'); if (['Mark', 'Luke', 'John'].indexOf(qb) >= 0) state.b = qb; } catch (err) {}
+  try { var qb = new URLSearchParams(location.search).get('book'); if (['Matthew', 'Mark', 'Luke', 'John'].indexOf(qb) >= 0) state.b = qb; } catch (err) {}
   apply();
 
   var lb = document.getElementById('lb'), lbimg = lb.querySelector('img'), side = lb.querySelector('aside');

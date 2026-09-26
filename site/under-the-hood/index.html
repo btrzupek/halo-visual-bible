@@ -32,6 +32,7 @@
 <nav class="sitenav" aria-label="Site">
   <a class="brand" href="/">halo <b>·</b> Visual Bible</a>
   <a class="link" href="/">The story</a>
+  <a class="link" href="/matthew">Matthew</a>
   <a class="link" href="/mark">Mark</a>
   <a class="link" href="/luke">Luke</a>
   <a class="link" href="/bible">John</a>
@@ -42,35 +43,38 @@
 
 <main class="page">
   <h1>Under the hood</h1>
-  <p class="lede">How a chat with Claude on a Mac turned into 266 illustrated scenes, the Gospels of Mark, Luke and John, rendered on a box on my desk.
+  <p class="lede">How a chat with Claude on a Mac turned into 377 illustrated scenes, all four Gospels, rendered on a box on my desk.
     Everything here is in the <a href="https://github.com/btrzupek/halo-visual-bible">GitHub repo</a>, including the raw numbers.</p>
 
   <h2>The run, by the numbers</h2>
   <table>
-    <tr><th></th><th>Mark</th><th>Luke</th><th>John</th></tr>
-    <tr><td>Test conditions</td><td>Three AI coding agents running on the box at the same time</td><td>Box doing nothing else, fresh reboot</td><td>Box doing nothing else</td></tr>
-    <tr><td>Chapters</td><td>16</td><td>24</td><td>21</td></tr>
-    <tr><td>Scenes</td><td>75</td><td>103</td><td>88</td></tr>
-    <tr><td>New cast portraits</td><td>2 (Peter, Mary Magdalene)</td><td>1 (Mary, mother of Jesus)</td><td>2 (Jesus, John the Baptist)</td></tr>
-    <tr><td>Attempts (generations + edits)</td><td>189 (160 + 29)</td><td>254 (194 + 60)</td><td>168 (121 + 47)</td></tr>
-    <tr><td>Attempts per published image</td><td>2.45</td><td>2.44</td><td>1.87</td></tr>
-    <tr><td>Kept on the first try</td><td>10 of 75</td><td>20 of 103</td><td>about half</td></tr>
-    <tr><td>GPU time</td><td>99 min</td><td>108 min</td><td>68 min</td></tr>
-    <tr><td>GPU busy during the session</td><td>57%</td><td>57%</td><td>44%</td></tr>
-    <tr><td>Median klein + reference job</td><td>21.7 s</td><td>16.8 s</td><td>15.7 s</td></tr>
-    <tr><td>Median edit</td><td>91.9 s</td><td>57.0 s</td><td>52.5 s</td></tr>
+    <tr><th></th><th>Matthew</th><th>Mark</th><th>Luke</th><th>John</th></tr>
+    <tr><td>Test conditions</td><td>Box doing nothing else, checked clean before the run</td><td>Three AI coding agents running on the box at the same time</td><td>Box doing nothing else, fresh reboot</td><td>Box doing nothing else</td></tr>
+    <tr><td>Chapters</td><td>28</td><td>16</td><td>24</td><td>21</td></tr>
+    <tr><td>Scenes</td><td>111</td><td>75</td><td>103</td><td>88</td></tr>
+    <tr><td>New cast portraits</td><td>1 (Joseph)</td><td>2 (Peter, Mary Magdalene)</td><td>1 (Mary, mother of Jesus)</td><td>2 (Jesus, John the Baptist)</td></tr>
+    <tr><td>Attempts (generations + edits)</td><td>217 (163 + 54)</td><td>189 (160 + 29)</td><td>254 (194 + 60)</td><td>168 (121 + 47)</td></tr>
+    <tr><td>Attempts per published image</td><td>1.94</td><td>2.45</td><td>2.44</td><td>1.87</td></tr>
+    <tr><td>Kept on the first try</td><td>38 of 111</td><td>10 of 75</td><td>20 of 103</td><td>about half</td></tr>
+    <tr><td>GPU time</td><td>91 min</td><td>99 min</td><td>108 min</td><td>68 min</td></tr>
+    <tr><td>GPU busy during the session</td><td>58%</td><td>57%</td><td>57%</td><td>44%</td></tr>
+    <tr><td>Median klein + reference job</td><td>16.7 s</td><td>21.7 s</td><td>16.8 s</td><td>15.7 s</td></tr>
+    <tr><td>Median edit</td><td>57.0 s</td><td>91.9 s</td><td>57.0 s</td><td>52.5 s</td></tr>
   </table>
-  <p class="prose">Mark and Luke reused John's portraits, so all three books share one cast. Both took more attempts per
+  <p class="prose">Matthew, Mark and Luke reused John's portraits, so all four books share one cast. Mark and Luke took more attempts per
     image than John mainly because every image was checked zoomed in, region by region, which catches small things a
     full-frame look misses. Mark was also a harder test: it ran while a separate workflow had three AI coding agents
     working on the same box. Luke ran on a quiet, freshly rebooted box, and its per-job times came back almost to
-    John's, which is the clearest evidence that the agents are what slowed Mark down. Per-job data:
+    John's, which is the clearest evidence that the agents are what slowed Mark down. Matthew, also on a quiet box, matched Luke
+    almost to the tenth of a second, and needed fewer attempts per image as the prompts got better. Per-job data:
+    Matthew <a href="/data/matthew/comfy_history.csv">CSV</a> / <a href="/data/matthew/history_summary.md">summary</a>,
     Mark <a href="/data/mark/comfy_history.csv">CSV</a> / <a href="/data/mark/history_summary.md">summary</a>,
     Luke <a href="/data/luke/comfy_history.csv">CSV</a> / <a href="/data/luke/history_summary.md">summary</a>.</p>
   <p class="prose">Housekeeping on the box: before Luke, the Halo was rebooted to clear dozens of orphaned Chromium
     processes. Those didn't reappear during the Luke run, but a python3 process belonging to ComfyUI stayed resident
     after ComfyUI was closed properly, holding about 2.4 GB of memory. A full restart is needed to get the machine back
-    to a clean state before the next run.</p>
+    to a clean state before the next run. Before Matthew the box was checked again and came back clean: only ComfyUI
+    running, no language model loaded, 0.5 GiB of GPU memory in use.</p>
   <h3 style="font-family:var(--display);font-weight:400;margin:2rem 0 .4rem">John in detail</h3>
   <div class="cards">
     <div class="card"><div class="stat">168</div><p>generations and edits for 90 published images (1.87 each)</p></div>

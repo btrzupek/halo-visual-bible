@@ -38,6 +38,7 @@ PAGE = """<!doctype html>
 <nav class="sitenav" aria-label="Site">
   <a class="brand" href="/">halo <b>·</b> Visual Bible</a>
   <a class="link" href="/" aria-current="page">The story</a>
+  <a class="link" href="/matthew">Matthew</a>
   <a class="link" href="/mark">Mark</a>
   <a class="link" href="/luke">Luke</a>
   <a class="link" href="/bible">John</a>

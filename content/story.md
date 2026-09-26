@@ -317,6 +317,72 @@ Same story as Mark: 20 of 103 scenes were keepers on the first try. The new ones
 | GPU time | 99 minutes | 108 minutes | 68 minutes |
 | Other work on the box | three coding agents | none | none |
 
+## Part four: the Gospel of Matthew
+
+And now Matthew. 28 chapters, 1,071 verses, 111 scenes, which makes it the biggest book so far. With Matthew done,
+all four Gospels are up. You can [read it here](/matthew).
+
+<p class="cta"><a class="primary" href="/matthew">Open Matthew</a><a href="/making-of?book=Matthew">See every attempt</a></p>
+
+Before starting, the box was checked and came back clean: only ComfyUI running, no language model loaded, half a
+gigabyte of GPU memory in use, and no coding agents. So Matthew is a second quiet run to compare with Luke, and the
+numbers lined up almost exactly. A typical scene took 16.7 seconds (Luke 16.8) and a typical edit took 57.0 seconds
+(Luke 57.0). The whole book took 91 minutes of GPU time over about two and a half hours.
+
+**It got easier.** 38 of the 111 scenes were keepers on the very first try, against 20 of 103 for Luke and 10 of 75
+for Mark. Matthew needed 1.94 attempts per published image, the best since John. Nothing about the box changed. The
+prompts did. By now there is a long list of things that don't work (no quoted speech, no distant cities, never
+"well-dressed", keep babies out of people's arms) and every prompt started from it.
+
+**One new face.** Matthew's first two chapters follow Joseph, so he got his own portrait. It came out right on the
+first try, and he carries the dream, the flight into Egypt and the move to Nazareth.
+
+<div class="pair">
+<img src="/images/full/halo_klein_00095_.webp" alt="Portrait of Joseph, used as a reference image">
+<img src="/images/full/halo_edit_00141_.webp" alt="Joseph asleep as the angel of the Lord speaks to him in a dream">
+<figcaption>Left: the new reference portrait of Joseph. Right: Matthew 1:18-25, the dream. The first try gave him a grey sock and a pillow that looked like a roll of paper towels.</figcaption>
+</div>
+
+**More parables.** Matthew has 14 parable scenes, and they all get the soft dream edge from Luke. I also marked the
+sheep and the goats in chapter 25 as a parable. It's more of a picture of the judgment than a story, but it's told
+the same way the others are, so it gets the same treatment.
+
+<figure>
+<img src="/images/full/halo_klein_00144_.webp" alt="A shepherd standing between a flock of sheep and a herd of goats">
+<figcaption>Matthew 25:31-46, the sheep and the goats. Kept on the first try.</figcaption>
+</figure>
+
+### What went wrong this time
+
+- **Eyeglasses.** A scribe, a face in a crowd, the elder paying off the guards, and one of the disciples at the very
+  last scene. When I asked the edit model to take that last pair off, it took off the man's whole head. The second
+  try put glasses on a different man. Rerolling the same seed with "weathered bare faces" in the prompt finally fixed it.
+- The wristwatches are back: on Jesus, on Matthew at the tax booth, on a wedding guest, and on Judas.
+- The bridegroom in the parable of the ten virgins showed up in a **black suit**. And there were six virgins, not ten.
+- The wedding feast "in the days of Noah" came with **electric string lights** over the tables.
+- Golgotha means "the place of a skull", and the model drew a **giant skull** on the hill.
+- I slipped and put a spoken line ("thou hast said") in a prompt, and it came back burned into the picture as a
+  subtitle again: "Thn Ihestsid".
+
+<div class="pair">
+<img src="/images/full/halo_edit_00192_.webp" alt="A failed edit: the disciple whose glasses were to be removed has no head">
+<img src="/images/full/halo_klein_ref_00494_.webp" alt="The risen Jesus on a mountaintop at sunrise with his arms outstretched over his kneeling disciples">
+<figcaption>Matthew 28:16-20, the last scene of the book. Left: the edit that removed a pair of glasses by removing the head. Right: the reroll that made it in.</figcaption>
+</div>
+
+### Matthew by the numbers
+
+| | Matthew | Mark | Luke | John |
+|---|---|---|---|---|
+| Scenes | 111 | 75 | 103 | 88 |
+| Total attempts | 217 (163 generations, 54 edits) | 189 | 254 | 168 |
+| Attempts per published image | 1.94 | 2.45 | 2.44 | 1.87 |
+| Kept on the first try | 38 | 10 | 20 | about half |
+| Typical scene | 17 s | 22 s | 17 s | 16 s |
+| Typical edit | 57 s | 92 s | 57 s | 53 s |
+| GPU time | 91 minutes | 99 minutes | 108 minutes | 68 minutes |
+| Other work on the box | none | three coding agents | none | none |
+
 ## Try it
 
 Everything is on [GitHub](https://github.com/btrzupek/halo-visual-bible): the MCP server, the ComfyUI workflows, the tunnel setup, the book viewer,
