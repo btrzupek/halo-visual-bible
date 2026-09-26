@@ -35,6 +35,9 @@ OUT = os.path.join(SITE, 'index', 'v1')
 SCHEMA_VERSION = 1
 
 # site folder -> (slug, display name, viewer path). Order is canonical book order.
+# Every book with chapter files under site/<folder>/data/ must be listed here; the script
+# refuses to run otherwise. The slug must match Inscripture's: the English book name,
+# lowercased, spaces removed ("romans", "1corinthians", "songofsolomon").
 BOOKS = {
     'matthew': ('matthew', 'Matthew', '/matthew'),
     'mark': ('mark', 'Mark', '/mark'),
@@ -126,6 +129,13 @@ def main() -> None:
     ap.add_argument('--base', default='https://halo-visual-bible.vercel.app',
                     help='public origin for image and page URLs')
     base = ap.parse_args().base.rstrip('/')
+
+    # A book folder with chapter files but no BOOKS entry would silently vanish from the index.
+    unknown = sorted({p.split(os.sep)[-3] for p in glob.glob(os.path.join(SITE, '*', 'data', '*-[0-9][0-9].js'))}
+                     - set(BOOKS))
+    if unknown:
+        sys.exit(f"site/{{{','.join(unknown)}}}/data has chapter files but isn't in BOOKS. "
+                 'Add it (see "Adding a book" in CLAUDE.md), then rerun.')
 
     os.makedirs(OUT, exist_ok=True)
     books = []
