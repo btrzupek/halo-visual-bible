@@ -101,5 +101,6 @@ chapters or picks change. The schema is versioned by path; breaking changes go t
 
 ## License
 
-MIT for the code in this repo. Model weights are under their own licenses (the ones used here are
+MIT for the code and the images in this repo, including every illustration under `site/images/`
+(see [`LICENSE`](LICENSE)); reuse them freely with the copyright notice. Model weights are under their own licenses (the ones used here are
 Apache-2.0); scripture text in the sample chapter is the King James Version (public domain).
