@@ -7,7 +7,7 @@ hero_caption: John 6:19. The fixed version. The first try had a third arm.
 
 # I illustrated the Gospel of John\* on a box on my desk
 
-<p class="byline">*And then I couldn't stop, so the rest of the Gospels are rolling out now too...</p>
+<p class="byline">*And then I couldn't stop, so the rest of the Gospels+ are rolling out now too...</p>
 
 <p class="byline">Brian Trzupek · September 2026</p>
 
