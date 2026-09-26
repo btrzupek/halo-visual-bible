@@ -91,7 +91,8 @@ def main():
                     default=["John=halo_klein_00006_.png,halo_klein_00007_.png",
                              "Mark=halo_klein_00026_.png,halo_edit_00051_.png",
                              "Luke=halo_klein_00039_.png",
-                             "Matthew=halo_klein_00095_.png"],
+                             "Matthew=halo_klein_00095_.png",
+                             "Acts=halo_klein_00155_.png,halo_klein_00157_.png,halo_klein_00158_.png,halo_klein_00162_.png,halo_klein_00160_.png,halo_edit_00195_.png"],
                     help="Book=images used by that book's page itself (cast portraits)")
     ap.add_argument("--site", required=True)
     ap.add_argument("--quality", type=int, default=82)

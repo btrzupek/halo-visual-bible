@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Making of: every attempt</title>
-<meta name="description" content="Every generation and edit behind the Visual Bible of Matthew, Mark, Luke and John, in order, with the prompts and timings.">
+<meta name="description" content="Every generation and edit behind the Visual Bible of Matthew, Mark, Luke, John and Acts, in order, with the prompts and timings.">
 <meta property="og:image" content="/infographic/og.png">
 <link rel="icon" href="/assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,6 +69,7 @@ a.from:hover img{outline:1px solid var(--gilt)}
   <a class="link" href="/mark">Mark</a>
   <a class="link" href="/luke">Luke</a>
   <a class="link" href="/bible">John</a>
+  <a class="link" href="/acts">Acts</a>
   <a class="link" href="/making-of" aria-current="page">Making of</a>
   <a class="link" href="/under-the-hood">Under the hood</a>
   <a class="link" href="https://github.com/btrzupek/halo-visual-bible">GitHub</a>
@@ -86,6 +87,7 @@ a.from:hover img{outline:1px solid var(--gilt)}
     <button data-b="Mark" aria-pressed="false">Mark</button>
     <button data-b="Luke" aria-pressed="false">Luke</button>
     <button data-b="John" aria-pressed="false">John</button>
+    <button data-b="Acts" aria-pressed="false">Acts</button>
   </div>
   <div class="filters" id="kinds" role="group" aria-label="Filter">
     <button data-f="all" aria-pressed="true">All</button>
@@ -171,7 +173,7 @@ a.from:hover img{outline:1px solid var(--gilt)}
     var b = e.target.closest('button'); if (!b) return;
     state.f = b.dataset.f; apply();
   });
-  try { var qb = new URLSearchParams(location.search).get('book'); if (['Matthew', 'Mark', 'Luke', 'John'].indexOf(qb) >= 0) state.b = qb; } catch (err) {}
+  try { var qb = new URLSearchParams(location.search).get('book'); if (['Matthew', 'Mark', 'Luke', 'John', 'Acts'].indexOf(qb) >= 0) state.b = qb; } catch (err) {}
   apply();
 
   var lb = document.getElementById('lb'), cmp = lb.querySelector('.cmp'), lbimg = cmp.querySelector('img.after'),

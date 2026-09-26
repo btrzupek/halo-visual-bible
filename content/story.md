@@ -383,6 +383,77 @@ the same way the others are, so it gets the same treatment.
 | GPU time | 91 minutes | 99 minutes | 108 minutes | 68 minutes |
 | Other work on the box | none | three coding agents | none | none |
 
+## Part five: the Acts of the Apostles
+
+After the four Gospels I kept going into Acts. 28 chapters, 1,007 verses, 98 scenes. It's a different kind of book:
+the story moves from Jerusalem out to Samaria, Damascus, Antioch, Athens, Ephesus, a shipwreck and finally Rome, and
+most of it follows one man. You can [read it here](/acts).
+
+<p class="cta"><a class="primary" href="/acts">Open Acts</a><a href="/making-of?book=Acts">See every attempt</a></p>
+
+Because it's long, I had Claude work through it in four chunks (chapters 1 to 7, 8 to 12, 13 to 20 and 21 to 28)
+and post a contact sheet after each one. On the site it's still one book.
+
+**The cast came first.** Before a single scene, Claude read through the whole book to work out who comes back, so the
+faces wouldn't drift. Paul is in 45 of the 98 scenes, from the young man holding the coats at Stephen's stoning to the
+house in Rome. So Paul got a portrait, and so did John, Stephen, Barnabas, Silas and Philip. Peter, Mary and Jesus
+carried over from the Gospels. The box was quiet again for this run, nothing else on it.
+
+<div class="pair">
+<img src="/images/full/halo_klein_00155_.webp" alt="Portrait of Paul, used as a reference image">
+<img src="/images/full/halo_edit_00212_.webp" alt="Saul fallen on the road to Damascus in a blinding light from heaven">
+<figcaption>Left: the new reference portrait of Paul. Right: Acts 9:1-9, the road to Damascus. The first try put everyone in cargo shorts and hiking boots.</figcaption>
+</div>
+
+**Two new tricks.** The image model can only take one reference portrait at a time, which is a problem when Paul and
+Barnabas are in the same scene. It turns out the edit model can take a second image. So when a face drifted, Claude
+ran an edit that said, in effect, make this man look like the man in the portrait. That fixed Paul's face in three
+scenes. The other trick was about windows. On every book so far, asking the edit model to change a window made it
+worse. Asking it to paint over the window with plain wall worked every time.
+
+<div class="pair">
+<img src="/images/full/halo_klein_ref_00539_.webp" alt="Barnabas bringing Saul to the apostles, with Saul's face not matching his portrait">
+<img src="/images/full/halo_edit_00215_.webp" alt="The same scene after an edit that used Paul's portrait to fix his face">
+<figcaption>Acts 9:26-31, Barnabas brings Saul to the apostles. Left: the man in the middle doesn't look like Paul. Right: the same image after an edit with Paul's portrait as a second image.</figcaption>
+</div>
+
+**Visions get the dream edge.** Acts has no parables, but it has visions: Peter's sheet full of animals, the man of
+Macedonia, and the Lord standing by Paul at night in Corinth. Those three get the same soft edge as the parables,
+labeled "A vision".
+
+<figure>
+<img src="/images/full/halo_klein_ref_00544_.webp" alt="Peter kneeling on a rooftop as a great sheet full of animals comes down from the sky">
+<figcaption>Acts 10:9-16, Peter's vision on the housetop. The first try printed the animals on the sheet like fabric.</figcaption>
+</figure>
+
+### What went wrong this time
+
+- The wristwatches never stop. Agabus, Demetrius the silversmith, Julius the centurion and a guard all had one. Paul got a gold ring.
+- Bernice, sitting next to King Agrippa, came out as a bearded man.
+- The tongues of fire on the disciples at Ephesus turned into candles sticking out of their heads. Pentecost's flames in chapter 2 worked the first time.
+- When Eutychus falls from the window, the model fused him and Paul into one body with a head at each end.
+- The shipwreck ship came out as a 17th-century galleon, so the final picture shows only the wreckage in the surf.
+- The model can't draw the stocks at Philippi. It tried posts, then had the men sitting on the beam, then had their feet resting on top of it. So that scene is retitled with the slave girl's words, "These men are the servants of the most high God".
+
+<div class="pair">
+<img src="/images/full/halo_klein_ref_00606_.webp" alt="Paul before King Agrippa, with Bernice drawn as a bearded man">
+<img src="/images/full/halo_edit_00258_.webp" alt="The same scene after an edit, with Bernice as a woman">
+<figcaption>Acts 26:1-23, Paul before Agrippa. Left: Bernice, center, as drawn. Right: after one edit.</figcaption>
+</div>
+
+### Acts by the numbers
+
+| | Acts | Matthew | Mark | Luke | John |
+|---|---|---|---|---|---|
+| Scenes | 98 | 111 | 75 | 103 | 88 |
+| New portraits | 6 | 1 | 2 | 1 | 2 |
+| Total attempts | 234 (162 generations, 72 edits) | 217 | 189 | 254 | 168 |
+| Attempts per published image | 2.25 | 1.94 | 2.45 | 2.44 | 1.87 |
+| Typical scene | 17 s | 17 s | 22 s | 17 s | 16 s |
+| Typical edit | 57 s | 57 s | 92 s | 57 s | 53 s |
+| GPU time | 115 minutes | 91 minutes | 99 minutes | 108 minutes | 68 minutes |
+| Other work on the box | none | none | three coding agents | none | none |
+
 ## Try it
 
 Everything is on [GitHub](https://github.com/btrzupek/halo-visual-bible): the MCP server, the ComfyUI workflows, the tunnel setup, the book viewer,

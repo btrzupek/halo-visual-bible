@@ -24,6 +24,7 @@
   <a class="link" href="/mark">Mark</a>
   <a class="link" href="/luke">Luke</a>
   <a class="link" href="/bible">John</a>
+  <a class="link" href="/acts">Acts</a>
   <a class="link" href="/making-of">Making of</a>
   <a class="link" href="/under-the-hood">Under the hood</a>
   <a class="link" href="https://github.com/btrzupek/halo-visual-bible">GitHub</a>
@@ -516,6 +517,137 @@ the same way the others are, so it gets the same treatment.</p>
 </tr>
 <tr>
 <td>Other work on the box</td>
+<td>none</td>
+<td>three coding agents</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<h2>Part five: the Acts of the Apostles</h2>
+<p>After the four Gospels I kept going into Acts. 28 chapters, 1,007 verses, 98 scenes. It's a different kind of book:
+the story moves from Jerusalem out to Samaria, Damascus, Antioch, Athens, Ephesus, a shipwreck and finally Rome, and
+most of it follows one man. You can <a href="/acts">read it here</a>.</p>
+<p class="cta"><a class="primary" href="/acts">Open Acts</a><a href="/making-of?book=Acts">See every attempt</a></p>
+
+<p>Because it's long, I had Claude work through it in four chunks (chapters 1 to 7, 8 to 12, 13 to 20 and 21 to 28)
+and post a contact sheet after each one. On the site it's still one book.</p>
+<p><strong>The cast came first.</strong> Before a single scene, Claude read through the whole book to work out who comes back, so the
+faces wouldn't drift. Paul is in 45 of the 98 scenes, from the young man holding the coats at Stephen's stoning to the
+house in Rome. So Paul got a portrait, and so did John, Stephen, Barnabas, Silas and Philip. Peter, Mary and Jesus
+carried over from the Gospels. The box was quiet again for this run, nothing else on it.</p>
+<div class="pair">
+<img src="/images/full/halo_klein_00155_.webp" alt="Portrait of Paul, used as a reference image">
+<img src="/images/full/halo_edit_00212_.webp" alt="Saul fallen on the road to Damascus in a blinding light from heaven">
+<figcaption>Left: the new reference portrait of Paul. Right: Acts 9:1-9, the road to Damascus. The first try put everyone in cargo shorts and hiking boots.</figcaption>
+</div>
+
+<p><strong>Two new tricks.</strong> The image model can only take one reference portrait at a time, which is a problem when Paul and
+Barnabas are in the same scene. It turns out the edit model can take a second image. So when a face drifted, Claude
+ran an edit that said, in effect, make this man look like the man in the portrait. That fixed Paul's face in three
+scenes. The other trick was about windows. On every book so far, asking the edit model to change a window made it
+worse. Asking it to paint over the window with plain wall worked every time.</p>
+<div class="pair">
+<img src="/images/full/halo_klein_ref_00539_.webp" alt="Barnabas bringing Saul to the apostles, with Saul's face not matching his portrait">
+<img src="/images/full/halo_edit_00215_.webp" alt="The same scene after an edit that used Paul's portrait to fix his face">
+<figcaption>Acts 9:26-31, Barnabas brings Saul to the apostles. Left: the man in the middle doesn't look like Paul. Right: the same image after an edit with Paul's portrait as a second image.</figcaption>
+</div>
+
+<p><strong>Visions get the dream edge.</strong> Acts has no parables, but it has visions: Peter's sheet full of animals, the man of
+Macedonia, and the Lord standing by Paul at night in Corinth. Those three get the same soft edge as the parables,
+labeled "A vision".</p>
+<figure>
+<img src="/images/full/halo_klein_ref_00544_.webp" alt="Peter kneeling on a rooftop as a great sheet full of animals comes down from the sky">
+<figcaption>Acts 10:9-16, Peter's vision on the housetop. The first try printed the animals on the sheet like fabric.</figcaption>
+</figure>
+
+<h3>What went wrong this time</h3>
+<ul>
+<li>The wristwatches never stop. Agabus, Demetrius the silversmith, Julius the centurion and a guard all had one. Paul got a gold ring.</li>
+<li>Bernice, sitting next to King Agrippa, came out as a bearded man.</li>
+<li>The tongues of fire on the disciples at Ephesus turned into candles sticking out of their heads. Pentecost's flames in chapter 2 worked the first time.</li>
+<li>When Eutychus falls from the window, the model fused him and Paul into one body with a head at each end.</li>
+<li>The shipwreck ship came out as a 17th-century galleon, so the final picture shows only the wreckage in the surf.</li>
+<li>The model can't draw the stocks at Philippi. It tried posts, then had the men sitting on the beam, then had their feet resting on top of it. So that scene is retitled with the slave girl's words, "These men are the servants of the most high God".</li>
+</ul>
+<div class="pair">
+<img src="/images/full/halo_klein_ref_00606_.webp" alt="Paul before King Agrippa, with Bernice drawn as a bearded man">
+<img src="/images/full/halo_edit_00258_.webp" alt="The same scene after an edit, with Bernice as a woman">
+<figcaption>Acts 26:1-23, Paul before Agrippa. Left: Bernice, center, as drawn. Right: after one edit.</figcaption>
+</div>
+
+<h3>Acts by the numbers</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Acts</th>
+<th>Matthew</th>
+<th>Mark</th>
+<th>Luke</th>
+<th>John</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scenes</td>
+<td>98</td>
+<td>111</td>
+<td>75</td>
+<td>103</td>
+<td>88</td>
+</tr>
+<tr>
+<td>New portraits</td>
+<td>6</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Total attempts</td>
+<td>234 (162 generations, 72 edits)</td>
+<td>217</td>
+<td>189</td>
+<td>254</td>
+<td>168</td>
+</tr>
+<tr>
+<td>Attempts per published image</td>
+<td>2.25</td>
+<td>1.94</td>
+<td>2.45</td>
+<td>2.44</td>
+<td>1.87</td>
+</tr>
+<tr>
+<td>Typical scene</td>
+<td>17 s</td>
+<td>17 s</td>
+<td>22 s</td>
+<td>17 s</td>
+<td>16 s</td>
+</tr>
+<tr>
+<td>Typical edit</td>
+<td>57 s</td>
+<td>57 s</td>
+<td>92 s</td>
+<td>57 s</td>
+<td>53 s</td>
+</tr>
+<tr>
+<td>GPU time</td>
+<td>115 minutes</td>
+<td>91 minutes</td>
+<td>99 minutes</td>
+<td>108 minutes</td>
+<td>68 minutes</td>
+</tr>
+<tr>
+<td>Other work on the box</td>
+<td>none</td>
 <td>none</td>
 <td>three coding agents</td>
 <td>none</td>
