@@ -37,6 +37,13 @@ def book_usage(book: str, book_dir: str, use: dict) -> dict:
     return use
 
 
+def save_atomic(im, path: str, quality: int) -> None:
+    """Encode to a temp file, then rename, so a page loaded mid-build never gets a half-written image."""
+    tmp = path + ".tmp"
+    im.save(tmp, "WEBP", quality=quality, method=6)
+    os.replace(tmp, path)
+
+
 def parse_book(arg: str) -> tuple[str, str]:
     """"Mark=site/mark/data" -> ("Mark", path); a bare path is named from its files (mark-01.js -> "Mark")."""
     if "=" in arg:
@@ -93,6 +100,8 @@ def main():
                              "Luke=halo_klein_00039_.png",
                              "Matthew=halo_klein_00095_.png",
                              "Genesis=halo_klein_00195_.png,halo_klein_00196_.png,halo_klein_00197_.png,halo_klein_00198_.png,halo_klein_00199_.png,halo_klein_00200_.png,halo_klein_00202_.png,halo_klein_00207_.png,halo_klein_00208_.png,halo_klein_00205_.png,halo_klein_00206_.png",
+                             "1 Samuel=halo_klein_00244_.png,halo_klein_ref_00698_.png,halo_klein_ref_00699_.png,halo_klein_ref_00700_.png,halo_klein_00245_.png,halo_klein_00246_.png,halo_klein_00247_.png,halo_klein_00274_.png,halo_klein_00272_.png",
+                             "2 Samuel=halo_klein_00248_.png,halo_klein_00249_.png",
                              "Acts=halo_klein_00155_.png,halo_klein_00157_.png,halo_klein_00158_.png,halo_klein_00162_.png,halo_klein_00160_.png,halo_edit_00195_.png"],
                     help="Book=images used by that book's page itself (cast portraits)")
     ap.add_argument("--site", required=True)
@@ -145,10 +154,10 @@ def main():
             continue
         name = j["file"].rsplit(".", 1)[0] + ".webp"
         im = Image.open(src).convert("RGB")
-        im.save(os.path.join(full, name), "WEBP", quality=a.quality, method=6)
+        save_atomic(im, os.path.join(full, name), quality=a.quality)
         t = im.copy()
         t.thumbnail((a.thumb, a.thumb * 2))
-        t.save(os.path.join(thumb, name), "WEBP", quality=75, method=6)
+        save_atomic(t, os.path.join(thumb, name), quality=75)
         total += os.path.getsize(os.path.join(full, name)) + os.path.getsize(os.path.join(thumb, name))
         out.append({"f": name, "w": im.width, "h": im.height, "t": j["t"], "secs": j["secs"], "kind": j["kind"],
                     "prompt": j["prompt"], "source": [s.rsplit(".", 1)[0] + ".webp" for s in j["source"]],
