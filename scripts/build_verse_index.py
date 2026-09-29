@@ -39,6 +39,7 @@ SCHEMA_VERSION = 1
 # refuses to run otherwise. The slug must match Inscripture's: the English book name,
 # lowercased, spaces removed ("romans", "1corinthians", "songofsolomon").
 BOOKS = {
+    'genesis': ('genesis', 'Genesis', '/genesis'),
     'matthew': ('matthew', 'Matthew', '/matthew'),
     'mark': ('mark', 'Mark', '/mark'),
     'luke': ('luke', 'Luke', '/luke'),
