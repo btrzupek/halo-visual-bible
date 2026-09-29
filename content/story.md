@@ -465,15 +465,22 @@ it was done, and went to bed. It ran on the box overnight and was live by the mo
 **A new cast.** None of the Gospel faces belong in Genesis, so it got eleven portraits of its own: Adam, Eve, Noah,
 Abraham, Sarah, Isaac, Rebekah, Jacob, Esau, Rachel and Joseph. Eight of them came out right on the first try.
 
-**The questions I answered before bed.** How to show Adam and Eve (never nude: tiny silhouettes against a sunrise,
-faces between fig leaves, then the coats of skins). How to handle the hard chapters (Lot's daughters, Dinah, Tamar,
+**The questions I answered before bed.** How to show Adam and Eve, how to handle the hard chapters (Lot's daughters, Dinah, Tamar,
 Potiphar's wife, all shown with nothing sexual in the picture). And how to show God. The answer was light only,
 never a figure: a shaft of light over the deep, a glow moving through the garden, a column of light beside Hagar at
 the spring. The three men at Mamre and the man who wrestles Jacob are shown as men, because that is what the text
 calls them.
 
+**Then I changed my mind about Eden.** Before bed I had picked the option that kept Adam and Eve clothed the whole way
+through, and when I looked at the result it was wrong. The text makes a point of it: they were naked and not ashamed, then after the
+fall they hid and sewed fig leaves, and only then did God make them coats of skins. That progression is the story,
+so the pictures need to show it. Now they are unclothed silhouettes on the first morning, a figure seen from behind
+in the garden, Eve at the tree with her hair falling over her, the two of them hiding behind a tree with fig leaves,
+and finally simple skin wraps as they leave. Each of the five fixes was an edit of the published picture, and every
+one worked on the first try.
+
 <div class="pair">
-<img src="/images/full/halo_klein_00214_.webp" alt="Two tiny silhouettes of a man and a woman on a hill against a vast sunrise over an untouched valley">
+<img src="/images/full/halo_edit_00290_.webp" alt="Two small unclothed silhouettes of a man and a woman on a hill against a vast sunrise over an untouched valley">
 <img src="/images/full/halo_klein_ref_00658_.webp" alt="Jacob asleep on a stone as a stairway of light rises into the sky with figures ascending and descending">
 <figcaption>Left: Genesis 1:26-31, the first try gave me a modern couple in khakis. Right: 28:1-22, Jacob's ladder, which gets the dream edge as a vision.</figcaption>
 </div>
@@ -499,7 +506,7 @@ anything to get wrong. The rest is the list of lessons from the other five books
 
 <div class="pair">
 <img src="/images/full/halo_klein_00216_.webp" alt="A failed image: the cherubim at Eden drawn as nude statues">
-<img src="/images/full/halo_klein_00218_.webp" alt="Adam and Eve in coats of skins walking out of Eden as two cherubim of light and a flaming sword guard the gate">
+<img src="/images/full/halo_edit_00294_.webp" alt="Adam and Eve in simple hide wraps walking out of Eden as two cherubim of light and a flaming sword guard the gate">
 <figcaption>Genesis 3:14-24. Left: the first try. Right: the version in the book.</figcaption>
 </div>
 
