@@ -38,6 +38,12 @@ registered in the verse index, or it won't appear in Inscripture (which reads `/
 
 Rerun step 3 whenever chapters, picks or scene ranges change, not only for new books.
 
+**Site nav:** books are in the `Books` menu (`<details class="books">`) in every page's `sitenav`, grouped
+by testament in canonical order. Add the new book's link there in each `site/*/index.html`, in
+`scripts/build_story.py` (then rebuild the story), and mark it `aria-current="page"` plus
+`class="books current"` with the book name as the `<summary>` on the book's own page. When you change
+`site/assets/site.css`, bump the `?v=` on its `<link>` in every page so browsers fetch the new file.
+
 ## Rules for the index
 
 - Scene ids are `<slug>.<chapter>.<first verse>` and match the viewer anchors. Don't change a

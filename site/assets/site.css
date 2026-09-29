@@ -72,3 +72,24 @@ footer.site div{width:min(1180px,100%);margin:0 auto;padding:2rem clamp(1.2rem,4
 footer.site p{margin:0 0 .4rem}
 
 @media (max-width:640px){ .pair{grid-template-columns:1fr} .sitenav .brand{width:100%} }
+/* Books menu: one control in the nav instead of a link per book */
+.sitenav details.books{position:relative}
+.sitenav details.books summary{list-style:none;cursor:pointer;color:var(--muted);font-size:1rem;padding:.15rem 0;border-bottom:1px solid transparent;display:flex;align-items:center;gap:.35rem}
+.sitenav details.books summary::-webkit-details-marker{display:none}
+.sitenav details.books summary::after{content:"";width:.4em;height:.4em;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-.15em) rotate(45deg);transition:transform .15s}
+.sitenav details.books[open] summary::after{transform:translateY(.1em) rotate(-135deg)}
+.sitenav details.books summary:hover{color:var(--ink)}
+.sitenav details.books.current summary{color:var(--gilt);border-bottom-color:var(--gilt)}
+.sitenav details.books .menu{position:absolute;top:calc(100% + .5rem);left:-.8rem;min-width:11rem;display:flex;flex-direction:column;padding:.4rem;background:var(--bg);border:1px solid var(--rule);border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:30}
+.sitenav details.books .menu a.link{padding:.45rem .7rem;border-radius:5px;border-bottom:0;color:var(--ink)}
+.sitenav details.books .menu a.link:hover{background:var(--panel)}
+.sitenav details.books .menu a.link[aria-current="page"]{color:var(--gilt);background:var(--panel)}
+.sitenav details.books .menu .group{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:.5rem .7rem .2rem}
+.sitenav.over details.books summary{color:#efe6d0}
+.sitenav.over details.books.current summary{color:#d4b066;border-bottom-color:#d4b066}
+.sitenav.over details.books .menu{background:#0b0d16;border-color:#2e3452}
+.sitenav.over details.books .menu a.link{color:#efe6d0}
+.sitenav.over details.books .menu a.link:hover,.sitenav.over details.books .menu a.link[aria-current="page"]{background:#1a1f33}
+.sitenav.over details.books .menu a.link[aria-current="page"]{color:#d4b066}
+.sitenav.over details.books .menu .group{color:#a3a3b4}
+@media (max-width:640px){ .sitenav details.books .menu{left:auto;right:-4rem} }
