@@ -57,5 +57,8 @@ by testament in canonical order. Add the new book's link there in each `site/*/i
 The active `gh` account (`btrzupek-dc`) can't push here. Push as `btrzupek` without switching:
 
 ```bash
-GH_TOKEN=$(gh auth token -u btrzupek) git -c credential.helper= -c "credential.helper=!gh auth git-credential" push origin main
+GH_TOKEN=$(gh auth token -u btrzupek) git -c credential.helper= -c 'credential.helper=!gh auth git-credential' push origin main
 ```
+
+Keep the single quotes: in an interactive zsh, `!gh` inside double quotes is history-expanded
+(for example to your last `gh auth ...` command) and git then fails with `credential-gh is not a git command`.
