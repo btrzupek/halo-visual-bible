@@ -37,6 +37,8 @@
     <div class="menu" aria-label="Books">
       <span class="group">Old Testament</span>
       <a class="link" href="/genesis">Genesis</a>
+      <a class="link" href="/1samuel">1 Samuel</a>
+      <a class="link" href="/2samuel">2 Samuel</a>
       <span class="group">New Testament</span>
       <a class="link" href="/matthew">Matthew</a>
       <a class="link" href="/mark">Mark</a>
@@ -53,23 +55,23 @@
 
 <main class="page">
   <h1>Under the hood</h1>
-  <p class="lede">How a chat with Claude on a Mac turned into 564 illustrated scenes, Genesis, the four Gospels and the Acts of the Apostles, rendered on a box on my desk.
+  <p class="lede">How a chat with Claude on a Mac turned into 642 illustrated scenes, Genesis, 1 and 2 Samuel, the four Gospels and the Acts of the Apostles, rendered on a box on my desk.
     Everything here is in the <a href="https://github.com/btrzupek/halo-visual-bible">GitHub repo</a>, including the raw numbers.</p>
 
   <h2>The run, by the numbers</h2>
   <table>
-    <tr><th></th><th>Genesis</th><th>Matthew</th><th>Mark</th><th>Luke</th><th>John</th><th>Acts</th></tr>
-    <tr><td>Test conditions</td><td>Box doing nothing else; run overnight with no one watching</td><td>Box doing nothing else, checked clean before the run</td><td>Three AI coding agents running on the box at the same time</td><td>Box doing nothing else, fresh reboot</td><td>Box doing nothing else</td><td>Box doing nothing else</td></tr>
-    <tr><td>Chapters</td><td>50</td><td>28</td><td>16</td><td>24</td><td>21</td><td>28</td></tr>
-    <tr><td>Scenes</td><td>89</td><td>111</td><td>75</td><td>103</td><td>88</td><td>98</td></tr>
-    <tr><td>New cast portraits</td><td>11 (Adam to Joseph)</td><td>1 (Joseph)</td><td>2 (Peter, Mary Magdalene)</td><td>1 (Mary, mother of Jesus)</td><td>2 (Jesus, John the Baptist)</td><td>6 (Paul, John, Stephen, Barnabas, Silas, Philip)</td></tr>
-    <tr><td>Attempts (generations + edits)</td><td>153 (129 + 24)</td><td>217 (163 + 54)</td><td>189 (160 + 29)</td><td>254 (194 + 60)</td><td>168 (121 + 47)</td><td>234 (162 + 72)</td></tr>
-    <tr><td>Attempts per published image</td><td>1.53</td><td>1.94</td><td>2.45</td><td>2.44</td><td>1.87</td><td>2.25</td></tr>
-    <tr><td>Kept on the first try</td><td>57 of 89</td><td>38 of 111</td><td>10 of 75</td><td>20 of 103</td><td>about half</td><td>13 of 98</td></tr>
-    <tr><td>GPU time</td><td>53 min</td><td>91 min</td><td>99 min</td><td>108 min</td><td>68 min</td><td>115 min</td></tr>
-    <tr><td>GPU busy during the session</td><td>69%</td><td>58%</td><td>57%</td><td>57%</td><td>44%</td><td>63%</td></tr>
-    <tr><td>Median klein + reference job</td><td>16.7 s</td><td>16.7 s</td><td>21.7 s</td><td>16.8 s</td><td>15.7 s</td><td>16.8 s</td></tr>
-    <tr><td>Median edit</td><td>56.5 s</td><td>57.0 s</td><td>91.9 s</td><td>57.0 s</td><td>52.5 s</td><td>57.0 s</td></tr>
+    <tr><th></th><th>Genesis</th><th>1 Samuel</th><th>2 Samuel</th><th>Matthew</th><th>Mark</th><th>Luke</th><th>John</th><th>Acts</th></tr>
+    <tr><td>Test conditions</td><td>Box doing nothing else; run overnight with no one watching</td><td>One session with 2 Samuel; two rounds of fixes after Brian's review</td><td>One session with 1 Samuel</td><td>Box doing nothing else, checked clean before the run</td><td>Three AI coding agents running on the box at the same time</td><td>Box doing nothing else, fresh reboot</td><td>Box doing nothing else</td><td>Box doing nothing else</td></tr>
+    <tr><td>Chapters</td><td>50</td><td>31</td><td>24</td><td>28</td><td>16</td><td>24</td><td>21</td><td>28</td></tr>
+    <tr><td>Scenes</td><td>89</td><td>41</td><td>37</td><td>111</td><td>75</td><td>103</td><td>88</td><td>98</td></tr>
+    <tr><td>New cast portraits</td><td>11 (Adam to Joseph)</td><td>9 (David at four ages, Samuel, Saul, Jonathan, the ark, Goliath)</td><td>2 (Joab, Absalom)</td><td>1 (Joseph)</td><td>2 (Peter, Mary Magdalene)</td><td>1 (Mary, mother of Jesus)</td><td>2 (Jesus, John the Baptist)</td><td>6 (Paul, John, Stephen, Barnabas, Silas, Philip)</td></tr>
+    <tr><td>Attempts (generations + edits)</td><td>153 (129 + 24)</td><td>131 (83 + 48)</td><td>92 (56 + 36)</td><td>217 (163 + 54)</td><td>189 (160 + 29)</td><td>254 (194 + 60)</td><td>168 (121 + 47)</td><td>234 (162 + 72)</td></tr>
+    <tr><td>Attempts per published image</td><td>1.53</td><td>2.62</td><td>2.36</td><td>1.94</td><td>2.45</td><td>2.44</td><td>1.87</td><td>2.25</td></tr>
+    <tr><td>Kept on the first try</td><td>57 of 89</td><td>8 of 41</td><td>7 of 37</td><td>38 of 111</td><td>10 of 75</td><td>20 of 103</td><td>about half</td><td>13 of 98</td></tr>
+    <tr><td>GPU time</td><td>53 min</td><td>64 min</td><td>47 min</td><td>91 min</td><td>99 min</td><td>108 min</td><td>68 min</td><td>115 min</td></tr>
+    <tr><td>GPU busy during the session</td><td>69%</td><td colspan="2">53% (shared session)</td><td>58%</td><td>57%</td><td>57%</td><td>44%</td><td>63%</td></tr>
+    <tr><td>Median klein + reference job</td><td>16.7 s</td><td>16.8 s</td><td>16.9 s</td><td>16.7 s</td><td>21.7 s</td><td>16.8 s</td><td>15.7 s</td><td>16.8 s</td></tr>
+    <tr><td>Median edit</td><td>56.5 s</td><td>56.2 s</td><td>56.6 s</td><td>57.0 s</td><td>91.9 s</td><td>57.0 s</td><td>52.5 s</td><td>57.0 s</td></tr>
   </table>
   <p class="prose">Matthew, Mark, Luke and Acts reused John's portraits, so the New Testament books share one cast; Genesis has its own. Mark and Luke took more attempts per
     image than John mainly because every image was checked zoomed in, region by region, which catches small things a
@@ -79,8 +81,9 @@
     almost to the tenth of a second, and needed fewer attempts per image as the prompts got better. Acts, a third quiet
     run, matched the same per-job times again but took more attempts per image than Matthew: more crowds, more Roman
     rooms full of modern furniture, and six new faces to keep straight. Genesis, run overnight, needed the fewest
-    attempts of any book: much of it is sky, sea and animals, and every prompt started from the lessons of the other five. Per-job data:
+    attempts of any book: much of it is sky, sea and animals, and every prompt started from the lessons of the other five. 1 and 2 Samuel went back up: David had to age across four portraits, the ark of the covenant needed its own reference image and a rule that nobody touches it, and a round of review caught what the first pass let through. Per-job data:
     Genesis <a href="/data/genesis/comfy_history.csv">CSV</a> / <a href="/data/genesis/history_summary.md">summary</a>,
+    1 and 2 Samuel <a href="/data/samuel/comfy_history.csv">CSV</a> / <a href="/data/samuel/history_summary.md">summary</a>,
     Matthew <a href="/data/matthew/comfy_history.csv">CSV</a> / <a href="/data/matthew/history_summary.md">summary</a>,
     Mark <a href="/data/mark/comfy_history.csv">CSV</a> / <a href="/data/mark/history_summary.md">summary</a>,
     Luke <a href="/data/luke/comfy_history.csv">CSV</a> / <a href="/data/luke/history_summary.md">summary</a>,

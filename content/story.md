@@ -521,6 +521,67 @@ anything to get wrong. The rest is the list of lessons from the other five books
 | Kept on the first try | 57 | 13 | 38 | 10 | 20 | about half |
 | GPU time | 53 min | 115 min | 91 min | 99 min | 108 min | 68 min |
 
+## Part seven: 1 and 2 Samuel
+
+Next came 1 and 2 Samuel, and this time I asked for one person to grow old on the page. They are two books on the site,
+55 chapters and 78 scenes between them, and they follow David from the shepherd boy Samuel anoints to the old king
+buying a threshing floor for an altar. You can read [1 Samuel](/1samuel) and [2 Samuel](/2samuel).
+
+<p class="cta"><a class="primary" href="/1samuel">Open 1 Samuel</a><a href="/2samuel">Open 2 Samuel</a><a href="/making-of?book=1%20Samuel">See every attempt</a></p>
+
+**David at four ages.** A single portrait would not work for a man who is a boy in one chapter and an old king forty
+years later. So David has four: the shepherd, the young man on the run from Saul, the king, and the old king. The
+first try at aging him was an edit of the boy's portrait, and it failed. His eyes turned blue and he started to look
+like the Jesus portrait from John. What worked was generating each age with the one before it as the reference
+image, so the face grows older instead of turning into someone else. The king and the old king both came out right
+on the first try that way. Samuel, Saul, Jonathan, Joab and Absalom each have one portrait.
+
+<div class="pair">
+<img src="/images/full/halo_klein_00244_.webp" alt="Portrait of David as a shepherd youth">
+<img src="/images/full/halo_klein_ref_00700_.webp" alt="Portrait of David as an old king">
+<figcaption>The first and last of David's four portraits. Each one was generated from the one before it.</figcaption>
+</div>
+
+**The ark became a cast member.** The ark of the covenant shows up in a lot of these chapters, and the first pass drew it
+differently almost every time. I asked for it to get a reference image like the people do, and I looked at that
+reference before anything else was redone. Then I added a rule: nobody touches the ark. The text is clear about
+this (it is why Uzzah dies in 2 Samuel 6), so the only hands on it in either book are his, and the Levites carrying
+it by the poles.
+
+**This time I reviewed before it went live.** For Genesis I let it publish on its own. For these two I asked Claude to
+stop before pushing, and I went through 1 Samuel on my own machine while the 2 Samuel pictures were still being made.
+My first list had about a dozen things on it; the second round found more. Hands that were too long, two right arms
+on one man, a robe draped over two people at once, Samuel standing too close to the ark, and priests with two heads.
+The two headed priests never did get fixed by edit. In the end they were replaced with the robes and spears they left
+behind on the field.
+
+### What went wrong this time
+
+- Instruments. The model draws "lyre" as a mandolin, a lute or a banjo nearly every time. Describing the frame in words (two curved arms, a crossbar, no neck, no frets) fixed it, or an edit did.
+- A chariot for Absalom that looked like a golf cart with a canopy, with a fedora and pith helmets in the crowd.
+- Eyeglasses on two of David's men, and an asphalt road with a white line down the middle for Joab.
+- An angel of the LORD holding a sword in each hand when the text gives him one.
+- Dagon needed to read as a rigid stone statue. He is one now, face down before the ark with his head broken off on the threshold.
+
+<div class="pair">
+<img src="/images/full/halo_klein_ref_00781_.webp" alt="A failed image: Absalom in a canopied chariot that looks like a golf cart, with a fedora and pith helmets in the crowd">
+<img src="/images/full/halo_edit_00363_.webp" alt="Absalom in a chariot with horses and runners before him">
+<figcaption>2 Samuel 15:1-12. Left: the first try. Right: the version in the book.</figcaption>
+</div>
+
+### Samuel by the numbers
+
+| | 1 Samuel | 2 Samuel | Genesis | Acts |
+|---|---|---|---|---|
+| Scenes | 41 | 37 | 89 | 98 |
+| New portraits | 9 | 2 | 11 | 6 |
+| Total attempts | 131 | 92 | 153 | 234 |
+| Attempts per published image | 2.62 | 2.36 | 1.53 | 2.25 |
+| Kept on the first try | 8 | 7 | 57 | 13 |
+| GPU time | 64 min | 47 min | 53 min | 115 min |
+
+1 Samuel took the most attempts per image of any book so far, and most of that was the two review rounds.
+
 ## Try it
 
 Everything is on [GitHub](https://github.com/btrzupek/halo-visual-bible): the MCP server, the ComfyUI workflows, the tunnel setup, the book viewer,
