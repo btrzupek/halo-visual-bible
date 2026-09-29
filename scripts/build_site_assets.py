@@ -92,6 +92,7 @@ def main():
                              "Mark=halo_klein_00026_.png,halo_edit_00051_.png",
                              "Luke=halo_klein_00039_.png",
                              "Matthew=halo_klein_00095_.png",
+                             "Genesis=halo_klein_00195_.png,halo_klein_00196_.png,halo_klein_00197_.png,halo_klein_00198_.png,halo_klein_00199_.png,halo_klein_00200_.png,halo_klein_00202_.png,halo_klein_00207_.png,halo_klein_00208_.png,halo_klein_00205_.png,halo_klein_00206_.png",
                              "Acts=halo_klein_00155_.png,halo_klein_00157_.png,halo_klein_00158_.png,halo_klein_00162_.png,halo_klein_00160_.png,halo_edit_00195_.png"],
                     help="Book=images used by that book's page itself (cast portraits)")
     ap.add_argument("--site", required=True)

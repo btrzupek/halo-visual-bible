@@ -454,6 +454,66 @@ labeled "A vision".
 | GPU time | 115 minutes | 91 minutes | 99 minutes | 108 minutes | 68 minutes |
 | Other work on the box | none | none | three coding agents | none | none |
 
+## Part six: the Book of Genesis
+
+Then I went back to the beginning. Genesis is 50 chapters, 1,533 verses and 89 scenes, from the first light to
+Joseph's death in Egypt. This one I handed off completely: I answered a few questions, told Claude to publish it when
+it was done, and went to bed. It ran on the box overnight and was live by the morning. You can [read it here](/genesis).
+
+<p class="cta"><a class="primary" href="/genesis">Open Genesis</a><a href="/making-of?book=Genesis">See every attempt</a></p>
+
+**A new cast.** None of the Gospel faces belong in Genesis, so it got eleven portraits of its own: Adam, Eve, Noah,
+Abraham, Sarah, Isaac, Rebekah, Jacob, Esau, Rachel and Joseph. Eight of them came out right on the first try.
+
+**The questions I answered before bed.** How to show Adam and Eve (never nude: tiny silhouettes against a sunrise,
+faces between fig leaves, then the coats of skins). How to handle the hard chapters (Lot's daughters, Dinah, Tamar,
+Potiphar's wife, all shown with nothing sexual in the picture). And how to show God. The answer was light only,
+never a figure: a shaft of light over the deep, a glow moving through the garden, a column of light beside Hagar at
+the spring. The three men at Mamre and the man who wrestles Jacob are shown as men, because that is what the text
+calls them.
+
+<div class="pair">
+<img src="/images/full/halo_klein_00214_.webp" alt="Two tiny silhouettes of a man and a woman on a hill against a vast sunrise over an untouched valley">
+<img src="/images/full/halo_klein_ref_00658_.webp" alt="Jacob asleep on a stone as a stairway of light rises into the sky with figures ascending and descending">
+<figcaption>Left: Genesis 1:26-31, the first try gave me a modern couple in khakis. Right: 28:1-22, Jacob's ladder, which gets the dream edge as a vision.</figcaption>
+</div>
+
+**It was the easiest book yet.** 57 of the 89 scenes were keepers on the first try, and it took 1.53 attempts per
+published image, the lowest of any book. The whole thing was 53 minutes of GPU time. Part of that is Genesis
+itself: a lot of it is sky, sea and animals, and the model draws a flood or a rainbow or a sky full of stars without
+anything to get wrong. The rest is the list of lessons from the other five books, which every prompt now starts from.
+
+<figure>
+<img src="/images/full/halo_edit_00282_.webp" alt="Jacob wrestling with a stranger on the river stones at dawn">
+<figcaption>Genesis 32:22-32, Jacob wrestles until the breaking of the day.</figcaption>
+</figure>
+
+### What went wrong this time
+
+- Babies, again. Twice a baby came out with two heads, and once there were two babies where the text has one. The fix is the same as in Luke: lay the baby down.
+- The same person drawn twice, facing themselves. It happened to Hagar and to Jacob. "Only one man in the frame" fixed it.
+- The cherubim guarding Eden came out as nude statues, and Adam was wearing jeans.
+- Sodom came out as a modern city skyline on fire. Keeping the city out of the shot fixed it, same as in every Gospel.
+- An elephant crossed with a giraffe walking up the ramp into the ark, and a stovepipe chimney on the ark's roof.
+- In the first try at Genesis 41, Joseph was putting the gold chain on Pharaoh instead of the other way around.
+
+<div class="pair">
+<img src="/images/full/halo_klein_00216_.webp" alt="A failed image: the cherubim at Eden drawn as nude statues">
+<img src="/images/full/halo_klein_00218_.webp" alt="Adam and Eve in coats of skins walking out of Eden as two cherubim of light and a flaming sword guard the gate">
+<figcaption>Genesis 3:14-24. Left: the first try. Right: the version in the book.</figcaption>
+</div>
+
+### Genesis by the numbers
+
+| | Genesis | Acts | Matthew | Mark | Luke | John |
+|---|---|---|---|---|---|---|
+| Scenes | 89 | 98 | 111 | 75 | 103 | 88 |
+| New portraits | 11 | 6 | 1 | 2 | 1 | 2 |
+| Total attempts | 153 | 234 | 217 | 189 | 254 | 168 |
+| Attempts per published image | 1.53 | 2.25 | 1.94 | 2.45 | 2.44 | 1.87 |
+| Kept on the first try | 57 | 13 | 38 | 10 | 20 | about half |
+| GPU time | 53 min | 115 min | 91 min | 99 min | 108 min | 68 min |
+
 ## Try it
 
 Everything is on [GitHub](https://github.com/btrzupek/halo-visual-bible): the MCP server, the ComfyUI workflows, the tunnel setup, the book viewer,
