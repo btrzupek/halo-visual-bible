@@ -624,6 +624,46 @@ picture now, with the priests backing away and nobody near the ark.
 | Kept on the first try | 6 | 7 | 8 |
 | GPU time | 41 min | 51 min | 68 min |
 
+## Part nine: 2 Kings
+
+2 Kings is 25 chapters and 36 scenes, from Elijah taken up in the whirlwind to the temple burning and a captive king
+eating at the table of the king of Babylon. You can [read it here](/2kings).
+
+<p class="cta"><a class="primary" href="/2kings">Open 2 Kings</a><a href="/making-of?book=2%20Kings">See every attempt</a></p>
+
+**The cast.** Elijah and Elisha carry over from 1 Kings, and Elisha gets an older portrait made from his younger one,
+since he is an old man on his deathbed by chapter 13. The new faces are Jehu, Hezekiah and Josiah.
+
+**Castles everywhere.** The model has one idea of an ancient city seen from a distance, and it is a medieval castle
+with towers and a flag. When an edit took the castle out, it often put a hillside town with red tile roofs in its
+place. Most of the fixes in this book were pulling cities out of the background, or reframing so the city was a
+single plain wall.
+
+<div class="pair">
+<img src="/images/full/halo_klein_ref_00848_.webp" alt="Elijah taken up in a whirlwind of fire with horses of fire as Elisha cries out below">
+<img src="/images/full/halo_edit_00454_.webp" alt="The temple in Jerusalem burning at night as captives are led away">
+<figcaption>Left: 2 Kings 2:1-11, the chariot of fire, kept on the first try. Right: 25:1-21, the house of the LORD burnt.</figcaption>
+</div>
+
+### What went wrong this time
+
+- The parting of the Jordan came out as a gravel spit, then as a corridor of glass cylinders. The version in the book is from above, with the water heaped up where Elisha walks.
+- The first temple on fire was the Parthenon, with apartment blocks behind it.
+- A cross stood on the wall of the temple court while Manasseh worshipped the stars, and his priests were holding sparklers.
+- The word "AHEAVZ" carved over the dial of Ahaz, and Hezekiah drawn twice.
+- The floating axe head was first a wooden block and then a machine part.
+
+### 2 Kings by the numbers
+
+| | 2 Kings | 1 Kings | 2 Samuel | 1 Samuel |
+|---|---|---|---|---|
+| Scenes | 36 | 37 | 37 | 41 |
+| New portraits | 4 | 7 | 2 | 9 |
+| Total attempts | 80 | 96 | 98 | 140 |
+| Attempts per published image | 2.22 | 2.18 | 2.51 | 2.80 |
+| Kept on the first try | 8 | 6 | 7 | 8 |
+| GPU time | 34 min | 41 min | 51 min | 68 min |
+
 ## Try it
 
 Everything is on [GitHub](https://github.com/btrzupek/halo-visual-bible): the MCP server, the ComfyUI workflows, the tunnel setup, the book viewer,

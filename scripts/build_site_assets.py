@@ -103,6 +103,7 @@ def main():
                              "1 Samuel=halo_klein_00244_.png,halo_klein_ref_00698_.png,halo_klein_ref_00699_.png,halo_klein_ref_00700_.png,halo_klein_00245_.png,halo_klein_00246_.png,halo_klein_00247_.png,halo_klein_00274_.png,halo_klein_00272_.png",
                              "2 Samuel=halo_klein_00248_.png,halo_klein_00249_.png",
                              "1 Kings=halo_klein_00278_.png,halo_klein_ref_00803_.png,halo_klein_00284_.png,halo_klein_00280_.png,halo_klein_00281_.png,halo_klein_00279_.png,halo_edit_00381_.png",
+                             "2 Kings=halo_klein_ref_00846_.png,halo_klein_00304_.png,halo_klein_00302_.png,halo_klein_00303_.png",
                              "Acts=halo_klein_00155_.png,halo_klein_00157_.png,halo_klein_00158_.png,halo_klein_00162_.png,halo_klein_00160_.png,halo_edit_00195_.png"],
                     help="Book=images used by that book's page itself (cast portraits)")
     ap.add_argument("--site", required=True)

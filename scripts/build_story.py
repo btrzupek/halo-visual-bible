@@ -46,6 +46,7 @@ PAGE = """<!doctype html>
       <a class="link" href="/1samuel">1 Samuel</a>
       <a class="link" href="/2samuel">2 Samuel</a>
       <a class="link" href="/1kings">1 Kings</a>
+      <a class="link" href="/2kings">2 Kings</a>
       <span class="group">New Testament</span>
       <a class="link" href="/matthew">Matthew</a>
       <a class="link" href="/mark">Mark</a>
