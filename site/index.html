@@ -27,6 +27,7 @@
       <a class="link" href="/genesis">Genesis</a>
       <a class="link" href="/1samuel">1 Samuel</a>
       <a class="link" href="/2samuel">2 Samuel</a>
+      <a class="link" href="/1kings">1 Kings</a>
       <span class="group">New Testament</span>
       <a class="link" href="/matthew">Matthew</a>
       <a class="link" href="/mark">Mark</a>
@@ -814,7 +815,8 @@ stop before pushing, and I went through 1 Samuel on my own machine while the 2 S
 My first list had about a dozen things on it; the second round found more. Hands that were too long, two right arms
 on one man, a robe draped over two people at once, Samuel standing too close to the ark, and priests with two heads.
 The two headed priests never did get fixed by edit. In the end they were replaced with the robes and spears they left
-behind on the field.</p>
+behind on the field. A third pass, after both books were done, still found extra arms on four people, a giant with two
+heads, and a hand with three fingers.</p>
 <h3>What went wrong this time</h3>
 <ul>
 <li>Instruments. The model draws "lyre" as a mandolin, a lute or a banjo nearly every time. Describing the frame in words (two curved arms, a crossbar, no neck, no frets) fixed it, or an edit did.</li>
@@ -857,15 +859,15 @@ behind on the field.</p>
 </tr>
 <tr>
 <td>Total attempts</td>
-<td>131</td>
-<td>92</td>
+<td>140</td>
+<td>98</td>
 <td>153</td>
 <td>234</td>
 </tr>
 <tr>
 <td>Attempts per published image</td>
-<td>2.62</td>
-<td>2.36</td>
+<td>2.80</td>
+<td>2.51</td>
 <td>1.53</td>
 <td>2.25</td>
 </tr>
@@ -878,14 +880,89 @@ behind on the field.</p>
 </tr>
 <tr>
 <td>GPU time</td>
-<td>64 min</td>
-<td>47 min</td>
+<td>68 min</td>
+<td>51 min</td>
 <td>53 min</td>
 <td>115 min</td>
 </tr>
 </tbody>
 </table>
 <p>1 Samuel took the most attempts per image of any book so far, and most of that was the two review rounds.</p>
+<h2>Part eight: 1 Kings</h2>
+<p>After Samuel I asked for the Kings, one book at a time, each reviewed before it goes live. 1 Kings is 22 chapters and
+37 scenes, from David's last days to Ahab dying in his chariot at Ramothgilead. You can <a href="/1kings">read it here</a>.</p>
+<p class="cta"><a class="primary" href="/1kings">Open 1 Kings</a><a href="/making-of?book=1%20Kings">See every attempt</a></p>
+
+<p><strong>The cast.</strong> David carries over as the old king for the first two chapters. Solomon has two portraits, young and
+old, the second made from the first the same way David aged across Samuel. Then Jeroboam, Ahab, Jezebel, and the
+two prophets, Elijah and Elisha. Elisha is bald, because 2 Kings says so.</p>
+<p><strong>Ark scenes need a moment of rest.</strong> The ark comes into Solomon's temple in chapter 8, and every attempt to show the
+priests carrying it put someone's hands on the chest. The text gives another moment: the priests set it down under
+the wings of the cherubim and then could not stand to minister because the cloud filled the house. That is the
+picture now, with the priests backing away and nobody near the ark.</p>
+<div class="pair">
+<img src="/images/full/halo_klein_ref_00815_.webp" alt="The ark of the covenant at rest beneath two great golden cherubim as the cloud fills the room and priests back away bowing">
+<img src="/images/full/halo_edit_00405_.webp" alt="Fire falling from heaven onto Elijah's altar on Mount Carmel as the people fall on their faces">
+<figcaption>Left: 1 Kings 8:1-11, the cloud fills the house. Right: 18:21-40, the fire of the LORD falls on Carmel.</figcaption>
+</div>
+
+<h3>What went wrong this time</h3>
+<ul>
+<li>The model cannot draw an Iron Age chariot. It drew a handcart, a buggy with a seat, and a covered wagon. Ahab's last scene is framed so only the chariot's front rail shows.</li>
+<li>The great cherubim in the temple came out as nude Greek statues until I described them in long robes.</li>
+<li>A factory with two smokestacks on the hill behind Solomon's idol altar, and ceiling downlights over his ivory throne.</li>
+<li>Men at Bethel holding phones and little books while they bowed to the golden calf.</li>
+<li>Every prophet at Ahab's gate wore a Viking horned helmet. The text gives iron horns to one of them.</li>
+</ul>
+<h3>1 Kings by the numbers</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>1 Kings</th>
+<th>2 Samuel</th>
+<th>1 Samuel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scenes</td>
+<td>37</td>
+<td>37</td>
+<td>41</td>
+</tr>
+<tr>
+<td>New portraits</td>
+<td>7</td>
+<td>2</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Total attempts</td>
+<td>96</td>
+<td>98</td>
+<td>140</td>
+</tr>
+<tr>
+<td>Attempts per published image</td>
+<td>2.18</td>
+<td>2.51</td>
+<td>2.80</td>
+</tr>
+<tr>
+<td>Kept on the first try</td>
+<td>6</td>
+<td>7</td>
+<td>8</td>
+</tr>
+<tr>
+<td>GPU time</td>
+<td>41 min</td>
+<td>51 min</td>
+<td>68 min</td>
+</tr>
+</tbody>
+</table>
 <h2>Try it</h2>
 <p>Everything is on <a href="https://github.com/btrzupek/halo-visual-bible">GitHub</a>: the MCP server, the ComfyUI workflows, the tunnel setup, the book viewer,
 and the scripts that pulled these numbers. The <a href="/under-the-hood">under the hood</a> page has the full hardware and

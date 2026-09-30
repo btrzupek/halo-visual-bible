@@ -553,7 +553,8 @@ stop before pushing, and I went through 1 Samuel on my own machine while the 2 S
 My first list had about a dozen things on it; the second round found more. Hands that were too long, two right arms
 on one man, a robe draped over two people at once, Samuel standing too close to the ark, and priests with two heads.
 The two headed priests never did get fixed by edit. In the end they were replaced with the robes and spears they left
-behind on the field.
+behind on the field. A third pass, after both books were done, still found extra arms on four people, a giant with two
+heads, and a hand with three fingers.
 
 ### What went wrong this time
 
@@ -575,12 +576,53 @@ behind on the field.
 |---|---|---|---|---|
 | Scenes | 41 | 37 | 89 | 98 |
 | New portraits | 9 | 2 | 11 | 6 |
-| Total attempts | 131 | 92 | 153 | 234 |
-| Attempts per published image | 2.62 | 2.36 | 1.53 | 2.25 |
+| Total attempts | 140 | 98 | 153 | 234 |
+| Attempts per published image | 2.80 | 2.51 | 1.53 | 2.25 |
 | Kept on the first try | 8 | 7 | 57 | 13 |
-| GPU time | 64 min | 47 min | 53 min | 115 min |
+| GPU time | 68 min | 51 min | 53 min | 115 min |
 
 1 Samuel took the most attempts per image of any book so far, and most of that was the two review rounds.
+
+## Part eight: 1 Kings
+
+After Samuel I asked for the Kings, one book at a time, each reviewed before it goes live. 1 Kings is 22 chapters and
+37 scenes, from David's last days to Ahab dying in his chariot at Ramothgilead. You can [read it here](/1kings).
+
+<p class="cta"><a class="primary" href="/1kings">Open 1 Kings</a><a href="/making-of?book=1%20Kings">See every attempt</a></p>
+
+**The cast.** David carries over as the old king for the first two chapters. Solomon has two portraits, young and
+old, the second made from the first the same way David aged across Samuel. Then Jeroboam, Ahab, Jezebel, and the
+two prophets, Elijah and Elisha. Elisha is bald, because 2 Kings says so.
+
+**Ark scenes need a moment of rest.** The ark comes into Solomon's temple in chapter 8, and every attempt to show the
+priests carrying it put someone's hands on the chest. The text gives another moment: the priests set it down under
+the wings of the cherubim and then could not stand to minister because the cloud filled the house. That is the
+picture now, with the priests backing away and nobody near the ark.
+
+<div class="pair">
+<img src="/images/full/halo_klein_ref_00815_.webp" alt="The ark of the covenant at rest beneath two great golden cherubim as the cloud fills the room and priests back away bowing">
+<img src="/images/full/halo_edit_00405_.webp" alt="Fire falling from heaven onto Elijah's altar on Mount Carmel as the people fall on their faces">
+<figcaption>Left: 1 Kings 8:1-11, the cloud fills the house. Right: 18:21-40, the fire of the LORD falls on Carmel.</figcaption>
+</div>
+
+### What went wrong this time
+
+- The model cannot draw an Iron Age chariot. It drew a handcart, a buggy with a seat, and a covered wagon. Ahab's last scene is framed so only the chariot's front rail shows.
+- The great cherubim in the temple came out as nude Greek statues until I described them in long robes.
+- A factory with two smokestacks on the hill behind Solomon's idol altar, and ceiling downlights over his ivory throne.
+- Men at Bethel holding phones and little books while they bowed to the golden calf.
+- Every prophet at Ahab's gate wore a Viking horned helmet. The text gives iron horns to one of them.
+
+### 1 Kings by the numbers
+
+| | 1 Kings | 2 Samuel | 1 Samuel |
+|---|---|---|---|
+| Scenes | 37 | 37 | 41 |
+| New portraits | 7 | 2 | 9 |
+| Total attempts | 96 | 98 | 140 |
+| Attempts per published image | 2.18 | 2.51 | 2.80 |
+| Kept on the first try | 6 | 7 | 8 |
+| GPU time | 41 min | 51 min | 68 min |
 
 ## Try it
 

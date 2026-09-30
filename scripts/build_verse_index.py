@@ -42,6 +42,7 @@ BOOKS = {
     'genesis': ('genesis', 'Genesis', '/genesis'),
     '1samuel': ('1samuel', '1 Samuel', '/1samuel'),
     '2samuel': ('2samuel', '2 Samuel', '/2samuel'),
+    '1kings': ('1kings', '1 Kings', '/1kings'),
     'matthew': ('matthew', 'Matthew', '/matthew'),
     'mark': ('mark', 'Mark', '/mark'),
     'luke': ('luke', 'Luke', '/luke'),
