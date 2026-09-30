@@ -26,6 +26,39 @@
 .two{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
 @media (max-width:820px){.two{grid-template-columns:1fr}}
 .files a{font-family:var(--mono);font-size:.9rem}
+.sub{font-family:var(--display);font-weight:400;margin:2rem 0 .5rem;font-size:1.2rem}
+.cmp{background:var(--panel);border:1px solid var(--rule);border-radius:8px;padding:1rem 1.1rem;margin:1rem 0 1.5rem;max-width:48rem}
+.cmp-pick{display:flex;flex-wrap:wrap;gap:.6rem 1.2rem;align-items:center;margin-bottom:.4rem;color:var(--muted)}
+.cmp-pick select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--rule);border-radius:6px;padding:.3rem .5rem;margin-left:.35rem}
+.cmp-table{display:table;margin:.4rem 0 0;width:100%}
+.cmp-table th:not(:first-child),.cmp-table td:not(:first-child){width:38%}
+.cmp-table td:first-child{color:var(--muted)}
+.cmp-table tr:last-child td{border-bottom:0}
+.tag{display:inline-block;font-family:var(--serif);font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);border:1px solid var(--rule);border-radius:99px;padding:.05rem .45rem;margin-left:.4rem;vertical-align:middle}
+.tag.best{color:var(--gilt);border-color:var(--gilt)}
+.rank{list-style:none;padding:0;margin:.4rem 0 1.2rem;max-width:48rem}
+.rank li{display:grid;grid-template-columns:6.5rem 1fr 2.8rem;gap:.7rem;align-items:center;padding:.18rem 0}
+.rank button{all:unset;cursor:pointer;color:var(--ink)}
+.rank button:hover,.rank button:focus-visible{color:var(--gilt);text-decoration:underline}
+.rank .bar{height:.55rem;background:var(--rule);border-radius:99px;overflow:hidden}
+.rank .bar i{display:block;height:100%;background:var(--gilt);border-radius:99px}
+.rank .v{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+.alltable{margin:0 0 1rem;max-width:100%}
+.alltable summary{cursor:pointer;color:var(--gilt)}
+.alltable .scroll{overflow-x:auto}
+.alltable table{display:table;min-width:70rem}
+.why .card p{font-size:.95rem}
+.cmp-table{table-layout:fixed}
+@media (max-width:600px){
+  .cmp{padding:.8rem .8rem}
+  .cmp-table,.cmp-table tbody{display:block}
+  .cmp-table tr{display:grid;grid-template-columns:1fr 1fr;column-gap:.8rem;border-bottom:1px solid var(--rule);padding:.4rem 0}
+  .cmp-table th,.cmp-table td{border:0;padding:.1rem 0;width:auto!important;overflow-wrap:anywhere}
+  .cmp-table th:first-child{display:none}
+  .cmp-table td:first-child{grid-column:1/-1;font-size:.85rem}
+  .cmp-table .tag{margin:.2rem 0 0;display:table}
+  .rank li{grid-template-columns:5.5rem 1fr 2.6rem}
+}
 </style>
 </head>
 <body>
@@ -40,6 +73,7 @@
       <a class="link" href="/1samuel">1 Samuel</a>
       <a class="link" href="/2samuel">2 Samuel</a>
       <a class="link" href="/1kings">1 Kings</a>
+      <a class="link" href="/2kings">2 Kings</a>
       <span class="group">New Testament</span>
       <a class="link" href="/matthew">Matthew</a>
       <a class="link" href="/mark">Mark</a>
@@ -56,41 +90,57 @@
 
 <main class="page">
   <h1>Under the hood</h1>
-  <p class="lede">How a chat with Claude on a Mac turned into 679 illustrated scenes, Genesis, 1 and 2 Samuel, 1 Kings, the four Gospels and the Acts of the Apostles, rendered on a box on my desk.
+  <p class="lede">How a chat with Claude on a Mac turned into 715 illustrated scenes, Genesis, 1 and 2 Samuel, 1 and 2 Kings, the four Gospels and the Acts of the Apostles, rendered on a box on my desk.
     Everything here is in the <a href="https://github.com/btrzupek/halo-visual-bible">GitHub repo</a>, including the raw numbers.</p>
 
   <h2>The run, by the numbers</h2>
-  <table>
-    <tr><th></th><th>Genesis</th><th>1 Samuel</th><th>2 Samuel</th><th>1 Kings</th><th>Matthew</th><th>Mark</th><th>Luke</th><th>John</th><th>Acts</th></tr>
-    <tr><td>Test conditions</td><td>Box doing nothing else; run overnight with no one watching</td><td>One session with 2 Samuel; three rounds of fixes after Brian's review</td><td>One session with 1 Samuel</td><td>Box doing nothing else</td><td>Box doing nothing else, checked clean before the run</td><td>Three AI coding agents running on the box at the same time</td><td>Box doing nothing else, fresh reboot</td><td>Box doing nothing else</td><td>Box doing nothing else</td></tr>
-    <tr><td>Chapters</td><td>50</td><td>31</td><td>24</td><td>22</td><td>28</td><td>16</td><td>24</td><td>21</td><td>28</td></tr>
-    <tr><td>Scenes</td><td>89</td><td>41</td><td>37</td><td>37</td><td>111</td><td>75</td><td>103</td><td>88</td><td>98</td></tr>
-    <tr><td>New cast portraits</td><td>11 (Adam to Joseph)</td><td>9 (David at four ages, Samuel, Saul, Jonathan, the ark, Goliath)</td><td>2 (Joab, Absalom)</td><td>7 (Solomon at two ages, Jeroboam, Ahab, Jezebel, Elijah, Elisha)</td><td>1 (Joseph)</td><td>2 (Peter, Mary Magdalene)</td><td>1 (Mary, mother of Jesus)</td><td>2 (Jesus, John the Baptist)</td><td>6 (Paul, John, Stephen, Barnabas, Silas, Philip)</td></tr>
-    <tr><td>Attempts (generations + edits)</td><td>153 (129 + 24)</td><td>140 (87 + 53)</td><td>98 (56 + 42)</td><td>96 (63 + 33)</td><td>217 (163 + 54)</td><td>189 (160 + 29)</td><td>254 (194 + 60)</td><td>168 (121 + 47)</td><td>234 (162 + 72)</td></tr>
-    <tr><td>Attempts per published image</td><td>1.53</td><td>2.80</td><td>2.51</td><td>2.18</td><td>1.94</td><td>2.45</td><td>2.44</td><td>1.87</td><td>2.25</td></tr>
-    <tr><td>Kept on the first try</td><td>57 of 89</td><td>8 of 41</td><td>7 of 37</td><td>6 of 37</td><td>38 of 111</td><td>10 of 75</td><td>20 of 103</td><td>about half</td><td>13 of 98</td></tr>
-    <tr><td>GPU time</td><td>53 min</td><td>68 min</td><td>51 min</td><td>41 min</td><td>91 min</td><td>99 min</td><td>108 min</td><td>68 min</td><td>115 min</td></tr>
-    <tr><td>GPU busy during the session</td><td>69%</td><td colspan="2">54% (shared session)</td><td>76%</td><td>58%</td><td>57%</td><td>57%</td><td>44%</td><td>63%</td></tr>
-    <tr><td>Median klein + reference job</td><td>16.7 s</td><td>16.8 s</td><td>16.9 s</td><td>16.8 s</td><td>16.7 s</td><td>21.7 s</td><td>16.8 s</td><td>15.7 s</td><td>16.8 s</td></tr>
-    <tr><td>Median edit</td><td>56.5 s</td><td>55.7 s</td><td>55.1 s</td><td>40.5 s</td><td>57.0 s</td><td>91.9 s</td><td>57.0 s</td><td>52.5 s</td><td>57.0 s</td></tr>
-  </table>
-  <p class="prose">Matthew, Mark, Luke and Acts reused John's portraits, so the New Testament books share one cast; Genesis has its own. Mark and Luke took more attempts per
-    image than John mainly because every image was checked zoomed in, region by region, which catches small things a
-    full-frame look misses. Mark was also a harder test: it ran while a separate workflow had three AI coding agents
-    working on the same box. Luke ran on a quiet, freshly rebooted box, and its per-job times came back almost to
-    John's, which is the clearest evidence that the agents are what slowed Mark down. Matthew, also on a quiet box, matched Luke
-    almost to the tenth of a second, and needed fewer attempts per image as the prompts got better. Acts, a third quiet
-    run, matched the same per-job times again but took more attempts per image than Matthew: more crowds, more Roman
-    rooms full of modern furniture, and six new faces to keep straight. Genesis, run overnight, needed the fewest
-    attempts of any book: much of it is sky, sea and animals, and every prompt started from the lessons of the other five. 1 and 2 Samuel went back up: David had to age across four portraits, the ark of the covenant needed its own reference image and a rule that nobody touches it, and a round of review caught what the first pass let through. 1 Kings was mostly a fight with furniture: glass jars, ceiling downlights, a factory on a hill, and a model that cannot draw a chariot. Per-job data:
-    Genesis <a href="/data/genesis/comfy_history.csv">CSV</a> / <a href="/data/genesis/history_summary.md">summary</a>,
-    1 and 2 Samuel <a href="/data/samuel/comfy_history.csv">CSV</a> / <a href="/data/samuel/history_summary.md">summary</a>,
-    1 Kings <a href="/data/1kings/comfy_history.csv">CSV</a> / <a href="/data/1kings/history_summary.md">summary</a>,
-    Matthew <a href="/data/matthew/comfy_history.csv">CSV</a> / <a href="/data/matthew/history_summary.md">summary</a>,
-    Mark <a href="/data/mark/comfy_history.csv">CSV</a> / <a href="/data/mark/history_summary.md">summary</a>,
-    Luke <a href="/data/luke/comfy_history.csv">CSV</a> / <a href="/data/luke/history_summary.md">summary</a>,
-    Acts <a href="/data/acts/comfy_history.csv">CSV</a> / <a href="/data/acts/history_summary.md">summary</a>.</p>
-  <p class="prose">Housekeeping on the box: before Luke, the Halo was rebooted to clear dozens of orphaned Chromium
+  <p class="prose">Ten books so far. Pick any two to compare side by side. It opens on the easiest book and the hardest,
+    measured by how many attempts it took to get each published image.</p>
+  <div class="cmp" id="cmp">
+    <div class="cmp-pick">
+      <label>Compare <select id="cmp-a" aria-label="First book"></select></label>
+      <label>with <select id="cmp-b" aria-label="Second book"></select></label>
+    </div>
+    <table class="cmp-table" id="cmp-table"></table>
+  </div>
+  <h3 class="sub">Attempts per published image, every book</h3>
+  <ol class="rank" id="rank" aria-label="Books ranked by attempts per published image"></ol>
+  <details class="alltable">
+    <summary>Show the full table for all ten books</summary>
+    <div class="scroll">
+    <table id="runs">
+      <tr><th></th><th>Genesis</th><th>1 Samuel</th><th>2 Samuel</th><th>1 Kings</th><th>2 Kings</th><th>Matthew</th><th>Mark</th><th>Luke</th><th>John</th><th>Acts</th></tr>
+      <tr><td>Test conditions</td><td>Box doing nothing else; run overnight with no one watching</td><td>One session with 2 Samuel; three rounds of fixes after Brian's review</td><td>One session with 1 Samuel</td><td>Box doing nothing else</td><td>Box doing nothing else</td><td>Box doing nothing else, checked clean before the run</td><td>Three AI coding agents running on the box at the same time</td><td>Box doing nothing else, fresh reboot</td><td>Box doing nothing else</td><td>Box doing nothing else</td></tr>
+      <tr><td>Chapters</td><td>50</td><td>31</td><td>24</td><td>22</td><td>25</td><td>28</td><td>16</td><td>24</td><td>21</td><td>28</td></tr>
+      <tr><td>Scenes</td><td>89</td><td>41</td><td>37</td><td>37</td><td>36</td><td>111</td><td>75</td><td>103</td><td>88</td><td>98</td></tr>
+      <tr><td>New cast portraits</td><td>11 (Adam to Joseph)</td><td>9 (David at four ages, Samuel, Saul, Jonathan, the ark, Goliath)</td><td>2 (Joab, Absalom)</td><td>7 (Solomon at two ages, Jeroboam, Ahab, Jezebel, Elijah, Elisha)</td><td>4 (Elisha old, Jehu, Hezekiah, Josiah)</td><td>1 (Joseph)</td><td>2 (Peter, Mary Magdalene)</td><td>1 (Mary, mother of Jesus)</td><td>2 (Jesus, John the Baptist)</td><td>6 (Paul, John, Stephen, Barnabas, Silas, Philip)</td></tr>
+      <tr><td>Attempts (generations + edits)</td><td>153 (129 + 24)</td><td>140 (87 + 53)</td><td>98 (56 + 42)</td><td>96 (63 + 33)</td><td>80 (49 + 31)</td><td>217 (163 + 54)</td><td>189 (160 + 29)</td><td>254 (194 + 60)</td><td>168 (121 + 47)</td><td>234 (162 + 72)</td></tr>
+      <tr><td>Attempts per published image</td><td>1.53</td><td>2.80</td><td>2.51</td><td>2.18</td><td>2.22</td><td>1.94</td><td>2.45</td><td>2.44</td><td>1.87</td><td>2.25</td></tr>
+      <tr><td>Kept on the first try</td><td>57 of 89</td><td>8 of 41</td><td>7 of 37</td><td>6 of 37</td><td>8 of 36</td><td>38 of 111</td><td>10 of 75</td><td>20 of 103</td><td>about half</td><td>13 of 98</td></tr>
+      <tr><td>GPU time</td><td>53 min</td><td>68 min</td><td>51 min</td><td>41 min</td><td>34 min</td><td>91 min</td><td>99 min</td><td>108 min</td><td>68 min</td><td>115 min</td></tr>
+      <tr><td>GPU busy during the session</td><td>69%</td><td colspan="2">54% (shared session)</td><td>76%</td><td>79%</td><td>58%</td><td>57%</td><td>57%</td><td>44%</td><td>63%</td></tr>
+      <tr><td>Median klein + reference job</td><td>16.7 s</td><td>16.8 s</td><td>16.9 s</td><td>16.8 s</td><td>16.2 s</td><td>16.7 s</td><td>21.7 s</td><td>16.8 s</td><td>15.7 s</td><td>16.8 s</td></tr>
+      <tr><td>Median edit</td><td>56.5 s</td><td>55.7 s</td><td>55.1 s</td><td>40.5 s</td><td>39.2 s</td><td>57.0 s</td><td>91.9 s</td><td>57.0 s</td><td>52.5 s</td><td>57.0 s</td></tr>
+    </table>
+    </div>
+  </details>
+
+  <h2>Why the numbers differ</h2>
+  <div class="cards why">
+    <div class="card"><h3>One cast for the Gospels</h3><p>Matthew, Mark, Luke and Acts reused John's portraits, so the New Testament shares one cast. Each Old Testament book brought its own.</p></div>
+    <div class="card"><h3>Mark: a busy box</h3><p>Mark ran while a separate workflow had three AI coding agents working on the same machine. Its median edit took 92 seconds instead of 57.</p></div>
+    <div class="card"><h3>Luke and Matthew: quiet again</h3><p>On a quiet, freshly rebooted box, Luke's per-job times came back almost to John's, the clearest sign the agents slowed Mark. Matthew matched Luke almost to the tenth of a second.</p></div>
+    <div class="card"><h3>Zooming in costs attempts</h3><p>From Mark on, every image was checked region by region, which catches small things a full-frame look misses. That is most of why later books took more tries than John.</p></div>
+    <div class="card"><h3>Acts: crowds and furniture</h3><p>Same per-job times as Luke and Matthew, but more attempts: more crowds, Roman rooms full of modern furniture, and six new faces to keep straight.</p></div>
+    <div class="card"><h3>Genesis: the easiest</h3><p>Run overnight with no one watching, and the fewest attempts of any book. Much of it is sky, sea and animals, and every prompt started from the lessons of the books before it.</p></div>
+    <div class="card"><h3>Samuel: aging and reviews</h3><p>David had to age across four portraits, the ark needed its own reference and a rule that nobody touches it, and three rounds of Brian's review caught what the first pass let through.</p></div>
+    <div class="card"><h3>Kings: chariots and castles</h3><p>1 Kings fought glass jars, ceiling lights and a model that cannot draw a chariot. In 2 Kings every distant city came out as a medieval castle or a modern town.</p></div>
+  </div>
+
+  <h3 class="sub">Per-job data</h3>
+  <p class="prose files">Genesis <a href="/data/genesis/comfy_history.csv">CSV</a> / <a href="/data/genesis/history_summary.md">summary</a>, 1 and 2 Samuel <a href="/data/samuel/comfy_history.csv">CSV</a> / <a href="/data/samuel/history_summary.md">summary</a>, 1 Kings <a href="/data/1kings/comfy_history.csv">CSV</a> / <a href="/data/1kings/history_summary.md">summary</a>, 2 Kings <a href="/data/2kings/comfy_history.csv">CSV</a> / <a href="/data/2kings/history_summary.md">summary</a>, Matthew <a href="/data/matthew/comfy_history.csv">CSV</a> / <a href="/data/matthew/history_summary.md">summary</a>, Mark <a href="/data/mark/comfy_history.csv">CSV</a> / <a href="/data/mark/history_summary.md">summary</a>, Luke <a href="/data/luke/comfy_history.csv">CSV</a> / <a href="/data/luke/history_summary.md">summary</a>, Acts <a href="/data/acts/comfy_history.csv">CSV</a> / <a href="/data/acts/history_summary.md">summary</a>.</p>
+  <h3 class="sub">Housekeeping on the box</h3>
+  <p class="prose">Before Luke, the Halo was rebooted to clear dozens of orphaned Chromium
     processes. Those didn't reappear during the Luke run, but a python3 process belonging to ComfyUI stayed resident
     after ComfyUI was closed properly, holding about 2.4 GB of memory. A full restart is needed to get the machine back
     to a clean state before the next run. Before Matthew the box was checked again and came back clean: only ComfyUI
@@ -193,5 +243,35 @@
 <footer class="site"><div>
   <p>Code is MIT licensed. Model weights are under their own licenses (Apache-2.0 for the ones used here). Scripture is the King James Version.</p>
 </div></footer>
+<script>
+(function(){
+  var t=document.getElementById('runs'); if(!t) return;
+  // read the full table (the single source of the numbers) into columns, expanding colspans
+  var rows=[].map.call(t.rows,function(r){var out=[];[].forEach.call(r.cells,function(c){for(var i=0;i<(c.colSpan||1);i++)out.push(c.innerHTML);});return out;});
+  var books=rows[0].slice(1).map(function(h){return h.replace(/<[^>]+>/g,'');});
+  var metrics=rows.slice(1).map(function(r){return {name:r[0],vals:r.slice(1)};});
+  var api=metrics.filter(function(m){return /per published image/.test(m.name);})[0];
+  var score=api.vals.map(parseFloat);
+  var order=books.map(function(b,i){return i;}).sort(function(a,b){return score[a]-score[b];});
+  var best=order[0], worst=order[order.length-1];
+  var A=document.getElementById('cmp-a'), B=document.getElementById('cmp-b');
+  books.forEach(function(b,i){[A,B].forEach(function(s){var o=document.createElement('option');o.value=i;o.textContent=b;s.appendChild(o);});});
+  function tag(i){return i===best?' <span class="tag best">easiest</span>':i===worst?' <span class="tag">hardest</span>':'';}
+  function draw(){
+    var a=+A.value,b=+B.value,h='<tr><th></th><th>'+books[a]+tag(a)+'</th><th>'+books[b]+tag(b)+'</th></tr>';
+    metrics.forEach(function(m){h+='<tr><td>'+m.name+'</td><td>'+m.vals[a]+'</td><td>'+m.vals[b]+'</td></tr>';});
+    document.getElementById('cmp-table').innerHTML=h;
+    try{localStorage.setItem('vb-cmp',a+','+b);}catch(e){}
+  }
+  var init=[best,worst];
+  try{var sv=(localStorage.getItem('vb-cmp')||'').split(',').map(Number);if(sv.length===2&&sv.every(function(x){return x>=0&&x<books.length;}))init=sv;}catch(e){}
+  A.value=init[0];B.value=init[1];A.onchange=B.onchange=draw;draw();
+  // one line per book, ranked; clicking a book puts it in the second column
+  var max=score[worst],rk='';
+  order.forEach(function(i){rk+='<li><button type="button" data-i="'+i+'">'+books[i]+'</button><span class="bar"><i style="width:'+(score[i]/max*100).toFixed(1)+'%"></i></span><span class="v">'+score[i].toFixed(2)+'</span></li>';});
+  var R=document.getElementById('rank');R.innerHTML=rk;
+  R.addEventListener('click',function(e){var btn=e.target.closest('button');if(!btn)return;B.value=btn.dataset.i;draw();document.getElementById('cmp').scrollIntoView({behavior:'smooth',block:'nearest'});});
+})();
+</script>
 </body>
 </html>
