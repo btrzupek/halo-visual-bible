@@ -1,0 +1,131 @@
+# AGENTS.md: handoff for AI coding agents
+
+Start here if you are an AI agent (Claude Code or otherwise) picking up this repo in a fresh session.
+It tells you what the project is, what state it is in, where everything lives, and the rules you must
+follow. Read the linked docs before you change anything substantial.
+
+| Doc | Read it for |
+|---|---|
+| [`docs/constitution.md`](docs/constitution.md) | The non-negotiable rules: content, process, voice, data. **Read first.** |
+| [`docs/architecture.md`](docs/architecture.md) | How the pieces fit: halo box, MCP server, site, data formats, build pipeline |
+| [`docs/image-playbook.md`](docs/image-playbook.md) | How to prompt, QA and fix images, and every failure mode seen so far |
+| [`CLAUDE.md`](CLAUDE.md) | The add-a-book checklist, verse index rules, and the push command |
+| [`prompts/book-of-mark.md`](prompts/book-of-mark.md) | The original full brief for illustrating a book, phase by phase |
+
+## What this is
+
+An illustrated King James Bible, one scene image per passage, every image generated locally on an
+AMD Ryzen AI Halo box (ComfyUI, FLUX.2 [klein] and Qwen-Image-Edit) and driven from Claude through
+the `halo-imagegen` MCP server in [`mcp-server/`](mcp-server/). The public site is static HTML on
+Vercel: **https://halo-visual-bible.vercel.app**. It also tells the story of how it was built, shows
+every attempt (Making of), and publishes the numbers (Under the hood). Another app, Inscripture
+(`~/projects/Expositorystudyai`), reads the site's verse index at runtime to show illustrations
+next to Bible passages.
+
+Owner: Brian Trzupek (GitHub `btrzupek`). He reviews books before they go live.
+
+## Current state (2026-09-30)
+
+All of these are live and pushed to `main` (last commit `ad93721`).
+
+| Book | URL / site folder | Chapters | Scenes | Working folder in `~/halo-images/visual-bible/` |
+|---|---|---|---|---|
+| Genesis | `/genesis` | 50 | 89 | `genesis/` |
+| 1 Samuel | `/1samuel` | 31 | 41 | `samuel/` (`*-1sam*`) |
+| 2 Samuel | `/2samuel` | 24 | 37 | `samuel/` (`*-2sam*`) |
+| 1 Kings | `/1kings` | 22 | 37 | `kings/` (`*-1kgs*`) |
+| 2 Kings | `/2kings` | 25 | 36 | `kings/` (`*-2kgs*`) |
+| Matthew | `/matthew` | 28 | 111 | `matthew/` |
+| Mark | `/mark` | 16 | 75 | `mark/` |
+| Luke | `/luke` | 24 | 103 | `luke/` |
+| John | `/bible` (not `/john`) | 21 | 88 | root of `visual-bible/` (`data/`, `metrics/`) |
+| Acts | `/acts` | 28 | 98 | `acts/` |
+
+715 scenes in all. Other pages: `/` (the story, built from `content/story.md`), `/making-of`
+(every generation and edit with its prompt), `/under-the-hood` (architecture, numbers, compare
+view), `/infographic`.
+
+Nothing is in progress. Minor known imperfections Brian accepted are listed in each book's
+`worklog.md` as `: minor`. There is no open review.
+
+### Cast reference portraits
+
+Recurring characters are kept consistent by passing a portrait as `reference_image`. The full list
+per book is the `--cast` default in [`scripts/build_site_assets.py`](scripts/build_site_assets.py)
+and each working folder's `cast.json`. The ones reused across books:
+
+- Jesus `halo_klein_00006_.png`, John the Baptist `halo_klein_00007_.png` (all Gospels, Acts)
+- David, four ages, each made from the one before: `halo_klein_00244_` (youth), `halo_klein_ref_00698_`,
+  `halo_klein_ref_00699_` (king), `halo_klein_ref_00700_` (old king)
+- The ark of the covenant (an object reference): `halo_klein_00274_.png`
+- Elijah `halo_klein_00279_`, Elisha `halo_edit_00381_` (young), `halo_klein_ref_00846_` (old)
+
+All source PNGs live in `~/halo-images/` on the Mac (not in git). The site has WebP copies.
+
+## Where things live
+
+- **This repo** (`~/code/halo-visual-bible`): the site, the MCP server, workflows, scripts, story, docs.
+- **Working folders** (`~/halo-images/visual-bible/<book>/`, outside git): per-book pipeline files.
+  `plan_src.py` (scene list), `kjv-*.json` (cleaned text), `picks*.json` (chosen image per scene),
+  `worklog.md` (every attempt and why it was kept or rejected), `history-*.json` (ComfyUI history
+  snapshots), `write_chapter.py`, `contact_sheet.py`, `chapter_metrics.py`, review sheets.
+  The newest, cleanest copy of the kit is `kings/`; copy it for a new book.
+- **Generated images**: `~/halo-images/*.png`. Names: `halo_klein_NNNNN_` (text only),
+  `halo_klein_ref_NNNNN_` (with a reference), `halo_edit_NNNNN_` (edits).
+- **The halo box**: ComfyUI in rootless Podman, reached only through an on-demand SSH tunnel at
+  `http://127.0.0.1:8188`. See [`setup/SETUP.md`](setup/SETUP.md).
+
+## Running things
+
+```bash
+# preview the site (or use the "visual-bible-site" launch config, port 8090)
+python3 -m http.server 8090 --directory site
+
+# rebuild the story page after editing content/story.md (needs the markdown package)
+uv run --with markdown python scripts/build_story.py
+
+# rebuild WebPs + Making of gallery (system python has PIL); list EVERY book
+/usr/bin/python3 scripts/build_site_assets.py --url http://127.0.0.1:8188 --images ~/halo-images \
+  --book John=site/bible/data --book Mark=site/mark/data --book Luke=site/luke/data \
+  --book Matthew=site/matthew/data --book Acts=site/acts/data --book Genesis=site/genesis/data \
+  --book "1 Samuel=site/1samuel/data" --book "2 Samuel=site/2samuel/data" \
+  --book "1 Kings=site/1kings/data" --book "2 Kings=site/2kings/data" \
+  --history '~/halo-images/visual-bible/*/history-*.json' --site site
+
+# rebuild the verse index for Inscripture (after assets)
+/usr/bin/python3 scripts/build_verse_index.py
+
+# per-book run numbers (needs python 3.10+, not /usr/bin/python3)
+python3 scripts/comfy_history_metrics.py --url '' --history "$HOME/halo-images/visual-bible/kings/history-*.json" \
+  --images ~/halo-images --out site/data/2kings --exclude "<outputs from other books>"
+```
+
+Python gotchas: `/usr/bin/python3` has PIL but is 3.9; `python3` (newer) lacks PIL. Use the one
+shown above for each script.
+
+Push with the `btrzupek` account (the active `gh` account can't push). The exact command, with the
+quoting that matters, is in [`CLAUDE.md`](CLAUDE.md#pushing). Pushing `main` deploys to Vercel in
+about a minute.
+
+## Common tasks
+
+- **Add a book:** follow [`prompts/book-of-mark.md`](prompts/book-of-mark.md) for the phases and
+  [`CLAUDE.md`](CLAUDE.md) for the wiring. Summary of the wiring: copy the newest book page
+  (`site/2kings/index.html`) and change titles, hero, chapter script tags, cast figures and the ref
+  label; add the book to the Books menu in every `site/*/index.html` and `scripts/build_story.py`;
+  add its cast to `--cast` in `build_site_assets.py`; add a Making of filter button and the `?book=`
+  allow-list; add a column to the full table in `/under-the-hood` (the compare view reads it
+  automatically) and a card if something new happened; register it in `BOOKS` in
+  `build_verse_index.py`; write per-job data to `site/data/<book>/`; add a story Part.
+- **Fix one image:** find the scene's current pick in the working folder's `picks*.json`, edit or
+  regenerate (see the playbook), log it in `worklog.md`, update the pick, rerun `write_chapter.py`
+  for that chapter, rebuild assets and the verse index, update any numbers you published.
+- **Change shared CSS:** edit `site/assets/site.css` and bump `?v=` on its `<link>` in every page.
+
+## Before you finish a session
+
+- Save a ComfyUI history snapshot into the working folder after any generation
+  (`curl -s 'http://127.0.0.1:8188/history?max_items=5000' > history-$(date +%Y%m%d-%H%M%S).json`).
+  ComfyUI keeps history only in memory; a restart loses it.
+- Update this file's "Current state" if you added or changed books.
+- Don't push until Brian has reviewed, unless he said to publish without review.

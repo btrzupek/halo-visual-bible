@@ -1,7 +1,11 @@
 # CLAUDE.md
 
-Notes for Claude Code sessions in `halo-visual-bible`. The full brief for illustrating a book is
-[`prompts/book-of-mark.md`](prompts/book-of-mark.md); this file covers the steps that are easy to miss.
+Notes for Claude Code sessions in `halo-visual-bible`.
+
+**New session? Read [`AGENTS.md`](AGENTS.md) first**: current state, where everything lives, and
+links to the constitution (the rules), the architecture and the image playbook in [`docs/`](docs/).
+The full brief for illustrating a book is [`prompts/book-of-mark.md`](prompts/book-of-mark.md);
+this file covers the steps that are easy to miss.
 
 ## Adding a book
 

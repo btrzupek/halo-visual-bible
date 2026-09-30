@@ -1,8 +1,11 @@
 # halo-visual-bible
 
-Code behind an illustrated "Visual Bible" of the Gospel of John: **88 scenes and 2 cast portraits,
-~190 images**, all generated locally on an AMD Ryzen AI Halo box (Ryzen AI Max+ 395, Radeon 8060S)
-with ComfyUI, and driven conversationally from Claude through a small MCP server.
+Code behind an illustrated "Visual Bible": **715 scenes across ten books** (Genesis, 1 and 2 Samuel,
+1 and 2 Kings, Matthew, Mark, Luke, John and Acts), every image generated locally on an AMD Ryzen
+AI Halo box (Ryzen AI Max+ 395, Radeon 8060S) with ComfyUI, and driven conversationally from Claude
+through a small MCP server. Live at https://halo-visual-bible.vercel.app.
+
+Working on this repo with an AI agent? Start with [`AGENTS.md`](AGENTS.md) and [`docs/`](docs/).
 
 ## Architecture
 
@@ -38,7 +41,7 @@ flowchart LR
 | Fixes and touch-ups | Qwen-Image-Edit 2511 + Lightning 4-step LoRA | FP8 mixed | 4 |
 | (available) text rendering / fast photoreal | Qwen-Image 2512, Z-Image Turbo | FP8 / BF16 | 4 / 8 |
 
-## Numbers from the build
+## Numbers from the build (John, the first book)
 
 | | |
 |---|---|
@@ -61,6 +64,7 @@ Measured with the scripts in `scripts/`; see the blog post for details.
 | [`site/`](site/) | The public website (static, deployed on Vercel): the story, the full book, every attempt with its prompt, the numbers, and the infographic |
 | [`content/`](content/) | The blog post source (`story.md`), rendered into `site/index.html` by `scripts/build_story.py` |
 | [`viewer/`](viewer/) | The Visual Bible viewer as a reusable template, with one sample chapter |
+| [`docs/`](docs/) | Handoff docs: the project constitution, architecture and image playbook ([`AGENTS.md`](AGENTS.md) is the entry point) |
 | [`scripts/`](scripts/) | `comfy_history_metrics.py` (job metrics from ComfyUI history), `halo_benchmark.py` (timed runs with power/thermal telemetry), `build_site_assets.py`, `build_verse_index.py`, `build_story.py`, `render_infographic.sh` (site build helpers) |
 
 ## Quickstart
