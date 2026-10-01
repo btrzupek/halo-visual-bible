@@ -42,6 +42,18 @@ registered in the verse index, or it won't appear in Inscripture (which reads `/
 
 Rerun step 3 whenever chapters, picks or scene ranges change, not only for new books.
 
+## Adding a book to Read (the home page)
+
+1. Add it to `BOOKS` in `scripts/build_audio.py` (spoken title) and `scripts/build_read_pages.py`
+   (slug, folder, names, testament), in canonical order.
+2. Camera paths: run `scripts/find_focus.swift` over the book's images (see `scripts/build_motion.py`),
+   then `python3 scripts/build_motion.py --focus ... --book <book>`. Render phone views and fix bad
+   ones by hand under the file's `// keep` line (they survive reruns). Pull back on deaths and the
+   Passion; never zoom onto wounds.
+3. Narration: `python3 scripts/build_audio.py --book <book> --bitrate 48k` (needs the halo TTS tunnel).
+4. `python3 scripts/build_read_pages.py`, then check `/read/<book>` locally and in the iOS Simulator.
+5. When you change `present.js` or `present.css`, bump `ASSET_V` in `build_read_pages.py` and rerun it.
+
 **Site nav:** books are in the `Books` menu (`<details class="books">`) in every page's `sitenav`, grouped
 by testament in canonical order. Add the new book's link there in each `site/*/index.html`, in
 `scripts/build_story.py` (then rebuild the story), and mark it `aria-current="page"` plus

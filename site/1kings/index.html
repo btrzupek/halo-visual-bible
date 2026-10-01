@@ -106,7 +106,9 @@ main{width:min(1280px,100%);margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem) 4rem
 .chapnav{flex-direction:column;align-items:stretch;gap:.35rem;overflow:visible}
 .chapnav .chaps{display:flex;align-items:center;gap:.15rem;overflow-x:auto;scrollbar-width:none}
 .chapnav .chaps::-webkit-scrollbar{display:none}
-.chapnav .viewbar{display:flex;justify-content:flex-end}
+.chapnav .viewbar{display:flex;justify-content:flex-end;align-items:center;gap:1rem}
+.chapnav .present{color:var(--gilt);text-decoration:none;font-size:.95rem;white-space:nowrap}
+.chapnav .present:hover{text-decoration:underline}
 .viewtoggle{flex:none;display:flex;gap:2px;padding:2px;border:1px solid var(--rule);border-radius:999px;background:var(--bg)}
 .viewtoggle button{font:inherit;font-size:.9rem;border:0;background:none;color:var(--muted);padding:.25rem .75rem;border-radius:999px;cursor:pointer;white-space:nowrap}
 .viewtoggle button:hover{color:var(--ink)}
@@ -150,7 +152,7 @@ footer p{margin:0 0 .6rem}
 <body>
 <nav class="sitenav over" aria-label="Site">
   <a class="brand" href="/">halo <b>·</b> Visual Bible</a>
-  <a class="link" href="/">The story</a>
+  <a class="link" href="/story">The story</a>
   <details class="books current">
     <summary>1 Kings</summary>
     <div class="menu" aria-label="Books">
@@ -216,7 +218,7 @@ footer p{margin:0 0 .6rem}
 
 <footer><div>
   <p>Scripture from the King James Version, which is in the public domain.</p>
-  <p><a href="/">Read how this was made</a> · <a href="/making-of">see every attempt</a> · <a href="/under-the-hood">code and numbers</a></p>
+  <p><a href="/story">Read how this was made</a> · <a href="/making-of">see every attempt</a> · <a href="/under-the-hood">code and numbers</a></p>
   <p>Every image was generated locally on a Ryzen AI Halo workstation with FLUX.2 [klein] and Qwen-Image-Edit, using reference portraits to keep the characters consistent from scene to scene. They are imaginative interpretations, not historical records.</p>
 </div></footer>
 
@@ -237,9 +239,9 @@ footer p{margin:0 0 .6rem}
 
   var nav='<a class="home" href="#top">1 Kings</a>';
   chs.forEach(function(c){nav+='<a href="#ch'+c+'">'+c+'</a>';});
-  nav+='<a class="toc-link" href="#contents">Contents</a><a class="toc-link" href="/">The story</a><a class="toc-link" href="/making-of">Making of</a>';
+  nav+='<a class="toc-link" href="#contents">Contents</a><a class="toc-link" href="/story">The story</a><a class="toc-link" href="/making-of">Making of</a>';
   document.getElementById('chapnav').innerHTML='<div class="chaps">'+nav+'</div>'+
-    '<div class="viewbar"><div class="viewtoggle" role="group" aria-label="View">'+
+    '<div class="viewbar"><a class="present" href="/read/1kings">Full screen</a><div class="viewtoggle" role="group" aria-label="View">'+
     '<button type="button" data-view="scripture">Text + images</button><button type="button" data-view="images">Images only</button></div></div>';
   // view toggle: remembered per reader, and ?view=images makes a shareable gallery link
   function setView(v,save){

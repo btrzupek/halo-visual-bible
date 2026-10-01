@@ -1,0 +1,17 @@
+# Kokoro-82M text-to-speech for the halo box (Radeon 8060S, gfx1151).
+# Python 3.12 (Kokoro needs < 3.13) with AMD's TheRock gfx1151 PyTorch nightlies, which carry
+# their own ROCm runtime, so only /dev/kfd and /dev/dri are needed from the host.
+FROM docker.io/library/python:3.12-slim-bookworm
+RUN apt-get update && apt-get install -y --no-install-recommends espeak-ng libsndfile1 ffmpeg \
+ && rm -rf /var/lib/apt/lists/*
+RUN pip install --no-cache-dir --index-url https://rocm.nightlies.amd.com/v2/gfx1151/ torch
+# libatomic is needed by a native wheel in the kokoro/spacy chain (missing from slim images)
+RUN apt-get update && apt-get install -y --no-install-recommends libatomic1 && rm -rf /var/lib/apt/lists/*
+RUN pip install --no-cache-dir kokoro 'misaki[en]' fastapi 'uvicorn[standard]' soundfile numpy \
+ && python -m spacy download en_core_web_sm
+# MIOPEN_FIND_MODE=2 matters only if MIOpen is re-enabled (TTS_MIOPEN=1); see tts_server.py
+ENV HF_HOME=/cache/hf MIOPEN_FIND_MODE=2 MIOPEN_USER_DB_PATH=/cache/miopen MIOPEN_CUSTOM_CACHE_DIR=/cache/miopen
+COPY tts_server.py /app/tts_server.py
+WORKDIR /app
+EXPOSE 8880
+CMD ["uvicorn", "tts_server:app", "--host", "0.0.0.0", "--port", "8880"]
