@@ -1,0 +1,13 @@
+# ~/.config/systemd/user/halo-tts.service on halo. Listens on 127.0.0.1:8880 only.
+[Unit]
+Description=Kokoro TTS for the visual Bible (podman)
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/podman run --name halo-tts --replace --rm --device /dev/kfd --device /dev/dri/renderD128 \
+  -p 127.0.0.1:8880:8880 -v %h/halo-tts/cache:/cache:Z localhost/halo-tts:latest
+ExecStop=/usr/bin/podman stop -t 10 halo-tts
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

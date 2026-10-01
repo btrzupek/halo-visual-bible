@@ -72,3 +72,22 @@ Claude Code in the desktop app picks the server up from the same file.
 
 Try: *"What image models are on halo?"* then *"Generate an image of a fishing boat on the Sea of
 Galilee at dawn."*
+
+## 5. Narration (optional): Kokoro TTS and the halo-tts MCP server
+
+The `/read/<book>` pages can play a narrator generated on halo. The speech server is a small
+Podman container; install steps, and what was and wasn't verified on gfx1151, are in
+[`../tts/README.md`](../tts/README.md). On the Mac, `com.halo.tts-tunnel.plist` exposes it at
+`127.0.0.1:8880` exactly as the ComfyUI tunnel does for 8188.
+
+Register the MCP server next to `halo-imagegen` (any venv with `mcp[cli]<2` works):
+
+```json
+"halo-tts": {
+  "command": "/Users/<user>/halo-visual-bible/mcp-server/.venv/bin/python",
+  "args": ["/Users/<user>/halo-visual-bible/mcp-server/halo_tts.py"],
+  "env": { "TTS_URL": "http://127.0.0.1:8880", "HALO_AUDIO_DIR": "/Users/<user>/halo-audio" }
+}
+```
+
+Try: *"Is the halo speech server on the GPU?"* then *"Read John 11:35 in bm_george and bm_lewis."*

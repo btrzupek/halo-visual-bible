@@ -105,7 +105,9 @@ main{width:min(1280px,100%);margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem) 4rem
 .chapnav{flex-direction:column;align-items:stretch;gap:.35rem;overflow:visible}
 .chapnav .chaps{display:flex;align-items:center;gap:.15rem;overflow-x:auto;scrollbar-width:none}
 .chapnav .chaps::-webkit-scrollbar{display:none}
-.chapnav .viewbar{display:flex;justify-content:flex-end}
+.chapnav .viewbar{display:flex;justify-content:flex-end;align-items:center;gap:1rem}
+.chapnav .present{color:var(--gilt);text-decoration:none;font-size:.95rem;white-space:nowrap}
+.chapnav .present:hover{text-decoration:underline}
 .viewtoggle{flex:none;display:flex;gap:2px;padding:2px;border:1px solid var(--rule);border-radius:999px;background:var(--bg)}
 .viewtoggle button{font:inherit;font-size:.9rem;border:0;background:none;color:var(--muted);padding:.25rem .75rem;border-radius:999px;cursor:pointer;white-space:nowrap}
 .viewtoggle button:hover{color:var(--ink)}
@@ -234,7 +236,7 @@ footer p{margin:0 0 .6rem}
   chs.forEach(function(c){nav+='<a href="#ch'+c+'">'+c+'</a>';});
   nav+='<a class="toc-link" href="#contents">Contents</a><a class="toc-link" href="/">The story</a><a class="toc-link" href="/making-of">Making of</a>';
   document.getElementById('chapnav').innerHTML='<div class="chaps">'+nav+'</div>'+
-    '<div class="viewbar"><div class="viewtoggle" role="group" aria-label="View">'+
+    '<div class="viewbar"><a class="present" href="/read/john">Full screen</a><div class="viewtoggle" role="group" aria-label="View">'+
     '<button type="button" data-view="scripture">Text + images</button><button type="button" data-view="images">Images only</button></div></div>';
   // view toggle: remembered per reader, and ?view=images makes a shareable gallery link
   function setView(v,save){

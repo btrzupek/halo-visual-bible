@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Read: a visual Bible</title>
+<meta name="theme-color" content="#05060a">
+<link rel="icon" href="/assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Spectral:ital,wght@0,300;0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#efe6d0;--soft:#cbbf9f;--gilt:#d4b066;--serif:'Spectral',Georgia,serif;--display:'Marcellus',Georgia,serif}
+*{box-sizing:border-box}
+body{margin:0;min-height:100svh;background:#05060a;color:var(--ink);font-family:var(--serif);-webkit-font-smoothing:antialiased}
+header{padding:clamp(3rem,10vh,6rem) clamp(1.25rem,6vw,5rem) 2rem}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(2.4rem,6vw,4.4rem);margin:0 0 .6rem}
+header p{color:var(--soft);font-style:italic;margin:0;max-width:44ch}
+header a{color:var(--gilt)}
+.books{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,22rem),1fr));gap:1.25rem;padding:0 clamp(1.25rem,6vw,5rem) 4rem}
+.books a{position:relative;display:block;aspect-ratio:16/9;overflow:hidden;border-radius:4px;color:var(--ink);text-decoration:none;background:#111}
+.books img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease}
+.books a:hover img{transform:scale(1.06)}
+.books a::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(5,6,10,.85))}
+.books span{position:absolute;z-index:1;left:1.2rem;bottom:1rem;font-family:var(--display);font-size:1.6rem}
+.books small{display:block;font-family:var(--serif);font-style:italic;font-size:.95rem;color:var(--soft)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Read</h1>
+  <p>Each book one scene at a time, with the picture filling the window while you read. John comes first. <a href="/">How this was made</a>.</p>
+</header>
+<nav class="books" aria-label="Books">
+  <a href="/read/john"><img src="/images/full/halo_klein_00008_.webp" alt=""><span>John<small>21 chapters, 88 scenes</small></span></a>
+</nav>
+</body>
+</html>

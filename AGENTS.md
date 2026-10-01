@@ -10,6 +10,7 @@ follow. Read the linked docs before you change anything substantial.
 | [`docs/architecture.md`](docs/architecture.md) | How the pieces fit: halo box, MCP server, site, data formats, build pipeline |
 | [`docs/image-playbook.md`](docs/image-playbook.md) | How to prompt, QA and fix images, and every failure mode seen so far |
 | [`CLAUDE.md`](CLAUDE.md) | The add-a-book checklist, verse index rules, and the push command |
+| [`tts/README.md`](tts/README.md) | Narration: the Kokoro speech server on halo, the halo-tts MCP server, `build_audio.py` |
 | [`prompts/book-of-mark.md`](prompts/book-of-mark.md) | The original full brief for illustrating a book, phase by phase |
 
 ## What this is
@@ -45,7 +46,14 @@ All of these are live and pushed to `main` (last commit `ad93721`).
 (every generation and edit with its prompt), `/under-the-hood` (architecture, numbers, compare
 view), `/infographic`.
 
-Nothing is in progress. Minor known imperfections Brian accepted are listed in each book's
+**Branch `feature/john-presentation` (not on `main`):** a full-window reader at `/read/john`
+(Ken Burns motion per scene, text panel, optional narration by Kokoro on halo, voice `bm_george`).
+Shared player: `site/assets/present.{js,css}`. Per-book data: `site/bible/data/john-motion.js`
+(frames, editable with `/read/john?tune`) and `john-audio.js` + `site/audio/john/` (from
+`scripts/build_audio.py`). Speech server, MCP server and tunnel: [`tts/README.md`](tts/README.md).
+Brian intends `/read` to become the home page later. Awaiting his review of the branch preview.
+
+Nothing else is in progress. Minor known imperfections Brian accepted are listed in each book's
 `worklog.md` as `: minor`. There is no open review.
 
 ### Cast reference portraits

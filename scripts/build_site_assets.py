@@ -28,7 +28,7 @@ PREFIX = re.compile(r"^halo_[0-9a-f]{8}_(.+)$")  # MCP server upload name -> ori
 
 def book_usage(book: str, book_dir: str, use: dict) -> dict:
     """filename -> list of {"book", "ch", "from", "to", "title"} from the viewer data files."""
-    for f in sorted(glob.glob(os.path.join(book_dir, "*.js"))):
+    for f in sorted(glob.glob(os.path.join(book_dir, "*-[0-9][0-9].js"))):  # chapter files only
         text = open(f).read()
         ch = int(re.search(r"VB\.add\((\d+)", text).group(1))
         data = json.loads(text[text.index("{"): text.rindex("}") + 1])

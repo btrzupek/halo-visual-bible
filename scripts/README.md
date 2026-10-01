@@ -75,3 +75,19 @@ stable when an image is swapped. Verse numbers are KJV. Scenes whose WebP isn't 
 ```bash
 python3 build_verse_index.py
 ```
+
+## `build_audio.py`
+
+Narrates a book for the full-window reader (`/read/<book>`) with Kokoro on halo (see
+[`tts/README.md`](../tts/README.md)). Each verse is synthesized separately and joined with short
+silences, so the verse start times the player highlights by are exact. Writes one MP3 per scene to
+`site/audio/<book>/` and the timings to `site/<folder>/data/<book>-audio.js`. Segments are cached in
+`~/halo-audio/cache`, so a rerun only re-voices what changed (text, voice, speed or lexicon).
+
+```bash
+python3 scripts/build_audio.py --book john                     # whole book, voice bm_george
+python3 scripts/build_audio.py --book john --only 3:16 --force # re-voice one scene after a lexicon fix
+```
+
+Needs `python3` (3.10+) and the `com.halo.tts-tunnel` socket. MP3s are encoded on halo, so the Mac
+needs no ffmpeg. Each run appends its numbers to `~/halo-images/visual-bible/john-audio/worklog.md`.
