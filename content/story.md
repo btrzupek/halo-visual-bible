@@ -664,6 +664,67 @@ single plain wall.
 | Kept on the first try | 8 | 6 | 7 | 8 |
 | GPU time | 34 min | 41 min | 51 min | 68 min |
 
+## Part ten: 1 and 2 Chronicles
+
+Chronicles tells Israel's story a second time, from Adam to the decree of Cyrus. It is two books on the site, 65
+chapters and 89 scenes, and both have a narrated reader like the rest. You can read
+[1 Chronicles](/1chronicles) and [2 Chronicles](/2chronicles).
+
+<p class="cta"><a class="primary" href="/read/1chronicles">Read 1 Chronicles</a><a href="/read/2chronicles">Read 2 Chronicles</a><a href="/making-of?book=1%20Chronicles">See every attempt</a></p>
+
+**Split across agents.** This time I asked Claude to run it as a workflow. Two agents planned the two books at
+the same time. Images were made one job at a time, a few chapters per agent, because halo has one GPU. While
+the second book was being drawn, another agent worked out the camera moves for the first book's reader on the
+Mac, and the narration ran only after every image was final. Each agent that changed the repo worked in its own
+copy, and one coordinator merged them. Before the images started I restarted halo to pick up an update from AMD,
+and other coding agents were using the box for the first half hour.
+
+**The genealogies.** The first nine chapters of 1 Chronicles are mostly names. Each one got a picture of a moment
+those names mention: Nimrod, Jabez praying, warriors crying to God in battle, the singers before the tabernacle,
+the porters opening the gates every morning.
+
+**The cast.** David, Solomon, Hezekiah and Josiah keep their faces from Samuel and Kings. Two calls were mine: the
+water from the well of Bethlehem uses young David, since it happened at Adullam before he was king, and Asaph, the
+chief of the singers, gets his own portrait. Rehoboam's portrait first came out looking about 25, because it was
+made from young Solomon; made from old Solomon instead, he looks his age. Asa and Jehoshaphat are new.
+
+<div class="pair">
+<img src="/images/full/halo_klein_ref_00931_.webp" alt="The angel with a drawn sword over Jerusalem as David and the elders in sackcloth fall on their faces">
+<img src="/images/full/halo_klein_ref_00947_.webp" alt="Fire coming down from heaven onto the altar in Solomon's temple as all Israel bows to the ground">
+<figcaption>Left: 1 Chronicles 21:14-17, the angel over Jerusalem. Right: 2 Chronicles 7:1-10, the fire came down from heaven.</figcaption>
+</div>
+
+**The hardest books yet.** About three and a half attempts for every published image, and three images kept on the
+first try out of 89. Much of that is counting. The model drew six sons of Jesse, then five, then six again, never
+seven, and three oxen pulling the ark's cart instead of two. Carrying the ark on the Levites' shoulders failed three
+different ways, so 15:1 shows the ark set down with the Levites ready to lift it.
+
+### What went wrong this time
+
+- Men and pack animals merged: a man with a donkey's head for a torso, a camel with an ox's head, and two men and two donkeys drawn as centaurs.
+- Temple music: valved trumpets, lyres played with bows like violins, and frame drums drawn as snare drums on stands.
+- The golden lampstand came out as a European candelabra with wax candles.
+- A gold cross pendant on Ahab's chest, and eyeglasses on the elders listening to the Levites teach.
+- The hidden baby Joash came out with two heads, twice. The version in the book has one.
+
+<div class="pair">
+<img src="/images/full/halo_klein_00350_.webp" alt="A failed image: men and donkeys merged into centaur-like figures">
+<img src="/images/full/halo_klein_ref_00894_.webp" alt="Bread, fig cakes and wine laid out on a mat as men rest by their donkeys and a camel">
+<figcaption>1 Chronicles 12:23-40. Left: one of the tries. Right: the version in the book, the moment after they arrive.</figcaption>
+</div>
+
+### Chronicles by the numbers
+
+| | 1 Chronicles | 2 Chronicles | 2 Kings | 1 Kings |
+|---|---|---|---|---|
+| Scenes | 43 | 46 | 36 | 37 |
+| New portraits | 1 | 3 | 4 | 7 |
+| Total attempts | 151 | 166 | 80 | 96 |
+| Attempts per published image | 3.51 | 3.61 | 2.22 | 2.18 |
+| Kept on the first try | 2 | 1 | 8 | 6 |
+| GPU time | 62 min | 67 min | 34 min | 41 min |
+| Narration | 138 min of audio | 161 min of audio | | |
+
 ## Try it
 
 Everything is on [GitHub](https://github.com/btrzupek/halo-visual-bible): the MCP server, the ComfyUI workflows, the tunnel setup, the book viewer,
