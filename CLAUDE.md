@@ -74,7 +74,6 @@ a minimum time on the form, strict field checks, and five reports per IP per ten
   `build_read_pages.py`, rerun it, and bump the `?v=` on that line in every `site/<book>/index.html`.
 - Vercel env vars: `REPORTS_TOKEN` (fine-grained token, Issues read and write on the reports repo only) and
   optionally `REPORTS_REPO`. Without a token the API answers 503 and the dialog says it could not send.
-- First-time setup (repo, labels, token, Vercel env var, test report): `bash scripts/setup_reports.sh [preview-url]`.
 - Tests: `node scripts/test_report_api.js` (fake GitHub, no network). `python3 -m http.server` has no API, so
   sending fails there by design; set `REPORTS_DRY_RUN=1` under `vercel dev` to see the issue it would file.
 
