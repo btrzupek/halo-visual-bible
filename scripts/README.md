@@ -110,3 +110,12 @@ swiftc -O scripts/find_focus.swift -o /tmp/find_focus
 /tmp/find_focus site/images/full/*.webp > ~/halo-images/visual-bible/read/focus.json
 python3 scripts/build_motion.py --focus ~/halo-images/visual-bible/read/focus.json --book acts
 ```
+
+## `read_review_sheets.py`
+
+Contact sheets of each scene's start and end view as a phone shows them in `/read/<book>` (portrait,
+the hard case). Look at every sheet before publishing a book's reader.
+
+```bash
+/usr/bin/python3 scripts/read_review_sheets.py --out /tmp/sheets genesis
+```

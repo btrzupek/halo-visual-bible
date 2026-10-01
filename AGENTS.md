@@ -11,7 +11,8 @@ follow. Read the linked docs before you change anything substantial.
 | [`docs/image-playbook.md`](docs/image-playbook.md) | How to prompt, QA and fix images, and every failure mode seen so far |
 | [`CLAUDE.md`](CLAUDE.md) | The add-a-book checklist, verse index rules, and the push command |
 | [`tts/README.md`](tts/README.md) | Narration: the Kokoro speech server on halo, the halo-tts MCP server, `build_audio.py` |
-| [`prompts/book-of-mark.md`](prompts/book-of-mark.md) | The original full brief for illustrating a book, phase by phase |
+| [`prompts/new-book.md`](prompts/new-book.md) | **The current brief for adding a book**: images, book page, Read and narration, and how to split the work across agents |
+| [`prompts/book-of-mark.md`](prompts/book-of-mark.md) | The original brief (Mark); craft notes still apply, phases superseded by `new-book.md` |
 
 ## What this is
 
@@ -118,8 +119,8 @@ about a minute.
 
 ## Common tasks
 
-- **Add a book:** follow [`prompts/book-of-mark.md`](prompts/book-of-mark.md) for the phases and
-  [`CLAUDE.md`](CLAUDE.md) for the wiring. Summary of the wiring: copy the newest book page
+- **Add a book:** follow [`prompts/new-book.md`](prompts/new-book.md) for the phases (including Read and
+  narration) and [`CLAUDE.md`](CLAUDE.md) for the wiring. Summary of the wiring: copy the newest book page
   (`site/2kings/index.html`) and change titles, hero, chapter script tags, cast figures and the ref
   label; add the book to the Books menu in every `site/*/index.html` and `scripts/build_story.py`;
   add its cast to `--cast` in `build_site_assets.py`; add a Making of filter button and the `?book=`

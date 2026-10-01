@@ -7,6 +7,7 @@ site/assets/present.js and present.css; these pages only say which book to load.
 
 Rerun after adding a book (add it to BOOKS below, in canonical order) or after its motion or
 narration files appear: a page loads <book>-motion.js and <book>-audio.js only if they exist.
+It also reports every scene that is missing motion or audio, or whose audio has the wrong verse count.
 """
 import html, json, os, re
 
@@ -44,6 +45,33 @@ def chapters(folder, prefix):
         if m:
             t = open(os.path.join(d, f)).read()
             out[int(m.group(1))] = json.loads(t[t.index(',') + 1:t.rindex(')')])
+    return out
+
+
+def coverage(folder, prefix, chs):
+    """Problems a reader would hit: scenes without motion or audio, or audio without one time per verse."""
+    def load(name):
+        p = os.path.join(SITE, folder, 'data', f'{prefix}-{name}.js')
+        if not os.path.exists(p):
+            return None
+        t = open(p).read()
+        return json.loads('\n'.join(l for l in t[t.index('{'):t.rindex('}') + 1].splitlines() if not l.startswith('//')))
+    motion, audio, out = load('motion'), load('audio'), []
+    for c, d in chs.items():
+        for sc in d['scenes']:
+            k = f'{c}:{sc[0]}'
+            if motion is not None and k not in motion:
+                out.append(f'{k} has no motion')
+            if audio is not None:
+                a = audio.get(k)
+                if not a:
+                    out.append(f'{k} has no audio')
+                elif len(a['t']) != sc[1] - sc[0] + 1 or not os.path.exists(os.path.join(SITE, a['src'].split('?')[0].lstrip('/'))):
+                    out.append(f'{k} audio does not match its verses or its file is missing')
+    if motion is None:
+        out.append('no motion file (build_motion.py)')
+    if audio is None:
+        out.append('no narration yet (build_audio.py)')
     return out
 
 
@@ -180,7 +208,9 @@ def main():
                       'scenes': sum(len(c['scenes']) for c in chs.values()),
                       'img': chs[min(chs)]['scenes'][0][2].replace('.png', '.webp'),
                       'audio': os.path.exists(os.path.join(SITE, folder, 'data', f'{prefix}-audio.js'))})
-        print(f'/read/{slug}: {books[-1]["chapters"]} chapters, {books[-1]["scenes"]} scenes, audio {books[-1]["audio"]}')
+        problems = coverage(folder, prefix, chs)
+        print(f'/read/{slug}: {books[-1]["chapters"]} chapters, {books[-1]["scenes"]} scenes, '
+              + ('complete' if not problems else f'{len(problems)} problem(s): ' + '; '.join(problems[:5])))
     write(os.path.join(SITE, 'index.html'), home(books))
     print('home: site/index.html')
 
