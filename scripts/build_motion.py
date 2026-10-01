@@ -16,7 +16,7 @@ listed in the book's motion file under "// keep") are never overwritten.
 import argparse, json, os, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-FOLDERS = {'genesis': 'genesis', '1samuel': '1samuel', '2samuel': '2samuel', '1kings': '1kings', '2kings': '2kings',
+FOLDERS = {'genesis': 'genesis', '1samuel': '1samuel', '2samuel': '2samuel', '1kings': '1kings', '2kings': '2kings', '1chronicles': '1chronicles', '2chronicles': '2chronicles',
            'matthew': 'matthew', 'mark': 'mark', 'luke': 'luke', 'acts': 'acts', 'john': 'bible'}
 
 

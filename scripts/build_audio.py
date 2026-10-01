@@ -23,6 +23,8 @@ BOOKS = {  # book (file prefix): (site folder, spoken title), canonical order
     '2samuel': ('2samuel', 'The Second Book of Samuel'),
     '1kings': ('1kings', 'The First Book of the Kings'),
     '2kings': ('2kings', 'The Second Book of the Kings'),
+    '1chronicles': ('1chronicles', 'The First Book of the Chronicles'),
+    '2chronicles': ('2chronicles', 'The Second Book of the Chronicles'),
     'matthew': ('matthew', 'The Gospel according to Saint Matthew'),
     'mark': ('mark', 'The Gospel according to Saint Mark'),
     'luke': ('luke', 'The Gospel according to Saint Luke'),

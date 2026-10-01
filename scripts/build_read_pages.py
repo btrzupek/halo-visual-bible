@@ -22,6 +22,8 @@ BOOKS = {
     '2samuel': ('2samuel', '2samuel', '2 Samuel', 'The Second Book of Samuel', 'Old'),
     '1kings': ('1kings', '1kings', '1 Kings', 'The First Book of the Kings', 'Old'),
     '2kings': ('2kings', '2kings', '2 Kings', 'The Second Book of the Kings', 'Old'),
+    '1chronicles': ('1chronicles', '1chronicles', '1 Chronicles', 'The First Book of the Chronicles', 'Old'),
+    '2chronicles': ('2chronicles', '2chronicles', '2 Chronicles', 'The Second Book of the Chronicles', 'Old'),
     'matthew': ('matthew', 'matthew', 'Matthew', 'The Gospel of Matthew', 'New'),
     'mark': ('mark', 'mark', 'Mark', 'The Gospel of Mark', 'New'),
     'luke': ('luke', 'luke', 'Luke', 'The Gospel of Luke', 'New'),
