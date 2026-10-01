@@ -119,3 +119,13 @@ the hard case). Look at every sheet before publishing a book's reader.
 ```bash
 /usr/bin/python3 scripts/read_review_sheets.py --out /tmp/sheets genesis
 ```
+
+## `test_report_api.js`
+
+Tests for the reader report function, `api/report.js`, against a fake GitHub: filing, repeats becoming
+comments, the honeypot and timing checks, field checks, the origin check, the rate limit and the note
+fencing. No network or token needed.
+
+```bash
+node scripts/test_report_api.js
+```

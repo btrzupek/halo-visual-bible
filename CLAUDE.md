@@ -53,12 +53,29 @@ Rerun step 3 whenever chapters, picks or scene ranges change, not only for new b
 3. Narration: `python3 scripts/build_audio.py --book <book> --bitrate 48k` (needs the halo TTS tunnel).
 4. `python3 scripts/build_read_pages.py`, then check `/read/<book>` locally and in the iOS Simulator.
 5. When you change `present.js` or `present.css`, bump `ASSET_V` in `build_read_pages.py` and rerun it.
+6. Add the book's slug and name to `BOOKS` in [`api/report.js`](api/report.js), or its reader reports are refused.
 
 **Site nav:** books are in the `Books` menu (`<details class="books">`) in every page's `sitenav`, grouped
 by testament in canonical order. Add the new book's link there in each `site/*/index.html`, in
 `scripts/build_story.py` (then rebuild the story), and mark it `aria-current="page"` plus
 `class="books current"` with the book name as the `<summary>` on the book's own page. When you change
 `site/assets/site.css`, bump the `?v=` on its `<link>` in every page so browsers fetch the new file.
+
+## Reader reports
+
+Every scene on a book page, and the flag button in the reader's top bar, opens a "Report a problem" dialog
+(`site/assets/report.js`). It posts to `/api/report` ([`api/report.js`](api/report.js), a Vercel function),
+which files an issue in the private repo `btrzupek/halo-visual-bible-reports`, or adds a comment when the same
+scene, kind and reason is already open. Nothing personal is collected. Spam checks: a hidden honeypot field,
+a minimum time on the form, strict field checks, and five reports per IP per ten minutes (in memory only).
+
+- Every book page carries the same line after `nav.js`: `<script src="/assets/report.js?v=1" defer></script>`.
+  New book pages copied from an existing one get it for free. When `report.js` changes, bump `REPORT_V` in
+  `build_read_pages.py`, rerun it, and bump the `?v=` on that line in every `site/<book>/index.html`.
+- Vercel env vars: `REPORTS_TOKEN` (fine-grained token, Issues read and write on the reports repo only) and
+  optionally `REPORTS_REPO`. Without a token the API answers 503 and the dialog says it could not send.
+- Tests: `node scripts/test_report_api.js` (fake GitHub, no network). `python3 -m http.server` has no API, so
+  sending fails there by design; set `REPORTS_DRY_RUN=1` under `vercel dev` to see the issue it would file.
 
 ## Rules for the index
 

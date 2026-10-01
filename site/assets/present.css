@@ -66,6 +66,10 @@ button{font:inherit;color:inherit}
 .top .back::before{content:"";width:.45em;height:.45em;border-left:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg)}
 .top .place{margin-left:auto;color:var(--soft);font-size:.95rem}
 .top .place b{color:var(--gilt);font-weight:400}
+.top .report{border:0;background:none;cursor:pointer;width:2.25rem;height:2.25rem;margin:-.5rem -.6rem -.5rem 0;border-radius:999px;display:grid;place-items:center;color:var(--soft)}
+.top .report:hover{color:var(--ink);background:rgba(255,255,255,.08)}
+.top .report svg{width:1.05rem;height:1.05rem;fill:currentColor}
+.top .report[hidden]{display:none}
 
 /* ---- controls */
 .controls{position:fixed;z-index:6;left:50%;bottom:clamp(1rem,3vh,1.75rem);transform:translateX(-50%);display:flex;align-items:center;gap:.25rem;
