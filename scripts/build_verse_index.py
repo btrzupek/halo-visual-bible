@@ -46,6 +46,7 @@ BOOKS = {
     '2kings': ('2kings', '2 Kings', '/2kings'),
     '1chronicles': ('1chronicles', '1 Chronicles', '/1chronicles'),
     '2chronicles': ('2chronicles', '2 Chronicles', '/2chronicles'),
+    'ezra': ('ezra', 'Ezra', '/ezra'),
     'matthew': ('matthew', 'Matthew', '/matthew'),
     'mark': ('mark', 'Mark', '/mark'),
     'luke': ('luke', 'Luke', '/luke'),
