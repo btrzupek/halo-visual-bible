@@ -5,6 +5,7 @@
   var R = window.READ, VB = window.VB, IMG = '/images/full/';
   var MOTION = VB.motion || {}, AUDIO = VB.audio || null;
   var DEFAULT = [[0.5, 0.5, 1], [0.5, 0.42, 1.14]];  // a slow push-in when a scene has no frames yet
+  var portrait = matchMedia('(max-aspect-ratio: 1/1), (max-width: 760px)');  // same test as the CSS sheet layout
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var tuning = /[?&]tune\b/.test(location.search);
   function $(s) { return document.querySelector(s); }
@@ -63,24 +64,33 @@
   // brought to the middle of the part of the window the text panel leaves free.
   function geometry(img) {
     var W = innerWidth, H = innerHeight, iw = img.naturalWidth || 1344, ih = img.naturalHeight || 768;
-    var k = Math.max(W / iw, H / ih), dw = iw * k, dh = ih * k, p = panel.getBoundingClientRect(), cx = W / 2, cy = H / 2, sheet = false;
+    var k = Math.max(W / iw, H / ih), dw = iw * k, dh = ih * k, p = panel.getBoundingClientRect(), cx = W / 2, cy = H / 2, sheet = false, floor = H;
     if (p.width && p.height) {
       // sheet at the bottom: the point sits a little low in the space above it, so faces stay in view
-      if (p.width > W * 0.6) { cy = p.top * 0.6; sheet = true; }
+      // the picture may rise until its bottom edge is a little under the sheet, so the lower half is reachable
+      if (p.width > W * 0.6) { cy = p.top * 0.6; sheet = true; floor = p.top + (H - p.top) * 0.3; }
       else if (p.left > W / 2) cx = p.left / 2;            // panel on the right
       else cx = (p.right + W) / 2;                          // panel on the left
     }
     img.style.width = dw + 'px'; img.style.height = dh + 'px';
-    return { W: W, H: H, dw: dw, dh: dh, cx: cx, cy: cy, sheet: sheet };
+    return { W: W, H: H, dw: dw, dh: dh, cx: cx, cy: cy, sheet: sheet, floor: floor };
   }
   function transform(g, f, trim) {
     // a portrait window already crops a wide picture hard, so it gets half the zoom
     var s = (g.sheet ? 1 + (f[2] - 1) / 2 : f[2]) * (trim ? 1.03 : 1);
     var tx = Math.min(0, Math.max(g.W - s * g.dw, g.cx - s * f[0] * g.dw));
-    var ty = Math.min(0, Math.max(g.H - s * g.dh, g.cy - s * f[1] * g.dh));
+    var ty = Math.min(0, Math.max(g.floor - s * g.dh, g.cy - s * f[1] * g.dh));
     return 'translate(' + tx.toFixed(1) + 'px,' + ty.toFixed(1) + 'px) scale(' + s.toFixed(4) + ')';
   }
-  function framesFor(sc) { var m = MOTION[sc.key] || DEFAULT; return reduce ? [m[0], m[0]] : m; }
+  // entries 3 and 4, when present, are the start and end for portrait windows, which see a narrow slice
+  function framesFor(sc) {
+    var m = MOTION[sc.key] || DEFAULT;
+    if (portrait.matches && m[2]) m = [m[2], m[3] || m[2]];
+    // wide-screen points low in the picture land on bodies without heads on a phone, so cap them there
+    else if (portrait.matches) m = [m[0], m[1]].map(function (f) { return [f[0], Math.min(f[1], 0.42), f[2]]; });
+    else m = [m[0], m[1]];
+    return reduce ? [m[0], m[0]] : m;
+  }
 
   function startMotion(img, sc, seconds) {
     if (anim) anim.cancel();
@@ -96,6 +106,7 @@
     if (!img.naturalWidth) return;
     if (tuning) return startMotion(img, sc, 0);
     if (!anim) return;
+    frames = framesFor(sc);  // a phone turned sideways switches between portrait and landscape frames
     var g = geometry(img);
     anim.effect.setKeyframes([{ transform: transform(g, frames[0], sc.trim) }, { transform: transform(g, frames[1], sc.trim) }]);
   });
@@ -188,7 +199,9 @@
     var p = vbox.children[n];
     if (!p || p.classList.contains('now')) return;
     [].forEach.call(vbox.children, function (q) { q.classList.toggle('now', q === p); });
-    if (Date.now() > followPause) vbox.scrollTo({ top: p.offsetTop - vbox.clientHeight * 0.28, behavior: reduce ? 'auto' : 'smooth' });
+    // put the verse about a quarter of the way down, or at the top if it is taller than the room left
+    var room = vbox.clientHeight, top = p.offsetTop - Math.max(12, Math.min(room * 0.25, room - p.offsetHeight - 12));
+    if (Date.now() > followPause) vbox.scrollTo({ top: Math.max(0, top), behavior: reduce ? 'auto' : 'smooth' });
   }
   ['wheel', 'touchmove'].forEach(function (ev) { vbox.addEventListener(ev, function () { followPause = Date.now() + 6000; }, { passive: true }); });
   function mediaSession(sc) {
