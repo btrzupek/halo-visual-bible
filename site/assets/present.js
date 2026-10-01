@@ -134,7 +134,7 @@
     if (i < 0 || i >= list.length) return;
     var my = ++token, sc = list[i], prev = idx;
     idx = i; done = false; frames = framesFor(sc);
-    clearTimeout(advanceTimer); audio.pause(); if (anim) anim.pause();
+    clearTimeout(advanceTimer); audio.pause(); if (anim) anim.pause(); spoken = null;
     cue.classList.remove('on'); panel.classList.remove('on', 'narrating'); bar.style.transform = 'scaleX(0)';
     try { history.replaceState(null, '', '#' + sc.id); } catch (e) {}
     if (tuning) tune.load(sc);
@@ -193,15 +193,33 @@
     if (playing) audio.play().catch(function () { setPlaying(false); });
     mediaSession(sc);
   }
+  var spoken = null;  // {a: audio entry, n: verse index} while narrating
   function follow(a) {
     var t = audio.currentTime, n = 0;
     for (var k = 0; k < a.t.length; k++) if (a.t[k] <= t + 0.05) n = k;
+    spoken = { a: a, n: n };
     var p = vbox.children[n];
     if (!p || p.classList.contains('now')) return;
     [].forEach.call(vbox.children, function (q) { q.classList.toggle('now', q === p); });
-    // put the verse about a quarter of the way down, or at the top if it is taller than the room left
-    var room = vbox.clientHeight, top = p.offsetTop - Math.max(12, Math.min(room * 0.25, room - p.offsetHeight - 12));
-    if (Date.now() > followPause) vbox.scrollTo({ top: Math.max(0, top), behavior: reduce ? 'auto' : 'smooth' });
+  }
+  // Keep the spoken words in view. Driven from the animation frame, not scrollTo({behavior:'smooth'}),
+  // which browsers cancel or overshoot inconsistently (it did both on phones).
+  function followScroll() {
+    if (!spoken || !panel.classList.contains('narrating') || Date.now() < followPause) return;
+    var p = vbox.children[spoken.n]; if (!p) return;
+    var a = spoken.a, room = vbox.clientHeight, h = p.offsetHeight;
+    var top = p.getBoundingClientRect().top - vbox.getBoundingClientRect().top + vbox.scrollTop, want;
+    if (h + 24 <= room) {
+      want = top - Math.min(room * 0.2, room - h - 12);        // a short verse sits near the top and stays
+    } else {                                                    // a tall one glides past as it is read
+      var t0 = a.t[spoken.n], t1 = a.t[spoken.n + 1] || a.dur;
+      var f = Math.min(1, Math.max(0, (audio.currentTime - t0) / Math.max(0.1, t1 - t0)));
+      // the line being spoken (estimated by time) sits a third of the way down, never past either end
+      want = Math.min(top + h - room + 24, Math.max(top - 12, top + f * h - room * 0.33));
+    }
+    want = Math.max(0, Math.min(want, vbox.scrollHeight - room));
+    var d = want - vbox.scrollTop;
+    if (Math.abs(d) > 0.5) vbox.scrollTop = reduce || Math.abs(d) > room * 2 ? want : vbox.scrollTop + d * 0.12;
   }
   ['wheel', 'touchmove'].forEach(function (ev) { vbox.addEventListener(ev, function () { followPause = Date.now() + 6000; }, { passive: true }); });
   function mediaSession(sc) {
@@ -234,6 +252,7 @@
     idle();
   }
   function tick() {
+    followScroll();
     if (anim && dur) {
       var p = panel.classList.contains('narrating') && audio.duration ? audio.currentTime / audio.duration : (anim.currentTime || 0) / (dur * 1000);
       bar.style.transform = 'scaleX(' + Math.min(1, p).toFixed(4) + ')';

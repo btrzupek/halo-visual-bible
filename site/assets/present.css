@@ -36,18 +36,18 @@ button{font:inherit;color:inherit}
 .panel h1{font-family:var(--display);font-weight:400;font-size:clamp(1.55rem,2.3vw,2.15rem);line-height:1.12;margin:0 0 .35rem}
 .panel .sub{color:var(--soft);font-style:italic;font-size:1rem;margin:0 0 1rem;padding-bottom:1rem;border-bottom:1px solid var(--line)}
 .verses{position:relative;flex:1 1 auto;min-height:0;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--line) transparent;padding-right:.4rem;
-  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 1.2rem,#000 calc(100% - 2rem),transparent 100%);
-  mask-image:linear-gradient(180deg,transparent 0,#000 1.2rem,#000 calc(100% - 2rem),transparent 100%)}
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 .9rem,#000 calc(100% - 1.2rem),transparent 100%);
+  mask-image:linear-gradient(180deg,transparent 0,#000 .9rem,#000 calc(100% - 1.2rem),transparent 100%)}
 .verses p{margin:0;padding:.18em 0 .38em;font-size:1.06rem;line-height:1.8;transition:color .6s ease,opacity .6s ease}
 .verses p:first-child{padding-top:1rem}
-.verses p:last-child{padding-bottom:1.6rem}
+.verses p:last-child{padding-bottom:3.2rem}  /* room for the Continue button over the end */
 .verses sup{font-family:var(--display);color:var(--gilt);font-size:.62em;margin-right:.35em;vertical-align:.55em}
 /* narration: the current verse stays bright, the rest step back */
 .panel.narrating .verses p{opacity:.5}
 .panel.narrating .verses p.now{opacity:1}
 
 /* "continue" cue at the foot of the panel */
-.cue{align-self:flex-end;margin-top:.6rem;display:flex;align-items:center;gap:.55rem;border:1px solid var(--line);
+.cue{position:absolute;right:1.2rem;bottom:1rem;display:flex;align-items:center;gap:.55rem;border:1px solid var(--line);
   background:rgba(212,176,102,.08);color:var(--gilt);font-family:var(--display);font-size:1rem;letter-spacing:.04em;
   padding:.45rem 1rem .45rem 1.1rem;border-radius:999px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .8s ease,background .2s}
 .cue::after{content:"";width:.45em;height:.45em;border-top:1.5px solid currentColor;border-right:1.5px solid currentColor;transform:rotate(45deg)}
@@ -91,9 +91,9 @@ body.idle{cursor:none}
   text-shadow:0 2px 30px rgba(0,0,0,.8);display:flex;align-items:center;gap:1.4rem}
 .card span::before,.card span::after{content:"";width:clamp(2rem,8vw,6rem);height:1px;background:var(--gilt)}
 
-.start{position:fixed;z-index:10;inset:0;display:grid;align-items:end;background:#05060a}
-.start img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.75;animation:dawn 3s ease-out both}
-.start::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,6,10,.1) 30%,rgba(5,6,10,.92) 100%)}
+.start{position:fixed;z-index:10;inset:0;display:grid;align-items:end;background:#05060a;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.start img{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;opacity:.75;animation:dawn 3s ease-out both}
+.start::after{content:"";position:fixed;inset:0;background:linear-gradient(180deg,rgba(5,6,10,.1) 30%,rgba(5,6,10,.92) 100%)}
 @keyframes dawn{from{opacity:0;transform:scale(1.05)}}
 .start .inner{position:relative;z-index:1;padding:0 clamp(1.25rem,6vw,5rem) clamp(2.5rem,9vh,6rem);max-width:60rem}
 .start h1{font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,7vw,5.8rem);line-height:1;margin:0 0 1rem}
@@ -118,14 +118,15 @@ body.tuning .panel{opacity:.25}
 
 /* ---- phones and portrait windows: the panel becomes a sheet at the bottom */
 @media (max-aspect-ratio:1/1),(max-width:760px){
-  .panel,.panel.left,.panel.right{left:.6rem;right:.6rem;width:auto;top:auto;bottom:calc(4.6rem + env(safe-area-inset-bottom,0px));max-height:min(42svh,26rem);padding:.85rem 1rem .7rem}
+  .panel,.panel.left,.panel.right{left:.6rem;right:.6rem;width:auto;top:auto;bottom:calc(4.6rem + env(safe-area-inset-bottom,0px));max-height:min(46svh,28rem);padding:.85rem 1rem .7rem}
+  .panel.narrating h1{font-size:1.05rem}
   .panel .ref{font-size:.8rem;margin-bottom:.2rem}
   .panel h1{font-size:1.25rem;margin-bottom:.2rem}
   .panel .sub{font-size:.85rem;line-height:1.45;margin-bottom:.3rem;padding-bottom:.5rem}
   .panel.narrating .sub{display:none}
   .verses p{font-size:.95rem;line-height:1.6;padding:.12em 0 .3em}
   .verses p:first-child{padding-top:.6rem}
-  .cue{margin-top:.4rem;font-size:.9rem;padding:.35rem .9rem .35rem 1rem}
+  .cue{right:.8rem;bottom:.7rem;font-size:.9rem;padding:.35rem .9rem .35rem 1rem}
   .top{padding:.8rem 1rem}
   .top .place{font-size:.85rem}
   .controls{bottom:calc(.6rem + env(safe-area-inset-bottom,0px))}
@@ -137,4 +138,9 @@ body.tuning .panel{opacity:.25}
   .layer{transition-duration:.6s}
   .cue.on{animation:none}
   .start img{animation:none}
+}
+/* very narrow windows (large text zoom on a phone): the control bar keeps only what fits */
+@media (max-width:340px){
+  .controls{max-width:calc(100vw - 1rem)}
+  .controls select,.controls .sep{display:none}
 }
