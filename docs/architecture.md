@@ -32,6 +32,7 @@ flowchart LR
 | Workflows | `workflows/*.json` | ComfyUI API format with `{{PLACEHOLDER}}` fields. klein, klein + reference, Qwen edit, Qwen image, Z-Image Turbo. |
 | Tunnel | `setup/` | launchd socket on the Mac opens `ssh -W` per connection. Nothing on halo listens on the network. |
 | Site | `site/` | Static HTML, `vercel.json` sets `outputDirectory: site`, clean URLs, immutable cache and CORS on `/images/`, 5 min cache and CORS on `/index/`. |
+| Reader reports | `api/report.js`, `site/assets/report.js` | The one server-side piece: a Vercel function (zero-config, picked up from `api/` at the repo root). It checks a report and files it as an issue in the private reports repo with a token held in Vercel env vars. The site itself stays static. |
 | Story | `content/story.md` | Rendered to `site/index.html` by `scripts/build_story.py` (Books nav lives in that script's template too). |
 | Viewer template | `viewer/` | The reusable single-book viewer with one sample chapter. The live book pages are copies under `site/<book>/`. |
 | Scripts | `scripts/` | See [`scripts/README.md`](../scripts/README.md). |

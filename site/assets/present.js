@@ -31,7 +31,9 @@
     '<aside class="panel" id="panel" aria-live="polite"><p class="ref"></p><h1></h1><p class="sub"></p>' +
       '<div class="verses" id="verses" tabindex="0"></div><button class="cue" id="cue" type="button">Continue</button></aside>' +
     '<div class="progress" aria-hidden="true"><i id="bar"></i></div>' +
-    '<div class="top"><a class="back" href="' + R.back + '">' + esc(R.book) + '</a><span class="place" id="place"></span></div>' +
+    '<div class="top"><a class="back" href="' + R.back + '">' + esc(R.book) + '</a><span class="place" id="place"></span>' +
+      '<button type="button" class="report" id="report" aria-label="Report a problem with this scene" title="Report a problem" hidden>' +
+        '<svg viewBox="0 0 24 24"><path d="M5 3h2v18H5zM8 4h10l-2 4 2 4H8z"/></svg></button></div>' +
     '<div class="controls" role="group" aria-label="Player">' +
       '<select id="chap" aria-label="Chapter"></select><span class="sep"></span>' +
       '<button type="button" id="prev" aria-label="Previous scene"><svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg></button>' +
@@ -270,9 +272,19 @@
   var fullBtn = $('#full');
   if (!document.documentElement.requestFullscreen) fullBtn.hidden = true;
   fullBtn.onclick = function () { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen().catch(function () {}); };
+  // report a problem (site/assets/report.js): pauses while the dialog is open, then carries on
+  var reportBtn = $('#report');
+  if (window.VBReport) reportBtn.hidden = false;
+  reportBtn.onclick = function () {
+    var sc = list[idx], a = AUDIO && AUDIO[sc.key], was = playing;
+    setPlaying(false);
+    VBReport.open({ slug: R.slug, book: R.book, c: sc.c, a: sc.a, b: sc.b, file: sc.file, title: sc.title,
+      audio: a ? a.src : null, kind: narrate && a ? 'audio' : 'image',
+      onclose: function () { if (was) setPlaying(true); } });
+  };
 
   document.addEventListener('keydown', function (e) {
-    if (e.target.closest && e.target.closest('select,textarea,input')) return;
+    if (e.target.closest && e.target.closest('select,textarea,input,dialog')) return;
     if (!$('#start').hidden) return;
     var k = e.key;
     if (k === ' ' || k === 'k') { e.preventDefault(); playBtn.click(); }
@@ -286,7 +298,7 @@
   var t0 = null;
   document.addEventListener('touchstart', function (e) { t0 = e.touches.length === 1 ? [e.touches[0].clientX, e.touches[0].clientY] : null; }, { passive: true });
   document.addEventListener('touchend', function (e) {
-    if (!t0 || tuning || !$('#start').hidden) return;
+    if (!t0 || tuning || !$('#start').hidden || (e.target.closest && e.target.closest('dialog'))) return;
     var dx = e.changedTouches[0].clientX - t0[0], dy = e.changedTouches[0].clientY - t0[1];
     if (Math.abs(dx) > 60 && Math.abs(dx) > 2 * Math.abs(dy)) dx < 0 ? next() : prev();
   }, { passive: true });

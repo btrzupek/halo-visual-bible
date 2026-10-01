@@ -13,7 +13,8 @@ import html, json, os, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, 'site')
-ASSET_V = 7  # bump when present.js or present.css change, so browsers fetch the new files
+ASSET_V = 8  # bump when present.js or present.css change, so browsers fetch the new files
+REPORT_V = 1  # bump when site/assets/report.js changes, and its ?v= on every book page too
 
 # slug: (site folder, file prefix, short name, title, testament)
 BOOKS = {
@@ -120,6 +121,7 @@ def reader_page(slug, folder, prefix, name, title, chs):
             f'  window.READ={config};\n</script>\n{tags}\n</head>\n<body>\n'
             f'<noscript><p style="padding:2rem">This page needs JavaScript. <a href="/{folder}" style="color:#d4b066">'
             f'Read {html.escape(name)} on the book page</a>.</p></noscript>\n'
+            f'<script src="/assets/report.js?v={REPORT_V}"></script>\n'
             f'<script src="/assets/present.js?v={ASSET_V}"></script>\n</body>\n</html>\n')
 
 

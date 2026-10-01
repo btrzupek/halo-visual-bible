@@ -85,6 +85,8 @@ All source PNGs live in `~/halo-images/` on the Mac (not in git). The site has W
   The newest, cleanest copy of the kit is `kings/`; copy it for a new book.
 - **Generated images**: `~/halo-images/*.png`. Names: `halo_klein_NNNNN_` (text only),
   `halo_klein_ref_NNNNN_` (with a reference), `halo_edit_NNNNN_` (edits).
+- **Reader reports**: `site/assets/report.js` (the dialog) posts to `api/report.js` (a Vercel function), which
+  files issues in the private repo `btrzupek/halo-visual-bible-reports`. See [`CLAUDE.md`](CLAUDE.md#reader-reports).
 - **The halo box**: ComfyUI in rootless Podman, reached only through an on-demand SSH tunnel at
   `http://127.0.0.1:8188`. See [`setup/SETUP.md`](setup/SETUP.md).
 
