@@ -276,7 +276,7 @@ footer p{margin:0 0 .6rem}
     d.scenes.forEach(function(s,i){
       var a=s[0],b=s[1],id='s'+c+'-'+a;
       toc+='<li><a href="#'+id+'"><span>'+c+':'+a+'–'+b+'</span>'+esc(s[3])+'</a></li>';
-      if(c===1&&i===0)return;
+      if(c===1&&i===0&&d.scenes.length>1)return;  // the hero shows it; keep it when it is the chapter's only scene
       k++;
       main+='<article class="scene'+(k%2===0?' flip':'')+'" id="'+id+'">'+
         '<figure'+((s[5]||s[6])?' class="'+[s[5]?'trim':'',s[6]?'parable':''].join(' ').trim()+'"':'')+'><img src="'+IMG+webp(s[2])+'" loading="lazy" alt="'+esc(s[3]+': '+s[4])+'"></figure>'+
