@@ -137,6 +137,8 @@
     clearTimeout(advanceTimer); audio.pause(); if (anim) anim.pause(); spoken = null;
     cue.classList.remove('on'); panel.classList.remove('on', 'narrating'); bar.style.transform = 'scaleX(0)';
     try { history.replaceState(null, '', '#' + sc.id); } catch (e) {}
+    // the home page offers "Continue" from here
+    try { localStorage.setItem('read-last', JSON.stringify({ slug: R.slug, id: sc.id, ref: refText(sc) })); } catch (e) {}
     if (tuning) tune.load(sc);
     place(sc);
 

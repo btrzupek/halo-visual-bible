@@ -91,3 +91,22 @@ python3 scripts/build_audio.py --book john --only 3:16 --force # re-voice one sc
 
 Needs `python3` (3.10+) and the `com.halo.tts-tunnel` socket. MP3s are encoded on halo, so the Mac
 needs no ffmpeg. Each run appends its numbers to `~/halo-images/visual-bible/john-audio/worklog.md`.
+
+## `build_read_pages.py`
+
+Writes the home page (`site/index.html`, the book picker) and `site/read/<book>/index.html` for every
+book in its `BOOKS` list. Each reader page only configures the shared player (`site/assets/present.js`)
+and loads the book's chapter, motion and audio files. Rerun after adding a book, its motion or its audio.
+
+## `find_focus.swift` and `build_motion.py`
+
+Camera paths for the reader. `find_focus.swift` uses macOS Vision (faces and attention saliency, no
+installs) to find points of interest in each image; `build_motion.py` turns them into start and end
+frames, with separate frames for portrait screens. Hand-tuned entries below a book's `// keep` line are
+never overwritten.
+
+```bash
+swiftc -O scripts/find_focus.swift -o /tmp/find_focus
+/tmp/find_focus site/images/full/*.webp > ~/halo-images/visual-bible/read/focus.json
+python3 scripts/build_motion.py --focus ~/halo-images/visual-bible/read/focus.json --book acts
+```

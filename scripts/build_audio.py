@@ -17,16 +17,26 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'tts'))
 import speech  # noqa: E402
 
-BOOKS = {  # book: (site folder, spoken title)
+BOOKS = {  # book (file prefix): (site folder, spoken title), canonical order
+    'genesis': ('genesis', 'The First Book of Moses, called Genesis'),
+    '1samuel': ('1samuel', 'The First Book of Samuel'),
+    '2samuel': ('2samuel', 'The Second Book of Samuel'),
+    '1kings': ('1kings', 'The First Book of the Kings'),
+    '2kings': ('2kings', 'The Second Book of the Kings'),
+    'matthew': ('matthew', 'The Gospel according to Saint Matthew'),
+    'mark': ('mark', 'The Gospel according to Saint Mark'),
+    'luke': ('luke', 'The Gospel according to Saint Luke'),
     'john': ('bible', 'The Gospel according to Saint John'),
+    'acts': ('acts', 'The Acts of the Apostles'),
 }
-WORDS = ('zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen '
-         'sixteen seventeen eighteen nineteen twenty').split()
+ONES = ('zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen '
+        'sixteen seventeen eighteen nineteen').split()
+TENS = {2: 'twenty', 3: 'thirty', 4: 'forty', 5: 'fifty'}
 LEAD, VERSE_GAP, TITLE_GAP, TAIL = 0.35, 0.55, 0.9, 0.6
 
 
 def number(n):
-    return WORDS[n] if n <= 20 else 'twenty-' + WORDS[n - 20]
+    return ONES[n] if n < 20 else TENS[n // 10] + ('-' + ONES[n % 10] if n % 10 else '')
 
 
 def chapters(folder, book):
@@ -49,7 +59,7 @@ def rng(spec):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--book', default='john', choices=BOOKS)
+    ap.add_argument('--book', default='john', choices=list(BOOKS) + ['all'])
     ap.add_argument('--voice', default='bm_george')
     ap.add_argument('--speed', type=float, default=1.0)
     ap.add_argument('--bitrate', default='64k')
@@ -57,9 +67,14 @@ def main():
     ap.add_argument('--only', help='comma-separated scene keys, e.g. 3:16,4:1')
     ap.add_argument('--force', action='store_true', help='rewrite MP3s even if present')
     ap.add_argument('--cache', default=os.path.expanduser('~/halo-audio/cache'))
-    ap.add_argument('--log', default=os.path.expanduser('~/halo-images/visual-bible/john-audio/worklog.md'))
+    ap.add_argument('--log', default=os.path.expanduser('~/halo-images/visual-bible/audio/worklog.md'))
     a = ap.parse_args()
+    for book in (list(BOOKS) if a.book == 'all' else [a.book]):
+        a.book = book
+        build(a)
 
+
+def build(a):
     folder, title = BOOKS[a.book]
     chs, want_ch = chapters(folder, a.book), rng(a.chapters)
     only = set(a.only.split(',')) if a.only else None
@@ -120,7 +135,7 @@ def main():
     os.replace(tmp, js_path)
     if n:
         with open(a.log, 'a') as f:
-            f.write(f'\n## {time.strftime("%Y-%m-%d %H:%M")} voice {a.voice}, speed {a.speed}, {a.bitrate}\n\n'
+            f.write(f'\n## {a.book}, {time.strftime("%Y-%m-%d %H:%M")}, voice {a.voice}, speed {a.speed}, {a.bitrate}\n\n'
                     f'{n} scenes, {audio_total / 60:.1f} min audio, {synth_total:.0f} s synthesis '
                     f'(cache hits count 0), {time.time() - t0:.0f} s wall\n\n'
                     '| scene | verses | audio s | synth s | KB |\n|---|---|---|---|---|\n' + '\n'.join(log) + '\n')

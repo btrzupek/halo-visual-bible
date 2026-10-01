@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-build_story.py — render content/story.md into site/index.html (the blog post).
+build_story.py — render content/story.md into site/story/index.html (the blog post; the home page is the Read section).
 
 Front matter (between --- lines): title, description, hero (a file in site/images/full),
 hero_caption. Lines starting with "[Brian:" are editor notes: they render as highlighted
@@ -37,7 +37,7 @@ PAGE = """<!doctype html>
 <body>
 <nav class="sitenav" aria-label="Site">
   <a class="brand" href="/">halo <b>·</b> Visual Bible</a>
-  <a class="link" href="/" aria-current="page">The story</a>
+  <a class="link" href="/story" aria-current="page">The story</a>
   <details class="books">
     <summary>Books</summary>
     <div class="menu" aria-label="Books">
@@ -75,7 +75,7 @@ PAGE = """<!doctype html>
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--src", default=os.path.join(ROOT, "content", "story.md"))
-    ap.add_argument("--out", default=os.path.join(ROOT, "site", "index.html"))
+    ap.add_argument("--out", default=os.path.join(ROOT, "site", "story", "index.html"))
     ap.add_argument("--final", action="store_true", help="fail if editor notes remain")
     a = ap.parse_args()
     text = open(a.src).read()
@@ -93,6 +93,7 @@ def main():
             print(f"warning: found {bad!r} in the post", file=sys.stderr)
     page = PAGE.format(title=html.escape(meta["title"]), description=html.escape(meta["description"]),
                        hero=meta["hero"], hero_caption=html.escape(meta.get("hero_caption", "")), body=rendered)
+    os.makedirs(os.path.dirname(a.out), exist_ok=True)
     open(a.out, "w").write(page)
     print(f"wrote {a.out} ({len(notes)} editor note(s) remaining)")
 

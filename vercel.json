@@ -6,6 +6,7 @@
   "outputDirectory": "site",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [{ "source": "/read", "destination": "/", "permanent": false }],
   "headers": [
     { "source": "/images/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }, { "key": "Access-Control-Allow-Origin", "value": "*" }] },
     { "source": "/audio/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
