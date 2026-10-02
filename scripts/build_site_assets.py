@@ -108,6 +108,7 @@ def main():
                              "2 Chronicles=halo_klein_ref_00873_.png,halo_edit_00458_.png,halo_klein_00327_.png",
                              "Ezra=halo_klein_00398_.png,halo_edit_00571_.png,halo_edit_00572_.png",
                              "Nehemiah=halo_edit_00602_.png",
+                             "Esther=halo_klein_00420_.png,halo_edit_00629_.png,halo_klein_00422_.png,halo_edit_00630_.png",
                              "Acts=halo_klein_00155_.png,halo_klein_00157_.png,halo_klein_00158_.png,halo_klein_00162_.png,halo_klein_00160_.png,halo_edit_00195_.png"],
                     help="Book=images used by that book's page itself (cast portraits)")
     ap.add_argument("--site", required=True)
