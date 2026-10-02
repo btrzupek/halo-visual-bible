@@ -318,7 +318,7 @@
   if (h) list.forEach(function (sc, i) { if (sc.c === +h[1] && sc.a <= +h[2] && +h[2] <= sc.b) startAt = i; });
   var s0 = list[startAt];
   document.body.insertAdjacentHTML('beforeend',
-    '<section class="start" id="start"><img src="' + IMG + webp(s0.file) + '" alt="">' +
+    '<section class="start" id="start"><img src="' + IMG + webp(s0.file) + '" alt=""><a class="back startback" href="/">Back</a>' +
     '<div class="inner"><h1>' + R.title.replace(' of ', '<br>of ') + '</h1><p>' + esc(startAt ? 'Continue from ' + refText(s0) + ', ' + s0.title + '.' : R.lede) + '</p>' +
     '<div class="go">' + (AUDIO ? '<button class="primary" data-n="1">Listen</button><button class="ghost" data-n="0">Read at my own pace</button>'
                                 : '<button class="primary" data-n="0">Begin</button>') +
@@ -327,7 +327,9 @@
   (function () {
     var from = false;
     try { var r = new URL(document.referrer); from = r.origin === location.origin && r.pathname.replace(/\/+$/, '') !== location.pathname.replace(/\/+$/, ''); } catch (e) {}
-    $('#back').addEventListener('click', function (e) { if (from) { e.preventDefault(); history.back(); } });
+    [].forEach.call(document.querySelectorAll('.back'), function (a) {   // the top bar's, and the title screen's
+      a.addEventListener('click', function (e) { if (from) { e.preventDefault(); history.back(); } });
+    });
   })();
   $('#start').addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b) return;

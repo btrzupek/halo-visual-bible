@@ -99,6 +99,10 @@ body.idle{cursor:none}
 .start img{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;opacity:.75;animation:dawn 3s ease-out both}
 .start::after{content:"";position:fixed;inset:0;background:linear-gradient(180deg,rgba(5,6,10,.1) 30%,rgba(5,6,10,.92) 100%)}
 @keyframes dawn{from{opacity:0;transform:scale(1.05)}}
+.start .startback{position:fixed;z-index:2;top:0;left:0;padding:1rem clamp(1.25rem,3.5vw,3.5rem);border-radius:0;font-size:1rem;letter-spacing:.03em;
+  display:flex;align-items:center;gap:.5rem;color:var(--soft)}
+.start .startback:hover{color:var(--ink)}
+.start .startback::before{content:"";width:.45em;height:.45em;border-left:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg)}
 .start .inner{position:relative;z-index:1;padding:0 clamp(1.25rem,6vw,5rem) clamp(2.5rem,9vh,6rem);max-width:60rem}
 .start h1{font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,7vw,5.8rem);line-height:1;margin:0 0 1rem}
 .start p{color:var(--soft);font-style:italic;margin:0 0 2rem;max-width:40ch}

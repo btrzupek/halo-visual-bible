@@ -13,7 +13,7 @@ import html, json, os, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, 'site')
-ASSET_V = 10  # bump when present.js or present.css change, so browsers fetch the new files
+ASSET_V = 11  # bump when present.js or present.css change, so browsers fetch the new files
 REPORT_V = 1  # bump when site/assets/report.js changes, and its ?v= on every book page too
 
 # slug: (site folder, file prefix, short name, title, testament)
