@@ -39,13 +39,14 @@ All of these are live and pushed to `main`.
 | 2 Kings | `/2kings` | 25 | 36 | `kings/` (`*-2kgs*`) |
 | 1 Chronicles | `/1chronicles` | 29 | 43 | `chronicles/` (`*-1chr*`) |
 | 2 Chronicles | `/2chronicles` | 36 | 46 | `chronicles/` (`*-2chr*`) |
+| Ezra | `/ezra` | 10 | 19 | `ezra/` |
 | Matthew | `/matthew` | 28 | 111 | `matthew/` |
 | Mark | `/mark` | 16 | 75 | `mark/` |
 | Luke | `/luke` | 24 | 103 | `luke/` |
 | John | `/bible` (not `/john`) | 21 | 88 | root of `visual-bible/` (`data/`, `metrics/`) |
 | Acts | `/acts` | 28 | 98 | `acts/` |
 
-804 scenes in all. Other pages: `/` (the story, built from `content/story.md`), `/making-of`
+823 scenes in all. Other pages: `/` (the story, built from `content/story.md`), `/making-of`
 (every generation and edit with its prompt), `/under-the-hood` (architecture, numbers, compare
 view), `/infographic`.
 
@@ -72,6 +73,7 @@ and each working folder's `cast.json`. The ones reused across books:
 - The ark of the covenant (an object reference): `halo_klein_00274_.png`
 - Elijah `halo_klein_00279_`, Elisha `halo_edit_00381_` (young), `halo_klein_ref_00846_` (old)
 - Asaph `halo_klein_00325_`, Rehoboam `halo_klein_ref_00873_` (made from old Solomon), Asa `halo_edit_00458_`, Jehoshaphat `halo_klein_00327_` (Chronicles)
+- Ezra `halo_klein_00398_`, Zerubbabel `halo_edit_00571_`, Jeshua `halo_edit_00572_` (Ezra)
 
 All source PNGs live in `~/halo-images/` on the Mac (not in git). The site has WebP copies.
 

@@ -725,6 +725,50 @@ different ways, so 15:1 shows the ark set down with the Levites ready to lift it
 | GPU time | 62 min | 67 min | 34 min | 41 min |
 | Narration | 138 min of audio | 161 min of audio | | |
 
+## Part eleven: Ezra
+
+Ezra is short: 10 chapters and 19 scenes, covering two returns from Babylon about eighty years apart. You can
+[read it here](/ezra), or listen to it in the [reader](/read/ezra).
+
+<p class="cta"><a class="primary" href="/read/ezra">Read Ezra</a><a href="/making-of?book=Ezra">See every attempt</a></p>
+
+**The cast.** Three new portraits: Zerubbabel and Jeshua the high priest, who rebuild the altar and the temple,
+and Ezra the scribe, who comes later with the law. Two of the three first came out with a buttoned shirt placket
+under their robes, which one edit fixed each time.
+
+**One planner this time.** For a single short book Claude wrote the plan directly instead of splitting it across agents. The rest ran
+the same way as Chronicles: images one job at a time in two batches, then the camera paths and the narration side
+by side once every image was final. The whole book took under an hour.
+
+**Care with chapter 10.** Ezra ends with the men agreeing to put away their foreign wives and children. The picture
+for it shows only the priests giving their hands in pledge and the ram offered for their trespass.
+
+<div class="pair">
+<img src="/images/full/halo_edit_00577_.webp" alt="The foundation of the second temple laid as young men shout and old men weep">
+<img src="/images/full/halo_edit_00593_.webp" alt="Ezra sitting stunned with his robe torn at the evening sacrifice">
+<figcaption>Left: Ezra 3:8-13, the noise of the shout of joy and the weeping. Right: 9:1-15, Ezra sat down astonied.</figcaption>
+</div>
+
+### What went wrong this time
+
+- Hats. Berets, knitted beanies, pointed caps and a fedora, scene after scene.
+- A clipboard, eyeglasses, and a security camera on the roof of the temple.
+- An edit asked to remove a woman's glasses kept the glasses and added a new person.
+- The camp at the river Ahava came out with modern tents and prayer rugs.
+- The rain assembly in chapter 10 stood in front of a modern town with lamp posts and utility poles.
+
+### Ezra by the numbers
+
+| | Ezra | 2 Chronicles | 1 Chronicles |
+|---|---|---|---|
+| Scenes | 19 | 46 | 43 |
+| New portraits | 3 | 3 | 1 |
+| Total attempts | 68 | 166 | 151 |
+| Attempts per published image | 3.58 | 3.61 | 3.51 |
+| Kept on the first try | 2 | 1 | 2 |
+| GPU time | 30 min | 67 min | 62 min |
+| Narration | 48 min of audio | 161 min | 138 min |
+
 ## Try it
 
 Everything is on [GitHub](https://github.com/btrzupek/halo-visual-bible): the MCP server, the ComfyUI workflows, the tunnel setup, the book viewer,

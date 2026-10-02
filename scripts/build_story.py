@@ -49,6 +49,7 @@ PAGE = """<!doctype html>
       <a class="link" href="/2kings">2 Kings</a>
       <a class="link" href="/1chronicles">1 Chronicles</a>
       <a class="link" href="/2chronicles">2 Chronicles</a>
+      <a class="link" href="/ezra">Ezra</a>
       <span class="group">New Testament</span>
       <a class="link" href="/matthew">Matthew</a>
       <a class="link" href="/mark">Mark</a>
