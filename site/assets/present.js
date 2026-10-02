@@ -31,7 +31,7 @@
     '<aside class="panel" id="panel" aria-live="polite"><p class="ref"></p><h1></h1><p class="sub"></p>' +
       '<div class="verses" id="verses" tabindex="0"></div><button class="cue" id="cue" type="button">Continue</button></aside>' +
     '<div class="progress" aria-hidden="true"><i id="bar"></i></div>' +
-    '<div class="top"><a class="back" href="' + R.back + '" title="All scenes in ' + esc(R.book) + '" aria-label="All scenes in ' + esc(R.book) + '">' + esc(R.book) + '</a><span class="place" id="place"></span>' +
+    '<div class="top"><a class="back" id="back" href="/">Back</a><span class="place" id="place"></span>' +
       '<button type="button" class="report" id="report" aria-label="Report a problem with this scene" title="Report a problem" hidden>' +
         '<svg viewBox="0 0 24 24"><path d="M5 3h2v18H5zM8 4h10l-2 4 2 4H8z"/></svg></button></div>' +
     '<div class="controls" role="group" aria-label="Player">' +
@@ -323,6 +323,12 @@
     '<div class="go">' + (AUDIO ? '<button class="primary" data-n="1">Listen</button><button class="ghost" data-n="0">Read at my own pace</button>'
                                 : '<button class="primary" data-n="0">Begin</button>') +
     '<a class="ghost" href="' + R.back + '">Browse all scenes</a></div></div></section>');
+  // Back (upper left, as on every site page): the page you came from on this site, else the home page.
+  (function () {
+    var from = false;
+    try { var r = new URL(document.referrer); from = r.origin === location.origin && r.pathname.replace(/\/+$/, '') !== location.pathname.replace(/\/+$/, ''); } catch (e) {}
+    $('#back').addEventListener('click', function (e) { if (from) { e.preventDefault(); history.back(); } });
+  })();
   $('#start').addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b) return;
     setNarrate(b.dataset.n === '1');

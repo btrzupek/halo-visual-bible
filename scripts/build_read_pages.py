@@ -13,7 +13,7 @@ import html, json, os, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, 'site')
-ASSET_V = 9  # bump when present.js or present.css change, so browsers fetch the new files
+ASSET_V = 10  # bump when present.js or present.css change, so browsers fetch the new files
 REPORT_V = 1  # bump when site/assets/report.js changes, and its ?v= on every book page too
 
 # slug: (site folder, file prefix, short name, title, testament)
@@ -143,7 +143,7 @@ def nav():
             '  <a class="link" href="/making-of">Making of</a>\n'
             '  <a class="link" href="/under-the-hood">Under the hood</a>\n'
             '  <a class="link" href="https://github.com/btrzupek/halo-visual-bible">GitHub</a>\n</nav>\n'
-            '<script src="/assets/nav.js" defer></script>\n')
+            '<script src="/assets/nav.js?v=2" defer></script>\n')
 
 
 def home(books):
@@ -159,7 +159,7 @@ def home(books):
     return (HEAD.format(title='The Visual Bible', desc=html.escape(
                 f'The King James Bible, one scene at a time: {len(books)} books and {total} illustrated scenes, '
                 'each read aloud, all made locally on an AMD Ryzen AI Halo box.'))
-            + '<link rel="stylesheet" href="/assets/site.css?v=books1">\n<style>\n'
+            + '<link rel="stylesheet" href="/assets/site.css?v=back1">\n<style>\n'
             ':root{--ink:#efe6d0;--soft:#cbbf9f;--gilt:#d4b066;--serif:"Spectral",Georgia,serif;--display:"Marcellus",Georgia,serif}\n'
             '*{box-sizing:border-box}\n'
             'body{margin:0;min-height:100svh;background:#05060a;color:var(--ink);font-family:var(--serif);-webkit-font-smoothing:antialiased}\n'

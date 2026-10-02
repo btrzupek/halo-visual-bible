@@ -31,7 +31,7 @@ PAGE = """<!doctype html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=books1">
+<link rel="stylesheet" href="/assets/site.css?v=back1">
 <style>.todo{{background:#fff3c4;color:#5a4300;border:1px dashed #c9a227;padding:.6rem .9rem;border-radius:4px;font-family:var(--mono);font-size:.85rem}}</style>
 </head>
 <body>
@@ -65,7 +65,7 @@ PAGE = """<!doctype html>
   <a class="link" href="/under-the-hood">Under the hood</a>
   <a class="link" href="https://github.com/btrzupek/halo-visual-bible">GitHub</a>
 </nav>
-<script src="/assets/nav.js" defer></script>
+<script src="/assets/nav.js?v=2" defer></script>
 <figure class="post-hero"><img src="/images/full/{hero}" alt="{hero_caption}"><figcaption>{hero_caption}</figcaption></figure>
 <article class="post">
 {body}

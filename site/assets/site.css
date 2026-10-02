@@ -20,6 +20,11 @@ a{color:var(--gilt);text-underline-offset:.18em}
   padding:.7rem clamp(1rem,4vw,2.5rem);background:color-mix(in srgb,var(--bg) 90%,transparent);
   -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule);font-family:var(--display)}
 .sitenav .brand{color:var(--ink);text-decoration:none;font-size:1.1rem;margin-right:auto;letter-spacing:.02em}
+/* Back (added by nav.js on every page but home): first thing in the bar, same chevron as the reader's */
+.sitenav .navback{display:flex;align-items:center;gap:.45rem;color:var(--muted);text-decoration:none;font-size:1rem;padding:.15rem .9rem .15rem 0;margin-right:.1rem;border-right:1px solid var(--rule)}
+.sitenav .navback::before{content:"";width:.42em;height:.42em;border-left:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg)}
+.sitenav .navback:hover{color:var(--ink)}
+.sitenav.over .navback{color:#efe6d0;border-right-color:rgba(239,230,208,.3)}
 .sitenav .brand b{color:var(--gilt);font-weight:400}
 .sitenav a.link{color:var(--muted);text-decoration:none;font-size:1rem;padding:.15rem 0;border-bottom:1px solid transparent}
 .sitenav a.link:hover{color:var(--ink)}
@@ -71,7 +76,7 @@ footer.site{border-top:1px solid var(--rule);background:var(--panel);color:var(-
 footer.site div{width:min(1180px,100%);margin:0 auto;padding:2rem clamp(1.2rem,4vw,2.5rem)}
 footer.site p{margin:0 0 .4rem}
 
-@media (max-width:640px){ .pair{grid-template-columns:1fr} .sitenav .brand{width:100%} }
+@media (max-width:640px){ .pair{grid-template-columns:1fr} .sitenav .brand{flex:1 1 calc(100% - 6rem)} }
 /* Books menu: one control in the nav instead of a link per book */
 .sitenav details.books{position:relative}
 .sitenav details.books summary{list-style:none;cursor:pointer;color:var(--muted);font-size:1rem;padding:.15rem 0;border-bottom:1px solid transparent;display:flex;align-items:center;gap:.35rem}
