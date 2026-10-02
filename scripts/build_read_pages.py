@@ -97,7 +97,15 @@ HEAD = '''<!doctype html>
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <meta name="theme-color" content="#05060a">
-<meta property="og:image" content="/infographic/og.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Visual Bible">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{desc}">
+<meta property="og:image" content="https://halo-visual-bible.vercel.app/og/home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://halo-visual-bible.vercel.app/og/home.jpg">
 <link rel="icon" href="/assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

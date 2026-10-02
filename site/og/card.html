@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Visual Bible link preview</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Spectral:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<!-- The link-preview image (Open Graph). Rendered to site/og/home.jpg by scripts/render_og.sh.
+     It reads the book cards from the home page, so it stays current as books are added. -->
+<style>
+html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#05060a;color:#efe6d0}
+.wrap{position:relative;width:1200px;height:630px;padding:46px 56px 0;box-sizing:border-box}
+h1{font-family:Marcellus,Georgia,serif;font-weight:400;font-size:84px;line-height:1;margin:0;letter-spacing:.005em}
+p{font-family:Spectral,Georgia,serif;font-style:italic;font-size:25px;color:#cbbf9f;margin:16px 0 0}
+p b{font-style:normal;font-weight:400;color:#d4b066}
+.grid{position:absolute;left:56px;right:56px;bottom:44px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.t{position:relative;aspect-ratio:16/10;border-radius:8px;overflow:hidden;background:#111}
+.t img{width:100%;height:100%;object-fit:cover;display:block}
+.t::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,6,10,0) 45%,rgba(5,6,10,.85))}
+.t span{position:absolute;z-index:1;left:14px;bottom:10px;font-family:Marcellus,Georgia,serif;font-size:24px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Visual Bible</h1>
+  <p>The King James Bible, one scene at a time, read aloud. <b id="count"></b></p>
+  <div class="grid" id="grid"></div>
+</div>
+<script>
+fetch('/').then(function (r) { return r.text(); }).then(function (t) {
+  var d = new DOMParser().parseFromString(t, 'text/html');
+  var cards = [].slice.call(d.querySelectorAll('a.book'));
+  var scenes = cards.reduce(function (n, a) { var m = a.textContent.match(/(\d+) scenes/); return n + (m ? +m[1] : 0); }, 0);
+  document.getElementById('count').textContent = cards.length + ' books · ' + scenes + ' scenes';
+  // eight tiles spread across the whole canon, so both testaments show
+  var pick = [], n = Math.min(8, cards.length);
+  for (var i = 0; i < n; i++) pick.push(cards[Math.round(i * (cards.length - 1) / (n - 1))]);
+  document.getElementById('grid').innerHTML = pick.map(function (a) {
+    return '<div class="t"><img src="' + a.querySelector('img').getAttribute('src') + '" alt=""><span>' + a.querySelector('.name').textContent + '</span></div>';
+  }).join('');
+  document.body.dataset.ready = '1';
+});
+</script>
+</body>
+</html>

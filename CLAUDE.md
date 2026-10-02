@@ -61,7 +61,12 @@ The scrolling `/<folder>` page is called **All scenes**: readers reach it from t
 button and its top-left book name, and its bar has "▶ Read and listen" plus one "Show text" switch (off by
 default, so it opens as the picture grid; `?view=scripture` opens with text). Every page but home gets a **Back** button at the left of the nav bar, added by `site/assets/nav.js`
 (the reader has the same in its top bar, `present.js`): it returns to the previous page on this site, else goes up
-(All scenes to its reader, everything else home). New pages need nothing beyond the usual `nav.js?v=` script tag. Add the new book's link in each
+(All scenes to its reader, everything else home). New pages need nothing beyond the usual `nav.js?v=` script tag.
+
+**Link preview:** shared links show `site/og/home.jpg` (1200x630), a collage of book cards made from
+`site/og/card.html`, which reads the book list from the home page. After adding a book and rebuilding the home page,
+rerun `scripts/render_og.sh` (site served on port 8090) and commit the new `home.jpg`. The story and the infographic
+keep the infographic card (`/infographic/og.png`). Add the new book's link in each
 `site/*/index.html`, in `scripts/build_story.py` (then rebuild the story), and mark it `aria-current="page"` plus
 `class="books current"` with the book name as the `<summary>` on the book's own page. When you change
 `site/assets/site.css`, bump the `?v=` on its `<link>` in every page so browsers fetch the new file.
