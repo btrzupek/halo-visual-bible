@@ -13,7 +13,7 @@ import html, json, os, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, 'site')
-ASSET_V = 8  # bump when present.js or present.css change, so browsers fetch the new files
+ASSET_V = 9  # bump when present.js or present.css change, so browsers fetch the new files
 REPORT_V = 1  # bump when site/assets/report.js changes, and its ?v= on every book page too
 
 # slug: (site folder, file prefix, short name, title, testament)
@@ -124,7 +124,7 @@ def reader_page(slug, folder, prefix, name, title, chs):
             '  window.VB={ch:{},add:function(c,d){this.ch[c]=d;}};\n'
             f'  window.READ={config};\n</script>\n{tags}\n</head>\n<body>\n'
             f'<noscript><p style="padding:2rem">This page needs JavaScript. <a href="/{folder}" style="color:#d4b066">'
-            f'Read {html.escape(name)} on the book page</a>.</p></noscript>\n'
+            f'See all scenes in {html.escape(name)}</a>.</p></noscript>\n'
             f'<script src="/assets/report.js?v={REPORT_V}"></script>\n'
             f'<script src="/assets/present.js?v={ASSET_V}"></script>\n</body>\n</html>\n')
 
@@ -132,11 +132,11 @@ def reader_page(slug, folder, prefix, name, title, chs):
 def nav():
     groups = {'Old': [], 'New': []}
     for slug, (folder, _, name, _, t) in BOOKS.items():
-        groups[t].append(f'      <a class="link" href="/{folder}">{html.escape(name)}</a>')
+        groups[t].append(f'      <a class="link" href="/read/{slug}">{html.escape(name)}</a>')
     return ('<nav class="sitenav over" aria-label="Site">\n'
             '  <a class="brand" href="/" aria-current="page">halo <b>·</b> Visual Bible</a>\n'
             '  <a class="link" href="/story">The story</a>\n'
-            '  <details class="books">\n    <summary>Book pages</summary>\n    <div class="menu" aria-label="Books">\n'
+            '  <details class="books">\n    <summary>Books</summary>\n    <div class="menu" aria-label="Books">\n'
             '      <span class="group">Old Testament</span>\n' + '\n'.join(groups['Old']) + '\n'
             '      <span class="group">New Testament</span>\n' + '\n'.join(groups['New']) + '\n'
             '    </div>\n  </details>\n'

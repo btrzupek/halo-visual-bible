@@ -25,7 +25,7 @@ each chapter, and show a contact sheet every 2 or 3 chapters.
 
 ## Phase 3: the book page and site wiring
 
-Follow AGENTS.md "Common tasks, Add a book": copy the newest book page, Books menu on every page (and in
+Follow AGENTS.md "Common tasks, Add a book": copy the newest book page (its All scenes view), Books menu on every page linking to `/read/<slug>` (and in
 `scripts/build_story.py`, whose output is now `site/story/index.html`), `--cast` in
 `build_site_assets.py`, Making of filter, Under the hood column, `BOOKS` in `build_verse_index.py`,
 per-job numbers, story Part. Build order: assets, verse index, numbers, story.

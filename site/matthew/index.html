@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>The Gospel of Matthew: a visual Bible</title>
+<title>The Gospel of Matthew: all scenes</title>
 <meta name="description" content="The Gospel of Matthew, all 28 chapters, illustrated with 111 scenes generated locally on an AMD Ryzen AI Halo box.">
 <meta property="og:image" content="/infographic/og.png">
 <link rel="icon" href="/assets/favicon.svg">
@@ -100,7 +100,7 @@ main{width:min(1280px,100%);margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem) 4rem
   background:radial-gradient(ellipse 68% 64% at 50% 50%,transparent 50%,rgba(250,238,210,.22) 100%)}
 .ref .ptag{font-style:italic;color:var(--muted);letter-spacing:.02em}
 
-/* ---- view toggle: "Text + images" (default) or "Images only" */
+/* ---- view switch: pictures only (default) or "Show text" */
 /* chapter bar = two rows: chapter links (scrolls sideways on phones), then the view toggle */
 .chapnav{flex-direction:column;align-items:stretch;gap:.35rem;overflow:visible}
 .chapnav .chaps{display:flex;align-items:center;gap:.15rem;overflow-x:auto;scrollbar-width:none}
@@ -161,23 +161,23 @@ footer p{margin:0 0 .6rem}
     <summary>Matthew</summary>
     <div class="menu" aria-label="Books">
       <span class="group">Old Testament</span>
-      <a class="link" href="/genesis">Genesis</a>
-      <a class="link" href="/ruth">Ruth</a>
-      <a class="link" href="/1samuel">1 Samuel</a>
-      <a class="link" href="/2samuel">2 Samuel</a>
-      <a class="link" href="/1kings">1 Kings</a>
-      <a class="link" href="/2kings">2 Kings</a>
-      <a class="link" href="/1chronicles">1 Chronicles</a>
-      <a class="link" href="/2chronicles">2 Chronicles</a>
-      <a class="link" href="/ezra">Ezra</a>
-      <a class="link" href="/nehemiah">Nehemiah</a>
-      <a class="link" href="/esther">Esther</a>
+      <a class="link" href="/read/genesis">Genesis</a>
+      <a class="link" href="/read/ruth">Ruth</a>
+      <a class="link" href="/read/1samuel">1 Samuel</a>
+      <a class="link" href="/read/2samuel">2 Samuel</a>
+      <a class="link" href="/read/1kings">1 Kings</a>
+      <a class="link" href="/read/2kings">2 Kings</a>
+      <a class="link" href="/read/1chronicles">1 Chronicles</a>
+      <a class="link" href="/read/2chronicles">2 Chronicles</a>
+      <a class="link" href="/read/ezra">Ezra</a>
+      <a class="link" href="/read/nehemiah">Nehemiah</a>
+      <a class="link" href="/read/esther">Esther</a>
       <span class="group">New Testament</span>
-      <a class="link" href="/matthew" aria-current="page">Matthew</a>
-      <a class="link" href="/mark">Mark</a>
-      <a class="link" href="/luke">Luke</a>
-      <a class="link" href="/bible">John</a>
-      <a class="link" href="/acts">Acts</a>
+      <a class="link" href="/read/matthew" aria-current="page">Matthew</a>
+      <a class="link" href="/read/mark">Mark</a>
+      <a class="link" href="/read/luke">Luke</a>
+      <a class="link" href="/read/john">John</a>
+      <a class="link" href="/read/acts">Acts</a>
     </div>
   </details>
   <a class="link" href="/making-of">Making of</a>
@@ -251,25 +251,25 @@ footer p{margin:0 0 .6rem}
   chs.forEach(function(c){nav+='<a href="#ch'+c+'">'+c+'</a>';});
   nav+='<a class="toc-link" href="#contents">Contents</a><a class="toc-link" href="/story">The story</a><a class="toc-link" href="/making-of">Making of</a>';
   document.getElementById('chapnav').innerHTML='<div class="chaps">'+nav+'</div>'+
-    '<div class="viewbar"><a class="present" href="/read/matthew">Full screen</a><div class="viewtoggle" role="group" aria-label="View">'+
-    '<button type="button" data-view="scripture">Text + images</button><button type="button" data-view="images">Images only</button></div></div>';
-  // view toggle: remembered per reader, and ?view=images makes a shareable gallery link
+    '<div class="viewbar"><a class="present" href="/read/matthew">&#9654;&#xFE0E; Read and listen</a><div class="viewtoggle">'+
+    '<button type="button" aria-pressed="false">Show text</button></div></div>';
+  // view switch: pictures only by default; "Show text" is remembered per reader, and ?view=scripture shares it
   function setView(v,save){
     document.body.classList.toggle('gallery',v==='images');
-    [].forEach.call(document.querySelectorAll('.viewtoggle button'),function(b){b.setAttribute('aria-pressed',String(b.dataset.view===v));});
+    document.querySelector('.viewtoggle button').setAttribute('aria-pressed',String(v==='scripture'));
     if(!save)return;
     try{localStorage.setItem('vb-view',v);}catch(e){}
-    try{var u=new URL(location.href);if(v==='images')u.searchParams.set('view','images');else u.searchParams.delete('view');history.replaceState(null,'',u);}catch(e){}
+    try{var u=new URL(location.href);if(v==='scripture')u.searchParams.set('view','scripture');else u.searchParams.delete('view');history.replaceState(null,'',u);}catch(e){}
   }
   var qv=null,saved=null;
   try{qv=new URLSearchParams(location.search).get('view');}catch(e){}
   try{saved=localStorage.getItem('vb-view');}catch(e){}
-  setView(qv==='images'||qv==='scripture'?qv:(saved==='images'?'images':'scripture'),false);
+  setView(qv==='images'||qv==='scripture'?qv:(saved==='scripture'?'scripture':'images'),false);  // pictures first unless the reader chose Show text
   document.querySelector('.viewtoggle').addEventListener('click',function(e){
     var b=e.target.closest('button');if(!b)return;
     var keep=[].find.call(document.querySelectorAll('article.scene'),function(a){return a.getBoundingClientRect().bottom>90;});
     var wasBelowTop=keep&&window.scrollY>document.getElementById('main').offsetTop;
-    setView(b.dataset.view,true);
+    setView(b.getAttribute('aria-pressed')==='true'?'images':'scripture',true);
     if(wasBelowTop)keep.scrollIntoView();   // stay on the same scene after the layout changes
   });
 

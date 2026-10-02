@@ -17,9 +17,9 @@ came out: a fully illustrated Gospel of John. All 21 chapters, every verse, with
 
 It ended up being 88 scenes plus two character portraits, and every image was made on the box sitting on my desk.
 No cloud image API, no credits, no upload of anything. I did it in one evening and finished it the next
-morning. You can [read the whole book here](/bible).
+morning. You can [read the whole book here](/read/john).
 
-<p class="cta"><a class="primary" href="/bible">Open the Visual Bible</a><a href="/making-of">See every attempt</a><a href="/under-the-hood">Code and numbers</a></p>
+<p class="cta"><a class="primary" href="/">Open the Visual Bible</a><a href="/making-of">See every attempt</a><a href="/under-the-hood">Code and numbers</a></p>
 
 ## The box
 
@@ -154,9 +154,9 @@ without watching a meter, nothing left my house, and I kept every full resolutio
 ## Part two: the Gospel of Mark
 
 The next evening I did the Gospel of Mark the same way. 16 chapters, 678 verses, 75 scenes. Mark is shorter than
-John and it moves fast, so the scenes do too. You can [read it here](/mark).
+John and it moves fast, so the scenes do too. You can [read it here](/read/mark).
 
-<p class="cta"><a class="primary" href="/mark">Open Mark</a><a href="/making-of">See every attempt</a></p>
+<p class="cta"><a class="primary" href="/read/mark">Open Mark</a><a href="/making-of">See every attempt</a></p>
 
 A few things were different this time.
 
@@ -252,9 +252,9 @@ really well.
 ## Part three: the Gospel of Luke
 
 Then Luke. 24 chapters, 1,151 verses, 103 scenes. It's the longest one yet, and at this point I want to do all four
-Gospels. You can [read it here](/luke).
+Gospels. You can [read it here](/read/luke).
 
-<p class="cta"><a class="primary" href="/luke">Open Luke</a><a href="/making-of?book=Luke">See every attempt</a></p>
+<p class="cta"><a class="primary" href="/read/luke">Open Luke</a><a href="/making-of?book=Luke">See every attempt</a></p>
 
 This time the box had nothing else to do. I had just rebooted it to clear out dozens of orphaned Chromium sessions
 that were eating memory, and no coding agents were running. That made Luke a good control for Mark. A typical scene
@@ -288,7 +288,7 @@ tuned later. Mark's two parable scenes got it too.
 
 <figure>
 <img src="/images/full/halo_klein_00077_.webp" alt="The prodigal son's father embracing his returning son">
-<figcaption>Luke 15:11-24, the prodigal son. On the book page this one has the soft parable edge.</figcaption>
+<figcaption>Luke 15:11-24, the prodigal son. On its All scenes page this one has the soft parable edge.</figcaption>
 </figure>
 
 ### What went wrong this time
@@ -320,9 +320,9 @@ Same story as Mark: 20 of 103 scenes were keepers on the first try. The new ones
 ## Part four: the Gospel of Matthew
 
 And now Matthew. 28 chapters, 1,071 verses, 111 scenes, which makes it the biggest book so far. With Matthew done,
-all four Gospels are up. You can [read it here](/matthew).
+all four Gospels are up. You can [read it here](/read/matthew).
 
-<p class="cta"><a class="primary" href="/matthew">Open Matthew</a><a href="/making-of?book=Matthew">See every attempt</a></p>
+<p class="cta"><a class="primary" href="/read/matthew">Open Matthew</a><a href="/making-of?book=Matthew">See every attempt</a></p>
 
 Before starting, the box was checked and came back clean: only ComfyUI running, no language model loaded, half a
 gigabyte of GPU memory in use, and no coding agents. So Matthew is a second quiet run to compare with Luke, and the
@@ -387,9 +387,9 @@ the same way the others are, so it gets the same treatment.
 
 After the four Gospels I kept going into Acts. 28 chapters, 1,007 verses, 98 scenes. It's a different kind of book:
 the story moves from Jerusalem out to Samaria, Damascus, Antioch, Athens, Ephesus, a shipwreck and finally Rome, and
-most of it follows one man. You can [read it here](/acts).
+most of it follows one man. You can [read it here](/read/acts).
 
-<p class="cta"><a class="primary" href="/acts">Open Acts</a><a href="/making-of?book=Acts">See every attempt</a></p>
+<p class="cta"><a class="primary" href="/read/acts">Open Acts</a><a href="/making-of?book=Acts">See every attempt</a></p>
 
 Because it's long, I had Claude work through it in four chunks (chapters 1 to 7, 8 to 12, 13 to 20 and 21 to 28)
 and post a contact sheet after each one. On the site it's still one book.
@@ -458,9 +458,9 @@ labeled "A vision".
 
 Then I went back to the beginning. Genesis is 50 chapters, 1,533 verses and 89 scenes, from the first light to
 Joseph's death in Egypt. This one I handed off completely: I answered a few questions, told Claude to publish it when
-it was done, and went to bed. It ran on the box overnight and was live by the morning. You can [read it here](/genesis).
+it was done, and went to bed. It ran on the box overnight and was live by the morning. You can [read it here](/read/genesis).
 
-<p class="cta"><a class="primary" href="/genesis">Open Genesis</a><a href="/making-of?book=Genesis">See every attempt</a></p>
+<p class="cta"><a class="primary" href="/read/genesis">Open Genesis</a><a href="/making-of?book=Genesis">See every attempt</a></p>
 
 **A new cast.** None of the Gospel faces belong in Genesis, so it got eleven portraits of its own: Adam, Eve, Noah,
 Abraham, Sarah, Isaac, Rebekah, Jacob, Esau, Rachel and Joseph. Eight of them came out right on the first try.
@@ -525,9 +525,9 @@ anything to get wrong. The rest is the list of lessons from the other five books
 
 Next came 1 and 2 Samuel, and this time I asked for one person to grow old on the page. They are two books on the site,
 55 chapters and 78 scenes between them, and they follow David from the shepherd boy Samuel anoints to the old king
-buying a threshing floor for an altar. You can read [1 Samuel](/1samuel) and [2 Samuel](/2samuel).
+buying a threshing floor for an altar. You can read [1 Samuel](/read/1samuel) and [2 Samuel](/read/2samuel).
 
-<p class="cta"><a class="primary" href="/1samuel">Open 1 Samuel</a><a href="/2samuel">Open 2 Samuel</a><a href="/making-of?book=1%20Samuel">See every attempt</a></p>
+<p class="cta"><a class="primary" href="/read/1samuel">Open 1 Samuel</a><a href="/read/2samuel">Open 2 Samuel</a><a href="/making-of?book=1%20Samuel">See every attempt</a></p>
 
 **David at four ages.** A single portrait would not work for a man who is a boy in one chapter and an old king forty
 years later. So David has four: the shepherd, the young man on the run from Saul, the king, and the old king. The
@@ -586,9 +586,9 @@ heads, and a hand with three fingers.
 ## Part eight: 1 Kings
 
 After Samuel I asked for the Kings, one book at a time, each reviewed before it goes live. 1 Kings is 22 chapters and
-37 scenes, from David's last days to Ahab dying in his chariot at Ramothgilead. You can [read it here](/1kings).
+37 scenes, from David's last days to Ahab dying in his chariot at Ramothgilead. You can [read it here](/read/1kings).
 
-<p class="cta"><a class="primary" href="/1kings">Open 1 Kings</a><a href="/making-of?book=1%20Kings">See every attempt</a></p>
+<p class="cta"><a class="primary" href="/read/1kings">Open 1 Kings</a><a href="/making-of?book=1%20Kings">See every attempt</a></p>
 
 **The cast.** David carries over as the old king for the first two chapters. Solomon has two portraits, young and
 old, the second made from the first the same way David aged across Samuel. Then Jeroboam, Ahab, Jezebel, and the
@@ -627,9 +627,9 @@ picture now, with the priests backing away and nobody near the ark.
 ## Part nine: 2 Kings
 
 2 Kings is 25 chapters and 36 scenes, from Elijah taken up in the whirlwind to the temple burning and a captive king
-eating at the table of the king of Babylon. You can [read it here](/2kings).
+eating at the table of the king of Babylon. You can [read it here](/read/2kings).
 
-<p class="cta"><a class="primary" href="/2kings">Open 2 Kings</a><a href="/making-of?book=2%20Kings">See every attempt</a></p>
+<p class="cta"><a class="primary" href="/read/2kings">Open 2 Kings</a><a href="/making-of?book=2%20Kings">See every attempt</a></p>
 
 **The cast.** Elijah and Elisha carry over from 1 Kings, and Elisha gets an older portrait made from his younger one,
 since he is an old man on his deathbed by chapter 13. The new faces are Jehu, Hezekiah and Josiah.
@@ -668,7 +668,7 @@ single plain wall.
 
 Chronicles tells Israel's story a second time, from Adam to the decree of Cyrus. It is two books on the site, 65
 chapters and 89 scenes, and both have a narrated reader like the rest. You can read
-[1 Chronicles](/1chronicles) and [2 Chronicles](/2chronicles).
+[1 Chronicles](/read/1chronicles) and [2 Chronicles](/read/2chronicles).
 
 <p class="cta"><a class="primary" href="/read/1chronicles">Read 1 Chronicles</a><a href="/read/2chronicles">Read 2 Chronicles</a><a href="/making-of?book=1%20Chronicles">See every attempt</a></p>
 
@@ -728,7 +728,7 @@ different ways, so 15:1 shows the ark set down with the Levites ready to lift it
 ## Part eleven: Ezra
 
 Ezra is short: 10 chapters and 19 scenes, covering two returns from Babylon about eighty years apart. You can
-[read it here](/ezra), or listen to it in the [reader](/read/ezra).
+[read it here](/read/ezra), or listen to it in the [reader](/read/ezra).
 
 <p class="cta"><a class="primary" href="/read/ezra">Read Ezra</a><a href="/making-of?book=Ezra">See every attempt</a></p>
 
@@ -772,7 +772,7 @@ for it shows only the priests giving their hands in pledge and the ram offered f
 ## Part twelve: Nehemiah
 
 Nehemiah is 13 chapters and 20 scenes: the king's cupbearer hears that Jerusalem's wall is broken down, gets leave
-to go, and rebuilds it in fifty-two days. You can [read it here](/nehemiah), or listen in the [reader](/read/nehemiah).
+to go, and rebuilds it in fifty-two days. You can [read it here](/read/nehemiah), or listen in the [reader](/read/nehemiah).
 
 <p class="cta"><a class="primary" href="/read/nehemiah">Read Nehemiah</a><a href="/making-of?book=Nehemiah">See every attempt</a></p>
 
@@ -811,7 +811,7 @@ some and pulling out their hair. The picture shows only Nehemiah at prayer: reme
 
 ## Part thirteen: Esther
 
-Esther is 10 chapters and 17 scenes, all at the Persian court in Shushan. You can [read it here](/esther), or
+Esther is 10 chapters and 17 scenes, all at the Persian court in Shushan. You can [read it here](/read/esther), or
 listen in the [reader](/read/esther).
 
 <p class="cta"><a class="primary" href="/read/esther">Read Esther</a><a href="/making-of?book=Esther">See every attempt</a></p>
@@ -853,7 +853,7 @@ in any scene, and queen Vashti never appears: her scene is the chamberlains comi
 ## Part fourteen: Ruth
 
 Ruth is the shortest book so far: 4 chapters and 8 scenes, a famine, three widows, a barley harvest and a
-redeemer. You can [read it here](/ruth), or listen in the [reader](/read/ruth). It sits between Genesis and
+redeemer. You can [read it here](/read/ruth), or listen in the [reader](/read/ruth). It sits between Genesis and
 1 Samuel on the site, where it belongs.
 
 <p class="cta"><a class="primary" href="/read/ruth">Read Ruth</a><a href="/making-of?book=Ruth">See every attempt</a></p>

@@ -132,6 +132,8 @@ about a minute.
 
 ## Common tasks
 
+- **Navigation:** every Books menu link and every home card opens the reader (`/read/<slug>`). The `/<folder>` page is
+  "All scenes" (picture grid by default, "Show text" switch), reached from the reader. Story links to a book use `/read/<slug>`.
 - **Add a book:** follow [`prompts/new-book.md`](prompts/new-book.md) for the phases (including Read and
   narration) and [`CLAUDE.md`](CLAUDE.md) for the wiring. Summary of the wiring: copy the newest book page
   (`site/2kings/index.html`) and change titles, hero, chapter script tags, cast figures and the ref

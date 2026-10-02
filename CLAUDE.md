@@ -56,8 +56,11 @@ Rerun step 3 whenever chapters, picks or scene ranges change, not only for new b
 6. Add the book's slug and name to `BOOKS` in [`api/report.js`](api/report.js), or its reader reports are refused.
 
 **Site nav:** books are in the `Books` menu (`<details class="books">`) in every page's `sitenav`, grouped
-by testament in canonical order. Add the new book's link there in each `site/*/index.html`, in
-`scripts/build_story.py` (then rebuild the story), and mark it `aria-current="page"` plus
+by testament in canonical order. **Every Books link opens the reader, `/read/<slug>`** (John: `/read/john`).
+The scrolling `/<folder>` page is called **All scenes**: readers reach it from the reader's "Browse all scenes"
+button and its top-left book name, and its bar has "▶ Read and listen" plus one "Show text" switch (off by
+default, so it opens as the picture grid; `?view=scripture` opens with text). Add the new book's link in each
+`site/*/index.html`, in `scripts/build_story.py` (then rebuild the story), and mark it `aria-current="page"` plus
 `class="books current"` with the book name as the `<summary>` on the book's own page. When you change
 `site/assets/site.css`, bump the `?v=` on its `<link>` in every page so browsers fetch the new file.
 
