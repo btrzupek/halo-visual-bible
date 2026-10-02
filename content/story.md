@@ -850,6 +850,46 @@ in any scene, and queen Vashti never appears: her scene is the chamberlains comi
 | GPU time | 30 min | 28 min | 30 min |
 | Narration | 34 min of audio | 68 min | 48 min |
 
+## Part fourteen: Ruth
+
+Ruth is the shortest book so far: 4 chapters and 8 scenes, a famine, three widows, a barley harvest and a
+redeemer. You can [read it here](/ruth), or listen in the [reader](/read/ruth). It sits between Genesis and
+1 Samuel on the site, where it belongs.
+
+<p class="cta"><a class="primary" href="/read/ruth">Read Ruth</a><a href="/making-of?book=Ruth">See every attempt</a></p>
+
+**The cast.** Ruth, Naomi and Boaz each have a portrait. Ruth and Naomi came out right the first time; Boaz came out
+in a knitted cardigan with a button, like Mordecai before him, and one edit fixed it.
+
+**Chapter 3.** The night at the threshing floor is shown by its last moment, in the morning: Boaz pouring six measures
+of barley into Ruth's veil, both of them standing. The baby Obed lies on a blanket at Naomi's knees, since babies
+held in arms keep coming out with two heads.
+
+<div class="pair">
+<img src="/images/full/halo_edit_00660_.webp" alt="Naomi between her two daughters in law on the road from Moab">
+<img src="/images/full/halo_edit_00666_.webp" alt="Boaz pouring barley into the veil Ruth holds out">
+<figcaption>Left: Ruth 1:6-14, on the road from Moab. Right: 3:1-18, six measures of barley.</figcaption>
+</div>
+
+### What went wrong this time
+
+- The family leaving for Moab came out first with Naomi missing, then with two Elimelechs.
+- The barley poured past the veil onto the ground in four of five tries. An edit meant to fix it made the grain pour out of Ruth's mouth.
+- The model would not draw ten elders at the gate. The picture in the book shows seven.
+- A modern village with tiled roofs, a utility pole and wires behind Bethlehem.
+
+### Ruth by the numbers
+
+| | Ruth | Esther | Nehemiah |
+|---|---|---|---|
+| Scenes | 8 | 17 | 20 |
+| New portraits | 3 | 4 | 1 |
+| Total attempts | 31 | 71 | 65 |
+| Attempts per published image | 3.88 | 4.18 | 3.25 |
+| Kept on the first try | 0 | 0 | 3 |
+| GPU time | 12 min | 30 min | 28 min |
+| Narration | 15 min of audio | 34 min | 68 min |
+
 ## Try it
 
 Everything is on [GitHub](https://github.com/btrzupek/halo-visual-bible): the MCP server, the ComfyUI workflows, the tunnel setup, the book viewer,

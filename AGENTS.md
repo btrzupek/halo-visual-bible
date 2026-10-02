@@ -33,6 +33,7 @@ All of these are live and pushed to `main`.
 | Book | URL / site folder | Chapters | Scenes | Working folder in `~/halo-images/visual-bible/` |
 |---|---|---|---|---|
 | Genesis | `/genesis` | 50 | 89 | `genesis/` |
+| Ruth | `/ruth` | 4 | 8 | `ruth/` |
 | 1 Samuel | `/1samuel` | 31 | 41 | `samuel/` (`*-1sam*`) |
 | 2 Samuel | `/2samuel` | 24 | 37 | `samuel/` (`*-2sam*`) |
 | 1 Kings | `/1kings` | 22 | 37 | `kings/` (`*-1kgs*`) |
@@ -48,7 +49,7 @@ All of these are live and pushed to `main`.
 | John | `/bible` (not `/john`) | 21 | 88 | root of `visual-bible/` (`data/`, `metrics/`) |
 | Acts | `/acts` | 28 | 98 | `acts/` |
 
-860 scenes in all. Other pages: `/` (the story, built from `content/story.md`), `/making-of`
+868 scenes in all. Other pages: `/` (the story, built from `content/story.md`), `/making-of`
 (every generation and edit with its prompt), `/under-the-hood` (architecture, numbers, compare
 view), `/infographic`.
 
@@ -78,6 +79,7 @@ and each working folder's `cast.json`. The ones reused across books:
 - Ezra `halo_klein_00398_`, Zerubbabel `halo_edit_00571_`, Jeshua `halo_edit_00572_` (Ezra)
 - Nehemiah `halo_edit_00602_` (Nehemiah)
 - Esther `halo_klein_00420_`, Mordecai `halo_edit_00629_`, Haman `halo_klein_00422_`, Ahasuerus `halo_edit_00630_` (Esther)
+- Ruth `halo_klein_00429_`, Naomi `halo_klein_00430_`, Boaz `halo_edit_00658_` (Ruth)
 
 All source PNGs live in `~/halo-images/` on the Mac (not in git). The site has WebP copies.
 
