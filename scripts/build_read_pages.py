@@ -179,7 +179,7 @@ def home(books):
             'section h2{font-family:var(--display);font-weight:400;font-size:1.05rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gilt);'
             'margin:2.5rem 0 1.2rem;display:flex;align-items:center;gap:1rem}\n'
             'section h2::after{content:"";flex:1;height:1px;background:rgba(212,176,102,.25)}\n'
-            '.books{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,19rem),1fr));gap:1.1rem}\n'
+            'section .books{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,19rem),1fr));gap:1.1rem}\n'
             '.book{position:relative;display:block;aspect-ratio:16/9;overflow:hidden;border-radius:4px;color:var(--ink);text-decoration:none;background:#111}\n'
             '.book img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease}\n'
             '.book:hover img{transform:scale(1.07)}\n'
