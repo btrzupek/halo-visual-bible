@@ -41,13 +41,14 @@ All of these are live and pushed to `main`.
 | 2 Chronicles | `/2chronicles` | 36 | 46 | `chronicles/` (`*-2chr*`) |
 | Ezra | `/ezra` | 10 | 19 | `ezra/` |
 | Nehemiah | `/nehemiah` | 13 | 20 | `nehemiah/` |
+| Esther | `/esther` | 10 | 17 | `esther/` |
 | Matthew | `/matthew` | 28 | 111 | `matthew/` |
 | Mark | `/mark` | 16 | 75 | `mark/` |
 | Luke | `/luke` | 24 | 103 | `luke/` |
 | John | `/bible` (not `/john`) | 21 | 88 | root of `visual-bible/` (`data/`, `metrics/`) |
 | Acts | `/acts` | 28 | 98 | `acts/` |
 
-843 scenes in all. Other pages: `/` (the story, built from `content/story.md`), `/making-of`
+860 scenes in all. Other pages: `/` (the story, built from `content/story.md`), `/making-of`
 (every generation and edit with its prompt), `/under-the-hood` (architecture, numbers, compare
 view), `/infographic`.
 
@@ -76,6 +77,7 @@ and each working folder's `cast.json`. The ones reused across books:
 - Asaph `halo_klein_00325_`, Rehoboam `halo_klein_ref_00873_` (made from old Solomon), Asa `halo_edit_00458_`, Jehoshaphat `halo_klein_00327_` (Chronicles)
 - Ezra `halo_klein_00398_`, Zerubbabel `halo_edit_00571_`, Jeshua `halo_edit_00572_` (Ezra)
 - Nehemiah `halo_edit_00602_` (Nehemiah)
+- Esther `halo_klein_00420_`, Mordecai `halo_edit_00629_`, Haman `halo_klein_00422_`, Ahasuerus `halo_edit_00630_` (Esther)
 
 All source PNGs live in `~/halo-images/` on the Mac (not in git). The site has WebP copies.
 

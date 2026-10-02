@@ -809,6 +809,47 @@ some and pulling out their hair. The picture shows only Nehemiah at prayer: reme
 | GPU time | 28 min | 30 min | 67 min |
 | Narration | 68 min of audio | 48 min | 161 min |
 
+## Part thirteen: Esther
+
+Esther is 10 chapters and 17 scenes, all at the Persian court in Shushan. You can [read it here](/esther), or
+listen in the [reader](/read/esther).
+
+<p class="cta"><a class="primary" href="/read/esther">Read Esther</a><a href="/making-of?book=Esther">See every attempt</a></p>
+
+**The cast.** Four portraits this time: Esther, her cousin Mordecai, Haman and king Ahasuerus. The king first came
+out in a spiked crown from a medieval painting, and Mordecai in a knitted cardigan; one edit each fixed them.
+
+**What the pictures leave out.** Esther has three hangings and a day of fighting, and none of them is shown. The
+plot against the king is a whisper overheard at the gate, Haman is undone at the banquet table, and the thirteenth
+of Adar is men standing together in their own street. God is never named in Esther, so there is no light from heaven
+in any scene, and queen Vashti never appears: her scene is the chamberlains coming back without her.
+
+<div class="pair">
+<img src="/images/full/halo_edit_00646_.webp" alt="Esther in the inner court as king Ahasuerus holds out the golden sceptre">
+<img src="/images/full/halo_edit_00654_.webp" alt="Esther pointing at Haman across the banquet table as the king looks on">
+<figcaption>Left: Esther 5:1-8, the king held out to Esther the golden sceptre. Right: 7:1-10, this wicked Haman.</figcaption>
+</div>
+
+### What went wrong this time
+
+- None of the 17 scenes was kept on the first try.
+- The palace kept turning into a modern building: upholstered sofas and armchairs, glossy bathroom tiles, panelled doors.
+- An edit asked to take the face masks off the women in the crowd turned Haman into a veiled woman.
+- An edit asked to remove the lamps at the banquet also erased the lion frieze behind them.
+- The king's white socks survived an edit and came back in a fresh render.
+
+### Esther by the numbers
+
+| | Esther | Nehemiah | Ezra |
+|---|---|---|---|
+| Scenes | 17 | 20 | 19 |
+| New portraits | 4 | 1 | 3 |
+| Total attempts | 71 | 65 | 68 |
+| Attempts per published image | 4.18 | 3.25 | 3.58 |
+| Kept on the first try | 0 | 3 | 2 |
+| GPU time | 30 min | 28 min | 30 min |
+| Narration | 34 min of audio | 68 min | 48 min |
+
 ## Try it
 
 Everything is on [GitHub](https://github.com/btrzupek/halo-visual-bible): the MCP server, the ComfyUI workflows, the tunnel setup, the book viewer,
