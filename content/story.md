@@ -769,6 +769,46 @@ for it shows only the priests giving their hands in pledge and the ram offered f
 | GPU time | 30 min | 67 min | 62 min |
 | Narration | 48 min of audio | 161 min | 138 min |
 
+## Part twelve: Nehemiah
+
+Nehemiah is 13 chapters and 20 scenes: the king's cupbearer hears that Jerusalem's wall is broken down, gets leave
+to go, and rebuilds it in fifty-two days. You can [read it here](/nehemiah), or listen in the [reader](/read/nehemiah).
+
+<p class="cta"><a class="primary" href="/read/nehemiah">Read Nehemiah</a><a href="/making-of?book=Nehemiah">See every attempt</a></p>
+
+**Hands off.** After I approved the plan and Nehemiah's portrait, Claude ran the rest on its own: images one job at
+a time, then the camera paths and the narration side by side, and stopped for me to review. His portrait first came
+out in a black knit beanie; an edit for a Persian court hat made a chef's hat, so he wears a wrapped linen headcloth.
+Ezra keeps his face from the book of Ezra for the reading of the law in chapter 8.
+
+**Care with chapter 13.** The book ends with Nehemiah contending with the men who married foreign wives, striking
+some and pulling out their hair. The picture shows only Nehemiah at prayer: remember me, O my God, for good.
+
+<div class="pair">
+<img src="/images/full/halo_edit_00612_.webp" alt="Builders laying stones on the wall with swords girded at their sides">
+<img src="/images/full/halo_klein_ref_01044_.webp" alt="Ezra reading the law at the water gate as the people lift their hands">
+<figcaption>Left: Nehemiah 4:13-23, every one had his sword girded by his side, and so builded. Right: 8:1-12, Ezra reads the law.</figcaption>
+</div>
+
+### What went wrong this time
+
+- Trousers under the robes again, in four scenes, and modern towns or castles behind the wall in five.
+- The builders' swords took seven tries, and still have medieval crossguards.
+- One edit erased Nehemiah from his own scene; another turned a street into sand dunes.
+- The trumpets at the dedication of the wall came out as modern valved brass, so the picture leaves them out.
+
+### Nehemiah by the numbers
+
+| | Nehemiah | Ezra | 2 Chronicles |
+|---|---|---|---|
+| Scenes | 20 | 19 | 46 |
+| New portraits | 1 | 3 | 3 |
+| Total attempts | 65 | 68 | 166 |
+| Attempts per published image | 3.25 | 3.58 | 3.61 |
+| Kept on the first try | 3 | 2 | 1 |
+| GPU time | 28 min | 30 min | 67 min |
+| Narration | 68 min of audio | 48 min | 161 min |
+
 ## Try it
 
 Everything is on [GitHub](https://github.com/btrzupek/halo-visual-bible): the MCP server, the ComfyUI workflows, the tunnel setup, the book viewer,

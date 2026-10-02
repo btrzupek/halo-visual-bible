@@ -77,6 +77,7 @@
       <a class="link" href="/1chronicles">1 Chronicles</a>
       <a class="link" href="/2chronicles">2 Chronicles</a>
       <a class="link" href="/ezra">Ezra</a>
+      <a class="link" href="/nehemiah">Nehemiah</a>
       <span class="group">New Testament</span>
       <a class="link" href="/matthew">Matthew</a>
       <a class="link" href="/mark">Mark</a>
@@ -93,11 +94,11 @@
 
 <main class="page">
   <h1>Under the hood</h1>
-  <p class="lede">How a chat with Claude on a Mac turned into 823 illustrated scenes, Genesis, 1 and 2 Samuel, 1 and 2 Kings, 1 and 2 Chronicles, Ezra, the four Gospels and the Acts of the Apostles, rendered on a box on my desk.
+  <p class="lede">How a chat with Claude on a Mac turned into 843 illustrated scenes, Genesis, 1 and 2 Samuel, 1 and 2 Kings, 1 and 2 Chronicles, Ezra, Nehemiah, the four Gospels and the Acts of the Apostles, rendered on a box on my desk.
     Everything here is in the <a href="https://github.com/btrzupek/halo-visual-bible">GitHub repo</a>, including the raw numbers.</p>
 
   <h2>The run, by the numbers</h2>
-  <p class="prose">Thirteen books so far. Pick any two to compare side by side. It opens on the easiest book and the hardest,
+  <p class="prose">Fourteen books so far. Pick any two to compare side by side. It opens on the easiest book and the hardest,
     measured by how many attempts it took to get each published image.</p>
   <div class="cmp" id="cmp">
     <div class="cmp-pick">
@@ -109,21 +110,21 @@
   <h3 class="sub">Attempts per published image, every book</h3>
   <ol class="rank" id="rank" aria-label="Books ranked by attempts per published image"></ol>
   <details class="alltable">
-    <summary>Show the full table for all thirteen books</summary>
+    <summary>Show the full table for all fourteen books</summary>
     <div class="scroll">
     <table id="runs">
-      <tr><th></th><th>Genesis</th><th>1 Samuel</th><th>2 Samuel</th><th>1 Kings</th><th>2 Kings</th><th>1 Chronicles</th><th>2 Chronicles</th><th>Ezra</th><th>Matthew</th><th>Mark</th><th>Luke</th><th>John</th><th>Acts</th></tr>
-      <tr><td>Test conditions</td><td>Box doing nothing else; run overnight with no one watching</td><td>One session with 2 Samuel; three rounds of fixes after Brian's review</td><td>One session with 1 Samuel</td><td>Box doing nothing else</td><td>Box doing nothing else</td><td>Image agents one job at a time; other coding agents on the box for the first half hour</td><td>One session with 1 Chronicles</td><td>Image agents one job at a time; box otherwise quiet</td><td>Box doing nothing else, checked clean before the run</td><td>Three AI coding agents running on the box at the same time</td><td>Box doing nothing else, fresh reboot</td><td>Box doing nothing else</td><td>Box doing nothing else</td></tr>
-      <tr><td>Chapters</td><td>50</td><td>31</td><td>24</td><td>22</td><td>25</td><td>29</td><td>36</td><td>10</td><td>28</td><td>16</td><td>24</td><td>21</td><td>28</td></tr>
-      <tr><td>Scenes</td><td>89</td><td>41</td><td>37</td><td>37</td><td>36</td><td>43</td><td>46</td><td>19</td><td>111</td><td>75</td><td>103</td><td>88</td><td>98</td></tr>
-      <tr><td>New cast portraits</td><td>11 (Adam to Joseph)</td><td>9 (David at four ages, Samuel, Saul, Jonathan, the ark, Goliath)</td><td>2 (Joab, Absalom)</td><td>7 (Solomon at two ages, Jeroboam, Ahab, Jezebel, Elijah, Elisha)</td><td>4 (Elisha old, Jehu, Hezekiah, Josiah)</td><td>1 (Asaph)</td><td>3 (Rehoboam, Asa, Jehoshaphat)</td><td>3 (Ezra, Zerubbabel, Jeshua)</td><td>1 (Joseph)</td><td>2 (Peter, Mary Magdalene)</td><td>1 (Mary, mother of Jesus)</td><td>2 (Jesus, John the Baptist)</td><td>6 (Paul, John, Stephen, Barnabas, Silas, Philip)</td></tr>
-      <tr><td>Attempts (generations + edits)</td><td>153 (129 + 24)</td><td>140 (87 + 53)</td><td>98 (56 + 42)</td><td>96 (63 + 33)</td><td>80 (49 + 31)</td><td>151 (98 + 53)</td><td>166 (106 + 60)</td><td>68 (38 + 30)</td><td>217 (163 + 54)</td><td>189 (160 + 29)</td><td>254 (194 + 60)</td><td>168 (121 + 47)</td><td>234 (162 + 72)</td></tr>
-      <tr><td>Attempts per published image</td><td>1.53</td><td>2.80</td><td>2.51</td><td>2.18</td><td>2.22</td><td>3.51</td><td>3.61</td><td>3.58</td><td>1.94</td><td>2.45</td><td>2.44</td><td>1.87</td><td>2.25</td></tr>
-      <tr><td>Kept on the first try</td><td>57 of 89</td><td>8 of 41</td><td>7 of 37</td><td>6 of 37</td><td>8 of 36</td><td>2 of 43</td><td>1 of 46</td><td>2 of 19</td><td>38 of 111</td><td>10 of 75</td><td>20 of 103</td><td>about half</td><td>13 of 98</td></tr>
-      <tr><td>GPU time</td><td>53 min</td><td>68 min</td><td>51 min</td><td>41 min</td><td>34 min</td><td>62 min</td><td>67 min</td><td>30 min</td><td>91 min</td><td>99 min</td><td>108 min</td><td>68 min</td><td>115 min</td></tr>
-      <tr><td>GPU busy during the session</td><td>69%</td><td colspan="2">54% (shared session)</td><td>76%</td><td>79%</td><td colspan="2">56% (shared session)</td><td>62%</td><td>58%</td><td>57%</td><td>57%</td><td>44%</td><td>63%</td></tr>
-      <tr><td>Median klein + reference job</td><td>16.7 s</td><td>16.8 s</td><td>16.9 s</td><td>16.8 s</td><td>16.2 s</td><td>16.7 s</td><td>16.6 s</td><td>16.0 s</td><td>16.7 s</td><td>21.7 s</td><td>16.8 s</td><td>15.7 s</td><td>16.8 s</td></tr>
-      <tr><td>Median edit</td><td>56.5 s</td><td>55.7 s</td><td>55.1 s</td><td>40.5 s</td><td>39.2 s</td><td>42.5 s</td><td>42.7 s</td><td>41.9 s</td><td>57.0 s</td><td>91.9 s</td><td>57.0 s</td><td>52.5 s</td><td>57.0 s</td></tr>
+      <tr><th></th><th>Genesis</th><th>1 Samuel</th><th>2 Samuel</th><th>1 Kings</th><th>2 Kings</th><th>1 Chronicles</th><th>2 Chronicles</th><th>Ezra</th><th>Nehemiah</th><th>Matthew</th><th>Mark</th><th>Luke</th><th>John</th><th>Acts</th></tr>
+      <tr><td>Test conditions</td><td>Box doing nothing else; run overnight with no one watching</td><td>One session with 2 Samuel; three rounds of fixes after Brian's review</td><td>One session with 1 Samuel</td><td>Box doing nothing else</td><td>Box doing nothing else</td><td>Image agents one job at a time; other coding agents on the box for the first half hour</td><td>One session with 1 Chronicles</td><td>Image agents one job at a time; box otherwise quiet</td><td>Image agents one job at a time; box otherwise quiet</td><td>Box doing nothing else, checked clean before the run</td><td>Three AI coding agents running on the box at the same time</td><td>Box doing nothing else, fresh reboot</td><td>Box doing nothing else</td><td>Box doing nothing else</td></tr>
+      <tr><td>Chapters</td><td>50</td><td>31</td><td>24</td><td>22</td><td>25</td><td>29</td><td>36</td><td>10</td><td>13</td><td>28</td><td>16</td><td>24</td><td>21</td><td>28</td></tr>
+      <tr><td>Scenes</td><td>89</td><td>41</td><td>37</td><td>37</td><td>36</td><td>43</td><td>46</td><td>19</td><td>20</td><td>111</td><td>75</td><td>103</td><td>88</td><td>98</td></tr>
+      <tr><td>New cast portraits</td><td>11 (Adam to Joseph)</td><td>9 (David at four ages, Samuel, Saul, Jonathan, the ark, Goliath)</td><td>2 (Joab, Absalom)</td><td>7 (Solomon at two ages, Jeroboam, Ahab, Jezebel, Elijah, Elisha)</td><td>4 (Elisha old, Jehu, Hezekiah, Josiah)</td><td>1 (Asaph)</td><td>3 (Rehoboam, Asa, Jehoshaphat)</td><td>3 (Ezra, Zerubbabel, Jeshua)</td><td>1 (Nehemiah)</td><td>1 (Joseph)</td><td>2 (Peter, Mary Magdalene)</td><td>1 (Mary, mother of Jesus)</td><td>2 (Jesus, John the Baptist)</td><td>6 (Paul, John, Stephen, Barnabas, Silas, Philip)</td></tr>
+      <tr><td>Attempts (generations + edits)</td><td>153 (129 + 24)</td><td>140 (87 + 53)</td><td>98 (56 + 42)</td><td>96 (63 + 33)</td><td>80 (49 + 31)</td><td>151 (98 + 53)</td><td>166 (106 + 60)</td><td>68 (38 + 30)</td><td>65 (37 + 28)</td><td>217 (163 + 54)</td><td>189 (160 + 29)</td><td>254 (194 + 60)</td><td>168 (121 + 47)</td><td>234 (162 + 72)</td></tr>
+      <tr><td>Attempts per published image</td><td>1.53</td><td>2.80</td><td>2.51</td><td>2.18</td><td>2.22</td><td>3.51</td><td>3.61</td><td>3.58</td><td>3.25</td><td>1.94</td><td>2.45</td><td>2.44</td><td>1.87</td><td>2.25</td></tr>
+      <tr><td>Kept on the first try</td><td>57 of 89</td><td>8 of 41</td><td>7 of 37</td><td>6 of 37</td><td>8 of 36</td><td>2 of 43</td><td>1 of 46</td><td>2 of 19</td><td>3 of 20</td><td>38 of 111</td><td>10 of 75</td><td>20 of 103</td><td>about half</td><td>13 of 98</td></tr>
+      <tr><td>GPU time</td><td>53 min</td><td>68 min</td><td>51 min</td><td>41 min</td><td>34 min</td><td>62 min</td><td>67 min</td><td>30 min</td><td>28 min</td><td>91 min</td><td>99 min</td><td>108 min</td><td>68 min</td><td>115 min</td></tr>
+      <tr><td>GPU busy during the session</td><td>69%</td><td colspan="2">54% (shared session)</td><td>76%</td><td>79%</td><td colspan="2">56% (shared session)</td><td>62%</td><td>59%</td><td>58%</td><td>57%</td><td>57%</td><td>44%</td><td>63%</td></tr>
+      <tr><td>Median klein + reference job</td><td>16.7 s</td><td>16.8 s</td><td>16.9 s</td><td>16.8 s</td><td>16.2 s</td><td>16.7 s</td><td>16.6 s</td><td>16.0 s</td><td>17.1 s</td><td>16.7 s</td><td>21.7 s</td><td>16.8 s</td><td>15.7 s</td><td>16.8 s</td></tr>
+      <tr><td>Median edit</td><td>56.5 s</td><td>55.7 s</td><td>55.1 s</td><td>40.5 s</td><td>39.2 s</td><td>42.5 s</td><td>42.7 s</td><td>41.9 s</td><td>42.0 s</td><td>57.0 s</td><td>91.9 s</td><td>57.0 s</td><td>52.5 s</td><td>57.0 s</td></tr>
     </table>
     </div>
   </details>
@@ -143,7 +144,8 @@
 
   <h3 class="sub">Per-job data</h3>
   <p class="prose files">Genesis <a href="/data/genesis/comfy_history.csv">CSV</a> / <a href="/data/genesis/history_summary.md">summary</a>, 1 and 2 Samuel <a href="/data/samuel/comfy_history.csv">CSV</a> / <a href="/data/samuel/history_summary.md">summary</a>, 1 Kings <a href="/data/1kings/comfy_history.csv">CSV</a> / <a href="/data/1kings/history_summary.md">summary</a>, 2 Kings <a href="/data/2kings/comfy_history.csv">CSV</a> / <a href="/data/2kings/history_summary.md">summary</a>, 1 and 2 Chronicles <a href="/data/chronicles/comfy_history.csv">CSV</a> / <a href="/data/chronicles/history_summary.md">summary</a>,
-    Ezra <a href="/data/ezra/comfy_history.csv">CSV</a> / <a href="/data/ezra/history_summary.md">summary</a>, Matthew <a href="/data/matthew/comfy_history.csv">CSV</a> / <a href="/data/matthew/history_summary.md">summary</a>, Mark <a href="/data/mark/comfy_history.csv">CSV</a> / <a href="/data/mark/history_summary.md">summary</a>, Luke <a href="/data/luke/comfy_history.csv">CSV</a> / <a href="/data/luke/history_summary.md">summary</a>, Acts <a href="/data/acts/comfy_history.csv">CSV</a> / <a href="/data/acts/history_summary.md">summary</a>.</p>
+    Ezra <a href="/data/ezra/comfy_history.csv">CSV</a> / <a href="/data/ezra/history_summary.md">summary</a>,
+    Nehemiah <a href="/data/nehemiah/comfy_history.csv">CSV</a> / <a href="/data/nehemiah/history_summary.md">summary</a>, Matthew <a href="/data/matthew/comfy_history.csv">CSV</a> / <a href="/data/matthew/history_summary.md">summary</a>, Mark <a href="/data/mark/comfy_history.csv">CSV</a> / <a href="/data/mark/history_summary.md">summary</a>, Luke <a href="/data/luke/comfy_history.csv">CSV</a> / <a href="/data/luke/history_summary.md">summary</a>, Acts <a href="/data/acts/comfy_history.csv">CSV</a> / <a href="/data/acts/history_summary.md">summary</a>.</p>
   <h3 class="sub">Housekeeping on the box</h3>
   <p class="prose">Before Luke, the Halo was rebooted to clear dozens of orphaned Chromium
     processes. Those didn't reappear during the Luke run, but a python3 process belonging to ComfyUI stayed resident
