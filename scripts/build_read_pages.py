@@ -26,6 +26,7 @@ BOOKS = {
     '1chronicles': ('1chronicles', '1chronicles', '1 Chronicles', 'The First Book of the Chronicles', 'Old'),
     '2chronicles': ('2chronicles', '2chronicles', '2 Chronicles', 'The Second Book of the Chronicles', 'Old'),
     'ezra': ('ezra', 'ezra', 'Ezra', 'The Book of Ezra', 'Old'),
+    'nehemiah': ('nehemiah', 'nehemiah', 'Nehemiah', 'The Book of Nehemiah', 'Old'),
     'matthew': ('matthew', 'matthew', 'Matthew', 'The Gospel of Matthew', 'New'),
     'mark': ('mark', 'mark', 'Mark', 'The Gospel of Mark', 'New'),
     'luke': ('luke', 'luke', 'Luke', 'The Gospel of Luke', 'New'),
