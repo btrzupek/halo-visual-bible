@@ -100,6 +100,7 @@ def main():
                              "Luke=halo_klein_00039_.png",
                              "Matthew=halo_klein_00095_.png",
                              "Genesis=halo_klein_00195_.png,halo_klein_00196_.png,halo_klein_00197_.png,halo_klein_00198_.png,halo_klein_00199_.png,halo_klein_00200_.png,halo_klein_00202_.png,halo_klein_00207_.png,halo_klein_00208_.png,halo_klein_00205_.png,halo_klein_00206_.png",
+                             "Ruth=halo_klein_00429_.png,halo_klein_00430_.png,halo_edit_00658_.png",
                              "1 Samuel=halo_klein_00244_.png,halo_klein_ref_00698_.png,halo_klein_ref_00699_.png,halo_klein_ref_00700_.png,halo_klein_00245_.png,halo_klein_00246_.png,halo_klein_00247_.png,halo_klein_00274_.png,halo_klein_00272_.png",
                              "2 Samuel=halo_klein_00248_.png,halo_klein_00249_.png",
                              "1 Kings=halo_klein_00278_.png,halo_klein_ref_00803_.png,halo_klein_00284_.png,halo_klein_00280_.png,halo_klein_00281_.png,halo_klein_00279_.png,halo_edit_00381_.png",
