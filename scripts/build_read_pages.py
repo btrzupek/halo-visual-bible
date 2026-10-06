@@ -19,6 +19,7 @@ REPORT_V = 1  # bump when site/assets/report.js changes, and its ?v= on every bo
 # slug: (site folder, file prefix, short name, title, testament)
 BOOKS = {
     'genesis': ('genesis', 'genesis', 'Genesis', 'Genesis', 'Old'),
+    'joshua': ('joshua', 'joshua', 'Joshua', 'The Book of Joshua', 'Old'),
     'ruth': ('ruth', 'ruth', 'Ruth', 'The Book of Ruth', 'Old'),
     '1samuel': ('1samuel', '1samuel', '1 Samuel', 'The First Book of Samuel', 'Old'),
     '2samuel': ('2samuel', '2samuel', '2 Samuel', 'The Second Book of Samuel', 'Old'),
