@@ -853,7 +853,7 @@ in any scene, and queen Vashti never appears: her scene is the chamberlains comi
 ## Part fourteen: Ruth
 
 Ruth is the shortest book so far: 4 chapters and 8 scenes, a famine, three widows, a barley harvest and a
-redeemer. You can [read it here](/read/ruth), or listen in the [reader](/read/ruth). It sits between Genesis and
+redeemer. You can [read it here](/read/ruth), or listen in the [reader](/read/ruth). It sits between Joshua and
 1 Samuel on the site, where it belongs.
 
 <p class="cta"><a class="primary" href="/read/ruth">Read Ruth</a><a href="/making-of?book=Ruth">See every attempt</a></p>
@@ -889,6 +889,51 @@ held in arms keep coming out with two heads.
 | Kept on the first try | 0 | 0 | 3 |
 | GPU time | 12 min | 30 min | 28 min |
 | Narration | 15 min of audio | 34 min | 68 min |
+
+## Part fifteen: Joshua
+
+Joshua is 24 chapters and 47 scenes: the crossing of the Jordan, Jericho, Ai, the long day at Gibeon, and then
+nine chapters of borders and cities as the land is divided. You can [read it here](/read/joshua). It sits between
+Genesis and Ruth on the site.
+
+<p class="cta"><a class="primary" href="/read/joshua">Read Joshua</a><a href="/making-of?book=Joshua">See every attempt</a></p>
+
+**The battles.** Until now the rule was to show the moment before or after any violence. Joshua is mostly war, so
+for this book I changed it: armies fight, men fall, and there is some blood, but no gore and no close-ups of the
+dead. The killing of women, children and animals, the hanging of the kings and the stoning of Achan's family are
+still not shown. The reader's camera can move in on the fighting but never stops on a fallen man.
+
+**The cast.** Joshua has two portraits, the general and the old man, the second made from the first. Rahab, Caleb
+and Eleazar the priest have one each. Joshua's first try came out in a knitted sweater and a beanie, Caleb's in a
+sweatband and a tank top, and old Joshua held a staff in each hand. Eleazar's twelve stones came out all white; an
+edit coloured them, in three rows of four instead of four rows of three.
+
+<div class="pair">
+<img src="/images/full/halo_edit_00686_.webp" alt="The wall of Jericho falls and Israel charges up the rubble">
+<img src="/images/full/halo_edit_00723_.webp" alt="An Israelite captain with his foot on the neck of a king lying face down outside the cave at Makkedah">
+<figcaption>Left: Joshua 6:15-21, the wall fell down flat. Right: 10:16-27, the five kings at Makkedah.</figcaption>
+</div>
+
+### What went wrong this time
+
+- Jericho and Ai kept coming out with tiled roofs, an antenna, utility poles, flags and a castle. Most were covered with smoke or dust by an edit.
+- Edits that removed a modern town often took something else with it: the whole army of Ai, the flames of a burning town, and once Hazor itself.
+- The ark again. Hands and heads on the chest, an ark floating in the air. In the published pictures the hands are only on the poles, but the poles are carried overhead or at the hip, not on the shoulders.
+- Eight generations never put a captain's foot on a king's neck (10:24). One showed six kings with legs sticking up out of the row. An edit on another try finally did it.
+- No scarlet thread in Rahab's window. The one try at adding it drew a neon line.
+- Seven priests with seven rams' horns came out as five.
+
+### Joshua by the numbers
+
+| | Joshua | Ruth | Esther |
+|---|---|---|---|
+| Scenes | 47 | 8 | 17 |
+| New portraits | 5 | 3 | 4 |
+| Total attempts | 162 | 31 | 71 |
+| Attempts per published image | 3.45 | 3.88 | 4.18 |
+| Kept on the first try | 7 | 0 | 0 |
+| GPU time | 68 min | 12 min | 30 min |
+| Narration | 118 min of audio | 15 min | 34 min |
 
 ## Try it
 

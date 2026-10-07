@@ -26,6 +26,10 @@ out of a mistake that had to be undone.
    at rest instead.
 3. **Violence is non-graphic.** No blood, no gore, no bodies in the fire. Show the moment before or
    after (Jezebel at the window, not the fall; an empty silent camp, not the dead).
+   **Battle books are the exception** (Brian, 2026-10-06, first used for Joshua): battles may show the fighting,
+   men struck down, and some blood and wounds. Still nothing egregious: no gore, no severed heads or limbs, no
+   close-up of a body or a wound. Still never shown: the killing of women, children or animals, executions
+   (hangings, stonings). The Read camera may move in on the fighting but never settles on a fallen man.
 4. **Modesty.** Women fully and modestly dressed; sexual episodes (Bathsheba, Tamar, Potiphar's wife,
    Lot's daughters, Dinah) shown with nothing sexual in the frame. Adam and Eve before the fall are
    tasteful unclothed silhouettes or turned away, then fig leaves, then simple skin wraps.
