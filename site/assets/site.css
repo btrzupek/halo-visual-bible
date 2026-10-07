@@ -97,4 +97,7 @@ footer.site p{margin:0 0 .4rem}
 .sitenav.over details.books .menu a.link:hover,.sitenav.over details.books .menu a.link[aria-current="page"]{background:#1a1f33}
 .sitenav.over details.books .menu a.link[aria-current="page"]{color:#d4b066}
 .sitenav.over details.books .menu .group{color:#a3a3b4}
-@media (max-width:640px){ .sitenav details.books .menu{left:auto;right:-4rem} }
+/* Narrow screens: the nav wraps, so Books can sit anywhere on either line. Anchor the menu to the nav bar
+   (left edge, under the whole bar) instead of to the Books link, and let a long list scroll. */
+@media (max-width:760px){ .sitenav details.books{position:static}
+  .sitenav details.books .menu{top:calc(100% - .2rem);left:clamp(1rem,4vw,2.5rem);right:auto;max-width:calc(100vw - 2rem);max-height:calc(100dvh - 9.5rem);overflow-y:auto} }
