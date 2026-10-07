@@ -853,7 +853,7 @@ in any scene, and queen Vashti never appears: her scene is the chamberlains comi
 ## Part fourteen: Ruth
 
 Ruth is the shortest book so far: 4 chapters and 8 scenes, a famine, three widows, a barley harvest and a
-redeemer. You can [read it here](/read/ruth), or listen in the [reader](/read/ruth). It sits between Joshua and
+redeemer. You can [read it here](/read/ruth), or listen in the [reader](/read/ruth). It sits between Judges and
 1 Samuel on the site, where it belongs.
 
 <p class="cta"><a class="primary" href="/read/ruth">Read Ruth</a><a href="/making-of?book=Ruth">See every attempt</a></p>
@@ -894,7 +894,7 @@ held in arms keep coming out with two heads.
 
 Joshua is 24 chapters and 47 scenes: the crossing of the Jordan, Jericho, Ai, the long day at Gibeon, and then
 nine chapters of borders and cities as the land is divided. You can [read it here](/read/joshua). It sits between
-Genesis and Ruth on the site.
+Genesis and Judges on the site.
 
 <p class="cta"><a class="primary" href="/read/joshua">Read Joshua</a><a href="/making-of?book=Joshua">See every attempt</a></p>
 
@@ -934,6 +934,48 @@ edit coloured them, in three rows of four instead of four rows of three.
 | Kept on the first try | 7 | 0 | 0 |
 | GPU time | 68 min | 12 min | 30 min |
 | Narration | 118 min of audio | 15 min | 34 min |
+
+## Part sixteen: Judges
+
+Judges is 21 chapters and 52 scenes: Ehud, Deborah and Jael, Gideon's three hundred, Jephthah, Samson, and the dark
+last chapters when every man did that which was right in his own eyes. You can [read it here](/read/judges). It sits
+between Joshua and Ruth on the site.
+
+<p class="cta"><a class="primary" href="/read/judges">Read Judges</a><a href="/making-of?book=Judges">See every attempt</a></p>
+
+**The violence.** The battles follow the rule from Joshua. Judges also has killings that are not battles, and those
+are shown by the moment before: Ehud's hand going to the dagger, Jael creeping toward the sleeping Sisera, the men
+of Gibeah beating on the door. Samson's lion appears only as a dry carcass with honey in it. The Levite's concubine,
+Jephthah's daughter after she meets her father, and the seizing of the daughters of Shiloh are not shown.
+
+**The cast.** Deborah, Gideon, Jephthah, Samson and Delilah each have a portrait. Gideon's first try wore a knitted
+cap, Jephthah's a knitted sweater with a button, and the first Samson was too lean to be Samson.
+
+<div class="pair">
+<img src="/images/full/halo_klein_ref_01197_.webp" alt="Gideon's men raise torches and rams' horns above the camp of Midian at night">
+<img src="/images/full/halo_edit_00776_.webp" alt="Samson between the two pillars of the house of Dagon">
+<figcaption>Left: Judges 7:16-25, the sword of the Lord, and of Gideon. Right: 16:23-31, let me die with the Philistines.</figcaption>
+</div>
+
+### What went wrong this time
+
+- Sisera's nine hundred chariots of iron came out as boats, carriages and covered wagons. The picture has horses in the rain instead.
+- The model would not draw Ehud reaching across with his left hand to a dagger on his right thigh. In the picture his hand rests on the hilt.
+- Samson's jawbone was a fanged arc as long as his body, then a tusk, then a pickaxe with a beaded handle, before it was a bone the length of his forearm.
+- Micah's silver idol came out as a smooth chrome figure like an award statue. An edit made it a small crowned Canaanite figurine.
+- Slings came out as whips. Distant towns kept coming out as modern box houses with windows, and two edits turned donkeys' hooves into human feet.
+
+### Judges by the numbers
+
+| | Judges | Joshua | Ruth |
+|---|---|---|---|
+| Scenes | 52 | 47 | 8 |
+| New portraits | 5 | 5 | 3 |
+| Total attempts | 205 | 162 | 31 |
+| Attempts per published image | 3.94 | 3.45 | 3.88 |
+| Kept on the first try | 6 | 7 | 0 |
+| GPU time | 80 min | 68 min | 12 min |
+| Narration | 115 min of audio | 118 min | 15 min |
 
 ## Try it
 
