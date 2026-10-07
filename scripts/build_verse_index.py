@@ -41,6 +41,7 @@ SCHEMA_VERSION = 1
 BOOKS = {
     'genesis': ('genesis', 'Genesis', '/genesis'),
     'joshua': ('joshua', 'Joshua', '/joshua'),
+    'judges': ('judges', 'Judges', '/judges'),
     'ruth': ('ruth', 'Ruth', '/ruth'),
     '1samuel': ('1samuel', '1 Samuel', '/1samuel'),
     '2samuel': ('2samuel', '2 Samuel', '/2samuel'),

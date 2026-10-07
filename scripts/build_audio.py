@@ -20,6 +20,7 @@ import speech  # noqa: E402
 BOOKS = {  # book (file prefix): (site folder, spoken title), canonical order
     'genesis': ('genesis', 'The First Book of Moses, called Genesis'),
     'joshua': ('joshua', 'The Book of Joshua'),
+    'judges': ('judges', 'The Book of Judges'),
     'ruth': ('ruth', 'The Book of Ruth'),
     '1samuel': ('1samuel', 'The First Book of Samuel'),
     '2samuel': ('2samuel', 'The Second Book of Samuel'),
