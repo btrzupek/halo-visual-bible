@@ -43,6 +43,7 @@ PAGE = """<!doctype html>
     <div class="menu" aria-label="Books">
       <span class="group">Old Testament</span>
       <a class="link" href="/read/genesis">Genesis</a>
+      <a class="link" href="/read/exodus">Exodus</a>
       <a class="link" href="/read/joshua">Joshua</a>
       <a class="link" href="/read/judges">Judges</a>
       <a class="link" href="/read/ruth">Ruth</a>
