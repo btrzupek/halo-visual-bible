@@ -40,6 +40,7 @@ SCHEMA_VERSION = 1
 # lowercased, spaces removed ("romans", "1corinthians", "songofsolomon").
 BOOKS = {
     'genesis': ('genesis', 'Genesis', '/genesis'),
+    'exodus': ('exodus', 'Exodus', '/exodus'),
     'joshua': ('joshua', 'Joshua', '/joshua'),
     'judges': ('judges', 'Judges', '/judges'),
     'ruth': ('ruth', 'Ruth', '/ruth'),

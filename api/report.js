@@ -11,7 +11,7 @@
 const crypto = require('crypto');
 
 const BOOKS = {
-  genesis: 'Genesis', joshua: 'Joshua', judges: 'Judges', ruth: 'Ruth', '1samuel': '1 Samuel', '2samuel': '2 Samuel', '1kings': '1 Kings', '2kings': '2 Kings',
+  genesis: 'Genesis', exodus: 'Exodus', joshua: 'Joshua', judges: 'Judges', ruth: 'Ruth', '1samuel': '1 Samuel', '2samuel': '2 Samuel', '1kings': '1 Kings', '2kings': '2 Kings',
   '1chronicles': '1 Chronicles', '2chronicles': '2 Chronicles', ezra: 'Ezra', nehemiah: 'Nehemiah', esther: 'Esther', matthew: 'Matthew', mark: 'Mark', luke: 'Luke',
   john: 'John', acts: 'Acts',
 };
