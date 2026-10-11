@@ -26,13 +26,14 @@ next to Bible passages.
 
 Owner: Brian Trzupek (GitHub `btrzupek`). He reviews books before they go live.
 
-## Current state (2026-10-07)
+## Current state (2026-10-10)
 
 All of these are live and pushed to `main`.
 
 | Book | URL / site folder | Chapters | Scenes | Working folder in `~/halo-images/visual-bible/` |
 |---|---|---|---|---|
 | Genesis | `/genesis` | 50 | 89 | `genesis/` |
+| Exodus | `/exodus` | 40 | 77 | `exodus/` (narration not built yet: halo-tts was on the CPU) |
 | Joshua | `/joshua` | 24 | 47 | `joshua/` |
 | Judges | `/judges` | 21 | 52 | `judges/` |
 | Ruth | `/ruth` | 4 | 8 | `ruth/` |
@@ -51,7 +52,7 @@ All of these are live and pushed to `main`.
 | John | `/bible` (not `/john`) | 21 | 88 | root of `visual-bible/` (`data/`, `metrics/`) |
 | Acts | `/acts` | 28 | 98 | `acts/` |
 
-967 scenes in all. Other pages: `/` (the story, built from `content/story.md`), `/making-of`
+1,044 scenes in all. Other pages: `/` (the story, built from `content/story.md`), `/making-of`
 (every generation and edit with its prompt), `/under-the-hood` (architecture, numbers, compare
 view), `/infographic`.
 
@@ -63,7 +64,7 @@ Per book: `<book>-motion.js` (from `scripts/build_motion.py`; John's are hand-pl
 `<book>-audio.js` + `site/audio/<book>/` (from `scripts/build_audio.py`). Shared player:
 `site/assets/present.{js,css}`. Speech server, MCP server and tunnel: [`tts/README.md`](tts/README.md).
 
-Nothing else is in progress. Minor known imperfections Brian accepted are listed in each book's
+Open: Exodus has no narration yet (halo-tts reported device cpu on 2026-10-10; Brian to fix on halo, then run build_audio.py --book exodus). Minor known imperfections Brian accepted are listed in each book's
 `worklog.md` as `: minor`. There is no open review.
 
 ### Cast reference portraits
@@ -81,6 +82,7 @@ and each working folder's `cast.json`. The ones reused across books:
 - Ezra `halo_klein_00398_`, Zerubbabel `halo_edit_00571_`, Jeshua `halo_edit_00572_` (Ezra)
 - Nehemiah `halo_edit_00602_` (Nehemiah)
 - Esther `halo_klein_00420_`, Mordecai `halo_edit_00629_`, Haman `halo_klein_00422_`, Ahasuerus `halo_edit_00630_` (Esther)
+- Moses `halo_klein_00541_` (80), `halo_klein_ref_01238_` (40, prince of Egypt), Aaron `halo_klein_00543_`, `halo_edit_00795_` (high priest), Miriam `halo_klein_00544_`, Pharaoh `halo_edit_00796_`, young Joshua `halo_edit_00797_` (Exodus)
 - Joshua `halo_klein_00433_` (general), `halo_klein_ref_01107_` (old, made from the general), Rahab `halo_edit_00668_`, Caleb `halo_klein_00436_`, Eleazar `halo_edit_00669_` (Joshua)
 - Deborah `halo_klein_00469_`, Gideon `halo_edit_00724_`, Jephthah `halo_edit_00725_`, Samson `halo_klein_00473_`, Delilah `halo_klein_00474_` (Judges)
 - Ruth `halo_klein_00429_`, Naomi `halo_klein_00430_`, Boaz `halo_edit_00658_` (Ruth)
@@ -114,7 +116,7 @@ uv run --with markdown python scripts/build_story.py
 # rebuild WebPs + Making of gallery (system python has PIL); list EVERY book
 /usr/bin/python3 scripts/build_site_assets.py --url http://127.0.0.1:8188 --images ~/halo-images \
   --book John=site/bible/data --book Mark=site/mark/data --book Luke=site/luke/data \
-  --book Matthew=site/matthew/data --book Acts=site/acts/data --book Genesis=site/genesis/data \
+  --book Matthew=site/matthew/data --book Acts=site/acts/data --book Genesis=site/genesis/data --book Exodus=site/exodus/data \
   --book Joshua=site/joshua/data --book Judges=site/judges/data --book Ruth=site/ruth/data \
   --book "1 Samuel=site/1samuel/data" --book "2 Samuel=site/2samuel/data" \
   --book "1 Kings=site/1kings/data" --book "2 Kings=site/2kings/data" \

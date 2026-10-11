@@ -977,6 +977,48 @@ cap, Jephthah's a knitted sweater with a button, and the first Samson was too le
 | GPU time | 80 min | 68 min | 12 min |
 | Narration | 115 min of audio | 118 min | 15 min |
 
+## Part seventeen: Exodus
+
+Exodus is the longest Old Testament book so far: 40 chapters and 77 scenes, from the brick fields of Egypt to the
+glory filling the tabernacle. You can [read it here](/read/exodus). It sits between Genesis and Joshua on the site.
+
+<p class="cta"><a class="primary" href="/read/exodus">Read Exodus</a><a href="/making-of?book=Exodus">See every attempt</a></p>
+
+**The Passover.** I asked for one picture above the rest: a house in Goshen at nightfall with the blood on the lintel
+and the two side posts, under a sky about to break. No one outside, no death shown. The blood is where the text puts
+it. Fourteen tries: the model kept adding horror-film drips, a mushroom cloud, an electric light over the door, a potted
+plant and a tornado.
+
+<div class="pair">
+<img src="/images/full/halo_klein_00620_.webp" alt="A mud-brick house at nightfall with blood on the lintel and the two side posts under a storm">
+<img src="/images/full/halo_edit_00826_.webp" alt="The walls of the sea collapse on the horsemen of Egypt, seen from the far shore">
+<figcaption>Left: Exodus 12:29-36, at midnight. Right: 14:23-31, the sea returned to his strength.</figcaption>
+</div>
+
+**The cast.** Seven portraits: Moses at eighty and as a prince of Egypt at forty, made from the older one; Aaron, and
+Aaron again as high priest; Miriam with her timbrel; Pharaoh; and the young Joshua, made from the Joshua portrait so
+the face carries into his own book. God appears only as light: the bush, the pillar, the smoke on Sinai, the light
+passing the cleft of the rock.
+
+### What went wrong this time
+
+- The sapphire pavement of 24:10 came out as a wireframe grid, a floating plastic slab and a row of solar panels. The picture in the book shows the elders under a clear sapphire sky instead.
+- Aaron's breastplate has twenty stones, not twelve. Asking the edit model for four rows of three gave four rows of five.
+- The chariot problem from Judges again: Pharaoh's chariots came out as riders on horseback. In the Red Sea picture they are only horsemen in the spray.
+- The golden lampstand came out as a plain brass candelabrum with five or six arms and no almond blossoms.
+- Moses was drawn twice in several scenes, and once with a third leg.
+
+### Exodus by the numbers
+
+| | Exodus | Judges | Joshua |
+|---|---|---|---|
+| Scenes | 77 | 52 | 47 |
+| New portraits | 7 | 5 | 5 |
+| Total attempts | 266 | 205 | 162 |
+| Attempts per published image | 3.45 | 3.94 | 3.45 |
+| Kept on the first try | 8 | 6 | 7 |
+| GPU time | 100 min | 80 min | 68 min |
+
 ## Try it
 
 Everything is on [GitHub](https://github.com/btrzupek/halo-visual-bible): the MCP server, the ComfyUI workflows, the tunnel setup, the book viewer,
