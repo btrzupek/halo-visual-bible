@@ -33,7 +33,7 @@ All of these are live and pushed to `main`.
 | Book | URL / site folder | Chapters | Scenes | Working folder in `~/halo-images/visual-bible/` |
 |---|---|---|---|---|
 | Genesis | `/genesis` | 50 | 89 | `genesis/` |
-| Exodus | `/exodus` | 40 | 77 | `exodus/` (narration not built yet: halo-tts was on the CPU) |
+| Exodus | `/exodus` | 40 | 77 | `exodus/` |
 | Joshua | `/joshua` | 24 | 47 | `joshua/` |
 | Judges | `/judges` | 21 | 52 | `judges/` |
 | Ruth | `/ruth` | 4 | 8 | `ruth/` |
@@ -64,7 +64,7 @@ Per book: `<book>-motion.js` (from `scripts/build_motion.py`; John's are hand-pl
 `<book>-audio.js` + `site/audio/<book>/` (from `scripts/build_audio.py`). Shared player:
 `site/assets/present.{js,css}`. Speech server, MCP server and tunnel: [`tts/README.md`](tts/README.md).
 
-Open: Exodus has no narration yet (halo-tts reported device cpu on 2026-10-10; Brian to fix on halo, then run build_audio.py --book exodus). Minor known imperfections Brian accepted are listed in each book's
+Nothing else is in progress. Minor known imperfections Brian accepted are listed in each book's
 `worklog.md` as `: minor`. There is no open review.
 
 ### Cast reference portraits

@@ -1018,6 +1018,7 @@ passing the cleft of the rock.
 | Attempts per published image | 3.45 | 3.94 | 3.45 |
 | Kept on the first try | 8 | 6 | 7 |
 | GPU time | 100 min | 80 min | 68 min |
+| Narration | 199 min of audio | 115 min | 118 min |
 
 ## Try it
 
