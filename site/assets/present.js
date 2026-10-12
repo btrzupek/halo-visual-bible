@@ -320,9 +320,10 @@
   document.body.insertAdjacentHTML('beforeend',
     '<section class="start" id="start"><img src="' + IMG + webp(s0.file) + '" alt=""><a class="back startback" href="/">Back</a>' +
     '<div class="inner"><h1>' + R.title.replace(' of ', '<br>of ') + '</h1><p>' + esc(startAt ? 'Continue from ' + refText(s0) + ', ' + s0.title + '.' : R.lede) + '</p>' +
-    '<div class="go">' + (AUDIO ? '<button class="primary" data-n="1">Listen</button><button class="ghost" data-n="0">Read at my own pace</button>'
+    '<div class="go">' + (AUDIO ? '<button class="primary" data-n="1">Listen</button>' + (R.watch ? '<a class="ghost watch" href="' + R.watch + '">Watch</a>' : '') +
+                                  '<button class="ghost" data-n="0">Read at my own pace</button>'
                                 : '<button class="primary" data-n="0">Begin</button>') +
-    '<a class="ghost" href="' + R.back + '">Browse all scenes</a></div></div></section>');
+    '<a class="ghost" href="' + R.back + '">' + (R.watch ? 'Browse all media' : 'Browse all scenes') + '</a></div></div></section>');
   // Back (upper left, as on every site page): the page you came from on this site, else the home page.
   (function () {
     var from = false;

@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Making of: every attempt</title>
-<meta name="description" content="Every generation and edit behind the Visual Bible of Genesis, Exodus, Joshua, Judges, Ruth, 1 and 2 Samuel, 1 and 2 Kings, 1 and 2 Chronicles, Ezra, Nehemiah, Esther, Matthew, Mark, Luke, John and Acts, in order, with the prompts and timings.">
+<meta name="description" content="Every generation and edit behind the Visual Bible of Genesis, Exodus, Joshua, Judges, Ruth, 1 and 2 Samuel, 1 and 2 Kings, 1 and 2 Chronicles, Ezra, Nehemiah, Esther, Matthew, Mark, Luke, John, Acts and Philemon, in order, with the prompts and timings.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Visual Bible">
 <meta property="og:title" content="Making of: every attempt">
-<meta property="og:description" content="Every generation and edit behind the Visual Bible of Genesis, Exodus, Joshua, Judges, Ruth, 1 and 2 Samuel, 1 and 2 Kings, 1 and 2 Chronicles, Ezra, Nehemiah, Esther, Matthew, Mark, Luke, John and Acts, in order, with the prompts and timings.">
+<meta property="og:description" content="Every generation and edit behind the Visual Bible of Genesis, Exodus, Joshua, Judges, Ruth, 1 and 2 Samuel, 1 and 2 Kings, 1 and 2 Chronicles, Ezra, Nehemiah, Esther, Matthew, Mark, Luke, John, Acts and Philemon, in order, with the prompts and timings.">
 <meta property="og:image" content="https://halo-visual-bible.vercel.app/og/home.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -97,6 +97,7 @@ a.from:hover img{outline:1px solid var(--gilt)}
       <a class="link" href="/read/luke">Luke</a>
       <a class="link" href="/read/john">John</a>
       <a class="link" href="/read/acts">Acts</a>
+      <a class="link" href="/read/philemon">Philemon</a>
     </div>
   </details>
   <a class="link" href="/making-of" aria-current="page">Making of</a>
@@ -132,6 +133,7 @@ a.from:hover img{outline:1px solid var(--gilt)}
     <button data-b="Luke" aria-pressed="false">Luke</button>
     <button data-b="John" aria-pressed="false">John</button>
     <button data-b="Acts" aria-pressed="false">Acts</button>
+    <button data-b="Philemon" aria-pressed="false">Philemon</button>
   </div>
   <div class="filters" id="kinds" role="group" aria-label="Filter">
     <button data-f="all" aria-pressed="true">All</button>
@@ -217,7 +219,7 @@ a.from:hover img{outline:1px solid var(--gilt)}
     var b = e.target.closest('button'); if (!b) return;
     state.f = b.dataset.f; apply();
   });
-  try { var qb = new URLSearchParams(location.search).get('book'); if (['Genesis', 'Exodus', 'Joshua', 'Judges', 'Ruth', '1 Samuel', '2 Samuel', '1 Kings', '2 Kings', '1 Chronicles', '2 Chronicles', 'Ezra', 'Nehemiah', 'Esther', 'Matthew', 'Mark', 'Luke', 'John', 'Acts'].indexOf(qb) >= 0) state.b = qb; } catch (err) {}
+  try { var qb = new URLSearchParams(location.search).get('book'); if (['Genesis', 'Exodus', 'Joshua', 'Judges', 'Ruth', '1 Samuel', '2 Samuel', '1 Kings', '2 Kings', '1 Chronicles', '2 Chronicles', 'Ezra', 'Nehemiah', 'Esther', 'Matthew', 'Mark', 'Luke', 'John', 'Acts', 'Philemon'].indexOf(qb) >= 0) state.b = qb; } catch (err) {}
   apply();
 
   var lb = document.getElementById('lb'), cmp = lb.querySelector('.cmp'), lbimg = cmp.querySelector('img.after'),

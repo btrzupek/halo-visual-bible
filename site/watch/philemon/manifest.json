@@ -1,0 +1,835 @@
+{
+ "mode": "epistle",
+ "book": "philemon",
+ "title": "The Epistle of Paul to Philemon",
+ "short": "Philemon",
+ "duration": 192.35,
+ "narration_end": 187.35,
+ "audio": [
+  {
+   "src": "/audio/philemon/philemon-01-01.mp3?v=3905b7ea",
+   "start": 0.0,
+   "dur": 26.975
+  },
+  {
+   "src": "/audio/philemon/philemon-01-04.mp3?v=c6aa31e7",
+   "start": 26.975,
+   "dur": 30.625
+  },
+  {
+   "src": "/audio/philemon/philemon-01-08.mp3?v=16821eee",
+   "start": 57.6,
+   "dur": 66.325
+  },
+  {
+   "src": "/audio/philemon/philemon-01-17.mp3?v=c1ae7af5",
+   "start": 123.925,
+   "dur": 27.525
+  },
+  {
+   "src": "/audio/philemon/philemon-01-21.mp3?v=4a80f1b1",
+   "start": 151.45,
+   "dur": 35.9
+  }
+ ],
+ "verses": [
+  {
+   "n": 1,
+   "start": 5.3,
+   "end": 13.95,
+   "text": "Paul, a prisoner of Jesus Christ, and Timothy our brother, unto Philemon our dearly beloved, and fellowlabourer,"
+  },
+  {
+   "n": 2,
+   "start": 13.95,
+   "end": 20.975,
+   "text": "And to our beloved Apphia, and Archippus our fellowsoldier, and to the church in thy house:"
+  },
+  {
+   "n": 3,
+   "start": 20.975,
+   "end": 26.975,
+   "text": "Grace to you, and peace, from God our Father and the Lord Jesus Christ."
+  },
+  {
+   "n": 4,
+   "start": 27.325,
+   "end": 32.525,
+   "text": "I thank my God, making mention of thee always in my prayers,"
+  },
+  {
+   "n": 5,
+   "start": 32.525,
+   "end": 39.8,
+   "text": "Hearing of thy love and faith, which thou hast toward the Lord Jesus, and toward all saints;"
+  },
+  {
+   "n": 6,
+   "start": 39.8,
+   "end": 49.5,
+   "text": "That the communication of thy faith may become effectual by the acknowledging of every good thing which is in you in Christ Jesus."
+  },
+  {
+   "n": 7,
+   "start": 49.5,
+   "end": 57.6,
+   "text": "For we have great joy and consolation in thy love, because the bowels of the saints are refreshed by thee, brother."
+  },
+  {
+   "n": 8,
+   "start": 57.95,
+   "end": 64.175,
+   "text": "Wherefore, though I might be much bold in Christ to enjoin thee that which is convenient,"
+  },
+  {
+   "n": 9,
+   "start": 64.175,
+   "end": 73.175,
+   "text": "Yet for love’s sake I rather beseech thee, being such an one as Paul the aged, and now also a prisoner of Jesus Christ."
+  },
+  {
+   "n": 10,
+   "start": 73.175,
+   "end": 78.825,
+   "text": "I beseech thee for my son Onesimus, whom I have begotten in my bonds:"
+  },
+  {
+   "n": 11,
+   "start": 78.825,
+   "end": 85.45,
+   "text": "Which in time past was to thee unprofitable, but now profitable to thee and to me:"
+  },
+  {
+   "n": 12,
+   "start": 85.45,
+   "end": 91.525,
+   "text": "Whom I have sent again: thou therefore receive him, that is, mine own bowels:"
+  },
+  {
+   "n": 13,
+   "start": 91.525,
+   "end": 99.275,
+   "text": "Whom I would have retained with me, that in thy stead he might have ministered unto me in the bonds of the gospel:"
+  },
+  {
+   "n": 14,
+   "start": 99.275,
+   "end": 107.425,
+   "text": "But without thy mind would I do nothing; that thy benefit should not be as it were of necessity, but willingly."
+  },
+  {
+   "n": 15,
+   "start": 107.425,
+   "end": 113.725,
+   "text": "For perhaps he therefore departed for a season, that thou shouldest receive him for ever;"
+  },
+  {
+   "n": 16,
+   "start": 113.725,
+   "end": 123.925,
+   "text": "Not now as a servant, but above a servant, a brother beloved, specially to me, but how much more unto thee, both in the flesh, and in the Lord?"
+  },
+  {
+   "n": 17,
+   "start": 124.275,
+   "end": 129.325,
+   "text": "If thou count me therefore a partner, receive him as myself."
+  },
+  {
+   "n": 18,
+   "start": 129.325,
+   "end": 134.8,
+   "text": "If he hath wronged thee, or oweth thee ought, put that on mine account;"
+  },
+  {
+   "n": 19,
+   "start": 134.8,
+   "end": 145.325,
+   "text": "I Paul have written it with mine own hand, I will repay it: albeit I do not say to thee how thou owest unto me even thine own self besides."
+  },
+  {
+   "n": 20,
+   "start": 145.325,
+   "end": 151.45,
+   "text": "Yea, brother, let me have joy of thee in the Lord: refresh my bowels in the Lord."
+  },
+  {
+   "n": 21,
+   "start": 151.8,
+   "end": 159.9,
+   "text": "Having confidence in thy obedience I wrote unto thee, knowing that thou wilt also do more than I say."
+  },
+  {
+   "n": 22,
+   "start": 159.9,
+   "end": 167.45,
+   "text": "But withal prepare me also a lodging: for I trust that through your prayers I shall be given unto you."
+  },
+  {
+   "n": 23,
+   "start": 167.45,
+   "end": 172.75,
+   "text": "There salute thee Epaphras, my fellowprisoner in Christ Jesus;"
+  },
+  {
+   "n": 24,
+   "start": 172.75,
+   "end": 178.3,
+   "text": "Marcus, Aristarchus, Demas, Lucas, my fellowlabourers."
+  },
+  {
+   "n": 25,
+   "start": 178.3,
+   "end": 187.35,
+   "text": "The grace of our Lord Jesus Christ be with your spirit. Amen. Written from Rome to Philemon, by Onesimus a servant."
+  }
+ ],
+ "movements": [
+  {
+   "id": "M1",
+   "title": "The Greeting",
+   "start": 0.0
+  },
+  {
+   "id": "M2",
+   "title": "Thanksgiving",
+   "start": 26.975
+  },
+  {
+   "id": "M3",
+   "title": "The Appeal",
+   "start": 57.6
+  },
+  {
+   "id": "M4",
+   "title": "The Pledge",
+   "start": 123.925
+  },
+  {
+   "id": "M5",
+   "title": "Farewell",
+   "start": 151.45
+  },
+  {
+   "id": "M6",
+   "title": "Epilogue",
+   "start": 187.35
+  }
+ ],
+ "shots": [
+  {
+   "id": "M1.S01",
+   "type": "pan",
+   "start": 0.0,
+   "end": 5.15,
+   "verses": "1",
+   "motion": {
+    "from": [
+     0.0,
+     0.0,
+     0.7,
+     0.7
+    ],
+    "to": [
+     0.3,
+     0.1,
+     0.5,
+     0.5
+    ],
+    "ease": "in-out"
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M1.S01.webp?v=1791761291"
+  },
+  {
+   "id": "M1.S02",
+   "type": "video",
+   "start": 5.15,
+   "end": 6.35,
+   "verses": "1",
+   "motion": null,
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M1.S02.webp?v=1791762455"
+  },
+  {
+   "id": "M1.S03",
+   "type": "parallax",
+   "start": 6.35,
+   "end": 10.093,
+   "verses": "1",
+   "motion": {
+    "dolly": "in",
+    "amount": 0.06
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M1.S03.webp?v=1791762744",
+   "depth": "depth/M1.S03.png?v=1791763312"
+  },
+  {
+   "id": "M1.S04",
+   "type": "pan",
+   "start": 10.093,
+   "end": 11.293,
+   "verses": "1",
+   "motion": {
+    "from": [
+     0.0,
+     0.2,
+     0.6,
+     0.6
+    ],
+    "to": [
+     0.35,
+     0.3,
+     0.45,
+     0.45
+    ],
+    "ease": "in-out"
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M1.S04.webp?v=1791762991"
+  },
+  {
+   "id": "M1.S05",
+   "type": "parallax",
+   "start": 11.293,
+   "end": 15.267,
+   "verses": "1",
+   "motion": {
+    "dolly": "in",
+    "amount": 0.05
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M1.S05.webp?v=1791763070",
+   "depth": "depth/M1.S05.png?v=1791763313"
+  },
+  {
+   "id": "M1.S06",
+   "type": "parallax",
+   "start": 15.267,
+   "end": 16.467,
+   "verses": "2",
+   "motion": {
+    "orbit": "left",
+    "amount": 0.04
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M1.S06.webp?v=1791763211",
+   "depth": "depth/M1.S06.png?v=1791763315"
+  },
+  {
+   "id": "M1.S07",
+   "type": "parallax",
+   "start": 16.467,
+   "end": 19.281,
+   "verses": "2",
+   "motion": {
+    "orbit": "right",
+    "amount": 0.04
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M1.S07.webp?v=1791763349",
+   "depth": "depth/M1.S07.png?v=1791763691"
+  },
+  {
+   "id": "M1.S08",
+   "type": "pan",
+   "start": 19.281,
+   "end": 20.975,
+   "verses": "2",
+   "motion": {
+    "from": [
+     0.0,
+     0.25,
+     0.55,
+     0.55
+    ],
+    "to": [
+     0.45,
+     0.2,
+     0.55,
+     0.55
+    ],
+    "ease": "linear"
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M1.S08.webp?v=1791763706"
+  },
+  {
+   "id": "M1.S09",
+   "type": "still",
+   "start": 20.975,
+   "end": 26.975,
+   "verses": "3",
+   "motion": null,
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M1.S09.webp?v=1791763895"
+  },
+  {
+   "id": "M2.S01",
+   "type": "parallax",
+   "start": 26.975,
+   "end": 32.525,
+   "verses": "4",
+   "motion": {
+    "dolly": "in",
+    "amount": 0.05
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M2.S01.webp?v=1791764188",
+   "depth": "depth/M2.S01.png?v=1791772770"
+  },
+  {
+   "id": "M2.S02",
+   "type": "pan",
+   "start": 32.525,
+   "end": 39.8,
+   "verses": "5",
+   "motion": {
+    "from": [
+     0.1,
+     0.2,
+     0.6,
+     0.6
+    ],
+    "to": [
+     0.25,
+     0.25,
+     0.45,
+     0.45
+    ],
+    "ease": "in-out"
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M2.S02.webp?v=1791764476"
+  },
+  {
+   "id": "M2.S03",
+   "type": "parallax",
+   "start": 39.8,
+   "end": 49.5,
+   "verses": "6",
+   "motion": {
+    "orbit": "left",
+    "amount": 0.04
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M2.S03.webp?v=1791764743",
+   "depth": "depth/M2.S03.png?v=1791772771"
+  },
+  {
+   "id": "M2.S04",
+   "type": "parallax",
+   "start": 49.5,
+   "end": 57.6,
+   "verses": "7",
+   "motion": {
+    "dolly": "in",
+    "amount": 0.05,
+    "focus_pull": "tychicus_to_philemon"
+   },
+   "grade": null,
+   "reading_room": true,
+   "img": "img/M2.S04.webp?v=1791765064",
+   "depth": "depth/M2.S04.png?v=1791772773"
+  },
+  {
+   "id": "M3.S01",
+   "type": "parallax",
+   "start": 57.6,
+   "end": 75.154,
+   "verses": "8-9",
+   "motion": {
+    "dolly": "in",
+    "amount": 0.07
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M3.S01.webp?v=1791765273",
+   "depth": "depth/M3.S01.png?v=1791772774"
+  },
+  {
+   "id": "M3.S02",
+   "type": "parallax",
+   "start": 75.154,
+   "end": 76.955,
+   "verses": "10",
+   "motion": {
+    "orbit": "right",
+    "amount": 0.04
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M3.S02.webp?v=1791765898",
+   "depth": "depth/M3.S02.png?v=1791772775"
+  },
+  {
+   "id": "M3.S03",
+   "type": "pan",
+   "start": 76.955,
+   "end": 79.16,
+   "verses": "10",
+   "motion": {
+    "from": [
+     0.2,
+     0.0,
+     0.5,
+     0.5
+    ],
+    "to": [
+     0.2,
+     0.3,
+     0.5,
+     0.5
+    ],
+    "ease": "in-out"
+   },
+   "grade": "flashback",
+   "reading_room": false,
+   "img": "img/M3.S03.webp?v=1791766566"
+  },
+  {
+   "id": "M3.S04",
+   "type": "video",
+   "start": 79.16,
+   "end": 81.18,
+   "verses": "11",
+   "motion": null,
+   "grade": "flashback",
+   "reading_room": false,
+   "img": "img/M3.S04.webp?v=1791766720"
+  },
+  {
+   "id": "M3.S05",
+   "type": "pan",
+   "start": 81.18,
+   "end": 82.38,
+   "verses": "11",
+   "motion": {
+    "from": [
+     0.0,
+     0.0,
+     0.8,
+     0.8
+    ],
+    "to": [
+     0.4,
+     0.35,
+     0.4,
+     0.4
+    ],
+    "ease": "in"
+   },
+   "grade": "flashback",
+   "reading_room": false,
+   "img": "img/M3.S05.webp?v=1791766979"
+  },
+  {
+   "id": "M3.S06",
+   "type": "parallax",
+   "start": 82.38,
+   "end": 85.45,
+   "verses": "11",
+   "motion": {
+    "dolly": "in",
+    "amount": 0.04
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M3.S06.webp?v=1791767447",
+   "depth": "depth/M3.S06.png?v=1791772777"
+  },
+  {
+   "id": "M3.S07",
+   "type": "parallax",
+   "start": 85.45,
+   "end": 88.377,
+   "verses": "12",
+   "motion": {
+    "dolly": "in",
+    "amount": 0.05
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M3.S07.webp?v=1791768182",
+   "depth": "depth/M3.S07.png?v=1791772778"
+  },
+  {
+   "id": "M3.S08",
+   "type": "still",
+   "start": 88.377,
+   "end": 91.525,
+   "verses": "12",
+   "motion": null,
+   "grade": null,
+   "reading_room": true,
+   "img": "img/M3.S08.webp?v=1791768640"
+  },
+  {
+   "id": "M3.S09",
+   "type": "pan",
+   "start": 91.525,
+   "end": 107.425,
+   "verses": "13-14",
+   "motion": {
+    "from": [
+     0.3,
+     0.3,
+     0.5,
+     0.5
+    ],
+    "to": [
+     0.1,
+     0.15,
+     0.7,
+     0.7
+    ],
+    "ease": "out"
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M3.S09.webp?v=1791769180"
+  },
+  {
+   "id": "M3.S10",
+   "type": "pan",
+   "start": 107.425,
+   "end": 113.725,
+   "verses": "15",
+   "motion": {
+    "from": [
+     0.2,
+     0.1,
+     0.6,
+     0.6
+    ],
+    "to": [
+     0.0,
+     0.0,
+     1.0,
+     1.0
+    ],
+    "ease": "out"
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M3.S10.webp?v=1791769411"
+  },
+  {
+   "id": "M3.S11",
+   "type": "parallax",
+   "start": 113.725,
+   "end": 123.925,
+   "verses": "16",
+   "motion": {
+    "orbit": "left",
+    "amount": 0.05
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M3.S11.webp?v=1791769614",
+   "depth": "depth/M3.S11.png?v=1791772780"
+  },
+  {
+   "id": "M4.S01",
+   "type": "parallax",
+   "start": 123.925,
+   "end": 129.325,
+   "verses": "17",
+   "motion": {
+    "dolly": "in",
+    "amount": 0.05
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M4.S01.webp?v=1791770042",
+   "depth": "depth/M4.S01.png?v=1791772781"
+  },
+  {
+   "id": "M4.S02",
+   "type": "video",
+   "start": 129.325,
+   "end": 141.616,
+   "verses": "18-19",
+   "motion": null,
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M4.S02.webp?v=1791770462"
+  },
+  {
+   "id": "M4.S03",
+   "type": "still",
+   "start": 141.616,
+   "end": 145.325,
+   "verses": "19",
+   "motion": null,
+   "grade": null,
+   "reading_room": true,
+   "img": "img/M4.S03.webp?v=1791770617"
+  },
+  {
+   "id": "M4.S04",
+   "type": "parallax",
+   "start": 145.325,
+   "end": 151.45,
+   "verses": "20",
+   "motion": {
+    "dolly": "out",
+    "amount": 0.04
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M4.S04.webp?v=1791770799",
+   "depth": "depth/M4.S04.png?v=1791772783"
+  },
+  {
+   "id": "M5.S01",
+   "type": "still",
+   "start": 151.45,
+   "end": 159.9,
+   "verses": "21",
+   "motion": null,
+   "grade": null,
+   "reading_room": true,
+   "img": "img/M5.S01.webp?v=1791770956"
+  },
+  {
+   "id": "M5.S02",
+   "type": "pan",
+   "start": 159.9,
+   "end": 168.839,
+   "verses": "22",
+   "motion": {
+    "from": [
+     0.3,
+     0.2,
+     0.5,
+     0.5
+    ],
+    "to": [
+     0.45,
+     0.05,
+     0.55,
+     0.55
+    ],
+    "ease": "in-out"
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M5.S02.webp?v=1791771145"
+  },
+  {
+   "id": "M5.S03",
+   "type": "parallax",
+   "start": 168.839,
+   "end": 172.75,
+   "verses": "23",
+   "motion": {
+    "dolly": "in",
+    "amount": 0.04
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M5.S03.webp?v=1791771236",
+   "depth": "depth/M5.S03.png?v=1791772784"
+  },
+  {
+   "id": "M5.S04",
+   "type": "parallax",
+   "start": 172.75,
+   "end": 173.95,
+   "verses": "24",
+   "motion": {
+    "orbit": "right",
+    "amount": 0.03
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M5.S04.webp?v=1791771432",
+   "depth": "depth/M5.S04.png?v=1791772786"
+  },
+  {
+   "id": "M5.S05",
+   "type": "parallax",
+   "start": 173.95,
+   "end": 175.15,
+   "verses": "24",
+   "motion": {
+    "orbit": "left",
+    "amount": 0.03
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M5.S05.webp?v=1791771526",
+   "depth": "depth/M5.S05.png?v=1791772787"
+  },
+  {
+   "id": "M5.S06",
+   "type": "parallax",
+   "start": 175.15,
+   "end": 176.35,
+   "verses": "24",
+   "motion": {
+    "orbit": "right",
+    "amount": 0.03
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M5.S06.webp?v=1791771663",
+   "depth": "depth/M5.S06.png?v=1791772789"
+  },
+  {
+   "id": "M5.S07",
+   "type": "parallax",
+   "start": 176.35,
+   "end": 178.3,
+   "verses": "24",
+   "motion": {
+    "dolly": "in",
+    "amount": 0.03
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M5.S07.webp?v=1791771800",
+   "depth": "depth/M5.S07.png?v=1791772790"
+  },
+  {
+   "id": "M5.S08",
+   "type": "video",
+   "start": 178.3,
+   "end": 187.35,
+   "verses": "25",
+   "motion": null,
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M5.S08.webp?v=1791772290"
+  },
+  {
+   "id": "M6.S01",
+   "type": "video",
+   "start": 187.35,
+   "end": 192.35,
+   "verses": null,
+   "motion": null,
+   "grade": null,
+   "reading_room": true,
+   "img": "img/M6.S01.webp?v=1791772870"
+  }
+ ],
+ "end_card": {
+  "hold_black": 2.0
+ },
+ "review": true
+}

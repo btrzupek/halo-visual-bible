@@ -58,6 +58,7 @@ BOOKS = {
     'luke': ('luke', 'Luke', '/luke'),
     'bible': ('john', 'John', '/bible'),
     'acts': ('acts', 'Acts', '/acts'),
+    'philemon': ('philemon', 'Philemon', '/philemon'),
 }
 KINDS = {0: 'scene', 1: 'parable', 2: 'vision'}
 CHAPTER_RE = re.compile(r'\s*VB\.add\(\s*(\d+)\s*,(.*)\)\s*;?\s*$', re.S)

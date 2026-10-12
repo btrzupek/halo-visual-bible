@@ -13,7 +13,7 @@ import html, json, os, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, 'site')
-ASSET_V = 11  # bump when present.js or present.css change, so browsers fetch the new files
+ASSET_V = 12  # bump when present.js or present.css change, so browsers fetch the new files
 REPORT_V = 1  # bump when site/assets/report.js changes, and its ?v= on every book page too
 
 # slug: (site folder, file prefix, short name, title, testament)
@@ -37,6 +37,7 @@ BOOKS = {
     'luke': ('luke', 'luke', 'Luke', 'The Gospel of Luke', 'New'),
     'john': ('bible', 'john', 'John', 'The Gospel of John', 'New'),
     'acts': ('acts', 'acts', 'Acts', 'The Acts of the Apostles', 'New'),
+    'philemon': ('philemon', 'philemon', 'Philemon', 'The Epistle of Paul to Philemon', 'New'),
 }
 ONES = ('zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen '
         'sixteen seventeen eighteen nineteen').split()
@@ -126,8 +127,10 @@ def reader_page(slug, folder, prefix, name, title, chs):
             tags += f'\n<script src="{data}{prefix}-{extra}.js"></script>'
     lede = (f'{words(n).capitalize()} chapter{"s" if n > 1 else ""}, one scene at a time. '
             'The picture fills the window while you read. King James Version.')
-    config = json.dumps({'slug': slug, 'book': name, 'title': title, 'back': '/' + (folder if folder != 'bible' else 'bible'),
-                         'lede': lede}, ensure_ascii=False)
+    cfg = {'slug': slug, 'book': name, 'title': title, 'back': '/' + (folder if folder != 'bible' else 'bible'), 'lede': lede}
+    if os.path.exists(os.path.join(SITE, 'watch', slug, 'manifest.json')):   # epistle mode: a short film at /watch/<slug>
+        cfg['watch'] = f'/watch/{slug}/'
+    config = json.dumps(cfg, ensure_ascii=False)
     return (HEAD.format(title=f'Read {html.escape(name)}: a visual Bible',
                         desc=html.escape(f'{title} in the King James Version, {scenes} illustrated scenes, '
                                          'each picture filling the window as the passage is read.'))

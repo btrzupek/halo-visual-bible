@@ -62,6 +62,7 @@ PAGE = """<!doctype html>
       <a class="link" href="/read/luke">Luke</a>
       <a class="link" href="/read/john">John</a>
       <a class="link" href="/read/acts">Acts</a>
+      <a class="link" href="/read/philemon">Philemon</a>
     </div>
   </details>
   <a class="link" href="/making-of">Making of</a>

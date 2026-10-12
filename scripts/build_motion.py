@@ -17,7 +17,7 @@ import argparse, json, os, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FOLDERS = {'genesis': 'genesis', 'exodus': 'exodus', 'joshua': 'joshua', 'judges': 'judges', 'ruth': 'ruth', '1samuel': '1samuel', '2samuel': '2samuel', '1kings': '1kings', '2kings': '2kings', '1chronicles': '1chronicles', '2chronicles': '2chronicles', 'ezra': 'ezra', 'nehemiah': 'nehemiah', 'esther': 'esther',
-           'matthew': 'matthew', 'mark': 'mark', 'luke': 'luke', 'acts': 'acts', 'john': 'bible'}
+           'matthew': 'matthew', 'mark': 'mark', 'luke': 'luke', 'acts': 'acts', 'philemon': 'philemon', 'john': 'bible'}
 
 
 def r(v):

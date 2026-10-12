@@ -37,6 +37,7 @@ BOOKS = {  # book (file prefix): (site folder, spoken title), canonical order
     'luke': ('luke', 'The Gospel according to Saint Luke'),
     'john': ('bible', 'The Gospel according to Saint John'),
     'acts': ('acts', 'The Acts of the Apostles'),
+    'philemon': ('philemon', 'The Epistle of Paul to Philemon'),
 }
 ONES = ('zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen '
         'sixteen seventeen eighteen nineteen').split()
