@@ -6,7 +6,10 @@ flattened to API format without the optional prompt enhancer: a half-resolution 
 upscaler, a short refine pass, tiled decode. LTX-2.5 also generates audio; the player keeps clips muted.
 
   python3 scripts/ltx_i2v.py --image ~/halo-images/halo_klein_00620_.png --prompt "..." --out clip.mp4 \
-      [--seconds 5] [--fps 24] [--width 1280] [--height 720] [--seed 42] [--last-frame END.png]
+      [--seconds 5] [--fps 24] [--width 1280] [--height 720] [--seed 42] [--draft]
+
+--draft is the preview preset: first pass 480x272 and the input image scaled to 1152x648 (output ~960x544).
+Without it, the first pass is half the output size and the input image is 1536 wide (output 1280x704).
 
 Prints the output path, the wall-clock time and the ComfyUI execution time. --last-frame is reserved for the
 first-and-last-frame variant (not implemented yet).
@@ -28,12 +31,18 @@ def upload(path):
     return json.load(urllib.request.urlopen(req))['name']
 
 
-def graph(image, prompt, negative, seconds, fps, width, height, seed):
+DRAFT = {'first': (480, 272), 'scale': (1152, 648)}   # preview preset (Brian, 2026-10-13): smaller first pass and input image
+
+
+def graph(image, prompt, negative, seconds, fps, width, height, seed, draft=False):
     length = int(seconds * fps) + 1
+    if draft:
+        (fw, fh), (sw, sh) = DRAFT['first'], DRAFT['scale']
+    else:
+        fw, fh, sw, sh = width // 2, height // 2, 1536, round(1536 * height / width / 32) * 32
     g = {
         'img': ('LoadImage', {'image': image}),
-        'scale': ('ImageScale', {'image': ['img', 0], 'upscale_method': 'lanczos', 'width': 1536,
-                                 'height': round(1536 * height / width / 32) * 32, 'crop': 'center'}),
+        'scale': ('ImageScale', {'image': ['img', 0], 'upscale_method': 'lanczos', 'width': sw, 'height': sh, 'crop': 'center'}),
         'pre': ('LTXVPreprocess', {'image': ['scale', 0], 'img_compression': 18}),
         'unet': ('UNETLoader', {'unet_name': 'ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors',
                                 'weight_dtype': 'default'}),
@@ -46,7 +55,7 @@ def graph(image, prompt, negative, seconds, fps, width, height, seed):
         'neg': ('CLIPTextEncode', {'clip': ['clip', 0], 'text': negative}),
         'cond': ('LTXVConditioning', {'positive': ['pos', 0], 'negative': ['neg', 0], 'frame_rate': float(fps)}),
         # pass 1, half resolution
-        'empty': ('EmptyLTXVLatentVideo', {'width': width // 2, 'height': height // 2, 'length': length, 'batch_size': 1}),
+        'empty': ('EmptyLTXVLatentVideo', {'width': fw, 'height': fh, 'length': length, 'batch_size': 1}),
         'i2v1': ('LTXVImgToVideoInplace', {'vae': ['vae', 0], 'image': ['pre', 0], 'latent': ['empty', 0],
                                           'strength': 0.7, 'bypass': False}),
         'aud': ('LTXVEmptyLatentAudio', {'frames_number': length, 'frame_rate': fps, 'batch_size': 1, 'audio_vae': ['avae', 0]}),
@@ -87,10 +96,11 @@ def main():
     ap.add_argument('--negative', default=NEG); ap.add_argument('--seconds', type=float, default=5)
     ap.add_argument('--fps', type=int, default=24); ap.add_argument('--width', type=int, default=1280)
     ap.add_argument('--height', type=int, default=720); ap.add_argument('--seed', type=int, default=42)
+    ap.add_argument('--draft', action='store_true', help=f'fast preview: first pass {DRAFT["first"]}, input image {DRAFT["scale"]}')
     a = ap.parse_args()
     t0 = time.time()
     name = upload(os.path.expanduser(a.image))
-    wf = graph(name, a.prompt, a.negative, a.seconds, a.fps, a.width, a.height, a.seed)
+    wf = graph(name, a.prompt, a.negative, a.seconds, a.fps, a.width, a.height, a.seed, a.draft)
     req = urllib.request.Request(f'{COMFY}/prompt', json.dumps({'prompt': wf, 'client_id': uuid.uuid4().hex}).encode(),
                                  {'Content-Type': 'application/json'})
     try:
@@ -114,7 +124,7 @@ def main():
     os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)
     open(a.out, 'wb').write(urllib.request.urlopen(f'{COMFY}/view?{q}').read())
     print(json.dumps({'out': a.out, 'comfy_file': f['filename'], 'prompt_id': pid, 'seed': a.seed,
-                      'wall_s': round(time.time() - t0, 1), 'exec_s': round(exec_s, 1),
+                      'draft': a.draft, 'wall_s': round(time.time() - t0, 1), 'exec_s': round(exec_s, 1),
                       'size_mb': round(os.path.getsize(a.out) / 1e6, 2)}))
 
 
