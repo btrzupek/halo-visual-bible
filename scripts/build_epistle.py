@@ -15,13 +15,14 @@ A video shot without its video.mp4 yet plays as its keyframe with a slow push-in
 """
 import argparse, html, json, os, re, shutil, time
 import yaml
-from PIL import Image
+from PIL import Image, ImageFilter
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, 'site')
 WORK = os.path.expanduser('~/halo-images/visual-bible')
 IMG_W = 2048          # keyframes are 2560x1440; 2048 keeps room for pans and parallax at a phone-friendly size
 DEPTH_W = 1024
+DEPTH_V = 2          # bump when the depth preprocessing changes, so every depth map is rebuilt
 MIN_SHOT = 1.2        # seconds; cues never squeeze a shot shorter than this
 
 
@@ -37,11 +38,11 @@ STAMPS = {}   # site file -> "source path:mtime" it was built from; kept in the 
 
 def stale(dst, src):
     """True when dst was not built from this exact source file."""
-    return not os.path.exists(dst) or STAMPS.get(os.path.relpath(dst, SITE)) != f'{src}:{int(os.path.getmtime(src))}'
+    return not os.path.exists(dst) or STAMPS.get(os.path.relpath(dst, SITE)) != f'{src}:{int(os.path.getmtime(src))}:{DEPTH_V}'
 
 
 def mark(dst, src):
-    STAMPS[os.path.relpath(dst, SITE)] = f'{src}:{int(os.path.getmtime(src))}'
+    STAMPS[os.path.relpath(dst, SITE)] = f'{src}:{int(os.path.getmtime(src))}:{DEPTH_V}'
 
 
 def save_atomic(im, out, **kw):
@@ -172,8 +173,11 @@ def main():
                 im = Image.open(dp)
                 im = im.point(lambda x: x / 256).convert('L') if im.mode.startswith('I') else im.convert('L')
                 im = im.resize((DEPTH_W, round(im.height * DEPTH_W / im.width)), Image.BICUBIC)
+                # grow near objects a few pixels past their edges, then soften: the parallax shader then moves a
+                # person's whole outline with them instead of leaving a ghost edge on the background
+                im = im.filter(ImageFilter.MaxFilter(9)).filter(ImageFilter.GaussianBlur(3))
                 save_atomic(im, dst, format='PNG', optimize=True); mark(dst, dp)
-            rec['depth'] = f'depth/{sid}.png?v={int(os.path.getmtime(dp))}'
+            rec['depth'] = f'depth/{sid}.png?v={int(os.path.getmtime(dp))}{DEPTH_V}'
         if s['type'] == 'video' and os.path.exists(vid):
             dst = os.path.join(out, 'video', f'{sid}.mp4')
             if stale(dst, vid):
@@ -224,7 +228,7 @@ def write_page(out, m):
 <body>
 <noscript><p style="padding:2rem">This page needs JavaScript. <a href="/read/{m['book']}" style="color:#d4b066">Read {html.escape(m['short'])}</a>.</p></noscript>
 <script>window.WATCH={json.dumps({'book': m['book'], 'manifest': 'manifest.json?v=' + str(int(time.time()))})};</script>
-<script src="/assets/watch.js?v=2"></script>
+<script src="/assets/watch.js?v=3"></script>
 </body>
 </html>
 '''

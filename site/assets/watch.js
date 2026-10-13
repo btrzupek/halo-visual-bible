@@ -236,11 +236,15 @@
     if (!gl) return null;
     layer.appendChild(c);
     var vs = 'attribute vec2 p;varying vec2 v;void main(){v=p*.5+.5;v.y=1.-v.y;gl_Position=vec4(p,0.,1.);}';
+    // Parallax as an inverse lookup: for each screen pixel, step from the nearest depth layer to the farthest and take
+    // the first layer whose source pixel is at least that near. Near things then cover far things cleanly (no ghost
+    // edges); the 24 steps are refined by one linear step between the last two layers.
     var fs = 'precision mediump float;varying vec2 v;uniform sampler2D img,dep;uniform vec2 cov;uniform float dolly,orbit;' +
-      'vec2 m(vec2 u){return 1.-abs(1.-mod(u,2.));}' +           // mirror the edges instead of tearing
-      'void main(){vec2 u=(v-.5)*cov+.5;float d=texture2D(dep,u).r;' +
-      'for(int i=0;i<2;i++){vec2 w=(u-.5)/(1.+dolly*(.35+.9*d))+.5;w.x-=orbit*(d-.45);d=texture2D(dep,m(w)).r;}' +
-      'vec2 w=(u-.5)/(1.+dolly*(.35+.9*d))+.5;w.x-=orbit*(d-.45);gl_FragColor=texture2D(img,m(w));}';
+      'vec2 src(vec2 u,float L){return (u-.5-vec2(orbit*(L-.45),0.))/(1.+dolly*(.35+.9*L))+.5;}' +
+      'void main(){vec2 u=(v-.5)*cov+.5;float pl=1.,pd=0.;vec2 s=src(u,0.);' +
+      'for(int i=0;i<=24;i++){float L=1.-float(i)/24.;vec2 c=clamp(src(u,L),0.,1.);float d=texture2D(dep,c).r;' +
+      'if(d>=L){float a=(pd-pl)-(d-L);float t=abs(a)>1e-4?(pd-pl)/a:0.;s=clamp(src(u,mix(pl,L,clamp(t,0.,1.))),0.,1.);break;}pl=L;pd=d;s=c;}' +
+      'gl_FragColor=texture2D(img,s);}';
     function sh(t, s) { var o = gl.createShader(t); gl.shaderSource(o, s); gl.compileShader(o); return o; }
     var pr = gl.createProgram(); gl.attachShader(pr, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, fs)); gl.linkProgram(pr);
     if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) { layer.removeChild(c); return null; }
