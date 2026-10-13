@@ -251,7 +251,8 @@
    "motion": null,
    "grade": null,
    "reading_room": false,
-   "img": "img/M1.S02.webp?v=1791762455"
+   "img": "img/M1.S02.webp?v=1791762455",
+   "video": "video/M1.S02.mp4?v=1791919266"
   },
   {
    "id": "M1.S03",
@@ -509,7 +510,8 @@
    "motion": null,
    "grade": "flashback",
    "reading_room": false,
-   "img": "img/M3.S04.webp?v=1791766720"
+   "img": "img/M3.S04.webp?v=1791766720",
+   "video": "video/M3.S04.mp4?v=1791919266"
   },
   {
    "id": "M3.S05",
@@ -666,7 +668,8 @@
    "motion": null,
    "grade": null,
    "reading_room": false,
-   "img": "img/M4.S02.webp?v=1791770462"
+   "img": "img/M4.S02.webp?v=1791770462",
+   "video": "video/M4.S02.mp4?v=1791919266"
   },
   {
    "id": "M4.S03",
@@ -814,7 +817,8 @@
    "motion": null,
    "grade": null,
    "reading_room": false,
-   "img": "img/M5.S08.webp?v=1791772290"
+   "img": "img/M5.S08.webp?v=1791772290",
+   "video": "video/M5.S08.mp4?v=1791919266"
   },
   {
    "id": "M6.S01",
@@ -825,7 +829,8 @@
    "motion": null,
    "grade": null,
    "reading_room": true,
-   "img": "img/M6.S01.webp?v=1791772870"
+   "img": "img/M6.S01.webp?v=1791772870",
+   "video": "video/M6.S01.mp4?v=1791919266"
   }
  ],
  "end_card": {
