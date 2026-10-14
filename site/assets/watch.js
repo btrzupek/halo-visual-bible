@@ -3,7 +3,7 @@
 // play muted over the narration (or, in the animatic, hold their keyframe with a slow push-in).
 (function () {
   'use strict';
-  var W = window.WATCH, base = location.pathname.replace(/[^/]*$/, '');
+  var W = window.WATCH, base = '/watch/' + W.book + '/';   // not from the URL: production serves /watch/<book> without a trailing slash
   var q = new URLSearchParams(location.search), DEBUG = q.has('debug');
   // Review builds label every shot with its storyboard ID so a tweak can be named exactly ("M3.S04").
   function $(s, r) { return (r || document).querySelector(s); }
