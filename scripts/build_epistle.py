@@ -232,7 +232,7 @@ def write_page(out, m):
 <body>
 <noscript><p style="padding:2rem">This page needs JavaScript. <a href="/read/{m['book']}" style="color:#d4b066">Read {html.escape(m['short'])}</a>.</p></noscript>
 <script>window.WATCH={json.dumps({'book': m['book'], 'manifest': 'manifest.json?v=' + str(int(time.time()))})};</script>
-<script src="/assets/watch.js?v=6"></script>
+<script src="/assets/watch.js?v=7"></script>
 </body>
 </html>
 '''

@@ -108,7 +108,7 @@
 
 <main class="page">
   <h1>Under the hood</h1>
-  <p class="lede">How a chat with Claude on a Mac turned into 1,044 illustrated scenes, Genesis, Exodus, Joshua, Judges, Ruth, 1 and 2 Samuel, 1 and 2 Kings, 1 and 2 Chronicles, Ezra, Nehemiah, Esther, the four Gospels and the Acts of the Apostles, rendered on a box on my desk.
+  <p class="lede">How a chat with Claude on a Mac turned into 1,044 illustrated scenes, Genesis, Exodus, Joshua, Judges, Ruth, 1 and 2 Samuel, 1 and 2 Kings, 1 and 2 Chronicles, Ezra, Nehemiah, Esther, the four Gospels and the Acts of the Apostles, plus a short film of Paul's letter to Philemon, rendered on a box on my desk.
     Everything here is in the <a href="https://github.com/btrzupek/halo-visual-bible">GitHub repo</a>, including the raw numbers.</p>
 
   <h2>The run, by the numbers</h2>
@@ -187,6 +187,29 @@
     <a href="/data/comfy_history.csv">comfy_history.csv</a>. The scripts that produced these numbers are in
     <a href="https://github.com/btrzupek/halo-visual-bible/tree/main/scripts">scripts/</a>, and every image with its prompt is on the <a href="/making-of">Making of</a> page.</p>
 
+  <h2>Philemon: a short film</h2>
+  <p class="prose">Philemon is one chapter, so it became a three-minute film instead of a picture book. The narration
+    is the clock: every shot is timed to its verses, and the player moves the camera itself. Most shots are video clips
+    made with LTX-2.5 from a still keyframe; the rest are stills with depth parallax, built from a depth map made on the
+    Mac. A lyre score made with ACE-Step 1.5 runs under the voice and dips under the narration.
+    <a href="/watch/philemon">Watch it here</a>.</p>
+  <table>
+    <tr><th>Shots</th><td>37: 26 video, 9 depth parallax, 1 pan, 1 still</td></tr>
+    <tr><th>Length</th><td>3 min 12 s (narration 3 min 7 s, then a silent epilogue)</td></tr>
+    <tr><th>New cast portraits</th><td>13: Paul about ten years older than in Acts, Onesimus, Timothy, a guard, Philemon, Apphia, Archippus, Tychicus, Epaphras, Mark, Aristarchus, Demas, Luke</td></tr>
+    <tr><th>Still attempts (generations + edits)</th><td>225 (134 + 91) for the keyframes, portraits, character sheets and location plates</td></tr>
+    <tr><th>Video renders</th><td>52 logged, 12 of them first-and-last-frame</td></tr>
+    <tr><th>GPU time</th><td>164 min for stills, about 504 min for video, 16 min for music</td></tr>
+    <tr><th>Median klein + reference job</th><td>52.8 s (keyframes at 3.7 MP, against about 1 MP in the books)</td></tr>
+    <tr><th>Median edit</th><td>40.3 s</td></tr>
+    <tr><th>One video clip, draft quality (960 wide)</th><td>5 s: about 3.5 min. 7 s: about 7.5 min. 11 s: about 20 min</td></tr>
+    <tr><th>First-and-last-frame clip</th><td>5 s: about 10 min. 7 s: about 21 min. 10 s: about 48 min</td></tr>
+    <tr><th>Published film</th><td>28 MB: video at 960x544, stills 2048 wide, depth maps, one music track</td></tr>
+  </table>
+  <p class="prose">Video time grows faster than clip length, so long clips were the expensive part. ComfyUI lost its job
+    history in two restarts during the video work, so the video numbers come from the render logs. Per-job data:
+    <a href="/data/philemon/comfy_history.csv">CSV</a> / <a href="/data/philemon/history_summary.md">summary</a>.</p>
+
   <h2>The pieces</h2>
   <div class="diagram" role="img" aria-label="Claude on the Mac calls the halo-imagegen MCP server, which talks HTTP to localhost port 8188. launchd forwards that over SSH to ComfyUI on the Halo box, which runs on the Radeon 8060S using shared system memory.">
     <svg viewBox="0 0 1100 330" xmlns="http://www.w3.org/2000/svg">
@@ -248,6 +271,9 @@
     <tr><td>Scenes and portraits</td><td>FLUX.2 [klein] 4B (distilled) + Qwen3 4B text encoder + FLUX.2 VAE</td><td>BF16</td><td>16.1 GB</td><td>4</td></tr>
     <tr><td>Keeping faces consistent</td><td>Same, with a <code>ReferenceLatent</code> built from a cast portrait</td><td>BF16</td><td></td><td>4</td></tr>
     <tr><td>Fixes and touch-ups</td><td>Qwen-Image-Edit 2511 + Qwen2.5-VL 7B + Lightning 4-step LoRA</td><td>FP8 (compute in BF16)</td><td>31.0 GB</td><td>4</td></tr>
+    <tr><td>Video (Philemon)</td><td>LTX-2.5 22B distilled + Gemma 4 12B text encoder + video VAE + 2x latent upscaler</td><td>INT8 (VAEs in BF16)</td><td>39 GB</td><td>8 + 3</td></tr>
+    <tr><td>Depth for parallax (Philemon)</td><td>Depth Anything V2 Large, on the Mac</td><td>FP32</td><td>1.3 GB</td><td>1</td></tr>
+    <tr><td>Music (Philemon)</td><td>ACE-Step 1.5 turbo (all in one)</td><td>BF16</td><td>10.0 GB</td><td>8</td></tr>
   </table>
   <p class="prose">The book's model set is 47.2 GB on disk. A 20B-parameter edit model on an integrated GPU works because the GPU borrows
     system memory: peak usage was 27 GB for klein and 38 GB for the edit stack.</p>

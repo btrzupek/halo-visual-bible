@@ -1020,6 +1020,52 @@ passing the cleft of the rock.
 | GPU time | 100 min | 80 min | 68 min |
 | Narration | 199 min of audio | 115 min | 118 min |
 
+## Part eighteen: Philemon, a short film
+
+Philemon is one chapter: Paul, in chains in Rome, writes to a friend in Colossae and asks him to take back Onesimus, a
+runaway slave who has become a Christian. A letter has no scenes to illustrate the way a story does, so I tried
+something new: a three-minute film. You can [watch it here](/watch/philemon). The reader for Philemon now has a Watch
+button next to Listen.
+
+<p class="cta"><a class="primary" href="/watch/philemon">Watch Philemon</a><a href="/making-of?book=Philemon">See every attempt</a></p>
+
+**How it works.** The narration is the clock. Every one of the 37 shots is timed to its verses, and the player moves
+the camera itself. Twenty-six shots are video clips made with LTX-2.5 on the Halo, each one started from a still I
+had already approved. Nine are stills with depth parallax: a depth map made on the Mac lets the player slide the
+foreground past the background. A lyre score runs under the voice. I had two scores made, lyre and oud, and picked
+the lyre after watching the film with each.
+
+<div class="pair">
+<img src="/watch/philemon/img/M1.S02.webp" alt="Paul in a rented room in Rome, his right wrist chained to a Roman guard, Timothy writing at a table">
+<img src="/watch/philemon/img/M4.S02.webp" alt="Paul, his wrist in an iron cuff, takes the reed pen from Timothy">
+<figcaption>Left: Philemon 1, Paul, a prisoner of Jesus Christ. Right: the first frame of 18-19, where Paul takes the pen to write with his own hand.</figcaption>
+</div>
+
+**The cast.** Thirteen new portraits. Paul is the Paul from Acts, about ten years older. Onesimus has two looks: as he
+is now, and dirty and torn for the flashback to his running away. Everyone named in the greetings at the end of the
+letter has a face.
+
+### What went wrong this time
+
+- The chain. Paul is chained by his right wrist to the left wrist of a guard. The image model could not put one cuff on one named wrist with three people in the room. It cuffed both of Paul's wrists, chained him to the table, to Timothy, and once around his neck. Editing the whole picture chained every wrist it could see. What worked was editing a tight crop that showed only the two wrists and pasting it back.
+- Electric lamps, again. Asking for oil-lamp warmth gave wall sconces, a lamp post and glass lanterns. Saying where the one lamp is fixed it.
+- Video clips ended early, leaving a second of frozen picture before the cut. Every clip was rendered again to the full length of its slot.
+- Some shots had to end on a particular moment, like Paul writing. For those I gave the video model both the first and the last frame. That costs about three times as long per clip.
+- One shot, Onesimus tending Paul's wrist, fused the two men's arms three times. It became Onesimus bringing him a cup of water.
+- The first music had long silent stretches in it, so it dropped out and came back during playback. The fix was to make the music in 30-second sections, check each one for gaps, and blend them together.
+- The Halo went offline in the middle of the video renders, and after every reboot the speech server came up without the GPU. Both services now wait for the GPU before they start.
+
+### Philemon by the numbers
+
+| | Philemon |
+|---|---|
+| Shots | 37 (26 video, 9 parallax, 2 stills) |
+| Length | 3 min 12 s |
+| New portraits | 13 |
+| Still attempts | 225 |
+| Video renders | 52 |
+| GPU time | 164 min for stills, about 504 min for video, 16 min for music |
+
 ## Try it
 
 Everything is on [GitHub](https://github.com/btrzupek/halo-visual-bible): the MCP server, the ComfyUI workflows, the tunnel setup, the book viewer,

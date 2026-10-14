@@ -113,6 +113,8 @@ def main():
                              "Ezra=halo_klein_00398_.png,halo_edit_00571_.png,halo_edit_00572_.png",
                              "Nehemiah=halo_edit_00602_.png",
                              "Esther=halo_klein_00420_.png,halo_edit_00629_.png,halo_klein_00422_.png,halo_edit_00630_.png",
+                             "Philemon=halo_edit_00873_.png,halo_klein_00621_.png,halo_klein_00623_.png,halo_klein_00627_.png,halo_klein_00628_.png,halo_klein_ref_01348_.png,halo_edit_00874_.png,halo_klein_00630_.png,halo_klein_00625_.png,halo_klein_00631_.png,halo_edit_00875_.png,halo_klein_00634_.png,halo_klein_00635_.png,"
+                             "halo_klein_ref_01372_.png,halo_klein_ref_01374_.png,halo_klein_ref_01375_.png,halo_edit_00963_.png,halo_edit_00962_.png,halo_klein_ref_01390_.png,halo_edit_00967_.png,halo_klein_ref_01402_.png,halo_edit_00975_.png,halo_edit_00968_.png,halo_edit_00974_.png,halo_klein_ref_01450_.png,halo_klein_ref_01417_.png,halo_edit_00972_.png,halo_klein_ref_01426_.png,halo_edit_00971_.png,halo_klein_ref_01433_.png,halo_klein_ref_01436_.png,halo_klein_ref_01438_.png",
                              "Acts=halo_klein_00155_.png,halo_klein_00157_.png,halo_klein_00158_.png,halo_klein_00162_.png,halo_klein_00160_.png,halo_edit_00195_.png"],
                     help="Book=images used by that book's page itself (cast portraits)")
     ap.add_argument("--site", required=True)
@@ -132,7 +134,8 @@ def main():
     jobs = []
     for pid, h in hist.items():
         msgs = {m[0]: m[1] for m in h["status"].get("messages", [])}
-        outs = [i for n in h.get("outputs", {}).values() for i in n.get("images", []) if i.get("type") == "output"]
+        outs = [i for n in h.get("outputs", {}).values() for i in n.get("images", []) if i.get("type") == "output"
+                and i["filename"].lower().endswith((".png", ".jpg", ".jpeg", ".webp"))]   # stills only, not LTX video
         if not outs or "execution_start" not in msgs or "execution_success" not in msgs:
             continue
         start, end = msgs["execution_start"]["timestamp"], msgs["execution_success"]["timestamp"]

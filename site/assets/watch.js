@@ -60,9 +60,13 @@
       musicIdx = want === 'off' ? -1 : Math.max(0, tracks.map(function (t) { return t.id; }).indexOf(want));
       if (want && want !== 'off' && tracks.map(function (t) { return t.id; }).indexOf(want) < 0) musicIdx = 0;
     }
+    function musLabel(i) {   // one score: Music on/off; several: name the one playing
+      if (i < 0) return 'Music: off';
+      return tracks.length === 1 ? 'Music: on' : 'Music: ' + tracks[i].id.charAt(0).toUpperCase() + tracks[i].id.slice(1);
+    }
     function setMusic(i) {
       musicIdx = i; var id = i < 0 ? 'off' : tracks[i].id;
-      if (musBtn) { musBtn.textContent = 'Music: ' + (i < 0 ? 'off' : id.charAt(0).toUpperCase() + id.slice(1)); musBtn.setAttribute('aria-pressed', i >= 0); }
+      if (musBtn) { musBtn.textContent = musLabel(i); musBtn.setAttribute('aria-pressed', i >= 0); }
       try { localStorage.setItem('vb-watch-music', id); } catch (e) {}
       if (i < 0) { music.pause(); return; }
       music.src = base + tracks[i].src; syncMusic(true);
@@ -266,7 +270,7 @@
     ['mousemove', 'pointerdown', 'touchstart', 'keydown'].forEach(function (ev) { document.addEventListener(ev, idle, { passive: true }); });
     stage.addEventListener('click', function () { if (!document.body.classList.contains('idle')) setPlaying(!playing); });
     addEventListener('resize', function () { if (active) render(active, clock()); });
-    if (musBtn) { musBtn.textContent = 'Music: ' + (musicIdx < 0 ? 'off' : tracks[musicIdx].id.charAt(0).toUpperCase() + tracks[musicIdx].id.slice(1)); }
+    if (musBtn) musBtn.textContent = musLabel(musicIdx);
     window.WATCH.player = { seek: seek, clock: clock, M: M, music: music };
   }
 

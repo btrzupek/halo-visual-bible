@@ -165,10 +165,13 @@ def home(books):
     cards = {'Old': [], 'New': []}
     for b in books:
         voiced = ' · narrated' if b['audio'] else ''
+        if os.path.exists(os.path.join(SITE, 'watch', b['slug'], 'manifest.json')):
+            voiced += ' · a short film'
+        chs = f'{b["chapters"]} chapter' + ('' if b['chapters'] == 1 else 's')
         cards[b['testament']].append(
             f'<a class="book" href="/read/{b["slug"]}"><img src="/images/full/{b["img"]}" alt="" loading="lazy">'
             f'<span class="name">{html.escape(b["name"])}</span>'
-            f'<span class="meta">{b["chapters"]} chapters · {b["scenes"]} scenes{voiced}</span></a>')
+            f'<span class="meta">{chs} · {b["scenes"]} scenes{voiced}</span></a>')
     hero = books[0]['img']
     return (HEAD.format(title='The Visual Bible', desc=html.escape(
                 f'The King James Bible, one scene at a time: {len(books)} books and {total} illustrated scenes, '
