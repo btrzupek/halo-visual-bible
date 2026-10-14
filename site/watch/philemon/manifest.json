@@ -849,5 +849,15 @@
  "end_card": {
   "hold_black": 2.0
  },
+ "music": [
+  {
+   "id": "lyre",
+   "src": "audio/music-lyre.mp3?v=1792007455"
+  },
+  {
+   "id": "oud",
+   "src": "audio/music-oud.mp3?v=1792007518"
+  }
+ ],
  "review": true
 }

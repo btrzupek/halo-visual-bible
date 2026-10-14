@@ -192,6 +192,10 @@ def main():
         'verses': [{'n': v, 'start': round(vstart[v], 3), 'end': round(vend[v], 3), 'text': text[v - 1]} for v in sorted(vstart)],
         'movements': movements, 'shots': res,
         'end_card': {'hold_black': 2.0},
+        # music scores built by scripts/build_music.py (site/watch/<book>/audio/music-<style>.mp3), first is the default
+        'music': [{'id': f[6:-4], 'src': f'audio/{f}?v={int(os.path.getmtime(os.path.join(out, "audio", f)))}'}
+                  for f in sorted(os.listdir(os.path.join(out, 'audio'))) if f.startswith('music-') and f.endswith('.mp3')]
+                 if os.path.isdir(os.path.join(out, 'audio')) else [],
         'review': bool(a.placeholders),   # review builds show each shot's ID on screen (?ids=0/1 overrides)
     }
     with open(os.path.join(out, 'manifest.json.tmp'), 'w') as f:
@@ -223,12 +227,12 @@ def write_page(out, m):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/watch.css?v=4">
+<link rel="stylesheet" href="/assets/watch.css?v=5">
 </head>
 <body>
 <noscript><p style="padding:2rem">This page needs JavaScript. <a href="/read/{m['book']}" style="color:#d4b066">Read {html.escape(m['short'])}</a>.</p></noscript>
 <script>window.WATCH={json.dumps({'book': m['book'], 'manifest': 'manifest.json?v=' + str(int(time.time()))})};</script>
-<script src="/assets/watch.js?v=5"></script>
+<script src="/assets/watch.js?v=6"></script>
 </body>
 </html>
 '''

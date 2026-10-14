@@ -37,7 +37,8 @@
     var ctl = el('div', 'ctl',
       '<input class="scrub" type="range" min="0" max="' + M.duration + '" step="0.1" value="0" aria-label="Position">' +
       '<div class="row"><button class="play" aria-label="Pause">&#10074;&#10074;</button><span class="time"></span>' +
-      '<button class="txt" aria-pressed="true">Text</button><div class="moves"></div></div>');
+      '<button class="txt" aria-pressed="true">Text</button>' + (M.music && M.music.length ? '<button class="mus"></button>' : '') +
+      '<div class="moves"></div></div>');
     document.body.appendChild(ctl);
     var scrub = $('.scrub', ctl), playBtn = $('.play', ctl), timeEl = $('.time', ctl), txtBtn = $('.txt', ctl);
     M.movements.forEach(function (m) {
@@ -49,6 +50,34 @@
     function setText(on) { showText = on; document.body.classList.toggle('notext', !on); txtBtn.setAttribute('aria-pressed', on); try { localStorage.setItem('vb-watch-text', on ? 'on' : 'off'); } catch (e) {} }
     setText(showText);
     txtBtn.addEventListener('click', function () { setText(!showText); });
+
+    // ---- music: an optional score under the narration (pre-ducked), on its own track, kept in step with the clock.
+    // ?music=<id>|off picks one; the button cycles the scores and Off; the choice is remembered.
+    var tracks = M.music || [], musicIdx = -1, music = new Audio(); music.preload = 'auto';
+    var musBtn = $('.mus', ctl);
+    if (tracks.length) {
+      var want = q.get('music'); try { if (!want) want = localStorage.getItem('vb-watch-music'); } catch (e) {}
+      musicIdx = want === 'off' ? -1 : Math.max(0, tracks.map(function (t) { return t.id; }).indexOf(want));
+      if (want && want !== 'off' && tracks.map(function (t) { return t.id; }).indexOf(want) < 0) musicIdx = 0;
+    }
+    function setMusic(i) {
+      musicIdx = i; var id = i < 0 ? 'off' : tracks[i].id;
+      if (musBtn) { musBtn.textContent = 'Music: ' + (i < 0 ? 'off' : id.charAt(0).toUpperCase() + id.slice(1)); musBtn.setAttribute('aria-pressed', i >= 0); }
+      try { localStorage.setItem('vb-watch-music', id); } catch (e) {}
+      if (i < 0) { music.pause(); return; }
+      music.src = base + tracks[i].src; syncMusic(true);
+    }
+    function syncMusic(force, at) {
+      if (musicIdx < 0) return;
+      var t = at != null ? at : clock();
+      if (!playing || t >= M.duration) { music.pause(); return; }
+      var go = function () {
+        if (force || Math.abs(music.currentTime - t) > 0.3) { try { music.currentTime = Math.min(t, (music.duration || t + 1) - 0.05); } catch (e) {} }
+        if (music.paused) music.play().catch(function () {});
+      };
+      if (music.readyState >= 1) go(); else music.addEventListener('loadedmetadata', go, { once: true });
+    }
+    if (musBtn) musBtn.addEventListener('click', function () { setMusic(musicIdx + 1 < tracks.length ? musicIdx + 1 : -1); });
 
     // ---- audio: the narration is several files back to back; the clock runs on past them for the epilogue
     var audio = new Audio(); audio.preload = 'auto';
@@ -74,7 +103,7 @@
       ended = false; black.classList.remove('on'); $('#endcard') && ($('#endcard').hidden = true);
       if (t >= M.narration_end) { seg = M.audio.length; audio.pause(); tailBase = t; tailT0 = performance.now(); }
       else { var i = segAt(t); loadSeg(i, t - M.audio[i].start); }
-      cur = -1;
+      cur = -1; syncMusic(true, t);
     }
     function setPlaying(on) {
       var t = clock();
@@ -83,6 +112,7 @@
       if (seg < M.audio.length) { if (on) audio.play().catch(function () {}); else audio.pause(); }
       else { tailBase = t; tailT0 = performance.now(); }
       var v = layers[front].querySelector('video'); if (v) { if (on) v.play().catch(function () {}); else v.pause(); }
+      syncMusic(true);
     }
     playBtn.addEventListener('click', function () { setPlaying(!playing); });
     scrub.addEventListener('input', function () { seek(+scrub.value); });
@@ -167,7 +197,7 @@
     }
 
     // ---- frame loop
-    var lastMove = -1;
+    var lastMove = -1, musTick = 0;
     function tick() {
       var t = clock();
       if (!ended && t >= M.duration) return finish();
@@ -183,6 +213,7 @@
           (shots[i].placeholder ? '  STAND-IN' : '') + '  v' + (shots[i].verses || '-') + (DEBUG ? '  ' + shots[i].start.toFixed(1) + '-' + shots[i].end.toFixed(1) : '');
       }
       if (active) render(active, t);
+      if (musicIdx >= 0 && (++musTick % 30 === 0)) syncMusic(false);
       setVerse(t < M.narration_end ? verseAt(t) : -1);
       if (document.activeElement !== scrub) scrub.value = t;
       timeEl.textContent = fmt(t) + ' / ' + fmt(M.duration);
@@ -209,7 +240,7 @@
       '<button class="primary" data-go="watch">Watch</button><a class="btn ghost" href="/read/' + M.book + '">Read instead</a>');
     title.addEventListener('click', function (e) {
       if (!e.target.closest('[data-go]')) return;
-      title.hidden = true; seek(0); setPlaying(true); requestAnimationFrame(tick); idle();
+      title.hidden = true; seek(0); setPlaying(true); if (tracks.length) setMusic(musicIdx); requestAnimationFrame(tick); idle();
     });
     function endCard() {
       var c = $('#endcard');
@@ -235,7 +266,8 @@
     ['mousemove', 'pointerdown', 'touchstart', 'keydown'].forEach(function (ev) { document.addEventListener(ev, idle, { passive: true }); });
     stage.addEventListener('click', function () { if (!document.body.classList.contains('idle')) setPlaying(!playing); });
     addEventListener('resize', function () { if (active) render(active, clock()); });
-    window.WATCH.player = { seek: seek, clock: clock, M: M };
+    if (musBtn) { musBtn.textContent = 'Music: ' + (musicIdx < 0 ? 'off' : tracks[musicIdx].id.charAt(0).toUpperCase() + tracks[musicIdx].id.slice(1)); }
+    window.WATCH.player = { seek: seek, clock: clock, M: M, music: music };
   }
 
   // ---- 2.5D parallax: the keyframe displaced by its depth map. dolly = push toward the near plane, orbit = sideways.
