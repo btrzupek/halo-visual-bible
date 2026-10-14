@@ -380,7 +380,7 @@
    "grade": null,
    "reading_room": false,
    "img": "img/M1.S09.webp?v=1791946829",
-   "video": "video/M1.S09.mp4?v=1791994799"
+   "video": "video/M1.S09.mp4?v=1792001525"
   },
   {
    "id": "M2.S01",
@@ -467,7 +467,7 @@
    "grade": null,
    "reading_room": false,
    "img": "img/M3.S01.webp?v=1791765273",
-   "video": "video/M3.S01.mp4?v=1791978337"
+   "video": "video/M3.S01.mp4?v=1791999552"
   },
   {
    "id": "M3.S02",
@@ -593,28 +593,18 @@
   },
   {
    "id": "M3.S09",
-   "type": "pan",
+   "type": "video",
    "start": 91.525,
    "end": 107.425,
    "verses": "13-14",
    "motion": {
-    "from": [
-     0.04,
-     0.04,
-     0.92,
-     0.92
-    ],
-    "to": [
-     0.14,
-     0.22,
-     0.72,
-     0.72
-    ],
-    "ease": "in-out"
+    "dolly": "in",
+    "amount": 0.03
    },
    "grade": null,
    "reading_room": false,
-   "img": "img/M3.S09.webp?v=1791978059"
+   "img": "img/M3.S09.webp?v=1792001753",
+   "video": "video/M3.S09.mp4?v=1792002994"
   },
   {
    "id": "M3.S10",
@@ -682,7 +672,7 @@
    "grade": null,
    "reading_room": false,
    "img": "img/M4.S02.webp?v=1791770462",
-   "video": "video/M4.S02.mp4?v=1791994726"
+   "video": "video/M4.S02.mp4?v=1792004323"
   },
   {
    "id": "M4.S03",
@@ -841,7 +831,7 @@
    "grade": null,
    "reading_room": false,
    "img": "img/M5.S08.webp?v=1791772290",
-   "video": "video/M5.S08.mp4?v=1791981416"
+   "video": "video/M5.S08.mp4?v=1791998150"
   },
   {
    "id": "M6.S01",
