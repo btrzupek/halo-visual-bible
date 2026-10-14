@@ -134,7 +134,8 @@
       if (r.gl) {
         var amt = m.amount || 0.05, e = ease['in-out'](p);
         r.gl.draw(m.dolly === 'in' ? amt * e : m.dolly === 'out' ? amt * (1 - e) : 0,
-                  m.orbit === 'left' ? -amt * (e - .5) * 2 : m.orbit === 'right' ? amt * (e - .5) * 2 : 0);
+                  m.orbit === 'left' ? -amt * (e - .5) * 2 : m.orbit === 'right' ? amt * (e - .5) * 2 : 0,
+                  m.from && m.to ? lerpRect(m.from, m.to, (ease[m.ease] || ease['in-out'])(p)) : null);   // a pan, with depth
         return;
       }
       if (r.img.complete) placeImg(r.img, cameraRect(s, p, m, true));
@@ -246,9 +247,9 @@
     // Parallax as an inverse lookup: for each screen pixel, step from the nearest depth layer to the farthest and take
     // the first layer whose source pixel is at least that near. Near things then cover far things cleanly (no ghost
     // edges); the 24 steps are refined by one linear step between the last two layers.
-    var fs = 'precision mediump float;varying vec2 v;uniform sampler2D img,dep;uniform vec2 cov;uniform float dolly,orbit;' +
+    var fs = 'precision mediump float;varying vec2 v;uniform sampler2D img,dep;uniform vec4 crop;uniform float dolly,orbit;' +
       'vec2 src(vec2 u,float L){return (u-.5-vec2(orbit*(L-.45),0.))/(1.+dolly*(.35+.9*L))+.5;}' +
-      'void main(){vec2 u=(v-.5)*cov+.5;float pl=1.,pd=0.;vec2 s=src(u,0.);' +
+      'void main(){vec2 u=crop.xy+v*crop.zw;float pl=1.,pd=0.;vec2 s=src(u,0.);' +
       'for(int i=0;i<=24;i++){float L=1.-float(i)/24.;vec2 c=clamp(src(u,L),0.,1.);float d=texture2D(dep,c).r;' +
       'if(d>=L){float a=(pd-pl)-(d-L);float t=abs(a)>1e-4?(pd-pl)/a:0.;s=clamp(src(u,mix(pl,L,clamp(t,0.,1.))),0.,1.);break;}pl=L;pd=d;s=c;}' +
       'gl_FragColor=texture2D(img,s);}';
@@ -259,8 +260,8 @@
     var b = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, b);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
     var loc = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-    var U = {}; ['img', 'dep', 'cov', 'dolly', 'orbit'].forEach(function (n) { U[n] = gl.getUniformLocation(pr, n); });
-    var ready = 0, iw = 16, ih = 9, last = [0, 0];
+    var U = {}; ['img', 'dep', 'crop', 'dolly', 'orbit'].forEach(function (n) { U[n] = gl.getUniformLocation(pr, n); });
+    var ready = 0, iw = 16, ih = 9, last = [0, 0, null];
     function tex(unit, src, uni) {
       var t = gl.createTexture(), im = new Image(); im.crossOrigin = 'anonymous';
       im.onload = function () {
@@ -269,18 +270,21 @@
         [gl.TEXTURE_WRAP_S, gl.TEXTURE_WRAP_T].forEach(function (k) { gl.texParameteri(gl.TEXTURE_2D, k, gl.CLAMP_TO_EDGE); });
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
         gl.uniform1i(uni, unit); if (unit === 0) { iw = im.naturalWidth; ih = im.naturalHeight; }
-        ready++; draw(last[0], last[1]);
+        ready++; draw(last[0], last[1], last[2]);
       };
       im.src = src;
     }
     tex(0, imgSrc, U.img); tex(1, depthSrc, U.dep);
-    function draw(dolly, orbit) {
-      last = [dolly, orbit]; if (ready < 2) return;
+    function draw(dolly, orbit, rect) {
+      last = [dolly, orbit, rect]; if (ready < 2) return;
       var dpr = Math.min(window.devicePixelRatio || 1, 2), w = Math.round(c.clientWidth * dpr), h = Math.round(c.clientHeight * dpr);
       if (c.width !== w || c.height !== h) { c.width = w; c.height = h; }
       gl.viewport(0, 0, w, h);
-      var va = w / h, ia = iw / ih;                            // cover: show the centre of the keyframe at the viewport's aspect
-      gl.uniform2f(U.cov, va > ia ? 1 : va / ia, va > ia ? ia / va : 1);
+      // the visible part of the keyframe: the pan's crop rect (or the whole frame), fitted to the viewport's aspect
+      var R = rect || [0, 0, 1, 1];
+      var sc = Math.max(w / (R[2] * iw), h / (R[3] * ih), w / iw, h / ih), vw = w / sc / iw, vh = h / sc / ih;
+      var x0 = Math.min(Math.max(R[0] + R[2] / 2 - vw / 2, 0), 1 - vw), y0 = Math.min(Math.max(R[1] + R[3] / 2 - vh / 2, 0), 1 - vh);
+      gl.uniform4f(U.crop, x0, y0, vw, vh);
       gl.uniform1f(U.dolly, dolly); gl.uniform1f(U.orbit, orbit);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     }

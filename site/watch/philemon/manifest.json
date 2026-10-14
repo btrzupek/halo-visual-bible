@@ -456,18 +456,18 @@
   },
   {
    "id": "M3.S01",
-   "type": "parallax",
+   "type": "video",
    "start": 57.6,
    "end": 75.154,
    "verses": "8-9",
    "motion": {
     "dolly": "in",
-    "amount": 0.07
+    "amount": 0.03
    },
    "grade": null,
    "reading_room": false,
    "img": "img/M3.S01.webp?v=1791765273",
-   "depth": "depth/M3.S01.png?v=17917727742"
+   "video": "video/M3.S01.mp4?v=1791978337"
   },
   {
    "id": "M3.S02",
@@ -481,12 +481,12 @@
    },
    "grade": null,
    "reading_room": false,
-   "img": "img/M3.S02.webp?v=1791765898",
-   "depth": "depth/M3.S02.png?v=17917727752"
+   "img": "img/M3.S02.webp?v=1791978059",
+   "depth": "depth/M3.S02.png?v=17919781232"
   },
   {
    "id": "M3.S03",
-   "type": "pan",
+   "type": "video",
    "start": 76.955,
    "end": 79.16,
    "verses": "10",
@@ -507,7 +507,8 @@
    },
    "grade": "flashback",
    "reading_room": false,
-   "img": "img/M3.S03.webp?v=1791766566"
+   "img": "img/M3.S03.webp?v=1791766566",
+   "video": "video/M3.S03.mp4?v=1791978547"
   },
   {
    "id": "M3.S04",
@@ -515,11 +516,14 @@
    "start": 79.16,
    "end": 81.18,
    "verses": "11",
-   "motion": null,
+   "motion": {
+    "dolly": "in",
+    "amount": 0.02
+   },
    "grade": "flashback",
    "reading_room": false,
    "img": "img/M3.S04.webp?v=1791766720",
-   "video": "video/M3.S04.mp4?v=1791919266"
+   "video": "video/M3.S04.mp4?v=1791980575"
   },
   {
    "id": "M3.S05",
@@ -529,37 +533,37 @@
    "verses": "11",
    "motion": {
     "from": [
-     0.0,
-     0.0,
-     0.8,
-     0.8
+     0.05,
+     0.06,
+     0.9,
+     0.9
     ],
     "to": [
-     0.4,
-     0.35,
-     0.4,
-     0.4
+     0.13,
+     0.1,
+     0.82,
+     0.82
     ],
-    "ease": "in"
+    "ease": "in-out"
    },
    "grade": "flashback",
    "reading_room": false,
-   "img": "img/M3.S05.webp?v=1791766979"
+   "img": "img/M3.S05.webp?v=1791978059"
   },
   {
    "id": "M3.S06",
-   "type": "parallax",
+   "type": "video",
    "start": 82.38,
    "end": 85.45,
    "verses": "11",
    "motion": {
     "dolly": "in",
-    "amount": 0.04
+    "amount": 0.03
    },
    "grade": null,
    "reading_room": false,
    "img": "img/M3.S06.webp?v=1791767447",
-   "depth": "depth/M3.S06.png?v=17917727772"
+   "video": "video/M3.S06.mp4?v=1791978763"
   },
   {
    "id": "M3.S07",
@@ -573,8 +577,8 @@
    },
    "grade": null,
    "reading_room": false,
-   "img": "img/M3.S07.webp?v=1791768182",
-   "depth": "depth/M3.S07.png?v=17917727782"
+   "img": "img/M3.S07.webp?v=1791978059",
+   "depth": "depth/M3.S07.png?v=17919781242"
   },
   {
    "id": "M3.S08",
@@ -585,7 +589,7 @@
    "motion": null,
    "grade": null,
    "reading_room": true,
-   "img": "img/M3.S08.webp?v=1791768640"
+   "img": "img/M3.S08.webp?v=1791978059"
   },
   {
    "id": "M3.S09",
@@ -595,77 +599,78 @@
    "verses": "13-14",
    "motion": {
     "from": [
-     0.3,
-     0.3,
-     0.5,
-     0.5
+     0.04,
+     0.04,
+     0.92,
+     0.92
     ],
     "to": [
-     0.1,
-     0.15,
-     0.7,
-     0.7
+     0.14,
+     0.22,
+     0.72,
+     0.72
     ],
-    "ease": "out"
+    "ease": "in-out"
    },
    "grade": null,
    "reading_room": false,
-   "img": "img/M3.S09.webp?v=1791769180"
+   "img": "img/M3.S09.webp?v=1791978059"
   },
   {
    "id": "M3.S10",
-   "type": "pan",
+   "type": "video",
    "start": 107.425,
    "end": 113.725,
    "verses": "15",
    "motion": {
     "from": [
-     0.2,
-     0.1,
-     0.6,
-     0.6
+     0.15,
+     0.08,
+     0.75,
+     0.75
     ],
     "to": [
+     0.05,
      0.0,
-     0.0,
-     1.0,
-     1.0
+     0.95,
+     0.95
     ],
     "ease": "out"
    },
    "grade": null,
    "reading_room": false,
-   "img": "img/M3.S10.webp?v=1791769411"
+   "img": "img/M3.S10.webp?v=1791769411",
+   "video": "video/M3.S10.mp4?v=1791978979"
   },
   {
    "id": "M3.S11",
-   "type": "parallax",
+   "type": "video",
    "start": 113.725,
    "end": 123.925,
    "verses": "16",
    "motion": {
     "orbit": "left",
-    "amount": 0.05
+    "amount": 0.03
    },
    "grade": null,
    "reading_room": false,
    "img": "img/M3.S11.webp?v=1791769614",
-   "depth": "depth/M3.S11.png?v=17917727802"
+   "video": "video/M3.S11.mp4?v=1791979189"
   },
   {
    "id": "M4.S01",
-   "type": "parallax",
+   "type": "video",
    "start": 123.925,
    "end": 129.325,
    "verses": "17",
    "motion": {
     "dolly": "in",
-    "amount": 0.05
+    "amount": 0.03
    },
    "grade": null,
    "reading_room": false,
-   "img": "img/M4.S01.webp?v=1791770042",
-   "depth": "depth/M4.S01.png?v=17917727812"
+   "img": "img/M4.S01.webp?v=1791978059",
+   "video": "video/M4.S01.mp4?v=1791979400"
   },
   {
    "id": "M4.S02",
@@ -681,65 +686,75 @@
   },
   {
    "id": "M4.S03",
-   "type": "still",
+   "type": "video",
    "start": 141.616,
    "end": 145.325,
    "verses": "19",
-   "motion": null,
+   "motion": {
+    "dolly": "in",
+    "amount": 0.03
+   },
    "grade": null,
    "reading_room": true,
-   "img": "img/M4.S03.webp?v=1791770617"
+   "img": "img/M4.S03.webp?v=1791770617",
+   "video": "video/M4.S03.mp4?v=1791979611"
   },
   {
    "id": "M4.S04",
-   "type": "parallax",
+   "type": "video",
    "start": 145.325,
    "end": 151.45,
    "verses": "20",
    "motion": {
     "dolly": "out",
-    "amount": 0.04
+    "amount": 0.03
    },
    "grade": null,
    "reading_room": false,
-   "img": "img/M4.S04.webp?v=1791770799",
-   "depth": "depth/M4.S04.png?v=17917727832"
+   "img": "img/M4.S04.webp?v=1791978059",
+   "video": "video/M4.S04.mp4?v=1791979826"
   },
   {
    "id": "M5.S01",
-   "type": "still",
+   "type": "video",
    "start": 151.45,
    "end": 159.9,
    "verses": "21",
-   "motion": null,
+   "motion": {
+    "dolly": "in",
+    "amount": 0.02
+   },
    "grade": null,
    "reading_room": true,
-   "img": "img/M5.S01.webp?v=1791770956"
+   "img": "img/M5.S01.webp?v=1791770956",
+   "video": "video/M5.S01.mp4?v=1791980037"
   },
   {
    "id": "M5.S02",
-   "type": "pan",
+   "type": "parallax",
    "start": 159.9,
    "end": 168.839,
    "verses": "22",
    "motion": {
     "from": [
-     0.3,
-     0.2,
+     0.46,
+     0.22,
      0.5,
      0.5
     ],
     "to": [
-     0.45,
-     0.05,
-     0.55,
-     0.55
+     0.33,
+     0.2,
+     0.52,
+     0.52
     ],
-    "ease": "in-out"
+    "ease": "in-out",
+    "amount": 0.03
    },
    "grade": null,
    "reading_room": false,
-   "img": "img/M5.S02.webp?v=1791771145"
+   "img": "img/M5.S02.webp?v=1791771145",
+   "depth": "depth/M5.S02.png?v=17919781262"
   },
   {
    "id": "M5.S03",
@@ -826,7 +841,7 @@
    "grade": null,
    "reading_room": false,
    "img": "img/M5.S08.webp?v=1791772290",
-   "video": "video/M5.S08.mp4?v=1791919266"
+   "video": "video/M5.S08.mp4?v=1791981416"
   },
   {
    "id": "M6.S01",
