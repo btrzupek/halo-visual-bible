@@ -136,7 +136,7 @@ def reader_page(slug, folder, prefix, name, title, chs):
                                          'each picture filling the window as the passage is read.'))
             + f'<link rel="stylesheet" href="/assets/present.css?v={ASSET_V}">\n<script>\n'
             '  window.VB={ch:{},add:function(c,d){this.ch[c]=d;}};\n'
-            f'  window.READ={config};\n</script>\n{tags}\n</head>\n<body>\n'
+            f'  window.READ={config};\n</script>\n{tags}\n<script defer src="/_vercel/insights/script.js"></script>\n</head>\n<body>\n'
             f'<noscript><p style="padding:2rem">This page needs JavaScript. <a href="/{folder}" style="color:#d4b066">'
             f'See all scenes in {html.escape(name)}</a>.</p></noscript>\n'
             f'<script src="/assets/report.js?v={REPORT_V}"></script>\n'
@@ -206,7 +206,7 @@ def home(books):
             'footer{padding:2rem clamp(1.25rem,6vw,5rem) 3rem;color:var(--soft);font-size:.95rem;max-width:70ch}\n'
             'footer a{color:var(--gilt)}\n'
             '@media (prefers-reduced-motion:reduce){.hero img{animation:none}.book img{transition:none}}\n'
-            '</style>\n</head>\n<body>\n' + nav()
+            '</style>\n<script defer src="/_vercel/insights/script.js"></script>\n</head>\n<body>\n' + nav()
             + f'<header class="hero"><img src="/images/full/{hero}" alt="">\n<div class="inner">\n'
             '<h1>The Visual Bible</h1>\n'
             '<p>The King James Bible, one scene at a time. Each picture fills the screen while the passage is read aloud.</p>\n'

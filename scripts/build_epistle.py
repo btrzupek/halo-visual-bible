@@ -228,6 +228,7 @@ def write_page(out, m):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/watch.css?v=5">
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <noscript><p style="padding:2rem">This page needs JavaScript. <a href="/read/{m['book']}" style="color:#d4b066">Read {html.escape(m['short'])}</a>.</p></noscript>
