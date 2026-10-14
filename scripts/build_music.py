@@ -20,18 +20,83 @@ STYLES = {
                     'film score underscore, no vocals', 'key': 'D minor', 'bpm': 64, 'seed': 21},
 }
 MOODS = {   # by movement id; the epilogue (unnarrated) is left silent
-    'M1': 'gentle opening, quiet and welcoming, sparse',
+    'M1': 'gentle opening, warm and welcoming, continuous flowing melody',
     'M2': 'warm and grateful, tender, a little lighter',
     'M3': 'tender and pleading, then searching and a little tense, emotional',
     'M4': 'resolute and steady, quietly building conviction',
-    'M5': 'hopeful farewell, calm resolve, gently fading',
+    'M5': 'hopeful farewell, calm resolve, continuous flowing melody',
 }
 XF = 3.0
+PIECE_LUFS = -20        # every movement's piece is levelled to this before mixing, so movements match
+# Ducking: a slow, gentle dip that settles under the narration rather than pumping on each word
+DUCK = 'sidechaincompress=threshold=0.05:ratio=3:attack=300:release=2500:knee=6'
 
 
 def ffmpeg():
     return subprocess.check_output([sys.executable, '-c', 'import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())'],
                                    text=True).strip()
+
+
+CHUNK = 30.0      # ACE-Step pieces longer than this tend to contain long silent stretches; 30 s ones are continuous
+TAIL = 4.0        # extra seconds generated per section and cut off, so ACE-Step's own ending fade never reaches the mix
+TRIES = 10
+
+
+def silent_gaps(path, floor=-50.0, window=1.5):
+    """Seconds of the longest stretch quieter than `floor` dB (RMS over `window` s) in the first CHUNK seconds."""
+    import numpy as np
+    raw = subprocess.run([ffmpeg(), '-loglevel', 'error', '-i', path, '-ac', '1', '-ar', '8000', '-f', 's16le', '-'],
+                         capture_output=True, check=True).stdout
+    x = np.frombuffer(raw, np.int16).astype(float) / 32768
+    hop = 800; w = int(window * 8000)
+    x = x[:int(CHUNK * 8000)]
+    rms = [20 * np.log10(np.sqrt(np.mean(x[k:k + w] ** 2)) + 1e-9) for k in range(0, max(1, len(x) - w), hop)]
+    run = best = 0
+    for v in rms:
+        run = run + 1 if v < floor else 0; best = max(best, run)
+    return best * hop / 8000
+
+
+def build_piece(out, tags, length, st, seed_base, work):
+    """A movement's music: 30 s ACE-Step sections, each checked for silent gaps (regenerated with a new seed if it has
+    one; the quietest-gap take is kept if none is clean), levelled, and chained with 3 s crossfades to cover
+    `length` seconds."""
+    n = max(1, int(-(-(length - XF) // (CHUNK - XF))))
+    parts = []
+    for c in range(n):
+        p = out.replace('.mp3', f'.part{c}.mp3')
+        best = None
+        for attempt in range(TRIES):
+            seed = st['seed'] + seed_base + 37 * c + 101 * attempt
+            take = p.replace('.mp3', f'.t{attempt}.mp3')
+            subprocess.run([sys.executable, os.path.join(ROOT, 'scripts', 'ace_music.py'), '--tags', tags,
+                            '--seconds', str(CHUNK + TAIL), '--bpm', str(st['bpm']), '--key', st['key'], '--seed', str(seed),
+                            '--out', take], check=True, stdout=subprocess.DEVNULL)
+            gap = silent_gaps(take)
+            if best is None or gap < best[0]:
+                best = (gap, take)
+            if gap < 1.0:
+                break
+            print(f'  {os.path.basename(out)} section {c}: {gap:.1f} s silent gap, new seed', flush=True)
+        if best[0] >= 1.0:
+            print(f'  {os.path.basename(out)} section {c}: no clean take in {TRIES}, kept the best ({best[0]:.1f} s gap)', flush=True)
+        subprocess.run([ffmpeg(), '-y', '-loglevel', 'error', '-i', best[1], '-t', str(CHUNK), '-b:a', '192k', p], check=True)
+        for t in range(TRIES):
+            q = p.replace('.mp3', f'.t{t}.mp3')
+            if os.path.exists(q):
+                os.remove(q)
+        parts.append(p)
+    if n == 1:
+        os.replace(parts[0], out); return
+    ins = sum((['-i', p] for p in parts), [])
+    norm = ''.join(f'[{k}:a]loudnorm=I={PIECE_LUFS}:TP=-2:LRA=7,aresample=48000[n{k}];' for k in range(n))
+    chain, last = norm, 'n0'
+    for k in range(1, n):
+        chain += f'[{last}][n{k}]acrossfade=d={XF}:c1=tri:c2=tri[x{k}];'; last = f'x{k}'
+    subprocess.run([ffmpeg(), '-y', '-loglevel', 'error', *ins, '-filter_complex', chain.rstrip(';'), '-map', f'[{last}]',
+                    '-b:a', '192k', out], check=True)
+    for p in parts:
+        os.remove(p)
 
 
 def main():
@@ -53,9 +118,7 @@ def main():
         length = round(end - start, 1)
         f = os.path.join(work, f'{a.style}-{m["id"]}.mp3')
         if a.force or not os.path.exists(f):
-            tags = f'{st["base"]}, {MOODS[m["id"]]}'
-            subprocess.run([sys.executable, os.path.join(ROOT, 'scripts', 'ace_music.py'), '--tags', tags, '--seconds', str(length + 2),
-                            '--bpm', str(st['bpm']), '--key', st['key'], '--seed', str(st['seed'] + i), '--out', f], check=True)
+            build_piece(f, f'{st["base"]}, {MOODS[m["id"]]}, steady presence throughout', length, st, 1000 * i, work)
         segs.append((f, start, length))
         print(f'{a.style} {m["id"]} {start:.1f}+{length:.1f}s', flush=True)
     ff = ffmpeg()
@@ -70,12 +133,13 @@ def main():
         ins += ['-i', f]
         fade_in = 'afade=t=in:d=2' if k == 0 else f'afade=t=in:d={XF}'
         chains.append(f'[{k}:a]atrim=0:{length},asetpts=PTS-STARTPTS,aresample=48000,aformat=channel_layouts=stereo,'
+                      f'loudnorm=I={PIECE_LUFS}:TP=-2:LRA=7,aresample=48000,'
                       f'{fade_in},afade=t=out:st={length - XF}:d={XF},volume={a.music_gain},adelay={int(start * 1000)}:all=1[s{k}]')
     n = len(segs)
     total = M['duration'] + 2.5
     graph = ';'.join(chains) + ';' + ''.join(f'[s{k}]' for k in range(n)) + \
         f'amix=inputs={n}:normalize=0:duration=longest,apad=whole_dur={total}[mus];' + \
-        f'[{n}:a]asplit=1[key];[mus][key]sidechaincompress=threshold=0.03:ratio=6:attack=40:release=600,atrim=0:{total}[out]'
+        f'[{n}:a]asplit=1[key];[mus][key]{DUCK},atrim=0:{total}[out]'
     dst = os.path.join(out_dir, 'audio'); os.makedirs(dst, exist_ok=True)
     out = os.path.join(dst, f'music-{a.style}.mp3')
     subprocess.run([ff, '-y', '-loglevel', 'error', *ins, '-i', narr, '-filter_complex', graph, '-map', '[out]',
