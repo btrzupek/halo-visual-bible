@@ -219,34 +219,50 @@
  "shots": [
   {
    "id": "M1.S01",
-   "type": "pan",
+   "type": "video",
    "start": 0.0,
-   "end": 5.15,
+   "end": 4.58,
    "verses": "1",
    "motion": {
     "from": [
-     0.0,
-     0.0,
-     0.7,
-     0.7
+     0.12,
+     0.15,
+     0.8,
+     0.8
     ],
     "to": [
-     0.3,
-     0.1,
-     0.5,
-     0.5
+     0.36,
+     0.38,
+     0.62,
+     0.62
     ],
     "ease": "in-out"
    },
    "grade": null,
    "reading_room": false,
-   "img": "img/M1.S01.webp?v=1791761291"
+   "img": "img/M1.S01.webp?v=1791761291",
+   "video": "video/M1.S01.mp4?v=1791947123"
+  },
+  {
+   "id": "M1.S03",
+   "type": "video",
+   "start": 4.58,
+   "end": 5.78,
+   "verses": "1",
+   "motion": {
+    "dolly": "in",
+    "amount": 0.03
+   },
+   "grade": null,
+   "reading_room": false,
+   "img": "img/M1.S03.webp?v=1791762744",
+   "video": "video/M1.S03.mp4?v=1791947340"
   },
   {
    "id": "M1.S02",
    "type": "video",
-   "start": 5.15,
-   "end": 6.35,
+   "start": 5.78,
+   "end": 10.093,
    "verses": "1",
    "motion": null,
    "grade": null,
@@ -255,63 +271,49 @@
    "video": "video/M1.S02.mp4?v=1791919266"
   },
   {
-   "id": "M1.S03",
-   "type": "parallax",
-   "start": 6.35,
-   "end": 10.093,
-   "verses": "1",
-   "motion": {
-    "dolly": "in",
-    "amount": 0.06
-   },
-   "grade": null,
-   "reading_room": false,
-   "img": "img/M1.S03.webp?v=1791762744",
-   "depth": "depth/M1.S03.png?v=17917633122"
-  },
-  {
    "id": "M1.S04",
-   "type": "pan",
+   "type": "video",
    "start": 10.093,
    "end": 11.293,
    "verses": "1",
    "motion": {
     "from": [
-     0.0,
-     0.2,
-     0.6,
-     0.6
+     0.05,
+     0.08,
+     0.9,
+     0.9
     ],
     "to": [
-     0.35,
-     0.3,
-     0.45,
-     0.45
+     0.12,
+     0.12,
+     0.82,
+     0.82
     ],
     "ease": "in-out"
    },
    "grade": null,
    "reading_room": false,
-   "img": "img/M1.S04.webp?v=1791762991"
+   "img": "img/M1.S04.webp?v=1791762991",
+   "video": "video/M1.S04.mp4?v=1791947551"
   },
   {
    "id": "M1.S05",
-   "type": "parallax",
+   "type": "video",
    "start": 11.293,
    "end": 15.267,
    "verses": "1",
    "motion": {
     "dolly": "in",
-    "amount": 0.05
+    "amount": 0.04
    },
    "grade": null,
    "reading_room": false,
    "img": "img/M1.S05.webp?v=1791763070",
-   "depth": "depth/M1.S05.png?v=17917633132"
+   "video": "video/M1.S05.mp4?v=1791947764"
   },
   {
    "id": "M1.S06",
-   "type": "parallax",
+   "type": "video",
    "start": 15.267,
    "end": 16.467,
    "verses": "2",
@@ -322,11 +324,11 @@
    "grade": null,
    "reading_room": false,
    "img": "img/M1.S06.webp?v=1791763211",
-   "depth": "depth/M1.S06.png?v=17917633152"
+   "video": "video/M1.S06.mp4?v=1791948020"
   },
   {
    "id": "M1.S07",
-   "type": "parallax",
+   "type": "video",
    "start": 16.467,
    "end": 19.281,
    "verses": "2",
@@ -337,43 +339,48 @@
    "grade": null,
    "reading_room": false,
    "img": "img/M1.S07.webp?v=1791763349",
-   "depth": "depth/M1.S07.png?v=17917636912"
+   "video": "video/M1.S07.mp4?v=1791948265"
   },
   {
    "id": "M1.S08",
-   "type": "pan",
+   "type": "video",
    "start": 19.281,
    "end": 20.975,
    "verses": "2",
    "motion": {
     "from": [
-     0.0,
-     0.25,
-     0.55,
-     0.55
+     0.04,
+     0.06,
+     0.92,
+     0.92
     ],
     "to": [
-     0.45,
-     0.2,
-     0.55,
-     0.55
+     0.08,
+     0.06,
+     0.88,
+     0.88
     ],
     "ease": "linear"
    },
    "grade": null,
    "reading_room": false,
-   "img": "img/M1.S08.webp?v=1791763706"
+   "img": "img/M1.S08.webp?v=1791763706",
+   "video": "video/M1.S08.mp4?v=1791948480"
   },
   {
    "id": "M1.S09",
-   "type": "still",
+   "type": "video",
    "start": 20.975,
    "end": 26.975,
    "verses": "3",
-   "motion": null,
+   "motion": {
+    "dolly": "in",
+    "amount": 0.03
+   },
    "grade": null,
    "reading_room": false,
-   "img": "img/M1.S09.webp?v=1791763895"
+   "img": "img/M1.S09.webp?v=1791946829",
+   "video": "video/M1.S09.mp4?v=1791948690"
   },
   {
    "id": "M2.S01",
@@ -392,32 +399,33 @@
   },
   {
    "id": "M2.S02",
-   "type": "pan",
+   "type": "video",
    "start": 32.525,
    "end": 39.8,
    "verses": "5",
    "motion": {
     "from": [
      0.1,
-     0.2,
-     0.6,
-     0.6
+     0.12,
+     0.82,
+     0.82
     ],
     "to": [
-     0.25,
-     0.25,
-     0.45,
-     0.45
+     0.15,
+     0.15,
+     0.75,
+     0.75
     ],
     "ease": "in-out"
    },
    "grade": null,
    "reading_room": false,
-   "img": "img/M2.S02.webp?v=1791764476"
+   "img": "img/M2.S02.webp?v=1791764476",
+   "video": "video/M2.S02.mp4?v=1791948906"
   },
   {
    "id": "M2.S03",
-   "type": "parallax",
+   "type": "video",
    "start": 39.8,
    "end": 49.5,
    "verses": "6",
@@ -427,24 +435,24 @@
    },
    "grade": null,
    "reading_room": false,
-   "img": "img/M2.S03.webp?v=1791764743",
-   "depth": "depth/M2.S03.png?v=17917727712"
+   "img": "img/M2.S03.webp?v=1791946829",
+   "video": "video/M2.S03.mp4?v=1791949137"
   },
   {
    "id": "M2.S04",
-   "type": "parallax",
+   "type": "video",
    "start": 49.5,
    "end": 57.6,
    "verses": "7",
    "motion": {
     "dolly": "in",
-    "amount": 0.05,
+    "amount": 0.04,
     "focus_pull": "tychicus_to_philemon"
    },
    "grade": null,
    "reading_room": true,
    "img": "img/M2.S04.webp?v=1791765064",
-   "depth": "depth/M2.S04.png?v=17917727732"
+   "video": "video/M2.S04.mp4?v=1791949352"
   },
   {
    "id": "M3.S01",

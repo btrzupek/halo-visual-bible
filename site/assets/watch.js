@@ -100,7 +100,7 @@
       layer.innerHTML = ''; layer.className = 'layer' + (s.grade === 'flashback' ? ' flashback' : '');
       var r = { s: s, layer: layer };
       if (s.type === 'video' && s.video) {
-        var v = el('video'); v.muted = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.preload = 'auto';
+        var v = el('video'); v.className = 'cam'; v.muted = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.preload = 'auto';
         v.poster = s.img ? base + s.img : ''; v.src = base + s.video; layer.appendChild(v); r.video = v;
         if (playing) v.play().catch(function () {});
         return r;
@@ -114,7 +114,7 @@
     }
     // crop rect [x, y, w, h] (fractions of the keyframe) -> cover the viewport with that region centred
     function placeImg(img, rect) {
-      var iw = img.naturalWidth, ih = img.naturalHeight; if (!iw) return;
+      var iw = img.naturalWidth || img.videoWidth, ih = img.naturalHeight || img.videoHeight; if (!iw) return;
       var vw = innerWidth, vh = innerHeight, cw = rect[2] * iw, ch = rect[3] * ih;
       var s = Math.max(vw / cw, vh / ch, vw / iw, vh / ih);
       var cx = (rect[0] + rect[2] / 2) * iw * s, cy = (rect[1] + rect[3] / 2) * ih * s;
@@ -128,6 +128,7 @@
       var s = r.s, p = Math.max(0, Math.min(1, (t - s.start) / Math.max(0.01, s.end - s.start))), m = s.motion || {};
       if (r.video) {
         var v = r.video; if (v.duration && playing && Math.abs(v.currentTime - Math.min(t - s.start, v.duration - 0.05)) > 0.6) v.currentTime = Math.min(t - s.start, v.duration - 0.05);
+        if (v.videoWidth) placeImg(v, cameraRect(s, p, m));    // the clip is shot with a static camera; the player moves it
         return;
       }
       if (r.gl) {
@@ -136,12 +137,18 @@
                   m.orbit === 'left' ? -amt * (e - .5) * 2 : m.orbit === 'right' ? amt * (e - .5) * 2 : 0);
         return;
       }
-      var rect;
-      if (s.type === 'pan' && m.from && m.to) rect = lerpRect(m.from, m.to, (ease[m.ease] || ease['in-out'])(p));
-      else if (s.type === 'video') rect = zoomRect(1 + 0.08 * ease['in-out'](p));                       // animatic stand-in
-      else if (s.type === 'parallax') { var a2 = (m.amount || 0.05) * 1.6; rect = zoomRect(1 + (m.dolly === 'out' ? a2 * (1 - p) : a2 * p)); }
-      else rect = [0, 0, 1, 1];
-      if (r.img.complete) placeImg(r.img, rect);
+      if (r.img.complete) placeImg(r.img, cameraRect(s, p, m, true));
+    }
+    // The camera as a crop of the frame: a pan's from/to; a dolly as a slow zoom; an orbit (no depth on a flat frame)
+    // as a sideways drift with a little zoom so the edges never show. A video with no motion holds its frame.
+    function cameraRect(s, p, m, still) {
+      var e = ease[m.ease] || ease['in-out'], a = m.amount || 0.05;
+      if (m.from && m.to) return lerpRect(m.from, m.to, e(p));
+      if (m.dolly) return zoomRect(1 + a * 1.6 * (m.dolly === 'out' ? 1 - e(p) : e(p)));
+      if (m.orbit) { var z = 1 + a * 2.2, w = 1 / z, dx = (1 - w) / 2 * (m.orbit === 'left' ? 1 - 2 * e(p) : 2 * e(p) - 1);
+                     return [(1 - w) / 2 + dx, (1 - w) / 2, w, w]; }
+      if (s.type === 'video' && still) return zoomRect(1 + 0.08 * ease['in-out'](p));           // animatic stand-in
+      return [0, 0, 1, 1];
     }
 
     // ---- verse overlay
